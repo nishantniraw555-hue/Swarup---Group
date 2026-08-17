@@ -1,0 +1,11 @@
+﻿User-agent: *
+Allow: /
+Allow: /assets/
+Allow: /guru_niwas_brochure.html
+Allow: /guru_niwas_exact_map_pdf.html
+
+# Disallow internal files
+Disallow: /node_modules/
+
+# Sitemap URL
+Sitemap: https://swarupgroup.in/sitemap.xml

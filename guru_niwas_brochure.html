@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>Guru Niwas Colony — Official Masterplan &amp; Project Brochure | Swarup Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', 'Inter', sans-serif;
+      color: #0f172a;
+      background: #f8fafc;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    .page {
+      width: 210mm;
+      height: 297mm;
+      position: relative;
+      background: #ffffff;
+      page-break-after: always;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16mm 18mm;
+    }
+    
+    /* Luxury Header Top Bar */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #1e3a8a;
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    .header-logo-lockup {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 2px solid #d4a017;
+      padding: 3px;
+      background: #ffffff;
+      box-shadow: 0 4px 10px rgba(212,160,23,0.3);
+    }
+    .brand-title-main {
+      font-size: 1.15rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      color: #0a192f;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+    .brand-title-sub {
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.3em;
+      color: #b8860b;
+      text-transform: uppercase;
+    }
+    .header-doc-badge {
+      background: linear-gradient(135deg, #1e3a8a, #0f172a);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      border: 1px solid #d4a017;
+    }
+
+    /* Cover / Hero Area */
+    .hero-banner-box {
+      background: linear-gradient(135deg, #0a192f 0%, #1e3a8a 100%);
+      border-radius: 18px;
+      padding: 22px 24px;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #d4a017;
+      box-shadow: 0 10px 25px rgba(10,25,47,0.15);
+      margin-bottom: 14px;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(212,160,23,0.25);
+      border: 1px solid #d4a017;
+      color: #fde047;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+    .hero-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.85rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .hero-heading span {
+      color: #facc15;
+    }
+    .hero-subtitle {
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Metric Highlights 4-Col Grid */
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .metric-card {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+    .metric-val {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #1e3a8a;
+      line-height: 1.1;
+    }
+    .metric-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Key Location Distances */
+    .section-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      border-left: 4px solid #d4a017;
+      padding-left: 8px;
+    }
+    .location-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .location-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.72rem;
+    }
+    .loc-name {
+      font-weight: 700;
+      color: #1e293b;
+    }
+    .loc-dist {
+      font-weight: 800;
+      color: #1e3a8a;
+      background: #dbeafe;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    /* Blueprint Section in PDF */
+    .blueprint-frame {
+      background: #0f172a;
+      border-radius: 16px;
+      padding: 12px;
+      border: 2px solid #d4a017;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .blueprint-svg-container {
+      width: 100%;
+      height: 380px;
+      background: #0c1527;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Plot Matrix Table */
+    .plot-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.68rem;
+      margin-bottom: 12px;
+    }
+    .plot-table th {
+      background: #1e3a8a;
+      color: #ffffff;
+      padding: 6px 8px;
+      text-align: left;
+      font-weight: 800;
+      border: 1px solid #1e3a8a;
+    }
+    .plot-table td {
+      padding: 5px 8px;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+    }
+    .plot-table tr:nth-child(even) td {
+      background: #f8fafc;
+    }
+
+    /* Amenity Badges Grid */
+    .amenity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .amenity-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .amenity-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 6px;
+      background: #e0f2fe;
+      color: #0284c7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    /* Footer in PDF */
+    .page-footer {
+      border-top: 2px solid #e2e8f0;
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+      color: #64748b;
+    }
+    .footer-highlight {
+      font-weight: 800;
+      color: #1e3a8a;
+    }
+
+    /* Legal Seal Box */
+    .legal-seal-box {
+      background: linear-gradient(135deg, rgba(212,160,23,0.1) 0%, rgba(30,58,138,0.05) 100%);
+      border: 1.5px solid #d4a017;
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .seal-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #d4a017;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.52rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      border: 2px dashed #ffffff;
+      flex-shrink: 0;
+    }
+    .seal-text {
+      font-size: 0.68rem;
+      color: #334155;
+      line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE 1: COVER & PROJECT OVERVIEW
+       ══════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div>
+      <!-- Header -->
+      <div class="page-header">
+        <div class="header-logo-lockup">
+          <img src="assets/swarup_symbol.webp" alt="Swarup Group" class="logo-badge">
+          <div>
+            <div class="brand-title-main">SWARUP GROUP</div>
+            <div class="brand-title-sub">PREMIUM TOWNSHIP DEVELOPER • PATNA</div>
+          </div>
+        </div>
+        <div class="header-doc-badge">OFFICIAL PROJECT BROCHURE</div>
+      </div>
+
+      <!-- Hero Banner -->
+      <div class="hero-banner-box">
+        <span class="hero-tag">🌟 Flagship Masterplanned Township</span>
+        <h1 class="hero-heading">GURU NIWAS <span>COLONY</span></h1>
+        <p class="hero-subtitle">
+          Near IIT Patna Gate No. 1, Mouza Bihta, Patna — 100% Clear Title Residential Villa Plotting
+        </p>
+      </div>
+
+      <!-- Key Metrics -->
+      <div class="metric-grid">
+        <div class="metric-card">
+          <div class="metric-val">159</div>
+          <div class="metric-label">Approved Plots</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">30 Ft.</div>
+          <div class="metric-label">Wide Roads</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">100%</div>
+          <div class="metric-label">DLRS Verified</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">₹1,600</div>
+          <div class="metric-label">Per Sq.Ft Base</div>
+        </div>
+      </div>
+
+      <!-- Strategic Location Proximities -->
+      <div class="section-title">📍 Strategic Connectivity &amp; Landmark Distances</div>
+      <div class="location-grid">
+        <div class="location-item">
+          <span class="loc-name">🎓 IIT Patna (Gate No. 1)</span>
+          <span class="loc-dist">1.5 KM</span>
+        </div>
+        <div class="location-item">
+          <span class="loc-name">🏥 NSMCH Multi-Specialty Hospital</span>
+          <span class="loc-dist">2.0 KM</span>
+        </div>
+        <div class="location-item">
+          <span class="loc-name">✈️ Bihta International Airport</span>
+          <span class="loc-dist">3.0 KM</span>
+        </div>
+        <div class="location-item">
+          <span class="loc-name">🏨 ESIC Medical College &amp; Hospital</span>
+          <span class="loc-dist">4.0 KM</span>
+        </div>
+        <div class="location-item">
+          <span class="loc-name">🛣️ Patna Ring Road / Kanhauli Hub</span>
+          <span class="loc-dist">4.5 KM</span>
+        </div>
+        <div class="location-item">
+          <span class="loc-name">🚆 Bihta Railway Junction</span>
+          <span class="loc-dist">3.5 KM</span>
+        </div>
+      </div>
+
+      <!-- Government Compliance Seal -->
+      <div class="legal-seal-box">
+        <div class="seal-circle">
+          <span>DLRS</span>
+          <span style="font-size:0.42rem;">LEGAL</span>
+        </div>
+        <div class="seal-text">
+          <strong>100% दाखिल-खारिज (Mutation) एवं तत्काल रजिस्ट्री की कानूनी गारंटी :</strong><br>
+          स्वरूप ग्रुप द्वारा विकसित 'गुरु निवास कॉलोनी' बिहार सरकार राजस्व एवं भूमि सुधार विभाग (DLRS) के नक्शे और मानकों पर प्रमाणित है। CS/RS खतियान, लगान रसीद और LPC की पूरी पारदर्शिता उपलब्ध।
+        </div>
+      </div>
+
+      <!-- Plot Size Summary -->
+      <div class="section-title">📐 Available Plot Configurations</div>
+      <table class="plot-table">
+        <thead>
+          <tr>
+            <th>Plot Type</th>
+            <th>Area (Sq.Ft)</th>
+            <th>Dimensions</th>
+            <th>Facing</th>
+            <th>Price Est.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Compact Villa Plot</strong></td>
+            <td>900 Sq.Ft</td>
+            <td>30' × 30'</td>
+            <td>East / West</td>
+            <td><strong>₹14.40 Lakh</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Standard Residential Plot</strong></td>
+            <td>1,200 Sq.Ft</td>
+            <td>30' × 40'</td>
+            <td>North / South</td>
+            <td><strong>₹19.20 Lakh</strong></td>
+          </tr>
+          <tr>
+            <td><strong>Luxury Corner / Executive Plot</strong></td>
+            <td>1,600 Sq.Ft</td>
+            <td>40' × 40'</td>
+            <td>Corner Dual Road</td>
+            <td><strong>₹28.16 Lakh</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <div>© 2026 Swarup Group • Guru Niwas Colony Official Brochure</div>
+      <div>Page <span class="footer-highlight">1 of 2</span></div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       PAGE 2: MASTERPLAN BLUEPRINT & AMENITIES
+       ══════════════════════════════════════════════════════ -->
+  <div class="page">
+    <div>
+      <!-- Header -->
+      <div class="page-header">
+        <div class="header-logo-lockup">
+          <img src="assets/swarup_symbol.webp" alt="Swarup Group" class="logo-badge">
+          <div>
+            <div class="brand-title-main">SWARUP GROUP</div>
+            <div class="brand-title-sub">GURU NIWAS COLONY • MASTERPLAN BLUEPRINT</div>
+          </div>
+        </div>
+        <div class="header-doc-badge">AUTOCAD SURVEY LAYOUT</div>
+      </div>
+
+      <!-- Blueprint Graphic -->
+      <div class="section-title">🗺️ Official Architectural Layout &amp; Sector Blueprint (159 Plots)</div>
+      
+      <div class="blueprint-frame">
+        <svg viewBox="0 0 1000 480" width="100%" height="320" style="background:#091224; border-radius:10px;">
+          <!-- Grid Lines -->
+          <defs>
+            <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+              <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+            </pattern>
+          </defs>
+          <rect width="1000" height="480" fill="url(#grid)" />
+
+          <!-- Boundary Line -->
+          <rect x="20" y="20" width="960" height="440" rx="16" fill="none" stroke="#d4a017" stroke-width="2.5" stroke-dasharray="8 4"/>
+
+          <!-- 30-Ft Main Arterial Road (Horizontal) -->
+          <rect x="25" y="220" width="950" height="40" fill="#1e293b" stroke="#3b82f6" stroke-width="1.5"/>
+          <line x1="30" y1="240" x2="970" y2="240" stroke="#facc15" stroke-width="2" stroke-dasharray="12 8"/>
+          <text x="500" y="245" fill="#ffffff" font-size="12" font-weight="900" text-anchor="middle" letter-spacing="2">30-FT WIDE MAIN CENTRAL BOULEVARD</text>
+
+          <!-- Sector Cross Roads -->
+          <rect x="220" y="25" width="24" height="430" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+          <rect x="480" y="25" width="24" height="430" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+          <rect x="740" y="25" width="24" height="430" fill="#1e293b" stroke="#3b82f6" stroke-width="1"/>
+
+          <!-- Central Park & Gazebo -->
+          <rect x="255" y="40" width="215" height="75" rx="8" fill="#065f46" stroke="#10b981" stroke-width="2"/>
+          <text x="362" y="75" fill="#ecfdf5" font-size="11" font-weight="800" text-anchor="middle">🌳 CENTRAL PARK &amp; GAZEBO</text>
+          <text x="362" y="95" fill="#a7f3d0" font-size="9" text-anchor="middle">Lush Green Walking Trail</text>
+
+          <!-- Temple & Meditation Area -->
+          <rect x="515" y="40" width="215" height="75" rx="8" fill="#78350f" stroke="#f59e0b" stroke-width="2"/>
+          <text x="622" y="75" fill="#fef3c7" font-size="11" font-weight="800" text-anchor="middle">🛕 SHIV TEMPLE &amp; MEDITATION</text>
+          <text x="622" y="95" fill="#fde68a" font-size="9" text-anchor="middle">Sacred Community Space</text>
+
+          <!-- Sector 1 Plots (Top Left) -->
+          <!-- Row 1 -->
+          <rect x="35" y="40" width="55" height="40" fill="#1e3a8a" stroke="#60a5fa" stroke-width="1" rx="4"/>
+          <text x="62" y="64" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">Plot 1 ★</text>
+          <rect x="95" y="40" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="122" y="64" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 2</text>
+          <rect x="155" y="40" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="182" y="64" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 3</text>
+
+          <!-- Row 2 -->
+          <rect x="35" y="85" width="55" height="40" fill="#7e22ce" stroke="#c084fc" stroke-width="1" rx="4"/>
+          <text x="62" y="109" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 4</text>
+          <rect x="95" y="85" width="55" height="40" fill="#7e22ce" stroke="#c084fc" stroke-width="1" rx="4"/>
+          <text x="122" y="109" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 5</text>
+          <rect x="155" y="85" width="55" height="40" fill="#7e22ce" stroke="#c084fc" stroke-width="1" rx="4"/>
+          <text x="182" y="109" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 6</text>
+
+          <!-- Row 3 -->
+          <rect x="35" y="130" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="62" y="154" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 7</text>
+          <rect x="95" y="130" width="55" height="40" fill="#dc2626" stroke="#f87171" stroke-width="1" rx="4"/>
+          <text x="122" y="154" fill="#ffffff" font-size="8" font-weight="800" text-anchor="middle">Booked</text>
+          <rect x="155" y="130" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="182" y="154" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 9</text>
+
+          <!-- Row 4 (Facing 30-ft road) -->
+          <rect x="35" y="175" width="55" height="40" fill="#d97706" stroke="#fbbf24" stroke-width="1.5" rx="4"/>
+          <text x="62" y="199" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">Plot 10 ★</text>
+          <rect x="95" y="175" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="122" y="199" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 11</text>
+          <rect x="155" y="175" width="55" height="40" fill="#d97706" stroke="#fbbf24" stroke-width="1.5" rx="4"/>
+          <text x="182" y="199" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">Plot 12 ★</text>
+
+          <!-- Sector 2 Plots (Top Right) -->
+          <rect x="775" y="40" width="55" height="40" fill="#d97706" stroke="#fbbf24" stroke-width="1.5" rx="4"/>
+          <text x="802" y="64" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">Plot 50 ★</text>
+          <rect x="835" y="40" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="862" y="64" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 51</text>
+          <rect x="895" y="40" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="922" y="64" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 52</text>
+
+          <!-- Bottom Half Plots (Sector 3 & 4) -->
+          <rect x="35" y="265" width="55" height="40" fill="#d97706" stroke="#fbbf24" stroke-width="1.5" rx="4"/>
+          <text x="62" y="289" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">Plot 80 ★</text>
+          <rect x="95" y="265" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="122" y="289" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 81</text>
+          <rect x="155" y="265" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="182" y="289" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 82</text>
+
+          <!-- Bottom Plots Row 2 -->
+          <rect x="35" y="310" width="55" height="40" fill="#7e22ce" stroke="#c084fc" stroke-width="1" rx="4"/>
+          <text x="62" y="334" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 83</text>
+          <rect x="95" y="310" width="55" height="40" fill="#7e22ce" stroke="#c084fc" stroke-width="1" rx="4"/>
+          <text x="122" y="334" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 84</text>
+          <rect x="155" y="310" width="55" height="40" fill="#dc2626" stroke="#f87171" stroke-width="1" rx="4"/>
+          <text x="182" y="334" fill="#ffffff" font-size="8" font-weight="800" text-anchor="middle">Booked</text>
+
+          <!-- Bottom Plots Row 3 -->
+          <rect x="35" y="355" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="62" y="379" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 86</text>
+          <rect x="95" y="355" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="122" y="379" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 87</text>
+          <rect x="155" y="355" width="55" height="40" fill="#0284c7" stroke="#38bdf8" stroke-width="1" rx="4"/>
+          <text x="182" y="379" fill="#ffffff" font-size="9" font-weight="700" text-anchor="middle">Plot 88</text>
+
+          <!-- Grand Entrance Gate (Left Side) -->
+          <rect x="10" y="215" width="20" height="50" rx="4" fill="#d4a017" stroke="#ffffff" stroke-width="1.5"/>
+          <text x="20" y="244" fill="#000000" font-size="8" font-weight="900" text-anchor="middle" transform="rotate(-90 20 244)">MAIN GATE</text>
+
+          <!-- Water Tank & Utility Hub -->
+          <rect x="255" y="270" width="100" height="70" rx="6" fill="#1e3a8a" stroke="#60a5fa" stroke-width="1.5"/>
+          <text x="305" y="300" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">💧 OVERHEAD TANK</text>
+          <text x="305" y="318" fill="#93c5fd" font-size="8" text-anchor="middle">24/7 Water Supply</text>
+
+          <!-- Commercial / Community Center -->
+          <rect x="370" y="270" width="100" height="70" rx="6" fill="#0f766e" stroke="#2dd4bf" stroke-width="1.5"/>
+          <text x="420" y="300" fill="#ffffff" font-size="9" font-weight="800" text-anchor="middle">🏢 COMMUNITY HALL</text>
+          <text x="420" y="318" fill="#99f6e4" font-size="8" text-anchor="middle">Resident Functions</text>
+
+          <!-- Legend Bar Inside SVG -->
+          <rect x="35" y="420" width="915" height="30" rx="6" fill="rgba(15,23,42,0.9)" stroke="#334155" stroke-width="1"/>
+          <circle cx="60" cy="435" r="6" fill="#d97706"/>
+          <text x="75" y="439" fill="#e2e8f0" font-size="9">★ Corner Plots (Amber)</text>
+          <circle cx="230" cy="435" r="6" fill="#0284c7"/>
+          <text x="245" y="439" fill="#e2e8f0" font-size="9">1200 Sq.Ft (Blue)</text>
+          <circle cx="390" cy="435" r="6" fill="#7e22ce"/>
+          <text x="405" y="439" fill="#e2e8f0" font-size="9">900 Sq.Ft (Purple)</text>
+          <circle cx="550" cy="435" r="6" fill="#dc2626"/>
+          <text x="565" y="439" fill="#e2e8f0" font-size="9">🔴 Booked (Red)</text>
+          <circle cx="700" cy="435" r="6" fill="#065f46"/>
+          <text x="715" y="439" fill="#e2e8f0" font-size="9">🌳 Central Park &amp; Temple</text>
+        </svg>
+      </div>
+
+      <!-- Modern Amenities Grid -->
+      <div class="section-title">✨ World-Class Township Amenities</div>
+      <div class="amenity-grid">
+        <div class="amenity-card">
+          <div class="amenity-icon">🛣️</div>
+          <div>30-Ft Wide Metalled Roads</div>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">💡</div>
+          <div>Solar LED Street Lighting</div>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">🛡️</div>
+          <div>24/7 Gated Security &amp; CCTV</div>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">💧</div>
+          <div>Underground Drainage &amp; Water</div>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">🌳</div>
+          <div>Green Parks &amp; Children Play Area</div>
+        </div>
+        <div class="amenity-card">
+          <div class="amenity-icon">📜</div>
+          <div>Instant Registry &amp; Dakhil Kharij</div>
+        </div>
+      </div>
+
+      <!-- Corporate Office Contact Bar -->
+      <div style="background:#f1f5f9; border:1.5px solid #cbd5e1; border-radius:12px; padding:10px 14px; display:flex; justify-content:space-between; align-items:center;">
+        <div>
+          <div style="font-size:0.75rem; font-weight:800; color:#0f172a;">📍 Swarup Group Corporate Headquarters</div>
+          <div style="font-size:0.65rem; color:#475569;">Flat No- 502, 5th Floor, Rupa Tower, Near RPS More, Danapur, Patna, Bihar</div>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:0.78rem; font-weight:900; color:#1e3a8a;">📞 +91 70615 56404</div>
+          <div style="font-size:0.65rem; color:#b45309; font-weight:700;">swarupinfragroup@gmail.com</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="page-footer">
+      <div>Developed by <strong style="color:#1e3a8a;">Nishant Kumar Singh</strong> • Swarup Group Engineering</div>
+      <div>Page <span class="footer-highlight">2 of 2</span></div>
+    </div>
+  </div>
+
+</body>
+</html>
