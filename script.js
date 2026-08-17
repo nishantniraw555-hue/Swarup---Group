@@ -1104,10 +1104,31 @@ function initPatnaMasterplanCanvas() {
     drawText('GURU NIWAS COLONY', 450, -35, 24, '#b91c1c', true);
     drawText('Building Your Dreams', 450, -15, 12, '#2563eb', false);
 
-    requestAnimationFrame(drawMasterplan);
+    if (isGuruNiwasVisible) {
+      guruAnimId = requestAnimationFrame(drawMasterplan);
+    }
   }
 
-  drawMasterplan();
+  let isGuruNiwasVisible = false;
+  let guruAnimId = null;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isGuruNiwasVisible = entry.isIntersecting;
+        if (isGuruNiwasVisible && !guruAnimId) {
+          guruAnimId = requestAnimationFrame(drawMasterplan);
+        } else if (!isGuruNiwasVisible && guruAnimId) {
+          cancelAnimationFrame(guruAnimId);
+          guruAnimId = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  } else {
+    isGuruNiwasVisible = true;
+    drawMasterplan();
+  }
 }
 
 function initRoyalGardenMasterplanCanvas() {
@@ -1544,12 +1565,31 @@ function initRoyalGardenMasterplanCanvas() {
 
     // Main Header on Canvas Top Left
     drawText('ROYAL GARDEN', 360, -45, 24, '#b91c1c', true);
-    drawText('Building Your Dreams — Mouza Painathi, Thana No. 68, Maner Patna', 360, -25, 11, '#d97706', true);
-
-    requestAnimationFrame(drawRoyalGardenMasterplan);
+    if (isRoyalGardenVisible) {
+      rgAnimId = requestAnimationFrame(drawRoyalGardenMasterplan);
+    }
   }
 
-  drawRoyalGardenMasterplan();
+  let isRoyalGardenVisible = false;
+  let rgAnimId = null;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isRoyalGardenVisible = entry.isIntersecting;
+        if (isRoyalGardenVisible && !rgAnimId) {
+          rgAnimId = requestAnimationFrame(drawRoyalGardenMasterplan);
+        } else if (!isRoyalGardenVisible && rgAnimId) {
+          cancelAnimationFrame(rgAnimId);
+          rgAnimId = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  } else {
+    isRoyalGardenVisible = true;
+    drawRoyalGardenMasterplan();
+  }
 }
 
 /* ==========================================
@@ -2959,10 +2999,31 @@ if (tGlass >= 1.0) {
     drawLandscaping(prog, groundY, tick);
 
     drawAtmosphere(prog, groundY);
-    requestAnimationFrame(render);
+    if (isConstructionVisible) {
+      constructionAnimId = requestAnimationFrame(render);
+    }
   }
 
-  render();
+  let isConstructionVisible = false;
+  let constructionAnimId = null;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isConstructionVisible = entry.isIntersecting;
+        if (isConstructionVisible && !constructionAnimId) {
+          constructionAnimId = requestAnimationFrame(render);
+        } else if (!isConstructionVisible && constructionAnimId) {
+          cancelAnimationFrame(constructionAnimId);
+          constructionAnimId = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  } else {
+    isConstructionVisible = true;
+    render();
+  }
 }
 
 /* ==========================================
@@ -4073,10 +4134,31 @@ function initRouteTimeline() {
 
     ctx.restore();
 
-    requestAnimationFrame(render);
+    if (isRouteVisible) {
+      routeAnimId = requestAnimationFrame(render);
+    }
   }
 
-  render();
+  let isRouteVisible = false;
+  let routeAnimId = null;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isRouteVisible = entry.isIntersecting;
+        if (isRouteVisible && !routeAnimId) {
+          routeAnimId = requestAnimationFrame(render);
+        } else if (!isRouteVisible && routeAnimId) {
+          cancelAnimationFrame(routeAnimId);
+          routeAnimId = null;
+        }
+      });
+    }, { threshold: 0.05 });
+    observer.observe(canvas);
+  } else {
+    isRouteVisible = true;
+    render();
+  }
 }
 
 /* ==========================================
@@ -4296,8 +4378,8 @@ function initScrollVideoEngine() {
 
   const ctx = canvas.getContext('2d');
   const frameCount = 150;
-  const frames = [];
-  let loadedCount = 0;
+  const frames = new Array(frameCount);
+  let hasStartedPreload = false;
   let currentFrameIndex = 0;
 
   function resize() {
@@ -4305,27 +4387,63 @@ function initScrollVideoEngine() {
     canvas.height = window.innerHeight;
     renderFrame(currentFrameIndex);
   }
-  window.addEventListener('resize', resize);
+  window.addEventListener('resize', resize, { passive: true });
 
-  // Preload all WebP frames
-  for (let i = 1; i <= frameCount; i++) {
-    const img = new Image();
-    const padIndex = String(i).padStart(3, '0');
-    img.src = `scrolling_frames/frame_${padIndex}.webp`;
-    img.onload = () => {
-      loadedCount++;
-      if (i === 1) {
-        resize();
-        renderFrame(0);
-      }
-    };
-    frames.push(img);
+  // Load Frame 1 immediately for initial display
+  const firstImg = new Image();
+  firstImg.src = 'scrolling_frames/frame_001.webp';
+  firstImg.onload = () => {
+    frames[0] = firstImg;
+    resize();
+    renderFrame(0);
+  };
+
+  // Lazy-load remaining frames only when user scrolls near the section
+  function startPreloadingFrames() {
+    if (hasStartedPreload) return;
+    hasStartedPreload = true;
+
+    const isMobile = window.innerWidth < 768;
+    const step = isMobile ? 2 : 1; // On mobile, load every 2nd frame for 50% lighter memory
+
+    for (let i = 1; i <= frameCount; i += step) {
+      if (i === 1) continue;
+      const img = new Image();
+      const padIndex = String(i).padStart(3, '0');
+      img.src = `scrolling_frames/frame_${padIndex}.webp`;
+      frames[i - 1] = img;
+    }
+  }
+
+  if ('IntersectionObserver' in window) {
+    const preloadObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          startPreloadingFrames();
+          preloadObserver.disconnect();
+        }
+      });
+    }, { rootMargin: '600px 0px' });
+    preloadObserver.observe(section);
+  } else {
+    setTimeout(startPreloadingFrames, 1500);
   }
 
   function renderFrame(index) {
     let img = frames[index];
     if (!img || !img.complete || img.naturalWidth === 0) {
-      img = frames.find(f => f && f.complete && f.naturalWidth > 0) || frames[0];
+      // Find closest loaded frame
+      for (let offset = 1; offset < 10; offset++) {
+        if (frames[index - offset] && frames[index - offset].complete) {
+          img = frames[index - offset];
+          break;
+        }
+        if (frames[index + offset] && frames[index + offset].complete) {
+          img = frames[index + offset];
+          break;
+        }
+      }
+      if (!img || !img.complete) img = frames[0];
     }
     if (!img || !img.complete || img.naturalWidth === 0) return;
 
@@ -4334,7 +4452,6 @@ function initScrollVideoEngine() {
     const iw = img.naturalWidth;
     const ih = img.naturalHeight;
 
-    // Cover Aspect Ratio Math
     const scale = Math.max(cw / iw, ch / ih);
     const nw = iw * scale;
     const nh = ih * scale;
@@ -4343,12 +4460,6 @@ function initScrollVideoEngine() {
 
     ctx.clearRect(0, 0, cw, ch);
     ctx.drawImage(img, nx, ny, nw, nh);
-
-    // Dynamically clip LIVE animating video frame inside transparent text title and subtitle!
-    const titleEl = document.getElementById('scroll-video-title');
-    const subtitleEl = document.getElementById('scroll-video-subtitle');
-    if (titleEl && img.src) titleEl.style.backgroundImage = `url('${img.src}')`;
-    if (subtitleEl && img.src) subtitleEl.style.backgroundImage = `url('${img.src}')`;
   }
 
   const phases = [
@@ -4393,14 +4504,14 @@ function initScrollVideoEngine() {
           titleEl.textContent = phase.title;
           titleEl.style.opacity = '1';
           titleEl.style.transform = 'translateY(0)';
-        }, 150);
+        }, 120);
       }
       if (subtitleEl) {
         subtitleEl.style.opacity = '0';
         setTimeout(() => {
           subtitleEl.textContent = phase.subtitle;
           subtitleEl.style.opacity = '1';
-        }, 150);
+        }, 120);
       }
     }
   }
@@ -4408,6 +4519,12 @@ function initScrollVideoEngine() {
   let ticking = false;
   function updateScroll() {
     const rect = section.getBoundingClientRect();
+    // If section is offscreen, skip work entirely
+    if (rect.bottom < -100 || rect.top > window.innerHeight + 100) {
+      ticking = false;
+      return;
+    }
+
     const totalScroll = rect.height - window.innerHeight;
     const progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
 
