@@ -1,11 +1,21 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 Allow: /assets/
+Allow: /scrolling_frames/
 Allow: /guru_niwas_brochure.html
 Allow: /guru_niwas_exact_map_pdf.html
 
-# Disallow internal files
+# Disallow internal scripts & modules
 Disallow: /node_modules/
+Disallow: /*.js$
+Allow: /script.js
+Allow: /royal-garden.js
 
-# Sitemap URL
+# Googlebot & Bingbot specific directives
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+
+# Sitemap Index
 Sitemap: https://swarupgroup.in/sitemap.xml
