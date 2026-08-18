@@ -4955,9 +4955,9 @@ function initSwarupAiBot() {
       `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=hi&q=${encodedText}`
     ];
 
-    setTimeout(() => {
-      tryNextFemaleAudioSource(femaleAudioSources, 0, textToSpeak);
-    }, 200);
+    // DO NOT use setTimeout here! Mobile browsers require audio.play() to be called
+    // synchronously within the user gesture context to avoid Autoplay restrictions.
+    tryNextFemaleAudioSource(femaleAudioSources, 0, textToSpeak);
   }
 
   function tryNextFemaleAudioSource(sources, index, textToSpeak) {
