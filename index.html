@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" itemscope itemtype="https://schema.org/WebPage">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="google-site-verification" content="dF9CMMd32n1F3MSYxhG9_moFUPvNvwzqOAJKWqMyF-w">
   
   <!-- Primary Search Engine Meta Tags -->
@@ -55,7 +55,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=213">
+  <link rel="stylesheet" href="styles.css?v=214">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -507,7 +507,7 @@
         </div>
 
         <!-- Legend Overlay Box -->
-        <div style="position:absolute; bottom:16px; left:16px; z-index:10; background:rgba(255,255,255,0.88); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.8); padding:12px 18px; border-radius:16px; display:flex; flex-wrap:wrap; gap:16px; color:#0f172a; font-size:0.75rem; font-weight:700; box-shadow:0 12px 30px rgba(15,23,42,0.12);">
+        <div class="guru-niwas-legend" style="position:absolute; bottom:16px; left:16px; z-index:10; background:rgba(255,255,255,0.88); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.8); padding:12px 18px; border-radius:16px; display:flex; flex-wrap:wrap; gap:16px; color:#0f172a; font-size:0.75rem; font-weight:700; box-shadow:0 12px 30px rgba(15,23,42,0.12);">
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #d97706; background:#fef3c7; box-shadow:0 2px 4px rgba(217,119,6,0.2); display:inline-block;"></span> Corner Plots (Amber Gold)</span>
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #0284c7; background:#e0f2fe; box-shadow:0 2px 4px rgba(2,132,199,0.2); display:inline-block;"></span> 1200 Sq.Ft</span>
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #9333ea; background:#f3e8ff; box-shadow:0 2px 4px rgba(147,51,234,0.2); display:inline-block;"></span> 900 Sq.Ft</span>
@@ -515,7 +515,7 @@
         </div>
       </div>
 
-      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-space-between; gap:1rem; margin-top:1.5rem;">
+      <div class="masterplan-helper-bar" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.5rem;">
         <div style="font-size:0.8rem; color:var(--text-muted);">
           📌 <strong style="color:var(--text-main);">Click any plot block</strong> on the canvas above to view complete specifications and instant booking options.
         </div>
@@ -970,7 +970,7 @@
       </p>
     </div>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2rem;">
+    <div class="plots-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:2rem;">
 
       <!-- Card 1: Guru Niwas Colony -->
       <div class="project-card">
@@ -1276,7 +1276,7 @@
         <div style="display:grid; grid-template-columns:1fr; gap:0.5rem; padding-top:0.75rem; border-top:1px dashed #cbd5e1;">
           <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
             <span style="font-size:0.75rem; font-weight:700; color:#475569;">या अपना जिला / राज्य चुनें (38 Districts):</span>
-            <select id="calc-region-select" class="calc-input" style="flex:1; min-width:320px; font-size:0.85rem; font-weight:700; color:#0f172a; padding:0.65rem 0.85rem; border-color:#1e3a8a; background:#ffffff;">
+            <select id="calc-region-select" class="calc-input" style="flex:1; min-width:0; width:100%; font-size:0.85rem; font-weight:700; color:#0f172a; padding:0.65rem 0.85rem; border-color:#1e3a8a; background:#ffffff;">
               <optgroup label="📍 पटना प्रमंडल (Patna Division)">
                 <option value="5.5" selected>🌟 पटना (Patna) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft (3.125 डिसमिल)</option>
                 <option value="5.5">📍 नालंदा / बिहारशरीफ (Nalanda) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
@@ -1479,7 +1479,7 @@
       </div>
 
       <!-- MULTI-UNIT LIVE CONVERSION GRID (10 CARDS) -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2.5rem;">
+      <div class="calc-unit-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2.5rem;">
         
         <!-- Katha Card -->
         <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">

@@ -643,15 +643,15 @@
       }
 
       const isMobile = (width <= 768);
-      const padding = isMobile ? 6 : 16;
+      const padding = isMobile ? 10 : 20;
       const availW = width - padding * 2;
       const availH = height - padding * 2;
       const mapW = bMaxX - bMinX;
       const mapH = bMaxY - bMinY;
       mapBounds = { minX: bMinX, minY: bMinY, mapW, mapH };
 
-      // On mobile screens, scale map to fill the vertical height completely from top to bottom
-      const baseScale = isMobile ? (availH / mapH) : Math.min(availW / mapW, availH / mapH);
+      // Fit the entire blueprint cleanly inside the viewport without side cropping
+      const baseScale = Math.min(availW / mapW, availH / mapH);
       const scale = baseScale * userZoom;
 
       const offsetX = (width - mapW * scale) / 2 - (bMinX * scale) + panX;
@@ -784,12 +784,22 @@
         ctx.lineWidth = 1.5;
         ctx.strokeRect(park.x, park.y, park.w, park.h);
 
-        // Text & Leaves in Park
-        ctx.fillStyle = theme.greenAreaBorder;
-        ctx.font = 'bold 11px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(park.title || '🌿 LUSH GREEN BUFFER ZONE', park.x + park.w / 2, park.y + park.h / 2);
+        // Text in Park (strictly clipped & only if space permits)
+        if (park.w >= 45 && park.h >= 14) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(park.x + 2, park.y + 2, Math.max(1, park.w - 4), Math.max(1, park.h - 4));
+          ctx.clip();
+
+          const parkTitle = (park.w < 110) ? '🌿 GREEN ZONE' : (park.title || '🌿 LUSH GREEN BUFFER');
+          const fontSize = Math.min(11, Math.max(6.5, park.h * 0.45));
+          ctx.fillStyle = theme.greenAreaBorder;
+          ctx.font = 'bold ' + fontSize + 'px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(parkTitle, park.x + park.w / 2, park.y + park.h / 2);
+          ctx.restore();
+        }
       });
 
       // ── 2. DRAW FUTURE EXTENSION (Phase II) ──
@@ -801,6 +811,19 @@
         ctx.strokeStyle = isFeHighlighted ? '#f59e0b' : theme.futureExtBorder;
         ctx.lineWidth = isFeHighlighted ? 3 : 2;
         ctx.strokeRect(fe.x, fe.y, fe.w, fe.h);
+
+        if (fe.w >= 70 && fe.h >= 24) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(fe.x + 2, fe.y + 2, Math.max(1, fe.w - 4), Math.max(1, fe.h - 4));
+          ctx.clip();
+          ctx.fillStyle = theme.futureExtText || '#4338ca';
+          ctx.font = '800 10px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText('PHASE II • FUTURE EXTENSION', fe.x + fe.w / 2, fe.y + fe.h / 2);
+          ctx.restore();
+        }
       }
 
       // ── 3. DRAW ROADS (Seamless Interconnected Open Junctions) ──
@@ -817,7 +840,7 @@
         ctx.strokeRect(r.x, r.y, r.w, r.h);
       });
 
-      // Pass C: Open Junction Clearing (removes overlapping internal border lines)
+      // Pass C: Open Junction Clearing
       transformedRoads.forEach(r => {
         ctx.fillStyle = r.isMain ? theme.mainRoad : theme.sectorRoad;
         ctx.fillRect(r.x + 1, r.y + 1, Math.max(0, r.w - 2), Math.max(0, r.h - 2));
@@ -840,29 +863,55 @@
         ctx.stroke();
         ctx.setLineDash([]);
 
-        // Road Name Text
-        if (r.name && (r.w > 30 || r.h > 30)) {
+        // Road Name Text (Strictly clipped inside road bounds with scale-aware font)
+        const isHorizontal = r.w >= r.h;
+        const thickness = isHorizontal ? r.h : r.w;
+        const length = isHorizontal ? r.w : r.h;
+
+        if (r.name && thickness >= 9 && length >= 35) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(r.x + 1, r.y + 1, Math.max(1, r.w - 2), Math.max(1, r.h - 2));
+          ctx.clip();
+
+          const maxFontSize = r.isMain ? 13 : 9.5;
+          const fontSize = Math.min(maxFontSize, Math.max(6, thickness * 0.65));
           ctx.fillStyle = theme.roadText;
-          ctx.font = r.isMain ? '800 14px Inter, sans-serif' : '800 11px Inter, sans-serif';
+          ctx.font = '800 ' + fontSize + 'px Inter, sans-serif';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
-          if (r.w >= r.h) {
-            if (r.name.includes('30\'-0"')) {
-              ctx.fillText('30\'-0" WIDE ROAD', r.x + r.w * 0.58, r.y + r.h / 2);
-            } else if (r.w > 350 && !r.isMain) {
-              ctx.fillText(r.name, r.x + r.w * 0.28, r.y + r.h / 2);
-              ctx.fillText(r.name, r.x + r.w * 0.72, r.y + r.h / 2);
+          // Adaptively shorten road label on narrow mobile scales to prevent truncation
+          let roadLabel = r.name;
+          if (r.isMain) {
+            if (length < 180) roadLabel = '100-FT HIGHWAY';
+            else if (length < 340) roadLabel = '100-FT BIHTA-PATNA HIGHWAY';
+          } else if (roadLabel.includes('30\'-0"')) {
+            if (length < 120) roadLabel = '30-FT';
+            else roadLabel = '30\'-0" WIDE ROAD';
+          } else if (roadLabel.includes('17\'-0"')) {
+            if (length < 80) roadLabel = '17-FT';
+            else roadLabel = '17\'-0" ROAD';
+          }
+
+          if (isHorizontal) {
+            if (r.name.includes('30\'-0"') && length >= 180) {
+              ctx.fillText(roadLabel, r.x + r.w * 0.58, r.y + r.h / 2);
+            } else if (length > 300 && !r.isMain) {
+              ctx.fillText(roadLabel, r.x + r.w * 0.28, r.y + r.h / 2);
+              ctx.fillText(roadLabel, r.x + r.w * 0.72, r.y + r.h / 2);
             } else {
-              ctx.fillText(r.name, r.x + r.w / 2, r.y + r.h / 2);
+              ctx.fillText(roadLabel, r.x + r.w / 2, r.y + r.h / 2);
             }
           } else {
             ctx.save();
             ctx.translate(r.x + r.w / 2, r.y + r.h / 2);
             ctx.rotate(-Math.PI / 2);
-            ctx.fillText(r.name, 0, 0);
+            ctx.fillText(roadLabel, 0, 0);
             ctx.restore();
           }
+
+          ctx.restore();
         }
       });
 
@@ -874,11 +923,18 @@
         ctx.lineWidth = 1.5;
         ctx.strokeRect(g.x, g.y, g.w, g.h);
 
-        ctx.fillStyle = theme.gateText;
-        ctx.font = '800 9px Inter, sans-serif';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(g.name, g.x + g.w / 2, g.y + g.h / 2);
+        if (g.w >= 24 && g.h >= 10) {
+          ctx.save();
+          ctx.beginPath();
+          ctx.rect(g.x + 1, g.y + 1, Math.max(1, g.w - 2), Math.max(1, g.h - 2));
+          ctx.clip();
+          ctx.fillStyle = theme.gateText;
+          ctx.font = '800 8.5px Inter, sans-serif';
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(g.name, g.x + g.w / 2, g.y + g.h / 2);
+          ctx.restore();
+        }
       });
 
       // ── 5. DRAW PLOTS ──
@@ -918,24 +974,24 @@
           ctx.strokeRect(p.x - 4, p.y - 4, p.w + 8, p.h + 8);
         }
 
-        // Plot ID Text & SqFt label (strictly contained inside plot box)
-        if (p.w >= 10 && p.h >= 8) {
+        // Plot ID Text & SqFt label (strictly contained inside plot box with smart LOD)
+        if (p.w >= 11 && p.h >= 8) {
           ctx.save();
           ctx.beginPath();
           ctx.rect(p.x + 1, p.y + 1, Math.max(1, p.w - 2), Math.max(1, p.h - 2));
           ctx.clip();
 
-          const isVertical = p.h > p.w * 1.5 && p.w < 36;
-          const availDim = isVertical ? p.h - 6 : p.w - 4;
+          const isVertical = p.h > p.w * 1.4 && p.w < 34;
+          const availDim = isVertical ? p.h - 4 : p.w - 4;
           const availCross = isVertical ? p.w - 4 : p.h - 4;
 
-          let fontSize = Math.min(12, Math.max(6, Math.min(availDim / (p.id.length * 0.65), availCross * 0.4)));
+          let fontSize = Math.min(12, Math.max(5.5, Math.min(availDim / (p.id.length * 0.62), availCross * 0.42)));
           ctx.font = '800 ' + fontSize + 'px Inter, sans-serif';
 
-          // Measure and downscale if still too wide
+          // Measure and ensure no horizontal overflow
           let measuredW = ctx.measureText(p.id).width;
-          if (measuredW > availDim && availDim > 8) {
-            fontSize = Math.max(5.5, fontSize * (availDim / measuredW));
+          if (measuredW > availDim && availDim > 6) {
+            fontSize = Math.max(5, fontSize * (availDim / measuredW));
             ctx.font = '800 ' + fontSize + 'px Inter, sans-serif';
           }
 
@@ -943,7 +999,7 @@
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
 
-          const showSqft = !isVertical && p.h >= 30 && p.w >= 36 && p.sqft;
+          const showSqft = !isVertical && p.h >= 28 && p.w >= 34 && p.sqft && (fontSize >= 7);
 
           if (isVertical) {
             ctx.save();
@@ -952,11 +1008,11 @@
             ctx.fillText(p.id, 0, 0);
             ctx.restore();
           } else if (showSqft) {
-            const sqftFontSize = Math.min(8.5, Math.max(5.5, fontSize * 0.72));
-            ctx.fillText(p.id, p.x + p.w / 2, p.y + p.h / 2 - (fontSize * 0.5));
+            const sqftFontSize = Math.min(8, Math.max(5, fontSize * 0.72));
+            ctx.fillText(p.id, p.x + p.w / 2, p.y + p.h / 2 - (fontSize * 0.48));
             ctx.fillStyle = theme.textSqft;
             ctx.font = '600 ' + sqftFontSize + 'px Inter, sans-serif';
-            ctx.fillText(p.sqft + ' sqft', p.x + p.w / 2, p.y + p.h / 2 + (sqftFontSize * 0.8));
+            ctx.fillText(p.sqft + ' sqft', p.x + p.w / 2, p.y + p.h / 2 + (sqftFontSize * 0.75));
           } else {
             ctx.fillText(p.id, p.x + p.w / 2, p.y + p.h / 2);
           }
