@@ -4402,7 +4402,7 @@ canvas {
   .modal-overlay,
   .modal-backdrop {
     align-items: flex-start !important;
-    padding: 1rem !important;
+    padding: 0.5rem !important;
     overflow-y: auto !important;
   }
 
@@ -4416,11 +4416,12 @@ canvas {
     width: 100% !important;
     max-height: none !important;
     height: auto !important;
-    padding: 1rem !important;
-    border-radius: 16px !important;
-    margin: 0 auto !important; /* Important to remove vertical auto margin */
+    padding: 0.75rem !important;
+    border-radius: 12px !important;
+    margin: 0 auto !important;
     overflow: visible !important;
     transform: none !important;
+    zoom: 0.85 !important; /* Aggressively shrink entire modal visually */
   }
 
   .plot-modal-card {
@@ -4429,35 +4430,35 @@ canvas {
 
   /* Reduce the top image height in plot inspect modal for mobile */
   .plot-modal-card > div:first-child {
-    height: 100px !important;
+    height: 80px !important;
   }
   
   .plot-modal-card > div:nth-child(2) {
-    padding: 0.75rem !important;
+    padding: 0.5rem !important;
   }
   
   .plot-modal-card h3 {
-    font-size: 1.15rem !important;
+    font-size: 1rem !important;
   }
   
   .plot-modal-card p {
-    font-size: 0.75rem !important;
+    font-size: 0.7rem !important;
     margin-bottom: 2px !important;
   }
   
   .plot-modal-card > div:nth-child(2) > div:first-child {
-    gap: 0.5rem !important;
-    margin-bottom: 0.75rem !important;
+    gap: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .plot-modal-card > div:nth-child(2) > div:nth-child(2) {
-    padding: 0.75rem !important;
-    margin-bottom: 0.75rem !important;
+    padding: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .plot-modal-card .btn-gold {
-    padding: 0.75rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.5rem !important;
+    font-size: 0.75rem !important;
   }
   .gate-modal-tabs {
     flex-direction: column !important;
