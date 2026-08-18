@@ -5187,7 +5187,7 @@ function initSwarupAiBot() {
         addBotMsg(`
           <p><strong>👑 Royal Garden — Kanhauli Patli Bus Stand (Bihta-Patna Highway)</strong></p>
           <p>Patna ka most prestigious residential township layout!</p>
-          <p>• Location: <strong>Kanhauli Patli Bus Stand ke paas</strong><br>• Plot Sizes: 1200, 1500, 2400 sqft<br>• Rate: Starting ₹1,600 / sqft<br>• 30ft & 40ft wide main roads, temple, parks & streetlights.</p>
+          <p>• Location: <strong>Kanhauli Patli Bus Stand ke paas</strong><br>• Plot Sizes: 1200, 1500, 2400 sqft<br>• Rate: Starting ₹2,600 / sqft<br>• 30ft & 40ft wide main roads, temple, parks & streetlights.</p>
         `, [
           { label: '🚗 Book Free VIP Site Visit', action: 'book-visit' },
           { label: '💰 Price Estimator', action: 'calc-price' },
@@ -5202,14 +5202,14 @@ function initSwarupAiBot() {
       setTimeout(() => {
         removeTypingIndicator();
         addBotMsg(`
-          <p><strong>🏡 Guru Niwas — Near IIT Gate No. 2 (Bihta Patna)</strong></p>
-          <p>Prime township location close to IIT Patna Gate No. 2, NSMCH Hospital, and Bihta Airport corridor!</p>
-          <p>• Location: <strong>IIT Gate No. 2 ke paas (Bihta)</strong><br>• High appreciation property with verified 30-ft wide roads for instant home construction.</p>
+          <p><strong>🏡 Guru Niwas — Near IIT Gate No. 1 (Bihta Patna)</strong></p>
+          <p>Prime township location close to IIT Patna Gate No. 1, NSMCH Hospital, and Bihta Airport corridor!</p>
+          <p>• Location: <strong>IIT Gate No. 1 ke paas (Bihta)</strong><br>• High appreciation property with verified 30-ft wide roads for instant home construction.</p>
         `, [
           { label: '🚗 Book Site Visit', action: 'book-visit' },
           { label: '📋 Fill Booking Form', action: 'kyc-form' }
         ]);
-        speakGreeting("गुरु निवास आईआईटी गेट नंबर 2 के पास स्थित है।");
+        speakGreeting("गुरु निवास आईआईटी गेट नंबर 1 के पास स्थित है।");
       }, 400);
     }
     else if (actionKey === 'calc-price') {
