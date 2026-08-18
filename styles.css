@@ -3941,7 +3941,7 @@ canvas {
   }
   .hero-slider-bg .slide-item,
   .hero-slider-bg .slide-item.active {
-    background-size: contain !important;
+    background-size: 100% auto !important;
     background-position: top center !important;
     background-repeat: no-repeat !important;
     transform: none !important;
