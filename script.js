@@ -4474,9 +4474,12 @@ function initScrollVideoEngine() {
       
       ctx.drawImage(img, nx, ny, nw, nh);
 
-      // 2. Add a dark tint so the white text overlay remains highly readable
-      ctx.fillStyle = 'rgba(3, 7, 18, 0.5)';
-      ctx.fillRect(0, 0, cw, ch);
+      // 2. Add a soft gradient ONLY at the bottom so text is readable, keeping the main video totally clean
+      const grad = ctx.createLinearGradient(0, ch * 0.6, 0, ch);
+      grad.addColorStop(0, 'rgba(3, 7, 18, 0)');
+      grad.addColorStop(1, 'rgba(3, 7, 18, 0.85)');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, ch * 0.6, cw, ch * 0.4);
     } else {
       // Desktop / Landscape display: Full-width cinematic cover
       const scale = Math.max(cw / iw, ch / ih);

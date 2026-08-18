@@ -3833,7 +3833,7 @@ canvas {
   html, body {
     width: 100% !important;
     max-width: 100vw !important;
-    overflow-x: hidden !important;
+    overflow-x: clip !important;
   }
 
   *, *::before, *::after {
