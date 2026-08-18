@@ -55,7 +55,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=220">
+  <link rel="stylesheet" href="styles.css?v=221">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -2114,15 +2114,10 @@
        ════════════════════════════════════════ -->
   <div id="swarup-bot-container">
     <!-- Floating Trigger Button -->
-    <button id="swarup-bot-trigger" aria-label="Open Swarup AI Assistant">
-      <div class="bot-trigger-avatar">
-        <img src="assets/swarup_symbol.webp" alt="Swarup Group Bot">
-        <span class="bot-online-dot"></span>
-      </div>
-      <div class="bot-trigger-badge">
-        <span class="bot-pulse-ring"></span>
-        <span class="material-symbols-outlined icon-speech">smart_toy</span>
-      </div>
+    <button id="swarup-bot-trigger" aria-label="Open Swarup AI Assistant" style="width: 65px; height: 65px; border-radius: 50%; background: linear-gradient(135deg, #1e3a8a, #0284c7); border: 2px solid #d4a017; box-shadow: 0 10px 25px rgba(2, 132, 199, 0.4); display: flex; align-items: center; justify-content: center; position: relative;">
+      <span class="bot-pulse-ring" style="position: absolute; inset: -4px; border-radius: 50%; border: 2px solid #d4a017; animation: botPulse 2s infinite;"></span>
+      <span class="material-symbols-outlined" style="color: #ffffff; font-size: 32px;">smart_toy</span>
+      <span class="bot-online-dot" style="position: absolute; top: 4px; right: 4px; width: 14px; height: 14px; background: #22c55e; border: 2px solid #ffffff; border-radius: 50%;"></span>
       <div class="bot-trigger-tooltip">
         <span class="tooltip-text">Swarup AI Bot 🔊</span>
       </div>
@@ -2200,7 +2195,7 @@
   <script src="assets/pdf.min.js"></script>
   <!-- Custom Script Files -->
   <script src="royal-garden.js?v=217"></script>
-  <script src="app.js?v=1"></script>
+  <script src="app.js?v=2"></script>
 
 </body>
 </html>

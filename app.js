@@ -4917,8 +4917,22 @@ function initSwarupAiBot() {
   }
 
   // --- Calm, Warm & Natural Hindi Female Voice Engine ---
+  let currentBotAudio = null;
+
   function speakGreeting(customText) {
     if (!isVoiceActive) return;
+
+    // Stop any Web Speech API currently playing
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    
+    // Stop any HTML5 Audio currently playing
+    if (currentBotAudio) {
+      currentBotAudio.pause();
+      currentBotAudio.currentTime = 0;
+      currentBotAudio = null;
+    }
 
     // Play serene welcome chime first for a calm, happy ambience
     playSoftWelcomeChime();
@@ -4933,18 +4947,12 @@ function initSwarupAiBot() {
       voiceText.textContent = `Female Voice: "${textToSpeak}"`;
     }
 
-    // Stop any Web Speech API currently playing
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-
     const encodedText = encodeURIComponent(textToSpeak);
 
-    // Natural Calm Female Hindi Audio Sources (Google Natural / Polly Aditi / Wavenet Female)
+    // Natural Calm Female Hindi Audio Sources
+    // Using a more reliable primary Google Translate endpoint for consistent voice across devices
     const femaleAudioSources = [
-      `https://translate.google.com/translate_tts?ie=UTF-8&q=${encodedText}&tl=hi&client=tw-ob`,
-      `https://api.streamelements.com/kappa/v2/speech?voice=hi-IN-Wavenet-A&text=${encodedText}`,
-      `https://api.streamelements.com/kappa/v2/speech?voice=Aditi&text=${encodedText}`
+      `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=hi&q=${encodedText}`
     ];
 
     setTimeout(() => {
@@ -4960,20 +4968,21 @@ function initSwarupAiBot() {
     }
 
     const audioUrl = sources[index];
-    const audio = new Audio(audioUrl);
+    currentBotAudio = new Audio(audioUrl);
 
-    audio.onended = function() {
+    currentBotAudio.onended = function() {
       setTimeout(() => {
         if (voiceBanner) voiceBanner.style.opacity = '0.7';
       }, 800);
+      currentBotAudio = null;
     };
 
-    audio.onerror = function() {
+    currentBotAudio.onerror = function() {
       console.warn("Audio source failed, trying next female voice source...", audioUrl);
       tryNextFemaleAudioSource(sources, index + 1, textToSpeak);
     };
 
-    audio.play().then(() => {
+    currentBotAudio.play().then(() => {
       hasSpokenGreeting = true;
     }).catch((err) => {
       console.warn("Autoplay restricted or failed for source:", audioUrl, err);
@@ -4987,8 +4996,8 @@ function initSwarupAiBot() {
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'hi-IN';
-    utterance.rate = 0.82;  // Unhurried, relaxed, calm & friendly pace
-    utterance.pitch = 1.05; // Warm, natural female pitch (not chipmunk 1.4!)
+    utterance.rate = 0.9;  // Slightly faster than before to reduce robotic drawl
+    utterance.pitch = 1.1; // Warm, natural female pitch
 
     const voices = window.speechSynthesis.getVoices();
     // Filter for natural Female voices

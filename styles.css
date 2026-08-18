@@ -2862,15 +2862,16 @@ select:focus, .calc-input:focus {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s linear;
   transform-origin: bottom right;
 }
 
 #swarup-bot-window.bot-window-closed {
   opacity: 0;
   visibility: hidden;
-  transform: scale(0.85) translateY(20px);
+  transform: scale(0.9) translateY(15px);
   pointer-events: none;
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out, visibility 0s linear 0.25s;
 }
 
 /* Bot Header */
