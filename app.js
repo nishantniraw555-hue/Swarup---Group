@@ -1907,18 +1907,18 @@ function initCalculator() {
     }
 
     let totalSqFt = 0;
-    let ratePerSqFt = 2250;
+    let ratePerSqFt = 2600;
 
     if (currentMode === 'unit') {
       const v = parseFloat(inputVal ? inputVal.value : 1) || 0;
       const u = inputUnit ? inputUnit.value : 'katha';
       totalSqFt = toSqFt(v, u, scale);
-      ratePerSqFt = 2250;
+      ratePerSqFt = 2600;
     } else {
       const l = parseFloat(dimLength ? dimLength.value : 45) || 0;
       const w = parseFloat(dimWidth ? dimWidth.value : 30.25) || 0;
       totalSqFt = l * w;
-      ratePerSqFt = parseFloat(dimRate ? dimRate.value : 2250) || 2250;
+      ratePerSqFt = parseFloat(dimRate ? dimRate.value : 2600) || 2600;
     }
 
     if (totalSqFt <= 0) totalSqFt = 0;
@@ -4694,7 +4694,7 @@ window.openKycModal = function(plotNum, sqft, price, isCorner, projectType) {
   if (document.getElementById('kyc-booking-amount')) document.getElementById('kyc-booking-amount').value = price;
   
   // Use correct rate based on project type
-  const rate = (projectType === 'royal_garden') ? 2250 : 1600;
+  const rate = (projectType === 'royal_garden') ? 2600 : 1600;
   if (document.getElementById('kyc-booking-rate')) document.getElementById('kyc-booking-rate').value = "₹" + rate + " / Sq.Ft.";
 
   modal.classList.add('active');
@@ -5322,13 +5322,14 @@ function initSwarupAiBot() {
     else if (q.includes('price') || q.includes('rate') || q.includes('cost') || q.includes('daam') || q.includes('kitna')) {
       addBotMsg(`
         <p><strong>Swarup Group Plot Pricing & Rates:</strong></p>
-        <p>• Royal Garden Plots starting at <strong>₹1,600 / sq.ft.</strong></p>
-        <p>• 1200 Sqft plot ~ ₹19.20 Lakhs<br>• Corner plots carry 10% premium location advantage.</p>
+        <p>• Royal Garden: <strong>₹2,600 / sq.ft.</strong></p>
+        <p>• Guru Niwas: <strong>₹1,600 / sq.ft.</strong></p>
+        <p>• 1200 Sqft plot (Royal Garden) ~ ₹31.20 Lakhs<br>• Corner plots carry 10% premium location advantage.</p>
       `, [
         { label: '💰 Open Price Estimator', action: 'calc-price' },
         { label: '🚗 Book Free Visit', action: 'book-visit' }
       ]);
-      speakGreeting("रॉयल गार्डन में प्लॉट का रेट 1600 रुपए स्क्वायर फीट से शुरू होता है");
+      speakGreeting("रॉयल गार्डन में प्लॉट का रेट 2600 रुपए और गुरु निवास में 1600 रुपए स्क्वायर फीट है");
     }
     else if (q.includes('visit') || q.includes('dekhena') || q.includes('book') || q.includes('cab')) {
       handleAction('book-visit');

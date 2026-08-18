@@ -42,7 +42,7 @@
     let isDarkTheme = false; // Default: Clean White Architectural Theme
 
     // Royal Garden Pricing Configuration
-    const BASE_RATE_PER_SQFT = 2250;
+    const BASE_RATE_PER_SQFT = 2600;
 
     // Booked Plot numbers (Official Registry Allocation - Systematic IDs)
     const BOOKED_PLOT_IDS = new Set([
