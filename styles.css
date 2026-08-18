@@ -4402,63 +4402,66 @@ canvas {
   .modal-overlay,
   .modal-backdrop {
     align-items: flex-start !important;
-    padding: 0.5rem !important;
+    padding: clamp(0.5rem, 2vw, 1rem) !important;
     overflow-y: auto !important;
   }
 
-  /* Modals */
+  /* Modals - Proportional Responsive Scaling */
   .modal-card,
   .gate-3d-modal-card,
   .rg-modal-card,
   .kyc-modal-content,
   .plot-modal-card {
-    max-width: 100% !important;
+    max-width: 95vw !important;
     width: 100% !important;
     max-height: none !important;
     height: auto !important;
-    padding: 0.75rem !important;
-    border-radius: 12px !important;
-    margin: 0 auto !important;
+    padding: clamp(1rem, 4vw, 1.5rem) !important;
+    border-radius: clamp(12px, 3vw, 16px) !important;
+    margin: 0 auto !important; 
     overflow: visible !important;
     transform: none !important;
-    zoom: 0.85 !important; /* Aggressively shrink entire modal visually */
+    zoom: 1 !important; /* Restore normal zoom! */
   }
 
   .plot-modal-card {
     padding: 0 !important;
   }
 
-  /* Reduce the top image height in plot inspect modal for mobile */
+  /* Responsive proportional hero image - stops flattening/squashing */
   .plot-modal-card > div:first-child {
-    height: 80px !important;
+    height: auto !important;
+    aspect-ratio: 16/7 !important; /* Naturally scales height proportionally with screen width */
   }
   
   .plot-modal-card > div:nth-child(2) {
-    padding: 0.5rem !important;
+    padding: clamp(1rem, 4vw, 1.5rem) !important;
   }
   
+  /* Responsive typography */
   .plot-modal-card h3 {
-    font-size: 1rem !important;
+    font-size: clamp(1.2rem, 5vw, 1.6rem) !important;
   }
   
   .plot-modal-card p {
-    font-size: 0.7rem !important;
+    font-size: clamp(0.8rem, 3vw, 0.95rem) !important;
     margin-bottom: 2px !important;
   }
   
+  /* Responsive gaps & margins */
   .plot-modal-card > div:nth-child(2) > div:first-child {
-    gap: 0.25rem !important;
-    margin-bottom: 0.5rem !important;
+    gap: clamp(0.75rem, 3vw, 1.25rem) !important;
+    margin-bottom: clamp(1rem, 4vw, 1.5rem) !important;
   }
   
   .plot-modal-card > div:nth-child(2) > div:nth-child(2) {
-    padding: 0.5rem !important;
-    margin-bottom: 0.5rem !important;
+    padding: clamp(1rem, 4vw, 1.5rem) !important;
+    margin-bottom: clamp(1rem, 4vw, 1.5rem) !important;
   }
   
   .plot-modal-card .btn-gold {
-    padding: 0.5rem !important;
-    font-size: 0.75rem !important;
+    padding: clamp(0.8rem, 3.5vw, 1.1rem) !important;
+    font-size: clamp(0.9rem, 3.5vw, 1rem) !important;
   }
   .gate-modal-tabs {
     flex-direction: column !important;
@@ -4547,22 +4550,22 @@ canvas {
   }
   #swarup-bot-window {
     position: fixed !important;
-    bottom: 78px !important;
-    left: 8px !important;
-    right: 8px !important;
-    width: calc(100% - 16px) !important;
-    max-width: 390px !important;
-    margin: 0 auto !important;
-    height: 55vh !important;
-    max-height: 400px !important;
+    bottom: 80px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100vw - 24px) !important;
+    max-width: 420px !important;
+    height: calc(100dvh - 110px) !important;
+    max-height: 650px !important;
     border-radius: 20px !important;
-    transform-origin: bottom right !important;
     z-index: 1000000 !important;
+    display: flex !important;
+    flex-direction: column !important;
   }
   #swarup-bot-window.bot-window-closed {
     opacity: 0 !important;
     visibility: hidden !important;
-    transform: scale(0.85) translateY(20px) !important;
+    transform: translate(-50%, 20px) scale(0.95) !important;
     pointer-events: none !important;
   }
   .bot-quick-chips {
