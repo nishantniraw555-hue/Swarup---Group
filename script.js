@@ -4465,69 +4465,19 @@ function initScrollVideoEngine() {
     const isPortrait = (cw / ch) < (iw / ih) || cw < 768;
 
     if (isPortrait) {
-      // 1. Ambient blurred background for smooth screen fill on mobile portrait
-      const bgScale = Math.max(cw / iw, ch / ih);
-      const bgW = iw * bgScale;
-      const bgH = ih * bgScale;
-      const bgX = (cw - bgW) / 2;
-      const bgY = (ch - bgH) / 2;
-
-      ctx.save();
-      if (typeof ctx.filter !== 'undefined') {
-        ctx.filter = 'blur(28px) brightness(0.22) saturate(1.3)';
-      }
-      ctx.drawImage(img, bgX, bgY, bgW, bgH);
-      ctx.restore();
-
-      // 2. Smooth dark gradient overlay over ambient background
-      const grad = ctx.createRadialGradient(cw / 2, ch * 0.45, cw * 0.15, cw / 2, ch * 0.45, Math.max(cw, ch) * 0.85);
-      grad.addColorStop(0, 'rgba(3, 7, 18, 0.45)');
-      grad.addColorStop(1, 'rgba(3, 7, 18, 0.92)');
-      ctx.fillStyle = grad;
+      // 1. Fill screen with deep dark background
+      ctx.fillStyle = '#030712';
       ctx.fillRect(0, 0, cw, ch);
 
-      // 3. Draw the crisp, perfectly proportioned construction frame
-      const maxW = Math.min(cw - 28, 640);
-      const maxH = Math.min(ch * 0.46, 420);
-      const fitScale = Math.min(maxW / iw, maxH / ih);
+      // 2. Draw the crisp, 16:9 full-width frame vertically centered
+      const fitScale = cw / iw;
       const nw = iw * fitScale;
       const nh = ih * fitScale;
-      const nx = (cw - nw) / 2;
+      const nx = 0;
+      // Position it a bit higher so it doesn't overlap the text card at the bottom
+      const ny = (ch - nh) / 2 - (ch * 0.05);
 
-      // Position in the upper-mid area (above bottom text card)
-      const topOffset = Math.max(18, Math.round((ch * 0.44) - (nh / 2)));
-      const ny = topOffset;
-
-      // Card drop shadow
-      ctx.save();
-      ctx.shadowColor = 'rgba(0, 0, 0, 0.75)';
-      ctx.shadowBlur = 24;
-      ctx.shadowOffsetY = 10;
-
-      // Rounded container
-      const radius = 16;
-      ctx.beginPath();
-      if (typeof ctx.roundRect === 'function') {
-        ctx.roundRect(nx, ny, nw, nh, radius);
-      } else {
-        ctx.rect(nx, ny, nw, nh);
-      }
-      ctx.clip();
       ctx.drawImage(img, nx, ny, nw, nh);
-      ctx.restore();
-
-      // Luxury golden-blue accent border
-      ctx.save();
-      ctx.beginPath();
-      if (typeof ctx.roundRect === 'function') {
-        ctx.roundRect(nx, ny, nw, nh, radius);
-      } else {
-        ctx.rect(nx, ny, nw, nh);
-      }
-      ctx.strokeStyle = 'rgba(212, 160, 23, 0.45)';
-      ctx.lineWidth = 1.8;
-      ctx.stroke();
-      ctx.restore();
     } else {
       // Desktop / Landscape display: Full-width cinematic cover
       const scale = Math.max(cw / iw, ch / ih);
