@@ -3827,7 +3827,6 @@ canvas {
 }
 
 /* ==========================================
-/* ==========================================
    MOBILE & TABLET RESPONSIVE SYSTEM (<= 768px)
    ========================================== */
 @media (max-width: 768px) {
@@ -3835,7 +3834,6 @@ canvas {
     width: 100% !important;
     max-width: 100vw !important;
     overflow-x: hidden !important;
-    position: relative !important;
   }
 
   *, *::before, *::after {
@@ -3943,8 +3941,6 @@ canvas {
   }
   .hero-slider-bg .slide-item,
   .hero-slider-bg .slide-item.active {
-    background-size: cover !important;
-    background-position: center center !important;
     transform: none !important;
     transition: opacity 1.2s ease !important;
   }
@@ -3964,7 +3960,7 @@ canvas {
 
   /* Scroll Video Section */
   .scroll-video-section {
-    height: 300vh !important;
+    height: 600vh !important;
     background: #030712 !important;
   }
   .scroll-video-sticky {
@@ -4064,6 +4060,7 @@ canvas {
     max-width: 100% !important;
     position: relative !important;
     overflow: hidden !important;
+    touch-action: pan-y !important;
   }
   #hero-canvas {
     width: 100% !important;
@@ -4170,6 +4167,7 @@ canvas {
     max-width: 100% !important;
     position: relative !important;
     overflow: hidden !important;
+    touch-action: pan-y !important;
   }
   #royal-garden-canvas {
     width: 100% !important;
