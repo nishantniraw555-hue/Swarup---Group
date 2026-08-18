@@ -3941,6 +3941,9 @@ canvas {
   }
   .hero-slider-bg .slide-item,
   .hero-slider-bg .slide-item.active {
+    background-size: contain !important;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
     transform: none !important;
     transition: opacity 1.2s ease !important;
   }
