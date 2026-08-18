@@ -722,18 +722,7 @@
       if (p.status === 'booked') {
         return { fill: theme.bookedPlot, stroke: theme.bookedBorder };
       }
-      if (p.isCorner) {
-        return { fill: theme.plotVip, stroke: theme.plotVipBorder };
-      }
-      switch (p.block) {
-        case 'A': return { fill: theme.plotA, stroke: theme.plotABorder };
-        case 'B': return { fill: theme.plotB, stroke: theme.plotBBorder };
-        case 'C': return { fill: theme.plotC, stroke: theme.plotCBorder };
-        case 'D': return { fill: theme.plotD, stroke: theme.plotDBorder };
-        case 'E': return { fill: theme.plotE, stroke: theme.plotEBorder };
-        case 'FE': return { fill: theme.plotFE, stroke: theme.plotFEBorder };
-        default:  return { fill: theme.plotB, stroke: theme.plotBBorder };
-      }
+      return { fill: theme.plotA, stroke: theme.plotABorder };
     }
 
     function isPlotVisibleUnderFilter(p) {
@@ -977,8 +966,8 @@
           ctx.strokeRect(p.x - 4, p.y - 4, p.w + 8, p.h + 8);
         }
 
-        // Plot ID Text & SqFt label (strictly contained inside plot box with smart LOD)
-        if (p.w >= 11 && p.h >= 8) {
+        // Plot ID Text & SqFt label
+        if (p.w >= 4 && p.h >= 4) {
           ctx.save();
           ctx.beginPath();
           ctx.rect(p.x + 1, p.y + 1, Math.max(1, p.w - 2), Math.max(1, p.h - 2));
@@ -988,13 +977,13 @@
           const availDim = isVertical ? p.h - 4 : p.w - 4;
           const availCross = isVertical ? p.w - 4 : p.h - 4;
 
-          let fontSize = Math.min(12, Math.max(5.5, Math.min(availDim / (p.id.length * 0.62), availCross * 0.42)));
+          let fontSize = Math.min(12, Math.max(4.5, Math.min(availDim / (p.id.length * 0.62), availCross * 0.42)));
           ctx.font = '800 ' + fontSize + 'px Inter, sans-serif';
 
           // Measure and ensure no horizontal overflow
           let measuredW = ctx.measureText(p.id).width;
           if (measuredW > availDim && availDim > 6) {
-            fontSize = Math.max(5, fontSize * (availDim / measuredW));
+            fontSize = Math.max(4, fontSize * (availDim / measuredW));
             ctx.font = '800 ' + fontSize + 'px Inter, sans-serif';
           }
 
