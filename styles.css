@@ -3844,15 +3844,13 @@ canvas {
     max-width: 100% !important;
   }
 
-  /* Section Padding & Containment */
-  section,
+  /* Let inline paddings handle text sections. For full-bleed sections, force 0 padding so they touch the edges perfectly. */
+  .scroll-video-section,
+  .hero-section-fullbleed,
   .masterplan-section,
-  .gallery-reels-section,
-  #plots,
-  #about,
-  #calculator {
-    padding-left: 1rem !important;
-    padding-right: 1rem !important;
+  .gallery-reels-section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     max-width: 100vw !important;
     box-sizing: border-box !important;
   }
