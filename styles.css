@@ -4211,6 +4211,7 @@ canvas {
     right: 10px !important;
     max-width: calc(100% - 20px) !important;
     padding: 8px 12px !important;
+    transform: none !important;
   }
   .phase-text {
     font-size: 0.74rem !important;
