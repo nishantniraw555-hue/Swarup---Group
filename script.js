@@ -4465,21 +4465,43 @@ function initScrollVideoEngine() {
     const isPortrait = (cw / ch) < (iw / ih) || cw < 768;
 
     if (isPortrait) {
-      // 1. Draw video frame as full screen background (cover)
-      const scale = Math.max(cw / iw, ch / ih);
-      const nw = iw * scale;
-      const nh = ih * scale;
-      const nx = (cw - nw) / 2;
-      const ny = (ch - nh) / 2;
-      
-      ctx.drawImage(img, nx, ny, nw, nh);
+      // 1. Solid dark background (no blurry video running in background)
+      ctx.fillStyle = '#030712';
+      ctx.fillRect(0, 0, cw, ch);
 
-      // 2. Add a soft gradient ONLY at the bottom so text is readable, keeping the main video totally clean
-      const grad = ctx.createLinearGradient(0, ch * 0.6, 0, ch);
+      // 2. Create a perfect 9:16 portrait frame that fills left-right width
+      const frameW = cw;
+      const frameH = cw * (16 / 9);
+      const frameX = 0;
+      const frameY = (ch - frameH) / 2 - (ch * 0.02); // Slightly shifted up for text
+
+      ctx.save();
+      
+      // Add rounded corners to make it look like a clean frame
+      ctx.beginPath();
+      if (typeof ctx.roundRect === 'function') {
+        ctx.roundRect(frameX, frameY, frameW, frameH, 16);
+      } else {
+        ctx.rect(frameX, frameY, frameW, frameH);
+      }
+      ctx.clip();
+
+      // 3. Draw the video INSIDE the 9:16 frame using 'cover' logic so it fills the frame without distortion
+      const scale = Math.max(frameW / iw, frameH / ih);
+      const drawW = iw * scale;
+      const drawH = ih * scale;
+      const drawX = frameX + (frameW - drawW) / 2;
+      const drawY = frameY + (frameH - drawH) / 2;
+      ctx.drawImage(img, drawX, drawY, drawW, drawH);
+      
+      ctx.restore();
+
+      // 4. Soft gradient only at the bottom text area (so main video stays bright and clear)
+      const grad = ctx.createLinearGradient(0, ch * 0.65, 0, ch);
       grad.addColorStop(0, 'rgba(3, 7, 18, 0)');
-      grad.addColorStop(1, 'rgba(3, 7, 18, 0.85)');
+      grad.addColorStop(1, 'rgba(3, 7, 18, 0.9)');
       ctx.fillStyle = grad;
-      ctx.fillRect(0, ch * 0.6, cw, ch * 0.4);
+      ctx.fillRect(0, ch * 0.65, cw, ch * 0.35);
     } else {
       // Desktop / Landscape display: Full-width cinematic cover
       const scale = Math.max(cw / iw, ch / ih);
