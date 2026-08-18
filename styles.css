@@ -4404,23 +4404,23 @@ canvas {
   .kyc-modal-content {
     max-width: 95vw !important;
     width: 95vw !important;
-    max-height: 95dvh !important;
+    max-height: 85dvh !important;
     padding: 1rem 0.75rem !important;
     border-radius: 12px !important;
     margin: auto !important;
-    transform: scale(0.9);
-    transform-origin: center center;
+    overflow-y: auto !important;
+    transform: none !important;
   }
 
   .plot-modal-card {
     max-width: 95vw !important;
     width: 95vw !important;
-    max-height: 95dvh !important;
+    max-height: 85dvh !important;
     border-radius: 12px !important;
     margin: auto !important;
     padding: 0 !important;
-    transform: scale(0.9);
-    transform-origin: center center;
+    overflow-y: auto !important;
+    transform: none !important;
   }
 
   /* Reduce the top image height in plot inspect modal for mobile */
@@ -4433,7 +4433,27 @@ canvas {
   }
   
   .plot-modal-card h3 {
-    font-size: 1.25rem !important;
+    font-size: 1.15rem !important;
+  }
+  
+  .plot-modal-card p {
+    font-size: 0.75rem !important;
+    margin-bottom: 2px !important;
+  }
+  
+  .plot-modal-card > div:nth-child(2) > div:first-child {
+    gap: 0.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .plot-modal-card > div:nth-child(2) > div:nth-child(2) {
+    padding: 0.75rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  
+  .plot-modal-card .btn-gold {
+    padding: 0.75rem !important;
+    font-size: 0.85rem !important;
   }
   .gate-modal-tabs {
     flex-direction: column !important;
