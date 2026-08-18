@@ -792,7 +792,9 @@
           ctx.clip();
 
           const parkTitle = (park.w < 110) ? '🌿 GREEN ZONE' : (park.title || '🌿 LUSH GREEN BUFFER');
-          const fontSize = Math.min(11, Math.max(6.5, park.h * 0.45));
+          const maxAllowed = park.h * 0.45;
+          const wAllowed = park.w * 0.12;
+          const fontSize = Math.min(maxAllowed, wAllowed);
           ctx.fillStyle = theme.greenAreaBorder;
           ctx.font = 'bold ' + fontSize + 'px Inter, sans-serif';
           ctx.textAlign = 'center';
@@ -1096,24 +1098,17 @@
 
     // Canvas Events
     canvas.addEventListener('mousedown', (e) => {
-      isDragging = true;
+      isDragging = false; // Disabled panning via mouse
       didDrag = false;
       const pos = getCanvasCoords(e);
       dragStart = { x: pos.x, y: pos.y };
-      canvas.style.cursor = 'grabbing';
+      canvas.style.cursor = 'default';
     });
 
     canvas.addEventListener('mousemove', (e) => {
       const pos = getCanvasCoords(e);
       if (isDragging) {
-        const dx = pos.x - dragStart.x;
-        const dy = pos.y - dragStart.y;
-        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
-        panX += dx;
-        panY += dy;
-        dragStart = { x: pos.x, y: pos.y };
-        buildTransformedLayout();
-        drawMasterplan();
+        // Panning is disabled on mouse drag
         return;
       }
 
@@ -1126,13 +1121,13 @@
       if (found) {
         canvas.style.cursor = 'pointer';
       } else {
-        canvas.style.cursor = userZoom > 1.0 ? 'grab' : 'default';
+        canvas.style.cursor = 'default';
       }
     });
 
     canvas.addEventListener('mouseup', () => {
       isDragging = false;
-      canvas.style.cursor = hoveredPlot ? 'pointer' : (userZoom > 1.0 ? 'grab' : 'default');
+      canvas.style.cursor = hoveredPlot ? 'pointer' : 'default';
     });
 
     canvas.addEventListener('mouseleave', () => {
@@ -1208,10 +1203,11 @@
         };
         startPinchZoom = userZoom;
       } else if (e.touches.length === 1) {
-        isDragging = true;
-        didDrag = false;
+        // Prevent single touch from panning so users can scroll the page normally
         const pos = getCanvasCoords(e);
         dragStart = { x: pos.x, y: pos.y };
+        didDrag = false;
+        isDragging = false; // Disabled panning via touch
       }
     }, { passive: true });
 
