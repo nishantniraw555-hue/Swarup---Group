@@ -4465,19 +4465,18 @@ function initScrollVideoEngine() {
     const isPortrait = (cw / ch) < (iw / ih) || cw < 768;
 
     if (isPortrait) {
-      // 1. Fill screen with deep dark background
-      ctx.fillStyle = '#030712';
-      ctx.fillRect(0, 0, cw, ch);
-
-      // 2. Draw the crisp, 16:9 full-width frame vertically centered
-      const fitScale = cw / iw;
-      const nw = iw * fitScale;
-      const nh = ih * fitScale;
-      const nx = 0;
-      // Position it a bit higher so it doesn't overlap the text card at the bottom
-      const ny = (ch - nh) / 2 - (ch * 0.05);
-
+      // 1. Draw video frame as full screen background (cover)
+      const scale = Math.max(cw / iw, ch / ih);
+      const nw = iw * scale;
+      const nh = ih * scale;
+      const nx = (cw - nw) / 2;
+      const ny = (ch - nh) / 2;
+      
       ctx.drawImage(img, nx, ny, nw, nh);
+
+      // 2. Add a dark tint so the white text overlay remains highly readable
+      ctx.fillStyle = 'rgba(3, 7, 18, 0.5)';
+      ctx.fillRect(0, 0, cw, ch);
     } else {
       // Desktop / Landscape display: Full-width cinematic cover
       const scale = Math.max(cw / iw, ch / ih);
