@@ -4402,13 +4402,32 @@ canvas {
   .gate-3d-modal-card,
   .rg-modal-card,
   .kyc-modal-content {
-    max-width: 95vw !important;
-    width: 95vw !important;
-    max-height: 90dvh !important;
+    max-width: 92vw !important;
+    width: 92vw !important;
+    max-height: 80dvh !important;
     overflow-y: auto !important;
     padding: 1.25rem 1rem !important;
-    border-radius: 18px !important;
+    border-radius: 16px !important;
     margin: auto !important;
+  }
+
+  .plot-modal-card {
+    max-width: 92vw !important;
+    width: 92vw !important;
+    max-height: 80dvh !important;
+    overflow-y: auto !important;
+    border-radius: 16px !important;
+    margin: auto !important;
+    padding: 0 !important;
+  }
+
+  /* Reduce the top image height in plot inspect modal for mobile */
+  .plot-modal-card > div:first-child {
+    height: 130px !important;
+  }
+  
+  .plot-modal-card > div:nth-child(2) {
+    padding: 1rem !important;
   }
   .gate-modal-tabs {
     flex-direction: column !important;
@@ -4433,9 +4452,11 @@ canvas {
   }
   .kyc-header {
     flex-direction: column !important;
-    gap: 0.75rem !important;
+    gap: 0.25rem !important;
     align-items: center !important;
     text-align: center !important;
+    margin-bottom: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
   }
   .kyc-header-left,
   .kyc-header-right {
@@ -4454,7 +4475,7 @@ canvas {
   .kyc-form-grid {
     display: flex !important;
     flex-direction: column !important;
-    gap: 0.75rem !important;
+    gap: 0.5rem !important;
   }
   .kyc-field.half,
   .kyc-field.full {
@@ -4462,8 +4483,8 @@ canvas {
     display: flex !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 4px !important;
-    font-size: 0.78rem !important;
+    gap: 2px !important;
+    font-size: 0.75rem !important;
   }
   .kyc-field input,
   .kyc-field select {
