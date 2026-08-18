@@ -791,10 +791,11 @@
           ctx.rect(park.x + 2, park.y + 2, Math.max(1, park.w - 4), Math.max(1, park.h - 4));
           ctx.clip();
 
-          const parkTitle = (park.w < 110) ? '🌿 GREEN ZONE' : (park.title || '🌿 LUSH GREEN BUFFER');
-          const maxAllowed = park.h * 0.45;
-          const wAllowed = park.w * 0.12;
-          const fontSize = Math.min(maxAllowed, wAllowed);
+          const parkTitle = park.title || (park.vw < 110 ? '🌿 GREEN ZONE' : '🌿 LUSH GREEN BUFFER');
+          let maxAllowed = park.h * 0.45;
+          let wAllowed = park.w / (parkTitle.length * 0.55);
+          let fontSize = Math.min(maxAllowed, wAllowed);
+          if (fontSize < 3.5) fontSize = 3.5; // Ensure it is readable on mobile
           ctx.fillStyle = theme.greenAreaBorder;
           ctx.font = 'bold ' + fontSize + 'px Inter, sans-serif';
           ctx.textAlign = 'center';
