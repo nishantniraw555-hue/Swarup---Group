@@ -4397,30 +4397,34 @@ canvas {
     font-size: 1.15rem !important;
   }
 
+  /* Fix modal clipping on mobile by making the overlays scrollable from the top */
+  .plot-modal-overlay,
+  .modal-overlay,
+  .modal-backdrop {
+    align-items: flex-start !important;
+    padding: 1rem !important;
+    overflow-y: auto !important;
+  }
+
   /* Modals */
   .modal-card,
   .gate-3d-modal-card,
   .rg-modal-card,
-  .kyc-modal-content {
-    max-width: 95vw !important;
-    width: 95vw !important;
-    max-height: 85dvh !important;
-    padding: 1rem 0.75rem !important;
-    border-radius: 12px !important;
-    margin: auto !important;
-    overflow-y: auto !important;
+  .kyc-modal-content,
+  .plot-modal-card {
+    max-width: 100% !important;
+    width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    padding: 1rem !important;
+    border-radius: 16px !important;
+    margin: 0 auto !important; /* Important to remove vertical auto margin */
+    overflow: visible !important;
     transform: none !important;
   }
 
   .plot-modal-card {
-    max-width: 95vw !important;
-    width: 95vw !important;
-    max-height: 85dvh !important;
-    border-radius: 12px !important;
-    margin: auto !important;
     padding: 0 !important;
-    overflow-y: auto !important;
-    transform: none !important;
   }
 
   /* Reduce the top image height in plot inspect modal for mobile */
