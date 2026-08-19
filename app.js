@@ -648,7 +648,7 @@ function initPatnaMasterplanCanvas() {
       <div class="plot-modal-overlay active" id="plot-inspect-modal">
         <div class="plot-modal-card" style="padding:0;overflow:hidden;max-width:550px;">
           <div style="width:100%;height:190px;position:relative;overflow:hidden;">
-            <img src="./assets/guru_niwas_colony_no_car.png" alt="Guru Niwas Colony" style="width:100%;height:100%;object-fit:cover;">
+            <img src="./assets/guru_niwas_colony_no_car.webp" alt="Guru Niwas Colony" style="width:100%;height:100%;object-fit:cover;">
             <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(15,23,42,0.95), rgba(15,23,42,0.2));"></div>
             <button id="close-plot-modal-btn" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.9);border:none;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#0f172a;z-index:10;">
               <span class="material-symbols-outlined" style="font-size:18px;">close</span>
@@ -720,7 +720,7 @@ function initPatnaMasterplanCanvas() {
     if (existingPark) existingPark.remove();
 
     // High quality 3D render placeholder for park
-    const parkImg = "./assets/park_3d_render.png";
+    const parkImg = "./assets/park_3d_render.webp";
 
     const modalHTML = `
       <div class="plot-modal-overlay active" id="park-inspect-modal" style="display:flex;align-items:center;justify-content:center;position:fixed;inset:0;background:rgba(15,23,42,0.8);z-index:9999;padding:1rem;">
@@ -4201,7 +4201,7 @@ function initSmeuldersHeroSlider() {
   if (!slides.length) return;
 
   const bgImages = [
-    'assets/swarup_hero_banner.jpg',
+    'assets/swarup_hero_banner.webp',
     'assets/royal_garden_3d_gate.webp',
     'assets/guru_niwas_3d_gate.webp',
     'assets/royal_garden_vibrant.webp'
