@@ -3944,12 +3944,12 @@ function initRouteTimeline() {
       cameraY = currentCameraY;
       isInitialized = true;
     } else {
-      // Lazy smooth easing (LERP) — car lazily glides along the route with realistic luxury momentum
+      // Relaxed slow-glide easing (LERP) — car moves slowly and smoothly without rushing
       const diff = targetProg - currentProg;
       if (Math.abs(diff) < 0.0001) {
         currentProg = targetProg;
       } else {
-        currentProg += diff * 0.055;
+        currentProg += diff * 0.035;
       }
     }
 
@@ -3977,9 +3977,9 @@ function initRouteTimeline() {
 
     const heading = (Math.hypot(dx, dy) > 0.001) ? Math.atan2(dy, dx) : 0;
 
-    // Smooth lazy camera tracking
+    // Slow smooth camera tracking
     const targetCameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
-    currentCameraY += (targetCameraY - currentCameraY) * 0.075;
+    currentCameraY += (targetCameraY - currentCameraY) * 0.05;
     cameraY = currentCameraY;
 
     const isDark = (mapTheme === 'dark');

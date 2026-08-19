@@ -1045,7 +1045,7 @@ body {
   border-bottom: 2px solid #e2e8f0;
 }
 #route-timeline {
-  height: 1000vh !important;
+  height: 2000vh !important;
 }
 .construction-sticky {
   position: sticky;
@@ -4253,7 +4253,7 @@ canvas {
     height: 280vh !important;
   }
   #route-timeline {
-    height: 550vh !important;
+    height: 1200vh !important;
   }
   .construction-sticky {
     height: 100vh !important;
