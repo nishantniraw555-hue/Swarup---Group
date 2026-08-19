@@ -3043,10 +3043,14 @@ function initRouteTimeline() {
   let cameraY = 0;
 
   function resize() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = window.innerWidth;
     h = window.innerHeight;
-    canvas.width = w;
-    canvas.height = h;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   }
   window.addEventListener('resize', resize);
   resize();
@@ -3184,164 +3188,148 @@ function initRouteTimeline() {
     return 0.25;
   }
 
+  // Helper: Universal Sharp & Responsive Landmark Card (Zero Clutter / Auto-Clamped to Viewport)
+  function drawCard(centerX, centerY, title, subtitle, borderColor, isDark, s) {
+    const cardW = Math.round(180 * s);
+    const cardH = Math.round(24 * s);
+    const clampedX = Math.max(cardW / 2 + 8, Math.min(w - cardW / 2 - 8, centerX));
+    
+    ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(clampedX - cardW / 2, centerY - cardH / 2, cardW, cardH, Math.round(6 * s));
+    ctx.fill();
+    ctx.strokeStyle = borderColor;
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
+    ctx.font = `800 ${Math.max(7.5, Math.round(9.2 * s))}px Montserrat, Inter, sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.fillText(title, clampedX, subtitle ? (centerY - 1) : (centerY + 3));
+
+    if (subtitle) {
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = `700 ${Math.max(6.2, Math.round(6.8 * s))}px Montserrat, Inter, sans-serif`;
+      ctx.fillText(subtitle, clampedX, centerY + Math.round(8 * s));
+    }
+  }
+
   // 1. START POINT: SAGUNA MORE
-  function drawSagunaMoreHub(sx, sy, reveal, theme) {
+  function drawSagunaMoreHub(sx, sy, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Clean Roundabout
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.arc(sx, sy, 38, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy, Math.round(36 * s), 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Central Green Roundel
     ctx.fillStyle = isDark ? '#065f46' : '#dcfce7';
-    ctx.beginPath(); ctx.arc(sx, sy, 24, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy, Math.round(22 * s), 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.arc(sx, sy, 8, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy, Math.round(7 * s), 0, Math.PI * 2); ctx.fill();
 
     // Sharp Landmark Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(sx - 100, sy - 66, 200, 26, 8); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 10px Montserrat, Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText("🚩 START: SAGUNA MORE", sx, sy - 52);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("SWARUP VIP CAB PICKUP HUB", sx, sy - 42);
+      drawCard(sx, sy - Math.round(50 * s), "🚩 START: SAGUNA MORE", "SWARUP VIP CAB PICKUP HUB", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 2. RAILWAY STATIONS (Danapur / Bihta)
-  function drawStationAnimation(sx, sy, label, reveal, theme) {
+  function drawStationAnimation(sx, sy, label, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Clean Tracks
     ctx.strokeStyle = isDark ? '#64748b' : '#94a3b8'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(sx - 6, sy - 60); ctx.lineTo(sx - 6, sy + 60); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(sx + 6, sy - 60); ctx.lineTo(sx + 6, sy + 60); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sx - 6 * s, sy - 55 * s); ctx.lineTo(sx - 6 * s, sy + 55 * s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(sx + 6 * s, sy - 55 * s); ctx.lineTo(sx + 6 * s, sy + 55 * s); ctx.stroke();
 
     // Sleepers
     ctx.strokeStyle = isDark ? '#475569' : '#cbd5e1'; ctx.lineWidth = 1.5;
-    for (let ty = sy - 55; ty <= sy + 55; ty += 10) {
-      ctx.beginPath(); ctx.moveTo(sx - 9, ty); ctx.lineTo(sx + 9, ty); ctx.stroke();
+    for (let ty = sy - 50 * s; ty <= sy + 50 * s; ty += 10 * s) {
+      ctx.beginPath(); ctx.moveTo(sx - 9 * s, ty); ctx.lineTo(sx + 9 * s, ty); ctx.stroke();
     }
 
     // Modern Station Building
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(sx + 14, sy - 28, 42, 56, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(sx + 14 * s, sy - 26 * s, 38 * s, 52 * s, 5 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
-    // Windows
-    ctx.fillStyle = '#1e3a8a';
-    for (let wy = sy - 20; wy <= sy + 12; wy += 12) {
-      ctx.fillRect(sx + 20, wy, 30, 6);
-    }
-
     // Moving Train on Track
-    const trackSpan = 120;
+    const trackSpan = 110 * s;
     const tNow = (Date.now() * 0.04) % (trackSpan + 40);
-    const trainY = sy - 60 + tNow - 20;
+    const trainY = sy - 55 * s + tNow - 20;
 
     ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.roundRect(sx - 5, trainY, 10, 36, 3); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(sx - 5 * s, trainY, 10 * s, 32 * s, 3); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(sx - 4, trainY + 4, 8, 12);
-    ctx.fillRect(sx - 4, trainY + 20, 8, 12);
 
     // Sharp Station Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(sx - 80, sy - 54, 160, 24, 6); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(`🚆 ${label.toUpperCase()}`, sx, sy - 41);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText("PATNA RAILWAY CORRIDOR", sx, sy - 32);
+      drawCard(sx, sy - Math.round(48 * s), `🚆 ${label.toUpperCase()}`, "PATNA RAILWAY CORRIDOR", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 3. HOSPITALS (AIIMS / NSMCH)
-  function drawHospitalAnimation(hx, hy, label, isAIIMS, reveal, theme) {
+  function drawHospitalAnimation(hx, hy, label, isAIIMS, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Hospital Campus Ground
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(hx - 55, hy - 40, 110, 80, 8); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(hx - 50 * s, hy - 36 * s, 100 * s, 72 * s, 8 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     // Red Cross Emblem
     ctx.fillStyle = '#dc2626';
-    ctx.fillRect(hx - 4, hy - 25, 8, 22);
-    ctx.fillRect(hx - 11, hy - 18, 22, 8);
-
-    // Clinical Windows
-    ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(hx - 44, hy + 8, 24, 18);
-    ctx.fillRect(hx + 20, hy + 8, 24, 18);
+    ctx.fillRect(hx - 3 * s, hy - 22 * s, 6 * s, 18 * s);
+    ctx.fillRect(hx - 9 * s, hy - 16 * s, 18 * s, 6 * s);
 
     // Sharp Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(hx - 95, hy - 64, 190, 24, 6); ctx.fill();
-      ctx.strokeStyle = isAIIMS ? '#d4a017' : '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(isAIIMS ? "🏥 AIIMS PATNA HOSPITAL" : "🏥 NSMCH MEDICAL COLLEGE", hx, hy - 51);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText(isAIIMS ? "SUPER-SPECIALTY MEDICAL HUB" : "SUPER SPECIALTY HOSPITAL (2 KM)", hx, hy - 42);
+      drawCard(hx, hy - Math.round(52 * s), isAIIMS ? "🏥 AIIMS PATNA HOSPITAL" : "🏥 NSMCH MEDICAL COLLEGE", isAIIMS ? "SUPER-SPECIALTY MEDICAL HUB" : "SUPER SPECIALTY HOSPITAL (2 KM)", isAIIMS ? '#d4a017' : '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 3.5 3D GOAL INSTITUTE CAMPUS (At 1/3rd Distance between Shivala & Ring Road on Right Side)
-  function drawGoalInstituteAnimation(gx, gy, reveal, theme) {
+  function drawGoalInstituteAnimation(gx, gy, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // ── 3D ISOMETRIC/EXTRUDED ACADEMIC BUILDING ──
-    const bw = 90;
-    const bh = 50;
-    const depthX = 12;
-    const depthY = -12;
+    const bw = 84 * s;
+    const bh = 42 * s;
+    const depthX = 10 * s;
+    const depthY = -10 * s;
 
     // Campus Courtyard Base
     ctx.fillStyle = isDark ? '#1e293b' : '#eff6ff';
     ctx.beginPath();
-    ctx.roundRect(gx - 55, gy - 32, 115, 74, 8);
+    ctx.roundRect(gx - 48 * s, gy - 28 * s, 96 * s, 64 * s, 8 * s);
     ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     // 3D Top Roof Face
     ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
     ctx.beginPath();
-    ctx.moveTo(gx - 42, gy - 20);
-    ctx.lineTo(gx - 42 + depthX, gy - 20 + depthY);
-    ctx.lineTo(gx + 42 + depthX, gy - 20 + depthY);
-    ctx.lineTo(gx + 42, gy - 20);
+    ctx.moveTo(gx - bw / 2, gy - bh / 2);
+    ctx.lineTo(gx - bw / 2 + depthX, gy - bh / 2 + depthY);
+    ctx.lineTo(gx + bw / 2 + depthX, gy - bh / 2 + depthY);
+    ctx.lineTo(gx + bw / 2, gy - bh / 2);
     ctx.closePath();
     ctx.fill();
     ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
@@ -3349,10 +3337,10 @@ function initRouteTimeline() {
     // 3D Right Side Bevel Face
     ctx.fillStyle = isDark ? '#0284c7' : '#0f172a';
     ctx.beginPath();
-    ctx.moveTo(gx + 42, gy - 20);
-    ctx.lineTo(gx + 42 + depthX, gy - 20 + depthY);
-    ctx.lineTo(gx + 42 + depthX, gy + 22 + depthY);
-    ctx.lineTo(gx + 42, gy + 22);
+    ctx.moveTo(gx + bw / 2, gy - bh / 2);
+    ctx.lineTo(gx + bw / 2 + depthX, gy - bh / 2 + depthY);
+    ctx.lineTo(gx + bw / 2 + depthX, gy + bh / 2 + depthY);
+    ctx.lineTo(gx + bw / 2, gy + bh / 2);
     ctx.closePath();
     ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
@@ -3360,117 +3348,81 @@ function initRouteTimeline() {
     // Building Front Main Facade
     ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
     ctx.beginPath();
-    ctx.roundRect(gx - 42, gy - 20, 84, 42, 4);
+    ctx.roundRect(gx - bw / 2, gy - bh / 2, bw, bh, 4 * s);
     ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
-    // Windows Grid (Blue Glass Tint)
+    // Windows Grid
     ctx.fillStyle = '#3b82f6';
-    for (let wx = gx - 34; wx <= gx + 22; wx += 14) {
-      ctx.fillRect(wx, gy - 14, 9, 7);
-      ctx.fillRect(wx, gy - 3, 9, 7);
+    for (let wx = gx - 28 * s; wx <= gx + 18 * s; wx += 12 * s) {
+      ctx.fillRect(wx, gy - 12 * s, 8 * s, 6 * s);
+      ctx.fillRect(wx, gy - 2 * s, 8 * s, 6 * s);
     }
 
-    // Grand Entrance Portico with Gold Pillars
-    ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(gx - 18, gy + 7, 36, 15);
-    ctx.fillStyle = '#d4a017';
-    ctx.fillRect(gx - 16, gy + 7, 4, 15);
-    ctx.fillRect(gx + 12, gy + 7, 4, 15);
-    ctx.fillRect(gx - 18, gy + 7, 36, 3);
-
-    // Goal Target Logo (Concentric Rings on Top)
+    // Goal Target Logo on Roof
     const logoX = gx;
-    const logoY = gy - 26;
+    const logoY = gy - 24 * s;
     ctx.fillStyle = '#dc2626';
-    ctx.beginPath(); ctx.arc(logoX, logoY, 9, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(logoX, logoY, 8 * s, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.arc(logoX, logoY, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(logoX, logoY, 5 * s, 0, Math.PI * 2); ctx.fill();
     ctx.fillStyle = '#dc2626';
-    ctx.beginPath(); ctx.arc(logoX, logoY, 3, 0, Math.PI * 2); ctx.fill();
-
-    // Facade Gold Banner: "GOAL INSTITUTE"
-    ctx.fillStyle = '#d4a017';
-    ctx.font = '900 6.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("GOAL INSTITUTE", gx, gy + 18);
+    ctx.beginPath(); ctx.arc(logoX, logoY, 2.5 * s, 0, Math.PI * 2); ctx.fill();
 
     // Sharp Landmark Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(gx - 95, gy - 58, 190, 26, 6); ctx.fill();
-      ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.6; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🎯 3D GOAL INSTITUTE CAMPUS", gx, gy - 45);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText("PREMIER MEDICAL & NEET HUB (RIGHT SIDE)", gx, gy - 36);
+      drawCard(gx, gy - Math.round(48 * s), "🎯 3D GOAL INSTITUTE CAMPUS", "PREMIER MEDICAL & NEET HUB (RIGHT SIDE)", '#d4a017', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 4. PATLI BUS STAND (KANHAULI - LOCATED DIRECTLY TO THE LEFT OF RING ROAD GOLAMBAR)
-  function drawPatliBusStand(bx, by, reveal, theme) {
+  // 4. PATLI BUS STAND (KANHAULI)
+  function drawPatliBusStand(bx, by, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Terminal Apron Ground
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(bx - 50, by - 26, 100, 52, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(bx - 44 * s, by - 24 * s, 88 * s, 48 * s, 6 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     // Buses Parked
     ctx.fillStyle = '#1e3a8a';
-    ctx.beginPath(); ctx.roundRect(bx - 40, by - 18, 36, 13, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 34, by - 16, 24, 4);
+    ctx.beginPath(); ctx.roundRect(bx - 36 * s, by - 16 * s, 32 * s, 12 * s, 2); ctx.fill();
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30 * s, by - 14 * s, 20 * s, 4 * s);
 
     ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.roundRect(bx - 40, by + 4, 36, 13, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 34, by + 6, 24, 4);
-
-    // Concourse Terminal Building
-    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
-    ctx.fillRect(bx + 6, by - 20, 36, 40);
-    ctx.fillStyle = '#fde047';
-    ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("ISBT", bx + 24, by + 4);
+    ctx.beginPath(); ctx.roundRect(bx - 36 * s, by + 4 * s, 32 * s, 12 * s, 2); ctx.fill();
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30 * s, by + 6 * s, 20 * s, 4 * s);
 
     // Sharp Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(bx - 90, by - 52, 180, 24, 6); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🚏 PATLI BUS STAND (ISBT)", bx, by - 39);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText("KANHAULI • LEFT OF RING ROAD GOLAMBAR", bx, by - 30);
+      drawCard(bx, by - Math.round(44 * s), "🚏 PATLI BUS STAND (ISBT)", "KANHAULI • LEFT OF RING ROAD GOLAMBAR", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR ON NH-30 + EAST EXPRESSWAY & 45° SHERPUR-DIGHWARA CORRIDOR)
-  function drawPatnaRingRoadEast(rx, ry, reveal, prog, theme) {
+  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR + EAST EXPRESSWAY OUT-OF-FRAME & 45° SHERPUR-DIGHWARA OUT-OF-FRAME)
+  function drawPatnaRingRoadEast(rx, ry, reveal, prog, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
     const gx = rx; // Golambar X on NH-30 (0.42 * w)
     const gy = ry; // Golambar Y on NH-30 (680)
 
-    // ── 1. 45° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD SPUR ──
-    const sherpurEndX = w * 0.10;
+    const roadW = Math.round(24 * s);
+
+    // ── 1. 45° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD (EXTENDING OUTSIDE SCREEN BORDER) ──
+    const sherpurEndX = -w * 0.40 - 150;
     const deltaSpan = gx - sherpurEndX;
     const sherpurEndY = gy - deltaSpan; // Exact 45-degree angle (dx == dy)
 
     // Sherpur - Dighwara Asphalt Base
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
-    ctx.lineWidth = 18;
+    ctx.lineWidth = roadW;
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath();
     ctx.moveTo(gx, gy);
@@ -3479,7 +3431,7 @@ function initRouteTimeline() {
 
     // Road outer borders
     ctx.strokeStyle = '#1e3a8a';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.6;
     ctx.beginPath();
     ctx.moveTo(gx, gy);
     ctx.lineTo(sherpurEndX, sherpurEndY);
@@ -3496,29 +3448,32 @@ function initRouteTimeline() {
     ctx.setLineDash([]);
 
     // Overhead Signboard on Sherpur - Dighwara 45° Road
-    const sherMidX = (gx + sherpurEndX) / 2 - 20;
-    const sherMidY = (gy + sherpurEndY) / 2 - 22;
+    const sherMidX = Math.max(w * 0.12, (gx + Math.max(0, sherpurEndX)) / 2 - 15);
+    const sherMidY = gy - (gx - sherMidX) - 20 * s;
+    const signBoxW = Math.round(175 * s);
+    const signBoxH = Math.round(26 * s);
+
     ctx.fillStyle = '#0284c7';
-    ctx.beginPath(); ctx.roundRect(sherMidX - 90, sherMidY - 13, 180, 26, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(sherMidX - signBoxW / 2, sherMidY - signBoxH / 2, signBoxW, signBoxH, 6 * s); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.font = `800 ${Math.max(7, Math.round(8.5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
     ctx.fillText("🌉 SHERPUR - DIGHWARA ➔", sherMidX, sherMidY - 1);
     ctx.fillStyle = '#fde047';
-    ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-    ctx.fillText("45° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + 8);
+    ctx.font = `700 ${Math.max(6, Math.round(6.5 * s))}px Montserrat, Inter, sans-serif`;
+    ctx.fillText("45° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + Math.round(8 * s));
 
-    // ── 2. 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East) ──
+    // ── 2. 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East OUTSIDE SCREEN BORDER) ──
     const turn1X = w * 0.68;
     const turn1Y = gy;
     const turn2X = w * 0.68;
     const turn2Y = gy - 140;
-    const endX = w * 0.96;
+    const endX = w * 1.35 + 200; // Extends far outside screen frame
     const endY = gy - 140;
 
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
-    ctx.lineWidth = 20;
+    ctx.lineWidth = roadW;
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath();
     ctx.moveTo(gx, gy);
@@ -3529,7 +3484,7 @@ function initRouteTimeline() {
 
     // Road outer borders
     ctx.strokeStyle = '#1e3a8a';
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.6;
     ctx.beginPath();
     ctx.moveTo(gx, gy);
     ctx.lineTo(turn1X, turn1Y);
@@ -3541,78 +3496,58 @@ function initRouteTimeline() {
     ctx.strokeStyle = '#d4a017';
     ctx.lineWidth = 1.6;
     ctx.beginPath();
-    ctx.moveTo(gx + 20, gy);
+    ctx.moveTo(gx + 20 * s, gy);
     ctx.lineTo(turn1X, turn1Y);
     ctx.lineTo(turn2X, turn2Y);
     ctx.lineTo(endX, endY);
     ctx.stroke();
 
-    // White dashed lane markings
-    ctx.strokeStyle = '#ffffff';
-    ctx.lineWidth = 1;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    ctx.moveTo(gx + 25, gy - 5);
-    ctx.lineTo(turn1X - 5, turn1Y - 5);
-    ctx.moveTo(gx + 25, gy + 5);
-    ctx.lineTo(turn1X - 5, turn1Y + 5);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
     // ── 3. GOLAMBAR / ROUNDABOUT ON NH-30 ──
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.arc(gx, gy, 28, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(gx, gy, Math.round(28 * s), 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Central landscaped green island in Golambar
     ctx.fillStyle = isDark ? '#065f46' : '#dcfce7';
-    ctx.beginPath(); ctx.arc(gx, gy, 18, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(gx, gy, Math.round(18 * s), 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     // Center Gold Fountain / Landmark Pillar
     ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.arc(gx, gy, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(gx, gy, Math.round(6 * s), 0, Math.PI * 2); ctx.fill();
 
     // Green Expressway Overhead Signboard (East Branch)
-    const signX = turn1X + 25;
-    const signY = turn2Y - 26;
+    const signX = Math.min(w - signBoxW / 2 - 10, turn1X + 25 * s);
+    const signY = turn2Y - 26 * s;
     ctx.fillStyle = '#15803d';
-    ctx.beginPath(); ctx.roundRect(signX - 85, signY - 12, 170, 26, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(signX - signBoxW / 2, signY - signBoxH / 2, signBoxW, signBoxH, 6 * s); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
 
     ctx.fillStyle = '#ffffff';
-    ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("🛣️ PATNA 6-LANE RING ROAD ➔", signX, signY);
+    ctx.font = `800 ${Math.max(7, Math.round(8.5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("🛣️ PATNA 6-LANE RING ROAD ➔", signX, signY - 1);
     ctx.fillStyle = '#fde047';
-    ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-    ctx.fillText("BIHTA-SARMERA EXPRESSWAY", signX, signY + 9);
+    ctx.font = `700 ${Math.max(6, Math.round(6.5 * s))}px Montserrat, Inter, sans-serif`;
+    ctx.fillText("BIHTA-SARMERA EXPRESSWAY", signX, signY + Math.round(8 * s));
 
     // Sharp Golambar Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(gx - 90, gy + 34, 180, 24, 6); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("⭕ PATNA RING ROAD GOLAMBAR", gx, gy + 47);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 6.8px Montserrat, Inter, sans-serif';
-      ctx.fillText("6-LANE EXPRESSWAY INTERCHANGE", gx, gy + 55);
+      drawCard(gx, gy + Math.round(46 * s), "⭕ PATNA RING ROAD GOLAMBAR", "6-LANE EXPRESSWAY INTERCHANGE", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 6. PAINATHI ROAD (90° WEST OFF NH-30 & SOUTH SPUR TO ROYAL GARDEN)
-  function drawPainathiRoadEntry(px, py, reveal, theme) {
+  function drawPainathiRoadEntry(px, py, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
+    const roadW = Math.round(20 * s);
 
     // Horizontal Painathi Road (90° Left off NH-30 westward)
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
-    ctx.lineWidth = 18;
+    ctx.lineWidth = roadW;
     ctx.beginPath();
     ctx.moveTo(px, py);
     ctx.lineTo(w * 0.12, py);
@@ -3621,7 +3556,7 @@ function initRouteTimeline() {
     // Road turning Left (South) off Painathi Road towards Royal Garden Entrance
     ctx.beginPath();
     ctx.moveTo(w * 0.20, py);
-    ctx.lineTo(w * 0.20, py + 70);
+    ctx.lineTo(w * 0.20, py + 70 * s);
     ctx.stroke();
 
     ctx.strokeStyle = '#1e3a8a';
@@ -3630,241 +3565,267 @@ function initRouteTimeline() {
     ctx.moveTo(px, py);
     ctx.lineTo(w * 0.12, py);
     ctx.moveTo(w * 0.20, py);
-    ctx.lineTo(w * 0.20, py + 70);
+    ctx.lineTo(w * 0.20, py + 70 * s);
     ctx.stroke();
-
-    // Dashed center lane
-    ctx.strokeStyle = '#d4a017';
-    ctx.lineWidth = 1.5;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    ctx.moveTo(px, py);
-    ctx.lineTo(w * 0.12, py);
-    ctx.moveTo(w * 0.20, py);
-    ctx.lineTo(w * 0.20, py + 70);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Milestone on Road Corner
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.roundRect(px - 14, py - 20, 12, 18, 2); ctx.fill();
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.arc(px - 8, py - 20, 6, Math.PI, 0); ctx.fill();
 
     // Sharp Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(px - 85, py - 46, 170, 22, 5); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("📍 PAINATHI ROAD (90° LEFT)", px, py - 34);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("ACCESS ROUTE TO ROYAL GARDEN", px, py - 26);
+      drawCard(px - Math.round(40 * s), py - Math.round(36 * s), "📍 PAINATHI ROAD (90° LEFT)", "ACCESS ROUTE TO ROYAL GARDEN", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - LOCATED TO THE LEFT / SOUTH OF PAINATHI ROAD)
-  function drawRoyalGardenTownship(rx, ry, reveal, theme) {
+  function drawRoyalGardenTownship(rx, ry, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Clean Gated Boundary on the Left/South of Painathi Road
     ctx.fillStyle = isDark ? '#064e3b' : '#f0fdf4';
-    ctx.beginPath(); ctx.roundRect(rx - 75, ry - 40, 150, 100, 10); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(rx - 70 * s, ry - 36 * s, 140 * s, 90 * s, 8 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Plot Grid Inside Township
     ctx.strokeStyle = isDark ? '#10b981' : '#bbf7d0'; ctx.lineWidth = 1;
-    for (let px = rx - 60; px <= rx + 40; px += 20) {
-      for (let py = ry - 25; py <= ry + 40; py += 18) {
+    for (let px = rx - 55 * s; px <= rx + 35 * s; px += 18 * s) {
+      for (let py = ry - 22 * s; py <= ry + 36 * s; py += 16 * s) {
         ctx.fillStyle = (Math.sin(px + py) > 0) ? (isDark ? '#047857' : '#dcfce7') : (isDark ? '#1e3a8a' : '#ffffff');
-        ctx.fillRect(px, py, 16, 14);
-        ctx.strokeRect(px, py, 16, 14);
+        ctx.fillRect(px, py, 14 * s, 12 * s);
+        ctx.strokeRect(px, py, 14 * s, 12 * s);
       }
     }
 
     // 3D Grand Arch Gate (Facing North towards Painathi Road)
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(rx - 30, ry - 44, 60, 6);
-    ctx.fillRect(rx - 30, ry - 44, 7, 16);
-    ctx.fillRect(rx + 23, ry - 44, 7, 16);
+    ctx.fillRect(rx - 26 * s, ry - 40 * s, 52 * s, 5 * s);
+    ctx.fillRect(rx - 26 * s, ry - 40 * s, 6 * s, 14 * s);
+    ctx.fillRect(rx + 20 * s, ry - 40 * s, 6 * s, 14 * s);
     ctx.fillStyle = '#fde047';
-    ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("ROYAL GARDEN GATE", rx, ry - 30);
+    ctx.font = `800 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("ROYAL GARDEN GATE", rx, ry - 28 * s);
 
     // Sharp Signature Township Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(rx - 110, ry + 68, 220, 28, 8); ctx.fill();
-      ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 2; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '900 10.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🏰 ROYAL GARDEN (KANHAULI)", rx, ry + 83);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("314 Villa Plots • Located Left of Painathi Road", rx, ry + 93);
+      drawCard(rx, ry + Math.round(76 * s), "🏰 ROYAL GARDEN (KANHAULI)", "314 Villa Plots • Located Left of Painathi Road", '#d4a017', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 8. BIHTA AIRPORT
-  function drawAirportAnimation(ax, ay, reveal, theme) {
+  function drawAirportAnimation(ax, ay, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Runway Strip
     ctx.fillStyle = '#334155';
-    ctx.beginPath(); ctx.roundRect(ax - 55, ay - 10, 110, 20, 3); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(ax - 50 * s, ay - 10 * s, 100 * s, 20 * s, 3); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1; ctx.setLineDash([5, 4]);
-    ctx.beginPath(); ctx.moveTo(ax - 45, ay); ctx.lineTo(ax + 45, ay); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ax - 40 * s, ay); ctx.lineTo(ax + 40 * s, ay); ctx.stroke();
     ctx.setLineDash([]);
 
     // Plane
-    const planeX = ax + 8;
-    const planeY = ay - 4;
+    const planeX = ax + 8 * s;
+    const planeY = ay - 4 * s;
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.moveTo(planeX + 10, planeY);
-    ctx.lineTo(planeX - 8, planeY - 7);
-    ctx.lineTo(planeX - 5, planeY);
-    ctx.lineTo(planeX - 12, planeY);
-    ctx.lineTo(planeX - 8, planeY + 7);
+    ctx.moveTo(planeX + 10 * s, planeY);
+    ctx.lineTo(planeX - 8 * s, planeY - 7 * s);
+    ctx.lineTo(planeX - 5 * s, planeY);
+    ctx.lineTo(planeX - 12 * s, planeY);
+    ctx.lineTo(planeX - 8 * s, planeY + 7 * s);
     ctx.closePath();
     ctx.fill();
 
     // Sharp Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(ax - 80, ay - 38, 160, 22, 6); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("✈️ BIHTA INT'L AIRPORT", ax, ay - 26);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("UPCOMING CIVIL ENCLAVE (22.5 KM)", ax, ay - 18);
+      drawCard(ax, ay - Math.round(36 * s), "✈️ BIHTA INT'L AIRPORT", "UPCOMING CIVIL ENCLAVE (22.5 KM)", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 9. IIT PATNA CAMPUS
-  function drawIITCampusAnimation(cx, cy, reveal, theme) {
+  function drawIITCampusAnimation(cx, cy, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Building
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(cx - 42, cy - 28, 84, 38, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(cx - 38 * s, cy - 26 * s, 76 * s, 36 * s, 6 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-    ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(cx - 24, cy + 4, 48, 4);
-    ctx.fillRect(cx - 24, cy + 4, 6, 10);
-    ctx.fillRect(cx + 18, cy + 4, 6, 10);
 
     // Sharp Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(cx - 85, cy - 54, 170, 24, 6); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🎓 IIT PATNA (GATE 1)", cx, cy - 41);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText("PREMIER TECH INSTITUTE (1.5 KM)", cx, cy - 32);
+      drawCard(cx, cy - Math.round(46 * s), "🎓 IIT PATNA (GATE 1)", "PREMIER TECH INSTITUTE (1.5 KM)", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 10. GURU NIWAS COLONY (BIHTA) - FINAL DESTINATION
-  function drawGuruNiwasFinal(gx, gy, reveal, theme) {
+  function drawGuruNiwasFinal(gx, gy, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // Clean Layout Ground
     ctx.fillStyle = isDark ? '#1e293b' : '#fefce8';
-    ctx.beginPath(); ctx.roundRect(gx - 80, gy - 65, 160, 115, 10); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(gx - 75 * s, gy - 60 * s, 150 * s, 105 * s, 10 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Plot Grid Inside
     ctx.strokeStyle = isDark ? '#475569' : '#cbd5e1'; ctx.lineWidth = 1;
-    for (let px = gx - 65; px <= gx + 45; px += 22) {
-      for (let py = gy - 50; py <= gy + 25; py += 18) {
+    for (let px = gx - 60 * s; px <= gx + 40 * s; px += 20 * s) {
+      for (let py = gy - 45 * s; py <= gy + 22 * s; py += 16 * s) {
         ctx.fillStyle = (Math.cos(px * py) > 0) ? (isDark ? '#0369a1' : '#dbeafe') : (isDark ? '#d4a017' : '#ffffff');
-        ctx.fillRect(px, py, 18, 14);
-        ctx.strokeRect(px, py, 18, 14);
+        ctx.fillRect(px, py, 16 * s, 12 * s);
+        ctx.strokeRect(px, py, 16 * s, 12 * s);
       }
     }
 
     // Grand Entrance Arch
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(gx - 32, gy + 38, 64, 6);
-    ctx.fillRect(gx - 32, gy + 38, 8, 16);
-    ctx.fillRect(gx + 24, gy + 38, 8, 16);
+    ctx.fillRect(gx - 28 * s, gy + 34 * s, 56 * s, 5 * s);
+    ctx.fillRect(gx - 28 * s, gy + 34 * s, 7 * s, 14 * s);
+    ctx.fillRect(gx + 21 * s, gy + 34 * s, 7 * s, 14 * s);
     ctx.fillStyle = '#fde047';
-    ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("GURU NIWAS GATE", gx, gy + 43);
+    ctx.font = `800 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("GURU NIWAS GATE", gx, gy + 39 * s);
 
     // Sharp Golden Final Destination Card
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(gx - 115, gy - 95, 230, 30, 8); ctx.fill();
-      ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 2; ctx.stroke();
-
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '900 11px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🏆 GURU NIWAS COLONY (BIHTA)", gx, gy - 80);
-      ctx.fillStyle = '#1e3a8a';
-      ctx.font = '700 7.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("159 Plots Ready for Registry • Near IIT Gate 1", gx, gy - 69);
+      drawCard(gx, gy - Math.round(82 * s), "🏆 GURU NIWAS COLONY (BIHTA)", "159 Plots Ready for Registry • Near IIT Gate 1", '#d4a017', isDark, s);
     }
 
     ctx.restore();
   }
 
   // Generic Chowk
-  function drawGenericChowk(jx, jy, name, km, reveal, theme) {
+  function drawGenericChowk(jx, jy, name, km, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.arc(jx, jy, 14, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(jx, jy, Math.round(13 * s), 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
     ctx.fillStyle = '#1e3a8a';
-    ctx.beginPath(); ctx.arc(jx, jy, 4, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(jx, jy, Math.round(4 * s), 0, Math.PI * 2); ctx.fill();
 
     if (reveal > 0.35) {
-      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(jx - 60, jy - 30, 120, 18, 5); ctx.fill();
-      ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1; ctx.stroke();
-      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a'; ctx.font = '700 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText(`📍 ${name}`, jx, jy - 18);
+      drawCard(jx, jy - Math.round(28 * s), `📍 ${name}`, null, '#cbd5e1', isDark, s);
     }
 
     ctx.restore();
   }
 
   // 11. LUXURY VIP SUV (SHARP, CLEAN & VECTOR-CRISP WITH HEADLIGHT BEAMS)
-  function drawLuxuryCab(cx, cy, heading, theme) {
+  function drawLuxuryCab(cx, cy, heading, theme, s) {
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(heading);
+
+    const isDark = (theme === 'dark');
+
+    // 1. DUAL LED HEADLIGHT LIGHT BEAMS (Forward road illumination)
+    const beamLen = Math.round(110 * s);
+    const beamGrad = ctx.createLinearGradient(14 * s, 0, beamLen, 0);
+    beamGrad.addColorStop(0, 'rgba(254, 240, 138, 0.85)');
+    beamGrad.addColorStop(0.3, 'rgba(254, 240, 138, 0.45)');
+    beamGrad.addColorStop(1, 'rgba(254, 240, 138, 0)');
+
+    ctx.fillStyle = beamGrad;
+    // Left headlight beam
+    ctx.beginPath();
+    ctx.moveTo(14 * s, -5 * s);
+    ctx.lineTo(beamLen, -28 * s);
+    ctx.lineTo(beamLen, -3 * s);
+    ctx.closePath();
+    ctx.fill();
+
+    // Right headlight beam
+    ctx.beginPath();
+    ctx.moveTo(14 * s, 5 * s);
+    ctx.lineTo(beamLen, 3 * s);
+    ctx.lineTo(beamLen, 28 * s);
+    ctx.closePath();
+    ctx.fill();
+
+    // Soft Chassis Drop Shadow
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.25)';
+    ctx.beginPath();
+    ctx.ellipse(0, 2 * s, 18 * s, 11 * s, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 4 Wheels
+    ctx.fillStyle = '#0f172a';
+    ctx.fillRect(-12 * s, -12 * s, 7 * s, 3 * s); // Front L
+    ctx.fillRect(5 * s, -12 * s, 7 * s, 3 * s);   // Front R
+    ctx.fillRect(-12 * s, 9 * s, 7 * s, 3 * s);   // Rear L
+    ctx.fillRect(5 * s, 9 * s, 7 * s, 3 * s);     // Rear R
+
+    // Car Body (Pure White with Dark Blue Trim)
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(-14 * s, -9 * s, 28 * s, 18 * s, 4 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Roof & Tinted Glass
+    ctx.fillStyle = '#0f172a';
+    ctx.beginPath();
+    ctx.roundRect(-8 * s, -6.5 * s, 15 * s, 13 * s, 3 * s);
+    ctx.fill();
+
+    ctx.fillStyle = '#1e3a8a';
+    ctx.beginPath();
+    ctx.roundRect(-5 * s, -5 * s, 10 * s, 10 * s, 2 * s);
+    ctx.fill();
+
+    // Gold Hood Emblem
+    ctx.fillStyle = '#d4a017';
+    ctx.beginPath(); ctx.arc(12 * s, 0, 1.8 * s, 0, Math.PI * 2); ctx.fill();
+
+    // Bright Headlight Projector Bulbs
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(13 * s, -5 * s, 2 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(13 * s, 5 * s, 2 * s, 0, Math.PI * 2); ctx.fill();
+
+    // Rear Taillights
+    ctx.fillStyle = '#ef4444';
+    ctx.fillRect(-14.5 * s, -6 * s, 1.5 * s, 12 * s);
+
+    ctx.restore();
+
+    // Floating Sharp VIP Tooltip
+    ctx.save();
+    const tooltipX = cx;
+    const tooltipY = cy - Math.round(36 * s);
+
+    // Tether Line
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.setLineDash([2, 2]);
+    ctx.beginPath(); ctx.moveTo(cx, cy - 10 * s); ctx.lineTo(tooltipX, tooltipY + 11 * s); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Sharp Tooltip Box
+    const tipW = Math.round(120 * s);
+    const tipH = Math.round(22 * s);
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.roundRect(tooltipX - tipW / 2, tooltipY - tipH / 2, tipW, tipH, 5 * s); ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    ctx.fillStyle = '#0f172a';
+    ctx.font = `800 ${Math.max(7, Math.round(8.5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("🚕 SWARUP VIP CAB", tooltipX, tooltipY + Math.round(3 * s));
+
+    ctx.restore();
+  }
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(heading);
@@ -3941,28 +3902,6 @@ function initRouteTimeline() {
 
     ctx.restore();
 
-    // Floating Sharp VIP Tooltip
-    ctx.save();
-    const tooltipX = cx;
-    const tooltipY = cy - 36;
-
-    // Tether Line
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.setLineDash([2, 2]);
-    ctx.beginPath(); ctx.moveTo(cx, cy - 10); ctx.lineTo(tooltipX, tooltipY + 11); ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Sharp Tooltip Box
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.roundRect(tooltipX - 60, tooltipY - 11, 120, 22, 5); ctx.fill();
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
-
-    ctx.fillStyle = '#0f172a';
-    ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("🚕 SWARUP VIP CAB", tooltipX, tooltipY + 3);
-
-    ctx.restore();
-  }
-
   let currentProg = 0;
   let targetProg = 0;
 
@@ -3994,6 +3933,12 @@ function initRouteTimeline() {
     cameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
 
     const isDark = (mapTheme === 'dark');
+    // Global responsive scale for crisp rendering across all screen sizes
+    const s = Math.min(1.0, Math.max(0.60, w / 750));
+    const roadW = Math.round(22 * s);
+
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     // 1. Clean Crisp Map Background
     ctx.fillStyle = isDark ? '#0f172a' : '#f8fafc';
@@ -4017,9 +3962,17 @@ function initRouteTimeline() {
     ctx.beginPath(); ctx.roundRect(w * 0.05, 180, w * 0.30, 480, 16); ctx.fill();
     ctx.beginPath(); ctx.roundRect(w * 0.52, 320, w * 0.42, 520, 16); ctx.fill();
 
+    // Continuous NH-30 Highway Spine (Infinite Frame Out)
+    ctx.strokeStyle = isDark ? '#1e293b' : '#e2e8f0';
+    ctx.lineWidth = roadW;
+    ctx.beginPath();
+    ctx.moveTo(w * 0.42, -150);
+    ctx.lineTo(w * 0.42, mapH + 150);
+    ctx.stroke();
+
     // 2. UNVISITED ROAD BASE
     ctx.strokeStyle = isDark ? '#1e293b' : '#e2e8f0';
-    ctx.lineWidth = 20;
+    ctx.lineWidth = roadW;
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath();
     ctx.moveTo(path[0].x * w, path[0].y);
@@ -4045,7 +3998,7 @@ function initRouteTimeline() {
 
     // Sharp Asphalt Base
     ctx.strokeStyle = '#1e293b';
-    ctx.lineWidth = 20;
+    ctx.lineWidth = roadW;
     ctx.beginPath();
     ctx.moveTo(path[0].x * w, path[0].y);
     for (let i = 1; i <= numSteps; i++) {
@@ -4082,7 +4035,7 @@ function initRouteTimeline() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // 4. DRAW CRISP LANDMARKS
+    // 4. DRAW CRISP LANDMARKS WITH AUTO-RESPONSIVE SCALING
     landmarks.forEach(lm => {
       const reveal = getLandmarkReveal(lm, prog, vx, vy);
       const lx = lm.x * w;
@@ -4090,48 +4043,48 @@ function initRouteTimeline() {
 
       switch(lm.type) {
         case 'saguna_hub':
-          drawSagunaMoreHub(lx, ly, reveal, mapTheme);
+          drawSagunaMoreHub(lx, ly, reveal, mapTheme, s);
           break;
         case 'station':
-          drawStationAnimation(lx, ly, lm.name, reveal, mapTheme);
+          drawStationAnimation(lx, ly, lm.name, reveal, mapTheme, s);
           break;
         case 'hospital_aiims':
-          drawHospitalAnimation(lx, ly, lm.name, true, reveal, mapTheme);
+          drawHospitalAnimation(lx, ly, lm.name, true, reveal, mapTheme, s);
           break;
         case 'hospital_nsmch':
-          drawHospitalAnimation(lx, ly, lm.name, false, reveal, mapTheme);
+          drawHospitalAnimation(lx, ly, lm.name, false, reveal, mapTheme, s);
           break;
         case 'education_goal':
-          drawGoalInstituteAnimation(lx, ly, reveal, mapTheme);
+          drawGoalInstituteAnimation(lx, ly, reveal, mapTheme, s);
           break;
         case 'patli_bus':
-          drawPatliBusStand(lx, ly, reveal, mapTheme);
+          drawPatliBusStand(lx, ly, reveal, mapTheme, s);
           break;
         case 'ringroad_east':
-          drawPatnaRingRoadEast(lx, ly, reveal, prog, mapTheme);
+          drawPatnaRingRoadEast(lx, ly, reveal, prog, mapTheme, s);
           break;
         case 'painathi_entry':
-          drawPainathiRoadEntry(lx, ly, reveal, mapTheme);
+          drawPainathiRoadEntry(lx, ly, reveal, mapTheme, s);
           break;
         case 'township_royal':
-          drawRoyalGardenTownship(lx, ly, reveal, mapTheme);
+          drawRoyalGardenTownship(lx, ly, reveal, mapTheme, s);
           break;
         case 'airport':
-          drawAirportAnimation(lx, ly, reveal, mapTheme);
+          drawAirportAnimation(lx, ly, reveal, mapTheme, s);
           break;
         case 'education_iit':
-          drawIITCampusAnimation(lx, ly, reveal, mapTheme);
+          drawIITCampusAnimation(lx, ly, reveal, mapTheme, s);
           break;
         case 'township_guru':
-          drawGuruNiwasFinal(lx, ly, reveal, mapTheme);
+          drawGuruNiwasFinal(lx, ly, reveal, mapTheme, s);
           break;
         default:
-          drawGenericChowk(lx, ly, lm.name, lm.km, reveal, mapTheme);
+          drawGenericChowk(lx, ly, lm.name, lm.km, reveal, mapTheme, s);
       }
     });
 
     // 5. DRAW CRISP VIP CAB
-    drawLuxuryCab(vx, vy, heading, mapTheme);
+    drawLuxuryCab(vx, vy, heading, mapTheme, s);
 
     ctx.restore();
 
