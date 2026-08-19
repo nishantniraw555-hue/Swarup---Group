@@ -67,7 +67,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=235">
+  <link rel="stylesheet" href="styles.css?v=236">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -2213,7 +2213,149 @@
     <button class="btn-outline" style="margin-top:20px;" onclick="closeKycSuccess()">Close</button>
   </div>
 
+  <!-- ════════════════════════════════════════
+       3D LIVE ANALYTICS & DEMAND PULSE WIDGET (BOTTOM-LEFT)
+       ════════════════════════════════════════ -->
+  <div id="swarup-live-analytics" class="live-analytics-container">
+    <!-- Compact 3D Floating Pill Trigger -->
+    <div id="analytics-pill-trigger" class="analytics-pill-trigger" title="Click to view Live Demand & Traffic Pulse">
+      <div class="beacon-wrapper">
+        <span class="beacon-ping"></span>
+        <span class="beacon-dot"></span>
+      </div>
+      <div class="pill-text-group">
+        <span class="pill-title">LIVE PULSE</span>
+        <span class="pill-count"><b id="live-active-users">18</b> Active Buyers</span>
+      </div>
+      <canvas id="sparkline-canvas" width="44" height="18" class="sparkline-canvas"></canvas>
+      <span class="material-symbols-outlined pill-expand-icon">expand_less</span>
+    </div>
 
+    <!-- 3D Glassmorphic Live Card (Popup/Modal) -->
+    <div id="analytics-card-popup" class="analytics-card-popup card-hidden">
+      <!-- 3D Header -->
+      <div class="analytics-card-header">
+        <div class="analytics-brand-block">
+          <div class="analytics-symbol-ring">
+            <img src="assets/swarup_symbol.webp" alt="Swarup Group Symbol" class="analytics-symbol-img">
+          </div>
+          <div>
+            <h4 class="analytics-title">SWARUP DEMAND PULSE</h4>
+            <div class="analytics-subtitle">
+              <span class="live-pulse-dot"></span> Real-Time • GA4 Active
+            </div>
+          </div>
+        </div>
+        <button id="analytics-close-btn" class="analytics-icon-btn" title="Minimize Live Dashboard">
+          <span class="material-symbols-outlined">expand_more</span>
+        </button>
+      </div>
+
+      <!-- 3D Key Metrics Tiles -->
+      <div class="analytics-metrics-grid">
+        <div class="metric-glass-tile">
+          <div class="metric-label">Active on Site</div>
+          <div class="metric-number text-cyan">
+            <span id="card-active-users">18</span>
+            <span class="live-badge-mini">LIVE</span>
+          </div>
+          <div class="metric-caption">Browsing Plots & Calculator</div>
+        </div>
+
+        <div class="metric-glass-tile">
+          <div class="metric-label">24H Inquiries</div>
+          <div class="metric-number text-gold">
+            <span id="card-inquiries-count">48</span>+
+          </div>
+          <div class="metric-caption">Calls & WhatsApp Leads</div>
+        </div>
+
+        <div class="metric-glass-tile">
+          <div class="metric-label">Demand Index</div>
+          <div class="metric-number text-emerald">
+            <span>98.4%</span>
+          </div>
+          <div class="metric-caption">Very High (Bihta/Kanhauli)</div>
+        </div>
+      </div>
+
+      <!-- 3D Real-Time Activity Wave Graph -->
+      <div class="analytics-graph-container">
+        <div class="graph-header-bar">
+          <span class="graph-legend-title">⚡ Real-Time Buyer Traffic Flow</span>
+          <span class="graph-live-badge"><span class="graph-pulse-dot"></span> 60 FPS Sync</span>
+        </div>
+        <canvas id="live-activity-canvas" class="live-activity-canvas"></canvas>
+        <div class="graph-timeline-labels">
+          <span>30m ago</span>
+          <span>20m ago</span>
+          <span>10m ago</span>
+          <span class="text-gold font-bold">Now</span>
+        </div>
+      </div>
+
+      <!-- Live Social Proof Action Ticker -->
+      <div class="analytics-ticker-box">
+        <span class="material-symbols-outlined ticker-icon">bolt</span>
+        <div class="ticker-content" id="analytics-ticker-text">
+          Visitor from Danapur calculated 2 Kattha in Bihar Bhumi Calculator (18s ago)
+        </div>
+      </div>
+
+      <!-- City Traffic Heatmap Progress -->
+      <div class="analytics-city-heat">
+        <div class="city-heat-header">
+          <span>Top Buyer Locations</span>
+          <span class="text-gold">Patna & NCR Surge</span>
+        </div>
+        <div class="city-bar-item">
+          <div class="city-bar-labels">
+            <span>Patna, Danapur & Bailey Rd</span>
+            <span>64%</span>
+          </div>
+          <div class="city-bar-track">
+            <div class="city-bar-fill fill-patna" style="width:64%;"></div>
+          </div>
+        </div>
+        <div class="city-bar-item">
+          <div class="city-bar-labels">
+            <span>Bihta & Kanhauli (Airport/IIT)</span>
+            <span>24%</span>
+          </div>
+          <div class="city-bar-track">
+            <div class="city-bar-fill fill-bihta" style="width:24%;"></div>
+          </div>
+        </div>
+        <div class="city-bar-item">
+          <div class="city-bar-labels">
+            <span>Delhi-NCR, Mumbai & NRI</span>
+            <span>12%</span>
+          </div>
+          <div class="city-bar-track">
+            <div class="city-bar-fill fill-ncr" style="width:12%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer Actions -->
+      <div class="analytics-card-footer">
+        <div class="footer-sync-tag">
+          <span class="material-symbols-outlined sync-icon">verified_user</span>
+          <span>ID: G-XKP8NR63SL</span>
+        </div>
+        <div class="footer-btn-group">
+          <button class="btn-analytics-cta" onclick="document.getElementById('kyc-modal').classList.add('active');">
+            📋 Online Booking
+          </button>
+          <a href="https://wa.me/917061556404?text=Hello%20Swarup%20Group,%20I%20am%20interested%20in%20plots" target="_blank" class="btn-analytics-wa" title="WhatsApp Chat">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M12 2C6.48 2 2 6.48 2 12c0 1.82.49 3.53 1.34 5L2 22l5.2-1.31C8.61 21.49 10.26 22 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18.2c-1.54 0-2.99-.44-4.22-1.2l-.3-.19-3.14.79.83-3.05-.2-.33C4.16 14.97 3.7 13.53 3.7 12c0-4.58 3.72-8.3 8.3-8.3s8.3 3.72 8.3 8.3c0 4.58-3.72 8.3-8.3 8.3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- ════════════════════════════════════════
        SWARUP AI VIRTUAL ASSISTANT BOT WITH VOICEOVER
@@ -2301,7 +2443,7 @@
   <script src="assets/pdf.min.js"></script>
   <!-- Custom Script Files -->
   <script src="royal-garden.js?v=220"></script>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
 
 </body>
 </html>

@@ -5546,3 +5546,239 @@ if (document.readyState === 'loading') {
 } else {
   initGA4EventTracking();
 }
+
+/* ===================================================
+   3D LIVE ANALYTICS & VISITOR ACTIVITY ENGINE
+   =================================================== */
+function initLiveAnalyticsWidget() {
+  const container = document.getElementById('swarup-live-analytics');
+  if (!container) return;
+
+  const trigger = document.getElementById('analytics-pill-trigger');
+  const popup = document.getElementById('analytics-card-popup');
+  const closeBtn = document.getElementById('analytics-close-btn');
+  const liveUsersEl = document.getElementById('live-active-users');
+  const cardUsersEl = document.getElementById('card-active-users');
+  const inquiriesEl = document.getElementById('card-inquiries-count');
+  const tickerTextEl = document.getElementById('analytics-ticker-text');
+  const liveCanvas = document.getElementById('live-activity-canvas');
+  const sparkCanvas = document.getElementById('sparkline-canvas');
+
+  // Toggle Popup
+  function togglePopup(open) {
+    const isClosed = popup.classList.contains('card-hidden');
+    const shouldOpen = (open !== undefined) ? open : isClosed;
+    if (shouldOpen) {
+      popup.classList.remove('card-hidden');
+      trigger.style.display = 'none';
+      if (typeof gtag === 'function') {
+        gtag('event', 'view_live_analytics_dashboard', {
+          event_category: 'Engagement',
+          event_label: 'Demand Pulse Opened'
+        });
+      }
+    } else {
+      popup.classList.add('card-hidden');
+      trigger.style.display = 'flex';
+    }
+  }
+
+  trigger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePopup(true);
+  });
+
+  closeBtn?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    togglePopup(false);
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!popup.classList.contains('card-hidden') && !container.contains(e.target)) {
+      togglePopup(false);
+    }
+  });
+
+  // Organic Active User Count Simulation (16 to 24 with natural organic jitter)
+  let currentUsers = 19;
+  let targetUsers = 19;
+
+  function updateActiveUsers() {
+    const now = new Date();
+    const hour = now.getHours();
+    // Higher during 9am - 10pm
+    const baseMin = (hour >= 9 && hour <= 22) ? 17 : 9;
+    const baseMax = (hour >= 9 && hour <= 22) ? 26 : 14;
+    targetUsers = Math.floor(Math.random() * (baseMax - baseMin + 1)) + baseMin;
+
+    if (currentUsers !== targetUsers) {
+      currentUsers += (targetUsers > currentUsers ? 1 : -1);
+      if (liveUsersEl) liveUsersEl.textContent = currentUsers;
+      if (cardUsersEl) cardUsersEl.textContent = currentUsers;
+    }
+  }
+  setInterval(updateActiveUsers, 4500);
+
+  // Social Proof Ticker Events
+  const tickerEvents = [
+    "Visitor from Danapur calculated 2 Kattha in Bihar Bhumi Calculator (14s ago)",
+    "VIP Cab site visit inquiry received for Royal Garden Kanhauli (42s ago)",
+    "Buyer from Kankarbagh viewed Guru Niwas AutoCAD layout plan (2m ago)",
+    "Plot hold request received for 1200 sq ft near Bihta Airport (3m ago)",
+    "Visitor from Bailey Road checked jamabandi & registry verification (5m ago)",
+    "Buyer from Saguna More inquired for corner plot on 30ft road (7m ago)",
+    "Brochure downloaded by visitor from Boring Road (9m ago)",
+    "Site visit booked for Guru Niwas Colony (IIT Gate 1) tomorrow at 11 AM"
+  ];
+  let tickerIdx = 0;
+  function rotateTicker() {
+    if (!tickerTextEl) return;
+    tickerTextEl.style.opacity = '0';
+    setTimeout(() => {
+      tickerIdx = (tickerIdx + 1) % tickerEvents.length;
+      tickerTextEl.textContent = tickerEvents[tickerIdx];
+      tickerTextEl.style.opacity = '1';
+    }, 300);
+  }
+  setInterval(rotateTicker, 6500);
+
+  // 60FPS 3D Real-Time Multi-Wave Canvas
+  if (liveCanvas) {
+    const ctx = liveCanvas.getContext('2d');
+    
+    function resizeCanvas() {
+      if (!liveCanvas) return;
+      const rect = liveCanvas.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      liveCanvas.width = (rect.width || 320) * dpr;
+      liveCanvas.height = (rect.height || 85) * dpr;
+      ctx.scale(dpr, dpr);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas, { passive: true });
+
+    const pointsCount = 32;
+    let waveData = [];
+    for (let i = 0; i < pointsCount; i++) {
+      waveData.push(0.35 + Math.sin(i * 0.4) * 0.2 + (Math.random() * 0.15));
+    }
+
+    let offset = 0;
+    let burstPulse = 0;
+
+    function renderCanvas() {
+      if (!ctx || !liveCanvas) return;
+      const rect = liveCanvas.getBoundingClientRect();
+      const w = rect.width || 320;
+      const h = rect.height || 85;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid Lines
+      ctx.strokeStyle = 'rgba(2, 132, 199, 0.12)';
+      ctx.lineWidth = 1;
+      for (let y = 15; y < h; y += 22) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(w, y);
+        ctx.stroke();
+      }
+
+      // Dynamic Wave 1: Golden Accent Fill
+      const grad1 = ctx.createLinearGradient(0, 0, 0, h);
+      grad1.addColorStop(0, 'rgba(212, 175, 55, 0.35)');
+      grad1.addColorStop(1, 'rgba(212, 175, 55, 0.0)');
+
+      ctx.beginPath();
+      ctx.moveTo(0, h);
+
+      const step = w / (pointsCount - 1);
+      for (let i = 0; i < pointsCount; i++) {
+        const x = i * step;
+        const sineMod = Math.sin((i * 0.3) + offset) * 0.18;
+        const val = waveData[i] + sineMod + (burstPulse * Math.sin(i * 0.5));
+        const y = h - (Math.max(0.1, Math.min(0.9, val)) * (h - 10));
+        if (i === 0) ctx.lineTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.lineTo(w, h);
+      ctx.closePath();
+      ctx.fillStyle = grad1;
+      ctx.fill();
+
+      // Wave 2: Neon Cyan Line & Glowing Particles
+      ctx.beginPath();
+      for (let i = 0; i < pointsCount; i++) {
+        const x = i * step;
+        const sineMod = Math.sin((i * 0.3) + offset) * 0.18;
+        const val = waveData[i] + sineMod + (burstPulse * Math.sin(i * 0.5));
+        const y = h - (Math.max(0.1, Math.min(0.9, val)) * (h - 10));
+        if (i === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2.5;
+      ctx.shadowColor = '#38bdf8';
+      ctx.shadowBlur = 10;
+      ctx.stroke();
+      ctx.shadowBlur = 0; // reset
+
+      // Draw Glowing Head Particle on Latest Point (Now)
+      const lastX = w - 2;
+      const lastVal = waveData[pointsCount - 1] + Math.sin((pointsCount - 1) * 0.3 + offset) * 0.18;
+      const lastY = h - (Math.max(0.1, Math.min(0.9, lastVal)) * (h - 10));
+
+      ctx.fillStyle = '#d4af37';
+      ctx.beginPath();
+      ctx.arc(lastX, lastY, 4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowColor = '#d4af37';
+      ctx.shadowBlur = 8;
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      offset += 0.035;
+      if (burstPulse > 0) burstPulse *= 0.95;
+
+      requestAnimationFrame(renderCanvas);
+    }
+    renderCanvas();
+
+    // Trigger burst wave on user interaction
+    document.addEventListener('click', () => {
+      burstPulse = 0.25;
+    }, { passive: true });
+  }
+
+  // Micro Sparkline in Pill
+  if (sparkCanvas) {
+    const sCtx = sparkCanvas.getContext('2d');
+    const sW = sparkCanvas.width;
+    const sH = sparkCanvas.height;
+    let sOffset = 0;
+
+    function renderSparkline() {
+      if (!sCtx) return;
+      sCtx.clearRect(0, 0, sW, sH);
+      sCtx.beginPath();
+      for (let x = 0; x <= sW; x += 4) {
+        const y = (sH / 2) + Math.sin((x * 0.25) + sOffset) * (sH * 0.35);
+        if (x === 0) sCtx.moveTo(x, y);
+        else sCtx.lineTo(x, y);
+      }
+      sCtx.strokeStyle = '#38bdf8';
+      sCtx.lineWidth = 1.5;
+      sCtx.stroke();
+      sOffset += 0.06;
+      requestAnimationFrame(renderSparkline);
+    }
+    renderSparkline();
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLiveAnalyticsWidget);
+} else {
+  initLiveAnalyticsWidget();
+}
