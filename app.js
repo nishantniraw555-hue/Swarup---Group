@@ -3455,7 +3455,7 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR ON NH-30 + EAST -> NORTH -> EAST TRAJECTORY)
+  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR ON NH-30 + EAST EXPRESSWAY & 45° SHERPUR-DIGHWARA CORRIDOR)
   function drawPatnaRingRoadEast(rx, ry, reveal, prog, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
@@ -3463,6 +3463,53 @@ function initRouteTimeline() {
     const gx = rx; // Golambar X on NH-30 (0.42 * w)
     const gy = ry; // Golambar Y on NH-30 (680)
 
+    // ── 1. 45° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD SPUR ──
+    const sherpurEndX = w * 0.10;
+    const deltaSpan = gx - sherpurEndX;
+    const sherpurEndY = gy - deltaSpan; // Exact 45-degree angle (dx == dy)
+
+    // Sherpur - Dighwara Asphalt Base
+    ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
+    ctx.lineWidth = 18;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(sherpurEndX, sherpurEndY);
+    ctx.stroke();
+
+    // Road outer borders
+    ctx.strokeStyle = '#1e3a8a';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(sherpurEndX, sherpurEndY);
+    ctx.stroke();
+
+    // Double dashed center lane
+    ctx.strokeStyle = '#d4a017';
+    ctx.lineWidth = 1.6;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(sherpurEndX, sherpurEndY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Overhead Signboard on Sherpur - Dighwara 45° Road
+    const sherMidX = (gx + sherpurEndX) / 2 - 20;
+    const sherMidY = (gy + sherpurEndY) / 2 - 22;
+    ctx.fillStyle = '#0284c7';
+    ctx.beginPath(); ctx.roundRect(sherMidX - 90, sherMidY - 13, 180, 26, 6); ctx.fill();
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText("🌉 SHERPUR - DIGHWARA ➔", sherMidX, sherMidY - 1);
+    ctx.fillStyle = '#fde047';
+    ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
+    ctx.fillText("45° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + 8);
+
+    // ── 2. 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East) ──
     const turn1X = w * 0.68;
     const turn1Y = gy;
     const turn2X = w * 0.68;
@@ -3470,7 +3517,6 @@ function initRouteTimeline() {
     const endX = w * 0.96;
     const endY = gy - 140;
 
-    // ── 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = 20;
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
@@ -3513,7 +3559,7 @@ function initRouteTimeline() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // ── GOLAMBAR / ROUNDABOUT ON NH-30 ──
+    // ── 3. GOLAMBAR / ROUNDABOUT ON NH-30 ──
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
     ctx.beginPath(); ctx.arc(gx, gy, 28, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
@@ -3527,7 +3573,7 @@ function initRouteTimeline() {
     ctx.fillStyle = '#d4a017';
     ctx.beginPath(); ctx.arc(gx, gy, 6, 0, Math.PI * 2); ctx.fill();
 
-    // Green Expressway Overhead Signboard
+    // Green Expressway Overhead Signboard (East Branch)
     const signX = turn1X + 25;
     const signY = turn2Y - 26;
     ctx.fillStyle = '#15803d';
