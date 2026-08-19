@@ -503,12 +503,12 @@ footer,
   }
 }
 
-/* Ultra-Light Minimal Fade Overlay for Top Hero Section */
+/* Soft Balanced Fade Overlay for Top Hero Section */
 .hero-vignette-overlay {
   position: absolute;
   inset: 0;
   z-index: 2;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 40%, rgba(0, 0, 0, 0.25) 100%) !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.45) 100%) !important;
   pointer-events: none;
 }
 
@@ -4252,7 +4252,7 @@ canvas {
     animation: heroSlowPanLeftToRight 5.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
   }
   .hero-vignette-overlay {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 40%, rgba(0, 0, 0, 0.25) 100%) !important;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.45) 100%) !important;
   }
   .hero-title-clip {
     font-size: clamp(1.25rem, 5.8vw, 1.95rem) !important;
