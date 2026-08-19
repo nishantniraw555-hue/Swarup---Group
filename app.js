@@ -3932,26 +3932,11 @@ function initRouteTimeline() {
 
   let currentProg = 0;
   let targetProg = 0;
-  let currentCameraY = 0;
-  let isInitialized = false;
 
   function render() {
+    // 100% Direct Scroll Sync: Car moves ONLY when user scrolls!
     targetProg = scrollProgress();
-
-    if (!isInitialized) {
-      currentProg = targetProg;
-      currentCameraY = Math.max(0, Math.min(mapH - h, (getPointOnPath(currentProg).y) - h * 0.38));
-      cameraY = currentCameraY;
-      isInitialized = true;
-    } else {
-      // Relaxed slow-glide easing (LERP) — car moves slowly and smoothly without rushing
-      const diff = targetProg - currentProg;
-      if (Math.abs(diff) < 0.0001) {
-        currentProg = targetProg;
-      } else {
-        currentProg += diff * 0.035;
-      }
-    }
+    currentProg = targetProg;
 
     const prog = currentProg;
     const currentPt = getPointOnPath(prog);
@@ -3977,10 +3962,8 @@ function initRouteTimeline() {
 
     const heading = (Math.hypot(dx, dy) > 0.001) ? Math.atan2(dy, dx) : 0;
 
-    // Slow smooth camera tracking
-    const targetCameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
-    currentCameraY += (targetCameraY - currentCameraY) * 0.05;
-    cameraY = currentCameraY;
+    // Direct 1-to-1 Camera Tracking (Zero Drift / Zero Lag)
+    cameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
 
     const isDark = (mapTheme === 'dark');
 
