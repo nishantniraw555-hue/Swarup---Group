@@ -2088,6 +2088,85 @@ select:focus, .calc-input:focus {
   z-index: 1;
 }
 
+/* 🌟 TOP 3D WALL-MOUNTED LUXURY BRAND BADGE IN 2ND HERO SECTION 🌟 */
+.scroll-hero-top-badge-container {
+  position: absolute;
+  top: 32px;
+  left: 6%;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.scroll-brand-mounted-badge-3d {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.15rem;
+  background: linear-gradient(145deg, #ffffff 0%, #f8fafc 60%, #edf2f7 100%);
+  border: 1.5px solid #d4a017;
+  border-radius: 18px;
+  padding: 0.75rem 1.4rem;
+  box-shadow: 
+    0 12px 35px rgba(212, 160, 23, 0.22),
+    0 6px 18px rgba(11, 19, 51, 0.2),
+    inset 0 1px 2px #ffffff,
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  pointer-events: auto;
+}
+
+.scroll-brand-mounted-badge-3d:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    0 16px 40px rgba(212, 160, 23, 0.3),
+    0 8px 22px rgba(11, 19, 51, 0.25);
+}
+
+.scroll-brand-symbol-3d {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  transition: transform 0.3s ease;
+}
+
+.scroll-brand-mounted-badge-3d:hover .scroll-brand-symbol-3d {
+  transform: scale(1.08) rotate(-2deg);
+}
+
+.scroll-brand-badge-divider {
+  width: 1.5px;
+  height: 42px;
+  background: linear-gradient(180deg, rgba(212, 160, 23, 0.15), #d4a017 50%, rgba(212, 160, 23, 0.15));
+  border-radius: 2px;
+}
+
+.scroll-brand-badge-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.scroll-brand-pill-title {
+  font-family: var(--font-apple);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  color: #1e3a8a;
+  text-transform: uppercase;
+}
+
+.scroll-brand-pill-desc {
+  font-family: var(--font-apple);
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #b45309;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
 /* Floating Text Overlay with 1st Hero Section Smeulders Dynamic Live-Video Frame Clipped Text Effect */
 .scroll-video-text-overlay {
   position: absolute;
@@ -4088,6 +4167,36 @@ canvas {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     border-top: none !important;
+  }
+  .scroll-hero-top-badge-container {
+    top: 14px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: calc(100% - 20px) !important;
+    max-width: 390px !important;
+    display: flex !important;
+    justify-content: center !important;
+    z-index: 25 !important;
+  }
+  .scroll-brand-mounted-badge-3d {
+    padding: 0.45rem 0.85rem !important;
+    gap: 0.65rem !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .scroll-brand-symbol-3d {
+    height: 34px !important;
+  }
+  .scroll-brand-badge-divider {
+    height: 30px !important;
+  }
+  .scroll-brand-pill-title {
+    font-size: 0.56rem !important;
+    letter-spacing: 0.08em !important;
+  }
+  .scroll-brand-pill-desc {
+    font-size: 0.5rem !important;
   }
   .scroll-video-sticky {
     height: 100vh !important;
