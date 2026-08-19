@@ -4376,43 +4376,51 @@ function initScrollVideoEngine() {
 
   if (!section || !canvas) return;
 
-  const ctx = canvas.getContext('2d');
+  const ctx = canvas.getContext('2d', { alpha: false });
   const frameCount = 150;
   const frames = new Array(frameCount);
   let hasStartedPreload = false;
   let currentFrameIndex = 0;
   let currentDpr = 1;
+  let lastW = 0;
+  let lastH = 0;
 
-  function resize() {
-    currentDpr = Math.min(window.devicePixelRatio || 1, 2);
+  function resize(force = false) {
     const w = window.innerWidth;
     const h = window.innerHeight;
+
+    // Mobile viewport stability: prevent canvas re-allocation when URL address bar toggles
+    if (!force && lastW === w && Math.abs(lastH - h) < 160 && canvas.width > 0) {
+      return;
+    }
+    lastW = w;
+    lastH = h;
+
+    currentDpr = Math.min(window.devicePixelRatio || 1, 2);
     canvas.width = Math.round(w * currentDpr);
     canvas.height = Math.round(h * currentDpr);
     canvas.style.width = w + 'px';
     canvas.style.height = h + 'px';
     renderFrame(currentFrameIndex);
   }
-  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('resize', () => resize(false), { passive: true });
+  window.addEventListener('orientationchange', () => setTimeout(() => resize(true), 200), { passive: true });
 
   // Load Frame 1 immediately for initial display
   const firstImg = new Image();
   firstImg.src = 'scrolling_frames/frame_001.webp';
   firstImg.onload = () => {
     frames[0] = firstImg;
-    resize();
+    resize(true);
     renderFrame(0);
   };
 
-  // Lazy-load remaining frames only when user scrolls near the section
+  // Eagerly preload all remaining frames for ultra-smooth 60fps scrubbing
   function startPreloadingFrames() {
     if (hasStartedPreload) return;
     hasStartedPreload = true;
 
-    const isMobile = window.innerWidth < 768;
-    const step = isMobile ? 2 : 1; // On mobile, load every 2nd frame for 50% lighter memory
-
-    for (let i = 1; i <= frameCount; i += step) {
+    for (let i = 1; i <= frameCount; i++) {
       if (i === 1) continue;
       const img = new Image();
       const padIndex = String(i).padStart(3, '0');
@@ -4429,17 +4437,17 @@ function initScrollVideoEngine() {
           preloadObserver.disconnect();
         }
       });
-    }, { rootMargin: '600px 0px' });
+    }, { rootMargin: '1000px 0px' });
     preloadObserver.observe(section);
   } else {
-    setTimeout(startPreloadingFrames, 1500);
+    setTimeout(startPreloadingFrames, 400);
   }
 
   function renderFrame(index) {
     let img = frames[index];
     if (!img || !img.complete || img.naturalWidth === 0) {
       // Find closest loaded frame
-      for (let offset = 1; offset < 15; offset++) {
+      for (let offset = 1; offset < 25; offset++) {
         if (frames[index - offset] && frames[index - offset].complete) {
           img = frames[index - offset];
           break;
@@ -4460,57 +4468,23 @@ function initScrollVideoEngine() {
 
     ctx.save();
     ctx.scale(currentDpr, currentDpr);
-    ctx.clearRect(0, 0, cw, ch);
+    ctx.imageSmoothingEnabled = true;
 
-    const isPortrait = (cw / ch) < (iw / ih) || cw < 768;
+    // Full-bleed cover draw on all screen sizes — Seamless edge-to-edge video with 0 black gaps
+    const scale = Math.max(cw / iw, ch / ih);
+    const nw = iw * scale;
+    const nh = ih * scale;
+    const nx = (cw - nw) / 2;
+    const ny = (ch - nh) / 2;
+    ctx.drawImage(img, nx, ny, nw, nh);
 
-    if (isPortrait) {
-      // 1. Solid dark background (no blurry video running in background)
-      ctx.fillStyle = '#030712';
-      ctx.fillRect(0, 0, cw, ch);
-
-      // 2. Create a perfect 9:16 portrait frame that fills left-right width
-      const frameW = cw;
-      const frameH = cw * (16 / 9);
-      const frameX = 0;
-      const frameY = (ch - frameH) / 2 - (ch * 0.02); // Slightly shifted up for text
-
-      ctx.save();
-      
-      // Add rounded corners to make it look like a clean frame
-      ctx.beginPath();
-      if (typeof ctx.roundRect === 'function') {
-        ctx.roundRect(frameX, frameY, frameW, frameH, 16);
-      } else {
-        ctx.rect(frameX, frameY, frameW, frameH);
-      }
-      ctx.clip();
-
-      // 3. Draw the video INSIDE the 9:16 frame using 'cover' logic so it fills the frame without distortion
-      const scale = Math.max(frameW / iw, frameH / ih);
-      const drawW = iw * scale;
-      const drawH = ih * scale;
-      const drawX = frameX + (frameW - drawW) / 2;
-      const drawY = frameY + (frameH - drawH) / 2;
-      ctx.drawImage(img, drawX, drawY, drawW, drawH);
-      
-      ctx.restore();
-
-      // 4. Soft gradient only at the bottom text area (so main video stays bright and clear)
-      const grad = ctx.createLinearGradient(0, ch * 0.65, 0, ch);
-      grad.addColorStop(0, 'rgba(3, 7, 18, 0)');
-      grad.addColorStop(1, 'rgba(3, 7, 18, 0.9)');
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, ch * 0.65, cw, ch * 0.35);
-    } else {
-      // Desktop / Landscape display: Full-width cinematic cover
-      const scale = Math.max(cw / iw, ch / ih);
-      const nw = iw * scale;
-      const nh = ih * scale;
-      const nx = (cw - nw) / 2;
-      const ny = (ch - nh) / 2;
-      ctx.drawImage(img, nx, ny, nw, nh);
-    }
+    // Subtle dark gradient vignette on bottom 45% for high-contrast, crystal-clear text readability
+    const grad = ctx.createLinearGradient(0, ch * 0.45, 0, ch);
+    grad.addColorStop(0, 'rgba(3, 7, 18, 0)');
+    grad.addColorStop(0.5, 'rgba(3, 7, 18, 0.45)');
+    grad.addColorStop(1, 'rgba(3, 7, 18, 0.85)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, ch * 0.45, cw, ch * 0.55);
 
     ctx.restore();
   }
@@ -4539,6 +4513,8 @@ function initScrollVideoEngine() {
   ];
 
   let currentPhaseIndex = -1;
+  let titleTimeout = null;
+  let subtitleTimeout = null;
 
   function updatePhaseText(progress) {
     const phaseIndex = Math.min(3, Math.floor(progress * 4));
@@ -4550,21 +4526,24 @@ function initScrollVideoEngine() {
       const subtitleEl = document.getElementById('scroll-video-subtitle');
 
       if (badgeEl) badgeEl.textContent = phase.badge;
+      
       if (titleEl) {
+        if (titleTimeout) clearTimeout(titleTimeout);
         titleEl.style.opacity = '0';
-        titleEl.style.transform = 'translateY(10px)';
-        setTimeout(() => {
+        titleEl.style.transform = 'translateY(6px)';
+        titleTimeout = setTimeout(() => {
           titleEl.textContent = phase.title;
           titleEl.style.opacity = '1';
           titleEl.style.transform = 'translateY(0)';
-        }, 120);
+        }, 100);
       }
       if (subtitleEl) {
+        if (subtitleTimeout) clearTimeout(subtitleTimeout);
         subtitleEl.style.opacity = '0';
-        setTimeout(() => {
+        subtitleTimeout = setTimeout(() => {
           subtitleEl.textContent = phase.subtitle;
           subtitleEl.style.opacity = '1';
-        }, 120);
+        }, 100);
       }
     }
   }
@@ -4572,17 +4551,22 @@ function initScrollVideoEngine() {
   let ticking = false;
   function updateScroll() {
     const rect = section.getBoundingClientRect();
+    const vh = window.innerHeight;
     // If section is offscreen, skip work entirely
-    if (rect.bottom < -100 || rect.top > window.innerHeight + 100) {
+    if (rect.bottom < -50 || rect.top > vh + 50) {
       ticking = false;
       return;
     }
 
-    const totalScroll = rect.height - window.innerHeight;
+    const totalScroll = rect.height - vh;
+    if (totalScroll <= 0) {
+      ticking = false;
+      return;
+    }
     const progress = Math.max(0, Math.min(1, -rect.top / totalScroll));
 
     if (progressBar) {
-      progressBar.style.width = `${progress * 100}%`;
+      progressBar.style.width = `${(progress * 100).toFixed(1)}%`;
     }
 
     updatePhaseText(progress);
@@ -4603,7 +4587,7 @@ function initScrollVideoEngine() {
     }
   }, { passive: true });
 
-  resize();
+  resize(true);
 }
 
 /* ==========================================
