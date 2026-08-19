@@ -3125,7 +3125,7 @@ function initRouteTimeline() {
     { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.28, y: 760, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
     { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 760, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
     { id: "painathi", name: "Painathi Road", sub: "Direct Access to Royal Garden", x: 0.42, y: 900, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
-    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 1000, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
+    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "314 Villa Plots • Directly along Painathi Road", x: 0.22, y: 955, type: "township_royal", km: "17.5 KM", triggerProg: 0.58 },
     { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 1140, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
     { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1280, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
     { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1280, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
@@ -3145,10 +3145,8 @@ function initRouteTimeline() {
     { x: 0.42, y: 550, title: "Passing GOAL Institute Campus (Kanhauli - Right Side)" },
     { x: 0.42, y: 760, title: "Patna 6-Lane Ring Road Golambar (Patli Bus Stand on Left)" },
     { x: 0.42, y: 900, title: "NH-30 Junction • Turning onto Painathi Road" },
-    { x: 0.20, y: 900, title: "Traveling along Painathi Road (Kanhauli Corridor)" },
-    { x: 0.20, y: 1000, title: "Turning onto Royal Garden Boulevard ➔ ROYAL GARDEN TOWNSHIP (314 Plots)" },
-    { x: 0.20, y: 900, title: "Returning along Painathi Road towards NH-30" },
-    { x: 0.42, y: 900, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
+    { x: 0.22, y: 900, title: "Painathi Road • ROYAL GARDEN TOWNSHIP (314 Plots • Dual Gated Entries)" },
+    { x: 0.42, y: 900, title: "Returning along Painathi Road to NH-30 Corridor" },
     { x: 0.42, y: 1140, title: "Bihta International Airport Corridor (22.5 KM)" },
     { x: 0.42, y: 1280, title: "Bihta Chowk Central Market & Railway Station" },
     { x: 0.64, y: 1280, title: "NSMCH Hospital & Medical College (2 KM)" },
@@ -3732,78 +3730,78 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 6. REALISTIC SEAMLESS PAINATHI ROAD & CURVED ROYAL GARDEN HIGHWAY CORRIDOR
+  // 6. REALISTIC PAINATHI ROAD & 2 SLIM ENTRY CONNECTORS TO ROYAL GARDEN
   function drawPainathiRoadEntry(px, py, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
-    const roadW = Math.round(22 * s);
-    const turnX = w * 0.20;
-    const cornerR = Math.round(24 * s);
+    const roadW = Math.round(20 * s);
+    const endWestX = w * 0.08;
+    const rx = w * 0.22;
+    const entry1X = rx + 32 * s; // Slim Entry 1 (East Gate)
+    const entry2X = rx - 28 * s; // Slim Entry 2 (West Gate)
+    const entryW = Math.round(10 * s); // Slim entry road width
 
-    // ── 1. SEAMLESS ASPHALT ROAD CORRIDOR (NH-30 Junction ➔ West ➔ Smooth Curve South to Royal Garden) ──
+    // ── 1. MAIN PAINATHI ASPHALT ROAD (NH-30 Junction heading West) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = roadW;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
-
-    // Main Road Path from NH-30 Center, curving South to Royal Garden Gate
     ctx.beginPath();
     ctx.moveTo(px, py);
-    ctx.lineTo(turnX + cornerR, py);
-    ctx.arcTo(turnX, py, turnX, py + cornerR, cornerR);
-    ctx.lineTo(turnX, py + 100 * s);
+    ctx.lineTo(endWestX, py);
     ctx.stroke();
 
-    // West Extension past turn
+    // ── 2. TWO SLIM ENTRY ROADS (Branching South from Painathi Road into Royal Garden) ──
+    ctx.lineWidth = entryW;
+    // Entry 1
     ctx.beginPath();
-    ctx.moveTo(turnX + cornerR, py);
-    ctx.lineTo(w * 0.10, py);
+    ctx.moveTo(entry1X, py);
+    ctx.lineTo(entry1X, py + 26 * s);
+    ctx.stroke();
+    // Entry 2
+    ctx.beginPath();
+    ctx.moveTo(entry2X, py);
+    ctx.lineTo(entry2X, py + 26 * s);
     ctx.stroke();
 
-    // ── 2. MATCHING ROAD OUTER BORDERS ──
+    // ── 3. MATCHING ROAD OUTER BORDERS & JUNCTION THROATS ──
     ctx.strokeStyle = '#1e3a8a';
     ctx.lineWidth = 1.6;
 
-    // Outer Top / Right Border with Fillet Throat into NH-30
+    // Top Highway Border (with fillet into NH-30)
     ctx.beginPath();
-    ctx.moveTo(px - roadW / 2, py - 24 * s);
-    ctx.quadraticCurveTo(px - 10 * s, py - roadW / 2, px - 24 * s, py - roadW / 2);
-    ctx.lineTo(w * 0.10, py - roadW / 2);
+    ctx.moveTo(px - roadW / 2, py - 20 * s);
+    ctx.quadraticCurveTo(px - 10 * s, py - roadW / 2, px - 20 * s, py - roadW / 2);
+    ctx.lineTo(endWestX, py - roadW / 2);
     ctx.stroke();
 
-    // Outer Bottom / Right Border with Fillet Throat into NH-30 & Curve South
+    // Bottom Highway Border (with fillet into NH-30 & fillets at the 2 slim entries)
     ctx.beginPath();
-    ctx.moveTo(px - roadW / 2, py + 24 * s);
-    ctx.quadraticCurveTo(px - 10 * s, py + roadW / 2, px - 24 * s, py + roadW / 2);
-    ctx.lineTo(turnX + roadW / 2 + cornerR, py + roadW / 2);
-    ctx.arcTo(turnX + roadW / 2, py + roadW / 2, turnX + roadW / 2, py + roadW / 2 + cornerR, cornerR);
-    ctx.lineTo(turnX + roadW / 2, py + 100 * s);
+    ctx.moveTo(px - roadW / 2, py + 20 * s);
+    ctx.quadraticCurveTo(px - 10 * s, py + roadW / 2, px - 20 * s, py + roadW / 2);
+    ctx.lineTo(entry1X + entryW / 2, py + roadW / 2);
+    ctx.lineTo(entry1X + entryW / 2, py + 26 * s);
+    ctx.moveTo(entry1X - entryW / 2, py + 26 * s);
+    ctx.lineTo(entry1X - entryW / 2, py + roadW / 2);
+    ctx.lineTo(entry2X + entryW / 2, py + roadW / 2);
+    ctx.lineTo(entry2X + entryW / 2, py + 26 * s);
+    ctx.moveTo(entry2X - entryW / 2, py + 26 * s);
+    ctx.lineTo(entry2X - entryW / 2, py + roadW / 2);
+    ctx.lineTo(endWestX, py + roadW / 2);
     ctx.stroke();
 
-    // Inner Corner Border (South-West Curve)
-    ctx.beginPath();
-    ctx.moveTo(turnX - roadW / 2, py + 100 * s);
-    ctx.lineTo(turnX - roadW / 2, py + cornerR);
-    ctx.arcTo(turnX - roadW / 2, py - roadW / 2, turnX - roadW / 2 - cornerR, py - roadW / 2, Math.max(4, cornerR - roadW));
-    ctx.lineTo(w * 0.10, py - roadW / 2);
-    ctx.stroke();
-
-    // ── 3. CURVED DASHED YELLOW CENTER LANE ──
+    // ── 4. DASHED YELLOW CENTER LANE ──
     ctx.strokeStyle = '#d4a017';
     ctx.lineWidth = 1.6;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
     ctx.moveTo(px - 10 * s, py);
-    ctx.lineTo(turnX + cornerR, py);
-    ctx.arcTo(turnX, py, turnX, py + cornerR, cornerR);
-    ctx.lineTo(turnX, py + 95 * s);
-    ctx.moveTo(turnX + cornerR, py);
-    ctx.lineTo(w * 0.10, py);
+    ctx.lineTo(endWestX + 10 * s, py);
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // ── 4. JUNCTION OVERHEAD SIGNBOARD ──
+    // ── 5. JUNCTION OVERHEAD SIGNBOARD ──
     const juncSignX = px - 80 * s;
     const juncSignY = py - 24 * s;
     const signW = Math.round(150 * s);
@@ -3820,47 +3818,59 @@ function initRouteTimeline() {
     ctx.font = `700 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`;
     ctx.fillText("ROYAL GARDEN TOWNSHIP", juncSignX, juncSignY + Math.round(7 * s));
 
-    // Sharp Landmark Card (Clean Text, No 90 Degree Left)
+    // Sharp Landmark Card
     if (reveal > 0.35) {
-      drawCard(px - Math.round(60 * s), py - Math.round(44 * s), "📍 PAINATHI ROAD", "Direct Access Route to Royal Garden", '#1e3a8a', isDark, s);
+      drawCard(px - Math.round(55 * s), py - Math.round(44 * s), "📍 PAINATHI ROAD", "Direct Access Route to Royal Garden", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - LOCATED TO THE LEFT / SOUTH OF PAINATHI ROAD)
+  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - DIRECTLY ALONG PAINATHI ROAD WITH DUAL GATES)
   function drawRoyalGardenTownship(rx, ry, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
+    const entry1X = rx + 32 * s;
+    const entry2X = rx - 28 * s;
 
-    // Clean Gated Boundary on the Left/South of Painathi Road
+    // Clean Gated Boundary (Directly adjoining Painathi Road)
     ctx.fillStyle = isDark ? '#064e3b' : '#f0fdf4';
-    ctx.beginPath(); ctx.roundRect(rx - 70 * s, ry - 36 * s, 140 * s, 90 * s, 8 * s); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(rx - 70 * s, ry - 30 * s, 140 * s, 75 * s, 8 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Plot Grid Inside Township
     ctx.strokeStyle = isDark ? '#10b981' : '#bbf7d0'; ctx.lineWidth = 1;
-    for (let px = rx - 55 * s; px <= rx + 35 * s; px += 18 * s) {
-      for (let py = ry - 22 * s; py <= ry + 36 * s; py += 16 * s) {
+    for (let px = rx - 55 * s; px <= rx + 45 * s; px += 18 * s) {
+      for (let py = ry - 18 * s; py <= ry + 30 * s; py += 16 * s) {
         ctx.fillStyle = (Math.sin(px + py) > 0) ? (isDark ? '#047857' : '#dcfce7') : (isDark ? '#1e3a8a' : '#ffffff');
         ctx.fillRect(px, py, 14 * s, 12 * s);
         ctx.strokeRect(px, py, 14 * s, 12 * s);
       }
     }
 
-    // 3D Grand Arch Gate (Facing North towards Painathi Road)
+    // ── TWO GATED ENTRANCES CONNECTING TO THE 2 SLIM ENTRY ROADS ──
+    // Gate 1 (East Gate)
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(rx - 26 * s, ry - 40 * s, 52 * s, 5 * s);
-    ctx.fillRect(rx - 26 * s, ry - 40 * s, 6 * s, 14 * s);
-    ctx.fillRect(rx + 20 * s, ry - 40 * s, 6 * s, 14 * s);
+    ctx.fillRect(entry1X - 12 * s, ry - 33 * s, 24 * s, 4 * s);
+    ctx.fillRect(entry1X - 12 * s, ry - 33 * s, 4 * s, 10 * s);
+    ctx.fillRect(entry1X + 8 * s, ry - 33 * s, 4 * s, 10 * s);
     ctx.fillStyle = '#fde047';
-    ctx.font = `800 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
-    ctx.fillText("ROYAL GARDEN GATE", rx, ry - 28 * s);
+    ctx.font = `800 ${Math.max(4.8, Math.round(5.2 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("GATE 1", entry1X, ry - 24 * s);
+
+    // Gate 2 (Main VIP Gate)
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(entry2X - 14 * s, ry - 33 * s, 28 * s, 4 * s);
+    ctx.fillRect(entry2X - 14 * s, ry - 33 * s, 4 * s, 10 * s);
+    ctx.fillRect(entry2X + 10 * s, ry - 33 * s, 4 * s, 10 * s);
+    ctx.fillStyle = '#fde047';
+    ctx.font = `800 ${Math.max(4.8, Math.round(5.2 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("VIP GATE", entry2X, ry - 24 * s);
 
     // Sharp Signature Township Card
     if (reveal > 0.35) {
-      drawCard(rx, ry + Math.round(76 * s), "🏰 ROYAL GARDEN (KANHAULI)", "314 Villa Plots • Located Left of Painathi Road", '#d4a017', isDark, s);
+      drawCard(rx, ry + Math.round(58 * s), "🏰 ROYAL GARDEN TOWNSHIP", "314 Villa Plots • Directly along Painathi Road", '#d4a017', isDark, s);
     }
 
     ctx.restore();
