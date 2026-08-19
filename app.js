@@ -4010,30 +4010,62 @@ function initRouteTimeline() {
     ctx.lineTo(w * 0.95, by);
     ctx.stroke();
 
-    // ── 3. SOUTH STRAIGHT HIGHWAY TOWARDS ARA / BUXAR (With NIT on Right Side) ──
+    // ── 3. SOUTH STRAIGHT HIGHWAY TOWARDS ARA / BUXAR (CONTINUOUS EXTENSION DOWNWARDS) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = roadW;
     ctx.beginPath();
     ctx.moveTo(bx, by);
-    ctx.lineTo(bx, by + 260 * s);
+    ctx.lineTo(bx, mapH + 150);
     ctx.stroke();
 
+    // South Road Outer Borders
+    ctx.strokeStyle = '#1e3a8a';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(bx - roadW / 2, by + roadW / 2);
+    ctx.lineTo(bx - roadW / 2, mapH + 150);
+    ctx.moveTo(bx + roadW / 2, by + roadW / 2);
+    ctx.lineTo(bx + roadW / 2, nitY - 7 * s);
+    ctx.moveTo(bx + roadW / 2, nitY + 7 * s);
+    ctx.lineTo(bx + roadW / 2, mapH + 150);
+    ctx.stroke();
+
+    // South Road Dashed Yellow Centerline
+    ctx.strokeStyle = '#d4a017';
+    ctx.lineWidth = 1.6;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(bx, by + 10 * s);
+    ctx.lineTo(bx, mapH + 150);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
     // Link Road branching East/Right to NIT Patna along South Road
+    ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = Math.round(14 * s);
     ctx.beginPath();
     ctx.moveTo(bx, nitY);
     ctx.lineTo(nitX - 35 * s, nitY);
     ctx.stroke();
 
-    // Signboard on Ara Highway
-    const araSignX = bx - 55 * s;
-    const araSignY = by + 220 * s;
+    // Signboard 1 on Ara Highway (Near NIT)
+    const araSignX = bx - 58 * s;
+    const araSignY = by + 200 * s;
     ctx.fillStyle = '#15803d';
     ctx.beginPath(); ctx.roundRect(araSignX - 70 * s, araSignY - 11 * s, 140 * s, 22 * s, 5 * s); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
     ctx.fillStyle = '#ffffff';
     ctx.font = `800 ${Math.max(6.5, Math.round(7.5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
     ctx.fillText("🛣️ NH-30 ➔ ARA / BUXAR", araSignX, araSignY + 3.5 * s);
+
+    // Signboard 2 on Ara Highway (Lower Stretch)
+    const araSign2Y = by + 420 * s;
+    ctx.fillStyle = '#15803d';
+    ctx.beginPath(); ctx.roundRect(araSignX - 70 * s, araSign2Y - 11 * s, 140 * s, 22 * s, 5 * s); ctx.fill();
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `800 ${Math.max(6.2, Math.round(7.2 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("➔ TO ARA (BHOJPUR)", araSignX, araSign2Y + 3.5 * s);
 
     // Central Chowk Roundel
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
