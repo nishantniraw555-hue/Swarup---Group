@@ -3129,8 +3129,8 @@ function initRouteTimeline() {
     { id: "bihta_chowk", name: "Bihta Chowk Junction", sub: "Central Transit Hub • Access to Airport & Ara", x: 0.42, y: 1260, type: "chowk_bihta", km: "22.0 KM", triggerProg: 0.68 },
     { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Right Side along Airport Road", x: 0.28, y: 1210, type: "airport", km: "23.5 KM", triggerProg: 0.74 },
     { id: "nit", name: "NIT Patna (Bihta Campus)", sub: "Right Side along Ara Highway Corridor", x: 0.58, y: 1400, type: "education_nit", km: "25.0 KM", triggerProg: 0.78 },
-    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.65, y: 1260, type: "hospital_nsmch", km: "26.5 KM", triggerProg: 0.82 },
-    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.80, y: 1260, type: "education_iit", km: "28.0 KM", triggerProg: 0.88 },
+    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.60, y: 1260, type: "hospital_nsmch", km: "26.5 KM", triggerProg: 0.82 },
+    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.73, y: 1260, type: "education_iit", km: "28.0 KM", triggerProg: 0.88 },
     { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • Left of Final Road", x: 0.94, y: 1640, type: "township_guru", km: "31.0 KM", triggerProg: 0.98 }
   ];
 
@@ -3151,12 +3151,13 @@ function initRouteTimeline() {
     { x: 0.42, y: 1260, title: "Bihta Chowk Junction • Turning Left onto Airport Road" },
     { x: 0.28, y: 1260, title: "Airport Road • BIHTA INTERNATIONAL AIRPORT (Right Side)" },
     { x: 0.42, y: 1260, title: "Bihta Chowk Junction • Continuing East along Institutional Corridor" },
-    { x: 0.65, y: 1260, title: "NSMCH Hospital & Medical College (2 KM)" },
-    { x: 0.80, y: 1260, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
-    { x: 0.80, y: 1460, title: "Turning South past IIT Gate 1 towards Swarup Corridor" },
-    { x: 0.90, y: 1460, title: "Turning East onto Approach Link Road" },
-    { x: 0.90, y: 1640, title: "Turning South towards Swarup Gated Township" },
-    { x: 0.90, y: 1720, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots - On Left Side)!" }
+    { x: 0.60, y: 1260, title: "NSMCH Hospital & Medical College (2 KM)" },
+    { x: 0.73, y: 1260, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
+    { x: 0.84, y: 1260, title: "Continuing East past IIT Gate 1" },
+    { x: 0.84, y: 1460, title: "Turning South towards Swarup Gated Township Corridor" },
+    { x: 0.92, y: 1460, title: "Turning East (Right) onto Approach Link Road" },
+    { x: 0.92, y: 1640, title: "Turning South towards GURU NIWAS COLONY (On Left Side)" },
+    { x: 0.92, y: 1720, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots - On Left Side)!" }
   ];
 
   function getPointOnPath(t) {
@@ -4262,12 +4263,12 @@ function initRouteTimeline() {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
-    const roadX = w * 0.90;
+    const roadX = w * 0.92;
 
     // ── 3D GATED TOWNSHIP GROUND (ON LEFT/EAST SIDE OF ROAD) ──
-    const townW = 120 * s;
-    const townH = 90 * s;
-    const townX = roadX + townW / 2 + 10 * s;
+    const townW = 100 * s;
+    const townH = 85 * s;
+    const townX = Math.min(w - townW / 2 - 8, roadX + townW / 2 + 10 * s);
     const townY = gy;
 
     ctx.fillStyle = isDark ? '#1e293b' : '#fefce8';
@@ -4278,28 +4279,28 @@ function initRouteTimeline() {
 
     // 3D Villas & Plotted Grid Inside Guru Niwas
     ctx.strokeStyle = isDark ? '#475569' : '#cbd5e1'; ctx.lineWidth = 1;
-    for (let px = townX - 45 * s; px <= townX + 45 * s; px += 22 * s) {
-      for (let py = townY - 32 * s; py <= townY + 32 * s; py += 18 * s) {
+    for (let px = townX - 35 * s; px <= townX + 35 * s; px += 20 * s) {
+      for (let py = townY - 28 * s; py <= townY + 28 * s; py += 16 * s) {
         ctx.fillStyle = (Math.cos(px * py) > 0) ? (isDark ? '#0369a1' : '#dbeafe') : (isDark ? '#d4a017' : '#ffffff');
-        ctx.fillRect(px, py, 18 * s, 14 * s);
-        ctx.strokeRect(px, py, 18 * s, 14 * s);
+        ctx.fillRect(px, py, 16 * s, 12 * s);
+        ctx.strokeRect(px, py, 16 * s, 12 * s);
       }
     }
 
     // ── GRAND 3D ENTRANCE ARCH (FACING WEST TOWARDS THE ROAD) ──
-    const gateX = roadX + 10 * s;
+    const gateX = roadX + 8 * s;
     const gateY = gy;
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(gateX - 2 * s, gateY - 18 * s, 6 * s, 36 * s);
-    ctx.fillRect(gateX - 2 * s, gateY - 18 * s, 14 * s, 5 * s);
-    ctx.fillRect(gateX - 2 * s, gateY + 13 * s, 14 * s, 5 * s);
+    ctx.fillRect(gateX - 2 * s, gateY - 16 * s, 5 * s, 32 * s);
+    ctx.fillRect(gateX - 2 * s, gateY - 16 * s, 12 * s, 4 * s);
+    ctx.fillRect(gateX - 2 * s, gateY + 12 * s, 12 * s, 4 * s);
     ctx.fillStyle = '#fde047';
-    ctx.font = `800 ${Math.max(4.8, Math.round(5.2 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
-    ctx.fillText("GURU NIWAS", gateX + 22 * s, gateY + 2 * s);
+    ctx.font = `800 ${Math.max(4.5, Math.round(5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("GURU NIWAS", gateX + 20 * s, gateY + 2 * s);
 
     // Sharp Dynamic Final Destination Card
     if (reveal > 0.35) {
-      drawCard(townX, townY - Math.round(58 * s), "🏆 GURU NIWAS COLONY", "159 Plots Ready for Registry • Left of Road", '#d4a017', isDark, s);
+      drawCard(townX, townY - Math.round(54 * s), "🏆 GURU NIWAS COLONY", "159 Plots Ready for Registry • Left of Road", '#d4a017', isDark, s);
     }
 
     ctx.restore();
