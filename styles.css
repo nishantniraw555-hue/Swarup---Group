@@ -569,12 +569,55 @@ footer,
   font-size: clamp(1rem, 1.8vw, 1.35rem);
   font-weight: 600;
   color: #dbeafe;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   letter-spacing: 0.02em;
   text-align: left;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.85);
   line-height: 1.5;
   max-width: 680px;
+}
+
+/* 🌟 TOP HERO SECTION "EXPLORE PROJECTS" WHITE OUTLINE BUTTON (NO SOLID FILL) 🌟 */
+.hero-cta-wrap {
+  margin-top: 0.25rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.hero-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.75rem;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1.5px solid #ffffff !important;
+  border-radius: 9999px;
+  color: #ffffff !important;
+  font-family: var(--font-apple);
+  font-size: clamp(0.85rem, 1.15vw, 1.05rem);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: capitalize;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.hero-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: #ffffff !important;
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25), 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hero-btn-outline:active {
+  transform: translateY(0);
 }
 
 /* 🌟 INTERACTIVE PLOT MASTERPLAN FILTER BUTTONS 🌟 */
@@ -4226,10 +4269,18 @@ canvas {
     font-size: clamp(0.68rem, 3.1vw, 0.92rem) !important;
     line-height: 1.3 !important;
     text-align: left !important;
-    margin-bottom: 0 !important;
+    margin-bottom: 0.35rem !important;
     color: #dbeafe !important;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9) !important;
     max-width: 95% !important;
+  }
+  .hero-cta-wrap {
+    margin-top: 0.2rem !important;
+  }
+  .hero-btn-outline {
+    padding: 0.35rem 0.95rem !important;
+    font-size: 0.72rem !important;
+    border-width: 1.2px !important;
   }
 
   /* 2nd Hero Section (Scroll Video Section) - 0px Gap with Top Hero */
