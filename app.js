@@ -3415,10 +3415,11 @@ function initRouteTimeline() {
 
     const roadW = Math.round(24 * s);
 
-    // ── 1. 45° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD (EXTENDING OUTSIDE SCREEN BORDER) ──
+    // ── 1. 60° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD (EXTENDING OUTSIDE SCREEN BORDER) ──
+    const sherpurAngleRad = (60 * Math.PI) / 180; // 60-degree angle
     const sherpurEndX = -w * 0.40 - 150;
     const deltaSpan = gx - sherpurEndX;
-    const sherpurEndY = gy - deltaSpan; // Exact 45-degree angle (dx == dy)
+    const sherpurEndY = gy - deltaSpan * Math.tan(sherpurAngleRad); // Exact 60-degree trajectory
 
     // Sherpur - Dighwara Asphalt Base
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
@@ -3447,9 +3448,9 @@ function initRouteTimeline() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Overhead Signboard on Sherpur - Dighwara 45° Road
+    // Overhead Signboard on Sherpur - Dighwara 60° Road
     const sherMidX = Math.max(w * 0.12, (gx + Math.max(0, sherpurEndX)) / 2 - 15);
-    const sherMidY = gy - (gx - sherMidX) - 20 * s;
+    const sherMidY = gy - (gx - sherMidX) * Math.tan(sherpurAngleRad) - 20 * s;
     const signBoxW = Math.round(175 * s);
     const signBoxH = Math.round(26 * s);
 
@@ -3462,7 +3463,7 @@ function initRouteTimeline() {
     ctx.fillText("🌉 SHERPUR - DIGHWARA ➔", sherMidX, sherMidY - 1);
     ctx.fillStyle = '#fde047';
     ctx.font = `700 ${Math.max(6, Math.round(6.5 * s))}px Montserrat, Inter, sans-serif`;
-    ctx.fillText("45° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + Math.round(8 * s));
+    ctx.fillText("60° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + Math.round(8 * s));
 
     // ── 2. 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East OUTSIDE SCREEN BORDER) ──
     const turn1X = w * 0.68;
