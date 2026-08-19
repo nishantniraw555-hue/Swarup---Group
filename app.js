@@ -5456,3 +5456,93 @@ if (document.readyState === 'loading') {
 } else {
   initStatsCounterAnimation();
 }
+
+/* ==========================================
+   GOOGLE ANALYTICS 4 (GA4) REAL ESTATE CONVERSION TRACKER
+   Measurement ID: G-XKP8NR63SL
+   ========================================== */
+function initGA4EventTracking() {
+  function sendGA4(eventName, params = {}) {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', eventName, {
+        send_to: 'G-XKP8NR63SL',
+        ...params
+      });
+    }
+  }
+
+  // 1. Phone Call Clicks Track (+91-7061556404)
+  document.addEventListener('click', (e) => {
+    const telLink = e.target.closest('a[href^="tel:"]');
+    if (telLink) {
+      const phoneNumber = telLink.getAttribute('href').replace('tel:', '');
+      sendGA4('phone_call_click', {
+        event_category: 'Direct Lead',
+        event_label: phoneNumber,
+        value: 50
+      });
+    }
+
+    // 2. WhatsApp Chat Clicks
+    const waLink = e.target.closest('a[href*="wa.me"], a[href*="whatsapp.com"]');
+    if (waLink) {
+      sendGA4('whatsapp_chat_click', {
+        event_category: 'Direct Lead',
+        event_label: 'WhatsApp Inquiry',
+        value: 40
+      });
+    }
+
+    // 3. Official PDF Brochure Downloads
+    const pdfLink = e.target.closest('a[href$=".pdf"], a[download]');
+    if (pdfLink) {
+      const fileName = pdfLink.getAttribute('href') || pdfLink.getAttribute('download') || 'Brochure.pdf';
+      sendGA4('file_download', {
+        event_category: 'Brochure',
+        event_label: fileName,
+        file_name: fileName,
+        value: 20
+      });
+    }
+
+    // 4. Site Visit Cab Modal Open
+    const visitBtn = e.target.closest('.open-vip-modal, button:has(.material-symbols-outlined)');
+    if (visitBtn && (visitBtn.textContent.includes('Site Visit') || visitBtn.textContent.includes('Cab') || visitBtn.classList.contains('open-vip-modal'))) {
+      sendGA4('site_visit_modal_open', {
+        event_category: 'Lead Engagement',
+        event_label: 'Site Visit Modal Opened'
+      });
+    }
+  }, { passive: true });
+
+  // 5. Booking / KYC Form Lead Generation Submission
+  const bookingForms = document.querySelectorAll('#kyc-booking-form, form');
+  bookingForms.forEach(form => {
+    form.addEventListener('submit', () => {
+      sendGA4('generate_lead', {
+        event_category: 'High Value Conversion',
+        lead_type: 'VIP Site Visit Booking',
+        currency: 'INR',
+        value: 500
+      });
+    }, { passive: true });
+  });
+
+  // 6. Bihar Bhumi Mapan Calculator Usage
+  const calcInputs = document.querySelectorAll('#calc-input-val, #calc-laggi-select');
+  calcInputs.forEach(input => {
+    input.addEventListener('change', () => {
+      sendGA4('calculator_used', {
+        event_category: 'SEO Utility Tool',
+        event_label: 'Bihar Bhumi Mapan Calculator',
+        value: 10
+      });
+    }, { passive: true });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initGA4EventTracking);
+} else {
+  initGA4EventTracking();
+}

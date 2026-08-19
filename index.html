@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr" itemscope itemtype="https://schema.org/WebPage">
 <head>
+  <!-- Google Analytics 4 (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XKP8NR63SL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XKP8NR63SL', {
+      send_page_view: true,
+      cookie_flags: 'SameSite=None;Secure'
+    });
+  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <meta name="google-site-verification" content="dF9CMMd32n1F3MSYxhG9_moFUPvNvwzqOAJKWqMyF-w">
@@ -55,7 +67,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=225">
+  <link rel="stylesheet" href="styles.css?v=226">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
