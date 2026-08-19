@@ -3118,7 +3118,7 @@ function initRouteTimeline() {
     { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.16 },
     { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.24 },
     { id: "goal_inst", name: "GOAL Institute Campus", sub: "Premier Medical & NEET Coaching Hub", x: 0.68, y: 470, type: "education_goal", km: "12.0 KM", triggerProg: 0.32 },
-    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.22, y: 680, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
+    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.29, y: 680, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
     { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 680, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
     { id: "painathi", name: "Painathi Road (90° Left)", sub: "Access to Royal Garden", x: 0.42, y: 820, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
     { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 920, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
