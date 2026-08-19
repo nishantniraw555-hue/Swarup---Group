@@ -446,7 +446,7 @@ footer,
   margin-right: -50vw;
   padding: 0 !important;
   overflow: hidden;
-  background: #030712;
+  background: #ffffff;
 }
 
 .hero-banner-smeulders {
@@ -3985,7 +3985,7 @@ canvas {
     margin-bottom: 0 !important;
     padding: 0 !important;
     border: none !important;
-    background: #030712 !important;
+    background: #ffffff !important;
   }
   .hero-banner-smeulders {
     position: relative !important;
