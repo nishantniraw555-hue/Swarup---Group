@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=243">
+  <link rel="stylesheet" href="styles.css?v=244">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -2252,11 +2252,14 @@
           </div>
         </div>
         <div class="bot-header-actions">
-          <button id="bot-voice-toggle" title="Toggle Sound / Voice Greeting" class="bot-icon-btn voice-active">
-            <span class="material-symbols-outlined" id="bot-voice-icon">volume_up</span>
+          <button id="bot-voice-toggle" title="Toggle Sound / Voice Greeting" class="bot-icon-btn voice-active" aria-label="Toggle Voice">
+            <span class="material-symbols-outlined" id="bot-voice-icon" style="font-size:20px;">volume_up</span>
           </button>
-          <button id="bot-close-btn" title="Minimize Chat" class="bot-icon-btn">
-            <span class="material-symbols-outlined">close</span>
+          <button id="bot-close-btn" title="Minimize Chat" class="bot-icon-btn" aria-label="Close Chat" style="background:rgba(239, 68, 68, 0.25); border:1px solid rgba(239,68,68,0.5); color:#ffffff;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
           </button>
         </div>
       </div>
@@ -2307,7 +2310,7 @@
   <script src="assets/pdf.min.js" defer></script>
   <!-- Custom Script Files -->
   <script src="royal-garden.js?v=220" defer></script>
-  <script src="app.js?v=11" defer></script>
+  <script src="app.js?v=12" defer></script>
 
 </body>
 </html>

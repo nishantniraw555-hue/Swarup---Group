@@ -4862,7 +4862,7 @@ function initSwarupAiBot() {
   let isWindowOpen = false;
   let hasSpokenGreeting = false;
 
-  // --- Soft Serene Luxury Chime for Calm & Happy Ambience ---
+  // --- Soft Serene Luxury Chime for Calm & Happy Ambience (Instant Local Synthesizer) ---
   function playSoftWelcomeChime() {
     try {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -4880,48 +4880,33 @@ function initSwarupAiBot() {
       osc1.type = 'sine';
       osc1.frequency.setValueAtTime(523.25, now);
       osc1.frequency.exponentialRampToValueAtTime(659.25, now + 0.15);
-      gain1.gain.setValueAtTime(0.1, now);
-      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      gain1.gain.setValueAtTime(0.08, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
       osc1.connect(gain1);
       gain1.connect(ctx.destination);
       osc1.start(now);
-      osc1.stop(now + 0.5);
+      osc1.stop(now + 0.45);
 
       // Note 2: Warm G5 chime fade
       const osc2 = ctx.createOscillator();
       const gain2 = ctx.createGain();
       osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(783.99, now + 0.16);
-      gain2.gain.setValueAtTime(0.08, now + 0.16);
-      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      osc2.frequency.setValueAtTime(783.99, now + 0.15);
+      gain2.gain.setValueAtTime(0.06, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.75);
       osc2.connect(gain2);
       gain2.connect(ctx.destination);
-      osc2.start(now + 0.16);
-      osc2.stop(now + 0.8);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.75);
     } catch(e) {
-      console.warn("Chime audio context error:", e);
+      // Audio context silently handled
     }
   }
 
-  // --- Calm, Warm & Natural Hindi Female Voice Engine ---
-  let currentBotAudio = null;
-
+  // --- Ultra-Fast Native Browser Speech Engine (0ms Network Latency) ---
   function speakGreeting(customText) {
     if (!isVoiceActive) return;
 
-    // Stop any Web Speech API currently playing
-    if ('speechSynthesis' in window) {
-      window.speechSynthesis.cancel();
-    }
-    
-    // Stop any HTML5 Audio currently playing
-    if (currentBotAudio) {
-      currentBotAudio.pause();
-      currentBotAudio.currentTime = 0;
-      currentBotAudio = null;
-    }
-
-    // Play serene welcome chime first for a calm, happy ambience
     playSoftWelcomeChime();
 
     const textToSpeak = customText || "नमस्ते! स्वरूप ग्रुप में आपका हार्दिक स्वागत है।";
@@ -4931,63 +4916,24 @@ function initSwarupAiBot() {
       voiceBanner.style.opacity = '1';
     }
     if (voiceText) {
-      voiceText.textContent = `Female Voice: "${textToSpeak}"`;
+      voiceText.textContent = `Voice: "${textToSpeak}"`;
     }
 
-    const encodedText = encodeURIComponent(textToSpeak);
-
-    // Natural Calm Female Hindi Audio Sources
-    // Using a more reliable primary Google Translate endpoint for consistent voice across devices
-    const femaleAudioSources = [
-      `https://translate.googleapis.com/translate_tts?client=gtx&ie=UTF-8&tl=hi&q=${encodedText}`
-    ];
-
-    // DO NOT use setTimeout here! Mobile browsers require audio.play() to be called
-    // synchronously within the user gesture context to avoid Autoplay restrictions.
-    tryNextFemaleAudioSource(femaleAudioSources, 0, textToSpeak);
-  }
-
-  function tryNextFemaleAudioSource(sources, index, textToSpeak) {
-    if (index >= sources.length) {
-      // If all external audio streams fail, fallback to tuned Web Speech female voice
-      fallbackWebSpeech(textToSpeak);
+    if (!('speechSynthesis' in window)) {
+      setTimeout(() => {
+        if (voiceBanner) voiceBanner.style.opacity = '0.7';
+      }, 1500);
       return;
     }
 
-    const audioUrl = sources[index];
-    currentBotAudio = new Audio(audioUrl);
-
-    currentBotAudio.onended = function() {
-      setTimeout(() => {
-        if (voiceBanner) voiceBanner.style.opacity = '0.7';
-      }, 800);
-      currentBotAudio = null;
-    };
-
-    currentBotAudio.onerror = function() {
-      console.warn("Audio source failed, trying next female voice source...", audioUrl);
-      tryNextFemaleAudioSource(sources, index + 1, textToSpeak);
-    };
-
-    currentBotAudio.play().then(() => {
-      hasSpokenGreeting = true;
-    }).catch((err) => {
-      console.warn("Autoplay restricted or failed for source:", audioUrl, err);
-      tryNextFemaleAudioSource(sources, index + 1, textToSpeak);
-    });
-  }
-
-  function fallbackWebSpeech(textToSpeak) {
-    if (!('speechSynthesis' in window)) return;
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(textToSpeak);
     utterance.lang = 'hi-IN';
-    utterance.rate = 0.9;  // Slightly faster than before to reduce robotic drawl
-    utterance.pitch = 1.1; // Warm, natural female pitch
+    utterance.rate = 0.95;
+    utterance.pitch = 1.05;
 
     const voices = window.speechSynthesis.getVoices();
-    // Filter for natural Female voices
     const femaleVoice = voices.find(v => 
       (v.name.toLowerCase().includes('female') || 
        v.name.toLowerCase().includes('swara') || 
@@ -4996,7 +4942,8 @@ function initSwarupAiBot() {
        v.name.toLowerCase().includes('neerja') || 
        v.name.toLowerCase().includes('heera') ||
        v.name.toLowerCase().includes('google') ||
-       v.name.toLowerCase().includes('aditi')) &&
+       v.name.toLowerCase().includes('aditi') ||
+       v.name.toLowerCase().includes('hindi')) &&
       (v.lang.includes('hi') || v.lang.includes('IN'))
     ) || voices.find(v => v.lang.includes('hi')) || voices.find(v => v.lang.includes('IN'));
 
@@ -5014,27 +4961,16 @@ function initSwarupAiBot() {
       window.speechSynthesis.speak(utterance);
       hasSpokenGreeting = true;
     } catch(e) {
-      console.warn("SpeechSynthesis error:", e);
+      // Handled safely
     }
   }
 
-  // Handle Autoplay restriction: speak on first user interaction if blocked initially
-  function setupAutoplayFallback() {
-    const handleFirstInteraction = () => {
-      if (!hasSpokenGreeting && isVoiceActive) {
-        speakGreeting("नमस्ते! स्वरूप ग्रुप में आपका हार्दिक स्वागत है।");
-      }
-      document.removeEventListener('click', handleFirstInteraction);
-      document.removeEventListener('touchstart', handleFirstInteraction);
-      document.removeEventListener('keydown', handleFirstInteraction);
-    };
-    document.addEventListener('click', handleFirstInteraction);
-    document.addEventListener('touchstart', handleFirstInteraction);
-    document.addEventListener('keydown', handleFirstInteraction);
-  }
-
-  // --- Window Toggle Functions ---
-  function openBotWindow() {
+  // --- Instant Window Toggle Functions ---
+  function openBotWindow(e) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     isWindowOpen = true;
     botWindow.classList.remove('bot-window-closed');
     triggerBtn.setAttribute('aria-expanded', 'true');
@@ -5043,7 +4979,11 @@ function initSwarupAiBot() {
     }
   }
 
-  function closeBotWindow() {
+  function closeBotWindow(e) {
+    if (e) {
+      e.stopPropagation();
+      e.preventDefault();
+    }
     isWindowOpen = false;
     botWindow.classList.add('bot-window-closed');
     triggerBtn.setAttribute('aria-expanded', 'false');
@@ -5052,12 +4992,22 @@ function initSwarupAiBot() {
     }
   }
 
-  triggerBtn.addEventListener('click', () => {
-    if (isWindowOpen) closeBotWindow();
-    else openBotWindow();
+  triggerBtn.addEventListener('click', (e) => {
+    if (isWindowOpen) closeBotWindow(e);
+    else openBotWindow(e);
   });
 
-  closeBtn.addEventListener('click', closeBotWindow);
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeBotWindow);
+    closeBtn.addEventListener('touchend', closeBotWindow);
+  }
+
+  // Close on Escape Key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isWindowOpen) {
+      closeBotWindow();
+    }
+  });
 
   voiceToggleBtn.addEventListener('click', () => {
     isVoiceActive = !isVoiceActive;

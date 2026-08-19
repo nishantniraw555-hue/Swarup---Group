@@ -2992,27 +2992,45 @@ select:focus, .calc-input:focus {
 }
 
 .bot-icon-btn {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  color: #e2e8f0;
-  width: 32px;
-  height: 32px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.bot-icon-btn:hover {
-  background: rgba(212, 160, 23, 0.3);
+.bot-icon-btn:hover,
+.bot-icon-btn:active {
+  background: rgba(212, 160, 23, 0.35);
   color: #ffffff;
+  transform: scale(1.08);
+}
+
+#bot-close-btn {
+  background: rgba(239, 68, 68, 0.25) !important;
+  border: 1.5px solid rgba(239, 68, 68, 0.5) !important;
+  color: #ffffff !important;
+}
+
+#bot-close-btn:hover,
+#bot-close-btn:active {
+  background: rgba(239, 68, 68, 0.75) !important;
+  border-color: #ef4444 !important;
+  transform: scale(1.1);
 }
 
 .bot-icon-btn.voice-active {
   color: #d4a017;
-  background: rgba(212, 160, 23, 0.15);
+  background: rgba(212, 160, 23, 0.2);
+  border-color: rgba(212, 160, 23, 0.5);
 }
 
 /* Voice Equalizer Banner */
