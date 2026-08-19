@@ -3113,7 +3113,7 @@ function initRouteTimeline() {
   updateThemeButtons();
 
   // Virtual Map Height for smooth expansive camera travel
-  const mapH = 1800;
+  const mapH = 1950;
 
   // Real-World Landmarks Matching Patna-Bihta Corridor (Spacious Vertical Clearance)
   const landmarks = [
@@ -3124,14 +3124,14 @@ function initRouteTimeline() {
     { id: "goal_inst", name: "GOAL Institute Campus", sub: "Premier Medical & NEET Coaching Hub", x: 0.58, y: 550, type: "education_goal", km: "12.0 KM", triggerProg: 0.32 },
     { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.28, y: 760, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
     { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 760, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
-    { id: "painathi", name: "Painathi Road", sub: "Direct Access to Royal Garden", x: 0.42, y: 900, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
-    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "314 Gated Luxury Villa Plots", x: 0.22, y: 955, type: "township_royal", km: "17.5 KM", triggerProg: 0.58 },
-    { id: "bihta_chowk", name: "Bihta Chowk Junction", sub: "Central Transit Hub • Access to Airport & Ara", x: 0.42, y: 1140, type: "chowk_bihta", km: "22.0 KM", triggerProg: 0.68 },
-    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave & 3D Runway", x: 0.15, y: 1140, type: "airport", km: "24.0 KM", triggerProg: 0.74 },
-    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.60, y: 1140, type: "hospital_nsmch", km: "26.0 KM", triggerProg: 0.80 },
-    { id: "nit", name: "NIT Patna (Bihta Campus)", sub: "National Institute of Technology", x: 0.75, y: 1140, type: "education_nit", km: "27.5 KM", triggerProg: 0.86 },
-    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.90, y: 1140, type: "education_iit", km: "29.0 KM", triggerProg: 0.92 },
-    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.90, y: 1420, type: "township_guru", km: "31.0 KM", triggerProg: 0.98 }
+    { id: "painathi", name: "Painathi Road", sub: "Direct Access to Royal Garden", x: 0.42, y: 920, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
+    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "314 Gated Luxury Villa Plots", x: 0.22, y: 975, type: "township_royal", km: "17.5 KM", triggerProg: 0.58 },
+    { id: "bihta_chowk", name: "Bihta Chowk Junction", sub: "Central Transit Hub • Access to Airport & Ara", x: 0.42, y: 1260, type: "chowk_bihta", km: "22.0 KM", triggerProg: 0.68 },
+    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Right Side along Airport Road", x: 0.28, y: 1210, type: "airport", km: "23.5 KM", triggerProg: 0.74 },
+    { id: "nit", name: "NIT Patna (Bihta Campus)", sub: "Right Side along Ara Highway Corridor", x: 0.58, y: 1400, type: "education_nit", km: "25.5 KM", triggerProg: 0.80 },
+    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.65, y: 1260, type: "hospital_nsmch", km: "27.5 KM", triggerProg: 0.86 },
+    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.88, y: 1260, type: "education_iit", km: "29.0 KM", triggerProg: 0.92 },
+    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.88, y: 1560, type: "township_guru", km: "31.0 KM", triggerProg: 0.98 }
   ];
 
   // Driving Route Path:
@@ -3145,16 +3145,17 @@ function initRouteTimeline() {
     { x: 0.42, y: 440, title: "Shivala Chowk (NH-30 Main Junction)" },
     { x: 0.42, y: 550, title: "Passing GOAL Institute Campus (Kanhauli - Right Side)" },
     { x: 0.42, y: 760, title: "Patna 6-Lane Ring Road Golambar (Patli Bus Stand on Left)" },
-    { x: 0.42, y: 900, title: "NH-30 Junction • Turning onto Painathi Road" },
-    { x: 0.22, y: 900, title: "Painathi Road • ROYAL GARDEN TOWNSHIP (314 Plots • Dual Gated Entries)" },
-    { x: 0.42, y: 900, title: "Returning along Painathi Road to NH-30 Corridor" },
-    { x: 0.42, y: 1140, title: "Bihta Chowk Junction • Access to Airport & Ara Highway" },
-    { x: 0.15, y: 1140, title: "Turning Left onto Bihta International Airport Corridor" },
-    { x: 0.42, y: 1140, title: "Returning to Bihta Chowk • Continuing along Institutional Hub" },
-    { x: 0.60, y: 1140, title: "NSMCH Hospital & Medical College (2 KM)" },
-    { x: 0.75, y: 1140, title: "NIT Patna (Bihta Campus) on Right Side" },
-    { x: 0.90, y: 1140, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
-    { x: 0.90, y: 1420, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
+    { x: 0.42, y: 920, title: "NH-30 Junction • Turning onto Painathi Road" },
+    { x: 0.22, y: 920, title: "Painathi Road • ROYAL GARDEN TOWNSHIP (314 Plots • Dual Gated Entries)" },
+    { x: 0.42, y: 920, title: "Returning along Painathi Road to NH-30 Corridor" },
+    { x: 0.42, y: 1260, title: "Bihta Chowk Junction • Access to Airport & Ara Highway" },
+    { x: 0.28, y: 1260, title: "Airport Road • BIHTA INTERNATIONAL AIRPORT (Right Side)" },
+    { x: 0.42, y: 1260, title: "Returning to Bihta Chowk Junction" },
+    { x: 0.42, y: 1400, title: "Ara Highway Corridor • NIT PATNA (BIHTA CAMPUS - Right Side)" },
+    { x: 0.42, y: 1260, title: "Returning to Bihta Chowk • Continuing along East Institutional Boulevard" },
+    { x: 0.65, y: 1260, title: "NSMCH Hospital & Medical College (2 KM)" },
+    { x: 0.88, y: 1260, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
+    { x: 0.88, y: 1560, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
   ];
 
   function getPointOnPath(t) {
@@ -3947,6 +3948,9 @@ function initRouteTimeline() {
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
     const roadW = Math.round(22 * s);
+    const airX = w * 0.28;
+    const nitY = by + 140 * s;
+    const nitX = w * 0.58;
 
     // ── 1. WEST ROAD (Heading Left towards Bihta Airport) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
@@ -3957,17 +3961,26 @@ function initRouteTimeline() {
     ctx.lineTo(w * 0.10, by);
     ctx.stroke();
 
-    // Road Borders
+    // Link Road to Airport (Right/North side of West Road at close distance)
+    ctx.lineWidth = Math.round(14 * s);
+    ctx.beginPath();
+    ctx.moveTo(airX, by);
+    ctx.lineTo(airX, by - 35 * s);
+    ctx.stroke();
+
+    // West Road Outer Borders
     ctx.strokeStyle = '#1e3a8a';
     ctx.lineWidth = 1.6;
     ctx.beginPath();
-    ctx.moveTo(bx - roadW / 2, by - roadW / 2);
-    ctx.lineTo(w * 0.10, by - roadW / 2);
     ctx.moveTo(bx - roadW / 2, by + roadW / 2);
     ctx.lineTo(w * 0.10, by + roadW / 2);
+    ctx.moveTo(bx - roadW / 2, by - roadW / 2);
+    ctx.lineTo(airX + 7 * s, by - roadW / 2);
+    ctx.moveTo(airX - 7 * s, by - roadW / 2);
+    ctx.lineTo(w * 0.10, by - roadW / 2);
     ctx.stroke();
 
-    // Dashed Centerline
+    // Dashed Centerline on West Road
     ctx.strokeStyle = '#d4a017';
     ctx.lineWidth = 1.6;
     ctx.setLineDash([5, 5]);
@@ -3978,16 +3991,16 @@ function initRouteTimeline() {
     ctx.setLineDash([]);
 
     // Signboard on Airport Branch
-    const airSignX = bx - 65 * s;
-    const airSignY = by - 22 * s;
+    const airSignX = bx - 55 * s;
+    const airSignY = by + 24 * s;
     ctx.fillStyle = '#0284c7';
-    ctx.beginPath(); ctx.roundRect(airSignX - 65 * s, airSignY - 10 * s, 130 * s, 20 * s, 4 * s); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(airSignX - 60 * s, airSignY - 10 * s, 120 * s, 20 * s, 4 * s); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
     ctx.fillStyle = '#ffffff';
-    ctx.font = `800 ${Math.max(6.5, Math.round(7.2 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
-    ctx.fillText("✈️ AIRPORT ROAD ➔", airSignX, airSignY + 3.5 * s);
+    ctx.font = `800 ${Math.max(6.2, Math.round(7 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("✈️ AIRPORT ROAD", airSignX, airSignY + 3.5 * s);
 
-    // ── 2. EAST ROAD (Heading Right to NSMCH, NIT & IIT) ──
+    // ── 2. EAST ROAD (Heading Right to NSMCH & IIT Patna) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = roadW;
     ctx.beginPath();
@@ -3995,14 +4008,29 @@ function initRouteTimeline() {
     ctx.lineTo(w * 0.95, by);
     ctx.stroke();
 
-    // ── 3. SOUTH STRAIGHT HIGHWAY TOWARDS ARA / BUXAR ──
-    const araSignX = bx;
-    const araSignY = by + 65 * s;
+    // ── 3. SOUTH STRAIGHT HIGHWAY TOWARDS ARA / BUXAR (With NIT on Right Side) ──
+    ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
+    ctx.lineWidth = roadW;
+    ctx.beginPath();
+    ctx.moveTo(bx, by);
+    ctx.lineTo(bx, by + 260 * s);
+    ctx.stroke();
+
+    // Link Road branching East/Right to NIT Patna along South Road
+    ctx.lineWidth = Math.round(14 * s);
+    ctx.beginPath();
+    ctx.moveTo(bx, nitY);
+    ctx.lineTo(nitX - 35 * s, nitY);
+    ctx.stroke();
+
+    // Signboard on Ara Highway
+    const araSignX = bx - 55 * s;
+    const araSignY = by + 220 * s;
     ctx.fillStyle = '#15803d';
-    ctx.beginPath(); ctx.roundRect(araSignX - 75 * s, araSignY - 11 * s, 150 * s, 22 * s, 5 * s); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(araSignX - 70 * s, araSignY - 11 * s, 140 * s, 22 * s, 5 * s); ctx.fill();
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
     ctx.fillStyle = '#ffffff';
-    ctx.font = `800 ${Math.max(6.8, Math.round(7.8 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.font = `800 ${Math.max(6.5, Math.round(7.5 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
     ctx.fillText("🛣️ NH-30 ➔ ARA / BUXAR", araSignX, araSignY + 3.5 * s);
 
     // Central Chowk Roundel
@@ -4020,43 +4048,43 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 8. 3D ANIMATED BIHTA INTERNATIONAL AIRPORT (TERMINAL, ROTATING ATC RADAR & ANIMATED JET)
+  // 8. 3D ANIMATED BIHTA INTERNATIONAL AIRPORT (SITUATED ON RIGHT/NORTH SIDE OF AIRPORT ROAD)
   function drawAirportAnimation(ax, ay, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
     // ── 3D PERSPECTIVE RUNWAY ──
-    const runW = 120 * s;
-    const runH = 22 * s;
+    const runW = 110 * s;
+    const runH = 20 * s;
     ctx.fillStyle = '#1e293b';
-    ctx.beginPath(); ctx.roundRect(ax - runW / 2, ay + 12 * s, runW, runH, 3 * s); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(ax - runW / 2, ay + 10 * s, runW, runH, 3 * s); ctx.fill();
     ctx.strokeStyle = '#64748b'; ctx.lineWidth = 1.5; ctx.stroke();
 
     // Runway Centerline Dashes
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.6; ctx.setLineDash([6, 5]);
-    ctx.beginPath(); ctx.moveTo(ax - runW / 2 + 10 * s, ay + 23 * s); ctx.lineTo(ax + runW / 2 - 10 * s, ay + 23 * s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ax - runW / 2 + 8 * s, ay + 20 * s); ctx.lineTo(ax + runW / 2 - 8 * s, ay + 20 * s); ctx.stroke();
     ctx.setLineDash([]);
 
-    // Threshold Piano Key Markings (Left and Right ends)
+    // Threshold Piano Key Markings
     ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2;
-    for (let py = ay + 15 * s; py <= ay + 31 * s; py += 3 * s) {
-      ctx.beginPath(); ctx.moveTo(ax - runW / 2 + 3 * s, py); ctx.lineTo(ax - runW / 2 + 9 * s, py); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(ax + runW / 2 - 9 * s, py); ctx.lineTo(ax + runW / 2 - 3 * s, py); ctx.stroke();
+    for (let py = ay + 12 * s; py <= ay + 28 * s; py += 3 * s) {
+      ctx.beginPath(); ctx.moveTo(ax - runW / 2 + 3 * s, py); ctx.lineTo(ax - runW / 2 + 8 * s, py); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(ax + runW / 2 - 8 * s, py); ctx.lineTo(ax + runW / 2 - 3 * s, py); ctx.stroke();
     }
 
     // Runway Edge Lights
-    for (let lx = ax - runW / 2 + 15 * s; lx <= ax + runW / 2 - 15 * s; lx += 20 * s) {
+    for (let lx = ax - runW / 2 + 12 * s; lx <= ax + runW / 2 - 12 * s; lx += 18 * s) {
       ctx.fillStyle = '#38bdf8';
-      ctx.beginPath(); ctx.arc(lx, ay + 12 * s, 1.5 * s, 0, Math.PI * 2); ctx.fill();
-      ctx.beginPath(); ctx.arc(lx, ay + 34 * s, 1.5 * s, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(lx, ay + 10 * s, 1.5 * s, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(lx, ay + 30 * s, 1.5 * s, 0, Math.PI * 2); ctx.fill();
     }
 
     // ── 3D ISOMETRIC PASSENGER TERMINAL CONCOURSE ──
-    const termW = 60 * s;
-    const termH = 28 * s;
-    const depthX = 10 * s;
-    const depthY = -8 * s;
+    const termW = 56 * s;
+    const termH = 26 * s;
+    const depthX = 9 * s;
+    const depthY = -7 * s;
 
     // Terminal Roof (Aerodynamic Curved Gold Canopy)
     ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
@@ -4078,18 +4106,18 @@ function initRouteTimeline() {
 
     // Blue Glass Tint Windows
     ctx.fillStyle = '#38bdf8';
-    ctx.fillRect(ax - termW / 2 + 5 * s, ay - 8 * s, 22 * s, 16 * s);
-    ctx.fillRect(ax + termW / 2 - 27 * s, ay - 8 * s, 22 * s, 16 * s);
+    ctx.fillRect(ax - termW / 2 + 4 * s, ay - 7 * s, 20 * s, 14 * s);
+    ctx.fillRect(ax + termW / 2 - 24 * s, ay - 7 * s, 20 * s, 14 * s);
 
     // ── 3D ATC RADAR CONTROL TOWER ──
-    const towerX = ax + termW / 2 + 14 * s;
-    const towerY = ay - 14 * s;
+    const towerX = ax + termW / 2 + 12 * s;
+    const towerY = ay - 12 * s;
     // Tower Shaft
     ctx.fillStyle = '#64748b';
-    ctx.fillRect(towerX - 4 * s, towerY, 8 * s, 22 * s);
+    ctx.fillRect(towerX - 3.5 * s, towerY, 7 * s, 20 * s);
     // 360° Glass Cab
     ctx.fillStyle = '#38bdf8';
-    ctx.beginPath(); ctx.arc(towerX, towerY, 7 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(towerX, towerY, 6 * s, 0, Math.PI * 2); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
 
     // Rotating 3D Radar Antenna
@@ -4097,31 +4125,31 @@ function initRouteTimeline() {
     ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.8;
     ctx.beginPath();
     ctx.moveTo(towerX, towerY - 2 * s);
-    ctx.lineTo(towerX + Math.cos(radarAngle) * 8 * s, towerY - 2 * s + Math.sin(radarAngle) * 4 * s);
+    ctx.lineTo(towerX + Math.cos(radarAngle) * 7 * s, towerY - 2 * s + Math.sin(radarAngle) * 3.5 * s);
     ctx.stroke();
 
     // Blinking Red Aviation Beacon Light
     if (Date.now() % 1000 < 500) {
       ctx.fillStyle = '#ef4444';
-      ctx.beginPath(); ctx.arc(towerX, towerY - 8 * s, 2.5 * s, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(towerX, towerY - 7 * s, 2.5 * s, 0, Math.PI * 2); ctx.fill();
     }
 
     // ── 3D ANIMATED COMMERCIAL JET AIRLINER (TAXIING ALONG RUNWAY) ──
-    const planeSpan = 130 * s;
+    const planeSpan = 120 * s;
     const planeT = (Date.now() * 0.04) % planeSpan;
     const planeX = ax - runW / 2 + planeT;
-    const planeY = ay + 23 * s;
+    const planeY = ay + 20 * s;
 
     // Plane Shadow on Runway
     ctx.fillStyle = 'rgba(15, 23, 42, 0.4)';
     ctx.beginPath();
-    ctx.ellipse(planeX, planeY + 4 * s, 16 * s, 5 * s, 0, 0, Math.PI * 2);
+    ctx.ellipse(planeX, planeY + 4 * s, 14 * s, 4.5 * s, 0, 0, Math.PI * 2);
     ctx.fill();
 
     // Jet Fuselage
     ctx.fillStyle = '#ffffff';
     ctx.beginPath();
-    ctx.ellipse(planeX, planeY, 15 * s, 4.5 * s, 0, 0, Math.PI * 2);
+    ctx.ellipse(planeX, planeY, 14 * s, 4 * s, 0, 0, Math.PI * 2);
     ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
 
@@ -4129,34 +4157,30 @@ function initRouteTimeline() {
     ctx.fillStyle = '#1e3a8a';
     ctx.beginPath();
     ctx.moveTo(planeX - 2 * s, planeY);
-    ctx.lineTo(planeX - 12 * s, planeY - 14 * s);
-    ctx.lineTo(planeX - 8 * s, planeY);
-    ctx.lineTo(planeX - 12 * s, planeY + 14 * s);
+    ctx.lineTo(planeX - 11 * s, planeY - 12 * s);
+    ctx.lineTo(planeX - 7 * s, planeY);
+    ctx.lineTo(planeX - 11 * s, planeY + 12 * s);
     ctx.closePath();
     ctx.fill();
 
     // Jet Tail Fin
     ctx.fillStyle = '#d4a017';
     ctx.beginPath();
-    ctx.moveTo(planeX - 14 * s, planeY);
-    ctx.lineTo(planeX - 18 * s, planeY - 8 * s);
-    ctx.lineTo(planeX - 11 * s, planeY);
+    ctx.moveTo(planeX - 13 * s, planeY);
+    ctx.lineTo(planeX - 16 * s, planeY - 7 * s);
+    ctx.lineTo(planeX - 10 * s, planeY);
     ctx.closePath();
     ctx.fill();
 
-    // Jet Cockpit Windshield
-    ctx.fillStyle = '#0f172a';
-    ctx.beginPath(); ctx.arc(planeX + 11 * s, planeY, 1.8 * s, 0, Math.PI * 2); ctx.fill();
-
     // Sharp Dynamic Card
     if (reveal > 0.35) {
-      drawCard(ax, ay - Math.round(46 * s), "✈️ BIHTA INT'L AIRPORT", "Upcoming Civil Enclave & 3D Terminal", '#1e3a8a', isDark, s);
+      drawCard(ax, ay - Math.round(44 * s), "✈️ BIHTA INT'L AIRPORT", "Right Side of Airport Road", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 8.5 3D NIT PATNA CAMPUS (BIHTA - RIGHT SIDE)
+  // 8.5 3D NIT PATNA CAMPUS (SITUATED ON RIGHT/EAST SIDE OF SOUTH ARA ROAD)
   function drawNITCampusAnimation(nx, ny, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
@@ -4207,7 +4231,7 @@ function initRouteTimeline() {
 
     // Sharp Dynamic Card
     if (reveal > 0.35) {
-      drawCard(nx, ny - Math.round(48 * s), "🎓 NIT PATNA (BIHTA CAMPUS)", "National Institute of Technology", '#1e3a8a', isDark, s);
+      drawCard(nx, ny - Math.round(48 * s), "🎓 NIT PATNA (BIHTA CAMPUS)", "Right Side along Ara Highway Corridor", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
