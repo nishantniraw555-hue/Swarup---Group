@@ -3116,9 +3116,10 @@ function initRouteTimeline() {
     { id: "saguna", name: "Saguna More (Pickup Point)", sub: "Swarup VIP Cab Starting Hub", x: 0.15, y: 220, type: "saguna_hub", km: "0.0 KM", triggerProg: 0 },
     { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 220, type: "station", km: "3.5 KM", triggerProg: 0.07 },
     { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.16 },
-    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.26 },
-    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal", x: 0.26, y: 520, type: "patli_bus", km: "13.5 KM", triggerProg: 0.34 },
-    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 680, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.42 },
+    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.24 },
+    { id: "goal_inst", name: "GOAL Institute Campus", sub: "Premier Medical & NEET Coaching Hub", x: 0.68, y: 470, type: "education_goal", km: "12.0 KM", triggerProg: 0.32 },
+    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.22, y: 680, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
+    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 680, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
     { id: "painathi", name: "Painathi Road (90° Left)", sub: "Access to Royal Garden", x: 0.42, y: 820, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
     { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 920, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
     { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 1060, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
@@ -3137,8 +3138,8 @@ function initRouteTimeline() {
     { x: 0.42, y: 110, title: "Returning along AIIMS Link Road" },
     { x: 0.42, y: 220, title: "Connecting back to NH-30 Main Highway Corridor" },
     { x: 0.42, y: 360, title: "Shivala Chowk (NH-30 Main Junction)" },
-    { x: 0.42, y: 520, title: "Kanhauli • Patli Bus Stand (ISBT)" },
-    { x: 0.42, y: 680, title: "Patna 6-Lane Ring Road Golambar (Bihta-Sarmera Expressway Interchange)" },
+    { x: 0.42, y: 470, title: "Passing GOAL Institute Campus (Kanhauli - Right Side)" },
+    { x: 0.42, y: 680, title: "Patna 6-Lane Ring Road Golambar (Patli Bus Stand on Left)" },
     { x: 0.42, y: 820, title: "NH-30 Junction • Turning 90° Left onto Painathi Road" },
     { x: 0.20, y: 820, title: "Traveling along Painathi Road (Kanhauli Corridor)" },
     { x: 0.20, y: 920, title: "Turning Left off Painathi Road ➔ ROYAL GARDEN TOWNSHIP (314 Plots)" },
@@ -3315,38 +3316,140 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 4. PATLI BUS STAND (KANHAULI)
+  // 3.5 3D GOAL INSTITUTE CAMPUS (At 1/3rd Distance between Shivala & Ring Road on Right Side)
+  function drawGoalInstituteAnimation(gx, gy, reveal, theme) {
+    ctx.save();
+    ctx.globalAlpha = Math.max(0.3, reveal);
+    const isDark = (theme === 'dark');
+
+    // ── 3D ISOMETRIC/EXTRUDED ACADEMIC BUILDING ──
+    const bw = 90;
+    const bh = 50;
+    const depthX = 12;
+    const depthY = -12;
+
+    // Campus Courtyard Base
+    ctx.fillStyle = isDark ? '#1e293b' : '#eff6ff';
+    ctx.beginPath();
+    ctx.roundRect(gx - 55, gy - 32, 115, 74, 8);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // 3D Top Roof Face
+    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
+    ctx.beginPath();
+    ctx.moveTo(gx - 42, gy - 20);
+    ctx.lineTo(gx - 42 + depthX, gy - 20 + depthY);
+    ctx.lineTo(gx + 42 + depthX, gy - 20 + depthY);
+    ctx.lineTo(gx + 42, gy - 20);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // 3D Right Side Bevel Face
+    ctx.fillStyle = isDark ? '#0284c7' : '#0f172a';
+    ctx.beginPath();
+    ctx.moveTo(gx + 42, gy - 20);
+    ctx.lineTo(gx + 42 + depthX, gy - 20 + depthY);
+    ctx.lineTo(gx + 42 + depthX, gy + 22 + depthY);
+    ctx.lineTo(gx + 42, gy + 22);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Building Front Main Facade
+    ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(gx - 42, gy - 20, 84, 42, 4);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Windows Grid (Blue Glass Tint)
+    ctx.fillStyle = '#3b82f6';
+    for (let wx = gx - 34; wx <= gx + 22; wx += 14) {
+      ctx.fillRect(wx, gy - 14, 9, 7);
+      ctx.fillRect(wx, gy - 3, 9, 7);
+    }
+
+    // Grand Entrance Portico with Gold Pillars
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(gx - 18, gy + 7, 36, 15);
+    ctx.fillStyle = '#d4a017';
+    ctx.fillRect(gx - 16, gy + 7, 4, 15);
+    ctx.fillRect(gx + 12, gy + 7, 4, 15);
+    ctx.fillRect(gx - 18, gy + 7, 36, 3);
+
+    // Goal Target Logo (Concentric Rings on Top)
+    const logoX = gx;
+    const logoY = gy - 26;
+    ctx.fillStyle = '#dc2626';
+    ctx.beginPath(); ctx.arc(logoX, logoY, 9, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(logoX, logoY, 6, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#dc2626';
+    ctx.beginPath(); ctx.arc(logoX, logoY, 3, 0, Math.PI * 2); ctx.fill();
+
+    // Facade Gold Banner: "GOAL INSTITUTE"
+    ctx.fillStyle = '#d4a017';
+    ctx.font = '900 6.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText("GOAL INSTITUTE", gx, gy + 18);
+
+    // Sharp Landmark Card
+    if (reveal > 0.35) {
+      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+      ctx.beginPath(); ctx.roundRect(gx - 95, gy - 58, 190, 26, 6); ctx.fill();
+      ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.6; ctx.stroke();
+
+      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
+      ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("🎯 3D GOAL INSTITUTE CAMPUS", gx, gy - 45);
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = '700 7px Montserrat, Inter, sans-serif';
+      ctx.fillText("PREMIER MEDICAL & NEET HUB (RIGHT SIDE)", gx, gy - 36);
+    }
+
+    ctx.restore();
+  }
+
+  // 4. PATLI BUS STAND (KANHAULI - LOCATED DIRECTLY TO THE LEFT OF RING ROAD GOLAMBAR)
   function drawPatliBusStand(bx, by, reveal, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // Terminal Ground
+    // Terminal Apron Ground
     ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(bx - 44, by - 24, 88, 48, 6); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(bx - 50, by - 26, 100, 52, 6); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
-    // Buses
+    // Buses Parked
     ctx.fillStyle = '#1e3a8a';
-    ctx.beginPath(); ctx.roundRect(bx - 36, by - 16, 32, 12, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30, by - 14, 20, 4);
+    ctx.beginPath(); ctx.roundRect(bx - 40, by - 18, 36, 13, 2); ctx.fill();
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 34, by - 16, 24, 4);
 
     ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.roundRect(bx - 36, by + 4, 32, 12, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30, by + 6, 20, 4);
+    ctx.beginPath(); ctx.roundRect(bx - 40, by + 4, 36, 13, 2); ctx.fill();
+    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 34, by + 6, 24, 4);
+
+    // Concourse Terminal Building
+    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
+    ctx.fillRect(bx + 6, by - 20, 36, 40);
+    ctx.fillStyle = '#fde047';
+    ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+    ctx.fillText("ISBT", bx + 24, by + 4);
 
     // Sharp Card
     if (reveal > 0.35) {
       ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(bx - 85, by - 48, 170, 24, 6); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(bx - 90, by - 52, 180, 24, 6); ctx.fill();
       ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
       ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
       ctx.font = '800 9.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🚏 PATLI BUS STAND (ISBT)", bx, by - 35);
+      ctx.fillText("🚏 PATLI BUS STAND (ISBT)", bx, by - 39);
       ctx.fillStyle = '#1e3a8a';
       ctx.font = '700 7px Montserrat, Inter, sans-serif';
-      ctx.fillText("KANHAULI INTER-STATE TERMINAL", bx, by - 26);
+      ctx.fillText("KANHAULI • LEFT OF RING ROAD GOLAMBAR", bx, by - 30);
     }
 
     ctx.restore();
@@ -3951,6 +4054,9 @@ function initRouteTimeline() {
           break;
         case 'hospital_nsmch':
           drawHospitalAnimation(lx, ly, lm.name, false, reveal, mapTheme);
+          break;
+        case 'education_goal':
+          drawGoalInstituteAnimation(lx, ly, reveal, mapTheme);
           break;
         case 'patli_bus':
           drawPatliBusStand(lx, ly, reveal, mapTheme);
