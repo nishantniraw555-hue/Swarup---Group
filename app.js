@@ -3113,48 +3113,48 @@ function initRouteTimeline() {
   updateThemeButtons();
 
   // Virtual Map Height for smooth expansive camera travel
-  const mapH = 1680;
+  const mapH = 1800;
 
-  // Real-World Landmarks Matching Patna-Bihta Corridor
+  // Real-World Landmarks Matching Patna-Bihta Corridor (Spacious Vertical Clearance)
   const landmarks = [
-    { id: "saguna", name: "Saguna More (Pickup Point)", sub: "Swarup VIP Cab Starting Hub", x: 0.15, y: 220, type: "saguna_hub", km: "0.0 KM", triggerProg: 0 },
-    { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 220, type: "station", km: "3.5 KM", triggerProg: 0.07 },
-    { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.16 },
-    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.24 },
-    { id: "goal_inst", name: "GOAL Institute Campus", sub: "Premier Medical & NEET Coaching Hub", x: 0.68, y: 470, type: "education_goal", km: "12.0 KM", triggerProg: 0.32 },
-    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.29, y: 680, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
-    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 680, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
-    { id: "painathi", name: "Painathi Road (90° Left)", sub: "Access to Royal Garden", x: 0.42, y: 820, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
-    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 920, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
-    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 1060, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
-    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1200, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
-    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1200, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
-    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1200, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
-    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.92, y: 1420, type: "township_guru", km: "30.5 KM", triggerProg: 0.98 }
+    { id: "saguna", name: "Saguna More (Pickup Point)", sub: "Swarup VIP Cab Starting Hub", x: 0.15, y: 300, type: "saguna_hub", km: "0.0 KM", triggerProg: 0 },
+    { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 300, type: "station", km: "3.5 KM", triggerProg: 0.07 },
+    { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 190, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.16 },
+    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 440, type: "chowk", km: "10.2 KM", triggerProg: 0.24 },
+    { id: "goal_inst", name: "GOAL Institute Campus", sub: "Premier Medical & NEET Coaching Hub", x: 0.58, y: 550, type: "education_goal", km: "12.0 KM", triggerProg: 0.32 },
+    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal • Left of Ring Road", x: 0.28, y: 760, type: "patli_bus", km: "13.5 KM", triggerProg: 0.40 },
+    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 760, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.44 },
+    { id: "painathi", name: "Painathi Road (90° Left)", sub: "Access to Royal Garden", x: 0.42, y: 900, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
+    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 1000, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
+    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 1140, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
+    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1280, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
+    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1280, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
+    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1280, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
+    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.92, y: 1500, type: "township_guru", km: "30.5 KM", triggerProg: 0.98 }
   ];
 
   // Driving Route Path:
   const path = [
-    { x: 0.15, y: 220, title: "Saguna More • Swarup VIP Pickup Zone" },
-    { x: 0.42, y: 220, title: "Danapur Station Turning (Danapur Station on Right)" },
-    { x: 0.42, y: 110, title: "Turning towards AIIMS Patna Link Road" },
-    { x: 0.74, y: 110, title: "AIIMS Patna Super Specialty Hospital (7.0 KM)" },
-    { x: 0.42, y: 110, title: "Returning along AIIMS Link Road" },
-    { x: 0.42, y: 220, title: "Connecting back to NH-30 Main Highway Corridor" },
-    { x: 0.42, y: 360, title: "Shivala Chowk (NH-30 Main Junction)" },
-    { x: 0.42, y: 470, title: "Passing GOAL Institute Campus (Kanhauli - Right Side)" },
-    { x: 0.42, y: 680, title: "Patna 6-Lane Ring Road Golambar (Patli Bus Stand on Left)" },
-    { x: 0.42, y: 820, title: "NH-30 Junction • Turning 90° Left onto Painathi Road" },
-    { x: 0.20, y: 820, title: "Traveling along Painathi Road (Kanhauli Corridor)" },
-    { x: 0.20, y: 920, title: "Turning Left off Painathi Road ➔ ROYAL GARDEN TOWNSHIP (314 Plots)" },
-    { x: 0.20, y: 820, title: "Returning along Painathi Road towards NH-30" },
-    { x: 0.42, y: 820, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
-    { x: 0.42, y: 1060, title: "Bihta International Airport Corridor (22.5 KM)" },
-    { x: 0.42, y: 1200, title: "Bihta Chowk Central Market & Railway Station" },
-    { x: 0.64, y: 1200, title: "NSMCH Hospital & Medical College (2 KM)" },
-    { x: 0.82, y: 1200, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
-    { x: 0.92, y: 1200, title: "Turning onto Guru Niwas Colony Boulevard" },
-    { x: 0.92, y: 1420, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
+    { x: 0.15, y: 300, title: "Saguna More • Swarup VIP Pickup Zone" },
+    { x: 0.42, y: 300, title: "Danapur 3D Station (Danapur Terminal on Right)" },
+    { x: 0.42, y: 190, title: "Turning towards AIIMS Patna Link Road" },
+    { x: 0.74, y: 190, title: "AIIMS Patna 3D Super Specialty Hospital (7.0 KM)" },
+    { x: 0.42, y: 190, title: "Returning along AIIMS Link Road" },
+    { x: 0.42, y: 300, title: "Connecting back to NH-30 Main Highway Corridor" },
+    { x: 0.42, y: 440, title: "Shivala Chowk (NH-30 Main Junction)" },
+    { x: 0.42, y: 550, title: "Passing 3D GOAL Institute Campus (Kanhauli - Right Side)" },
+    { x: 0.42, y: 760, title: "Patna 6-Lane Ring Road Golambar (3D Patli Bus Stand on Left)" },
+    { x: 0.42, y: 900, title: "NH-30 Junction • Turning 90° Left onto Painathi Road" },
+    { x: 0.20, y: 900, title: "Traveling along Painathi Road (Kanhauli Corridor)" },
+    { x: 0.20, y: 1000, title: "Turning Left off Painathi Road ➔ ROYAL GARDEN TOWNSHIP (314 Plots)" },
+    { x: 0.20, y: 900, title: "Returning along Painathi Road towards NH-30" },
+    { x: 0.42, y: 900, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
+    { x: 0.42, y: 1140, title: "Bihta International Airport Corridor (22.5 KM)" },
+    { x: 0.42, y: 1280, title: "Bihta Chowk Central Market & Railway Station" },
+    { x: 0.64, y: 1280, title: "NSMCH Hospital & Medical College (2 KM)" },
+    { x: 0.82, y: 1280, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
+    { x: 0.92, y: 1280, title: "Turning onto Guru Niwas Colony Boulevard" },
+    { x: 0.92, y: 1500, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
   ];
 
   function getPointOnPath(t) {
@@ -3241,64 +3241,214 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 2. RAILWAY STATIONS (Danapur / Bihta)
+  // 2. 3D DANAPUR RAILWAY TERMINAL (WITH REAL-TIME ANIMATED HIGH-SPEED TRAIN)
   function drawStationAnimation(sx, sy, label, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // Clean Tracks
-    ctx.strokeStyle = isDark ? '#64748b' : '#94a3b8'; ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(sx - 6 * s, sy - 55 * s); ctx.lineTo(sx - 6 * s, sy + 55 * s); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(sx + 6 * s, sy - 55 * s); ctx.lineTo(sx + 6 * s, sy + 55 * s); ctx.stroke();
+    // ── 3D RAILWAY TRACKS (Running vertically parallel to highway) ──
+    const trackX = sx - 38 * s;
+    ctx.strokeStyle = isDark ? '#64748b' : '#94a3b8'; ctx.lineWidth = 2.2;
+    ctx.beginPath(); ctx.moveTo(trackX - 6 * s, sy - 75 * s); ctx.lineTo(trackX - 6 * s, sy + 75 * s); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(trackX + 6 * s, sy - 75 * s); ctx.lineTo(trackX + 6 * s, sy + 75 * s); ctx.stroke();
 
-    // Sleepers
-    ctx.strokeStyle = isDark ? '#475569' : '#cbd5e1'; ctx.lineWidth = 1.5;
-    for (let ty = sy - 50 * s; ty <= sy + 50 * s; ty += 10 * s) {
-      ctx.beginPath(); ctx.moveTo(sx - 9 * s, ty); ctx.lineTo(sx + 9 * s, ty); ctx.stroke();
+    // Perspective Sleepers
+    ctx.strokeStyle = isDark ? '#475569' : '#cbd5e1'; ctx.lineWidth = 1.6;
+    for (let ty = sy - 70 * s; ty <= sy + 70 * s; ty += 10 * s) {
+      ctx.beginPath(); ctx.moveTo(trackX - 9 * s, ty); ctx.lineTo(trackX + 9 * s, ty); ctx.stroke();
     }
 
-    // Modern Station Building
-    ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(sx + 14 * s, sy - 26 * s, 38 * s, 52 * s, 5 * s); ctx.fill();
+    // ── 3D ISOMETRIC STATION TERMINAL BUILDING ──
+    const bw = 62 * s;
+    const bh = 40 * s;
+    const depthX = 12 * s;
+    const depthY = -10 * s;
+
+    // Platform Base
+    ctx.fillStyle = isDark ? '#1e293b' : '#f1f5f9';
+    ctx.beginPath();
+    ctx.roundRect(sx - 20 * s, sy - 38 * s, 80 * s, 76 * s, 8 * s);
+    ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
-    // Moving Train on Track
-    const trackSpan = 110 * s;
-    const tNow = (Date.now() * 0.04) % (trackSpan + 40);
-    const trainY = sy - 55 * s + tNow - 20;
+    // 3D Roof
+    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
+    ctx.beginPath();
+    ctx.moveTo(sx - 12 * s, sy - bh / 2);
+    ctx.lineTo(sx - 12 * s + depthX, sy - bh / 2 + depthY);
+    ctx.lineTo(sx - 12 * s + bw + depthX, sy - bh / 2 + depthY);
+    ctx.lineTo(sx - 12 * s + bw, sy - bh / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
 
+    // 3D Right Side Wall
+    ctx.fillStyle = isDark ? '#0284c7' : '#0f172a';
+    ctx.beginPath();
+    ctx.moveTo(sx - 12 * s + bw, sy - bh / 2);
+    ctx.lineTo(sx - 12 * s + bw + depthX, sy - bh / 2 + depthY);
+    ctx.lineTo(sx - 12 * s + bw + depthX, sy + bh / 2 + depthY);
+    ctx.lineTo(sx - 12 * s + bw, sy + bh / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Station Main Facade
+    ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(sx - 12 * s, sy - bh / 2, bw, bh, 4 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Clock Tower in Center
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(sx + 10 * s, sy - bh / 2 - 16 * s, 16 * s, 18 * s);
+    ctx.fillStyle = '#d4a017';
+    ctx.beginPath(); ctx.arc(sx + 18 * s, sy - bh / 2 - 8 * s, 5 * s, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#0f172a';
+    ctx.beginPath(); ctx.arc(sx + 18 * s, sy - bh / 2 - 8 * s, 3.5 * s, 0, Math.PI * 2); ctx.fill();
+
+    // Arch Doors & Windows
+    ctx.fillStyle = '#38bdf8';
+    ctx.fillRect(sx - 4 * s, sy - 6 * s, 10 * s, 16 * s);
+    ctx.fillRect(sx + 28 * s, sy - 6 * s, 10 * s, 16 * s);
+
+    // ── 3D ANIMATED EXPRESS TRAIN ──
+    const trainSpan = 150 * s;
+    const tNow = (Date.now() * 0.05) % trainSpan;
+    const trainY = sy - 75 * s + tNow;
+
+    // Train Shadow
+    ctx.fillStyle = 'rgba(15, 23, 42, 0.3)';
+    ctx.fillRect(trackX - 6 * s, trainY - 2 * s, 13 * s, 46 * s);
+
+    // Engine & Coaches
     ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.roundRect(sx - 5 * s, trainY, 10 * s, 32 * s, 3); ctx.fill();
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(trackX - 5 * s, trainY, 11 * s, 42 * s, 4 * s); ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Blue Stripe Livery
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(trackX - 4 * s, trainY + 4 * s, 9 * s, 8 * s);
+    ctx.fillRect(trackX - 4 * s, trainY + 16 * s, 9 * s, 12 * s);
+    ctx.fillRect(trackX - 4 * s, trainY + 30 * s, 9 * s, 8 * s);
+
+    // Train Headlight
+    ctx.fillStyle = '#fde047';
+    ctx.beginPath(); ctx.arc(trackX + 0.5 * s, trainY + 40 * s, 2 * s, 0, Math.PI * 2); ctx.fill();
 
     // Sharp Station Card
     if (reveal > 0.35) {
-      drawCard(sx, sy - Math.round(48 * s), `🚆 ${label.toUpperCase()}`, "PATNA RAILWAY CORRIDOR", '#1e3a8a', isDark, s);
+      drawCard(sx + Math.round(18 * s), sy - Math.round(52 * s), "🚆 3D DANAPUR RAIL TERMINAL", "PATNA MAIN JUNCTION & HIGH-SPEED HUB", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 3. HOSPITALS (AIIMS / NSMCH)
+  // 3. 3D AIIMS PATNA SUPER-SPECIALTY APEX HOSPITAL
   function drawHospitalAnimation(hx, hy, label, isAIIMS, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // Hospital Campus Ground
-    ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(hx - 50 * s, hy - 36 * s, 100 * s, 72 * s, 8 * s); ctx.fill();
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+    if (!isAIIMS) {
+      // NSMCH Hospital
+      ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
+      ctx.beginPath(); ctx.roundRect(hx - 50 * s, hy - 36 * s, 100 * s, 72 * s, 8 * s); ctx.fill();
+      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+      ctx.fillStyle = '#dc2626';
+      ctx.fillRect(hx - 3 * s, hy - 22 * s, 6 * s, 18 * s);
+      ctx.fillRect(hx - 9 * s, hy - 16 * s, 18 * s, 6 * s);
+      if (reveal > 0.35) {
+        drawCard(hx, hy - Math.round(52 * s), "🏥 NSMCH MEDICAL COLLEGE", "SUPER SPECIALTY HOSPITAL (2 KM)", '#1e3a8a', isDark, s);
+      }
+      ctx.restore();
+      return;
+    }
 
-    // Red Cross Emblem
+    // ── 3D ISOMETRIC AIIMS SUPER-SPECIALTY HOSPITAL COMPLEX ──
+    const bw = 88 * s;
+    const bh = 46 * s;
+    const depthX = 14 * s;
+    const depthY = -12 * s;
+
+    // Campus Courtyard Base
+    ctx.fillStyle = isDark ? '#1e293b' : '#eff6ff';
+    ctx.beginPath();
+    ctx.roundRect(hx - 58 * s, hy - 32 * s, 118 * s, 76 * s, 10 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.6; ctx.stroke();
+
+    // 3D Main Tower Roof
+    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
+    ctx.beginPath();
+    ctx.moveTo(hx - 18 * s, hy - bh / 2);
+    ctx.lineTo(hx - 18 * s + depthX, hy - bh / 2 + depthY);
+    ctx.lineTo(hx + bw / 2 + depthX, hy - bh / 2 + depthY);
+    ctx.lineTo(hx + bw / 2, hy - bh / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // 3D Helipad on Main Tower Roof
+    const heliX = hx + 14 * s + depthX * 0.6;
+    const heliY = hy - bh / 2 + depthY * 0.6;
+    ctx.fillStyle = '#15803d';
+    ctx.beginPath(); ctx.ellipse(heliX, heliY, 14 * s, 7 * s, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `900 ${Math.max(6, Math.round(7 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("H", heliX, heliY + 2.5 * s);
+
+    // 3D Right Side Isometric Wall
+    ctx.fillStyle = isDark ? '#0284c7' : '#0f172a';
+    ctx.beginPath();
+    ctx.moveTo(hx + bw / 2, hy - bh / 2);
+    ctx.lineTo(hx + bw / 2 + depthX, hy - bh / 2 + depthY);
+    ctx.lineTo(hx + bw / 2 + depthX, hy + bh / 2 + depthY);
+    ctx.lineTo(hx + bw / 2, hy + bh / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Main Hospital Facade
+    ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(hx - 18 * s, hy - bh / 2, bw / 2 + 18 * s, bh, 4 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.6; ctx.stroke();
+
+    // Windows Grid (Blue Glass Tint)
+    ctx.fillStyle = '#38bdf8';
+    for (let wx = hx - 10 * s; wx <= hx + 30 * s; wx += 12 * s) {
+      ctx.fillRect(wx, hy - 16 * s, 8 * s, 6 * s);
+      ctx.fillRect(wx, hy - 6 * s, 8 * s, 6 * s);
+      ctx.fillRect(wx, hy + 4 * s, 8 * s, 6 * s);
+    }
+
+    // 3D Left Emergency Wing
+    ctx.fillStyle = isDark ? '#1e293b' : '#fee2e2';
+    ctx.beginPath();
+    ctx.roundRect(hx - 50 * s, hy - 10 * s, 32 * s, 32 * s, 4 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#dc2626'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Red Cross Emblem on Emergency Wing
     ctx.fillStyle = '#dc2626';
-    ctx.fillRect(hx - 3 * s, hy - 22 * s, 6 * s, 18 * s);
-    ctx.fillRect(hx - 9 * s, hy - 16 * s, 18 * s, 6 * s);
+    ctx.fillRect(hx - 37 * s, hy - 4 * s, 6 * s, 18 * s);
+    ctx.fillRect(hx - 43 * s, hy + 2 * s, 18 * s, 6 * s);
 
-    // Sharp Card
+    // AIIMS Gold Entrance Portico
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(hx - 4 * s, hy + 12 * s, 34 * s, 12 * s);
+    ctx.fillStyle = '#d4a017';
+    ctx.font = `800 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("AIIMS PATNA", hx + 13 * s, hy + 20 * s);
+
+    // Sharp Landmark Card
     if (reveal > 0.35) {
-      drawCard(hx, hy - Math.round(52 * s), isAIIMS ? "🏥 AIIMS PATNA HOSPITAL" : "🏥 NSMCH MEDICAL COLLEGE", isAIIMS ? "SUPER-SPECIALTY MEDICAL HUB" : "SUPER SPECIALTY HOSPITAL (2 KM)", isAIIMS ? '#d4a017' : '#1e3a8a', isDark, s);
+      drawCard(hx + 8 * s, hy - Math.round(52 * s), "🏥 3D AIIMS PATNA HOSPITAL", "SUPER-SPECIALTY APEX MEDICAL HUB (7 KM)", '#d4a017', isDark, s);
     }
 
     ctx.restore();
@@ -3377,49 +3527,92 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 4. PATLI BUS STAND (KANHAULI)
+  // 4. 3D PATLI BUS STAND (ISBT KANHAULI)
   function drawPatliBusStand(bx, by, reveal, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // Terminal Apron Ground
-    ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
-    ctx.beginPath(); ctx.roundRect(bx - 44 * s, by - 24 * s, 88 * s, 48 * s, 6 * s); ctx.fill();
+    // Terminal Apron & Bus Bays Ground
+    ctx.fillStyle = isDark ? '#1e293b' : '#eff6ff';
+    ctx.beginPath(); ctx.roundRect(bx - 52 * s, by - 30 * s, 104 * s, 64 * s, 8 * s); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
-    // Buses Parked
-    ctx.fillStyle = '#1e3a8a';
-    ctx.beginPath(); ctx.roundRect(bx - 36 * s, by - 16 * s, 32 * s, 12 * s, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30 * s, by - 14 * s, 20 * s, 4 * s);
+    // ── 3D ISOMETRIC TERMINAL CONCOURSE BUILDING ──
+    const tw = 46 * s;
+    const th = 32 * s;
+    const depthX = 10 * s;
+    const depthY = -8 * s;
 
+    // Terminal Roof
+    ctx.fillStyle = isDark ? '#0f172a' : '#1e3a8a';
+    ctx.beginPath();
+    ctx.moveTo(bx + 4 * s, by - th / 2);
+    ctx.lineTo(bx + 4 * s + depthX, by - th / 2 + depthY);
+    ctx.lineTo(bx + 4 * s + tw + depthX, by - th / 2 + depthY);
+    ctx.lineTo(bx + 4 * s + tw, by - th / 2);
+    ctx.closePath();
+    ctx.fill();
+    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
+
+    // Terminal Facade (Glass Concourse)
+    ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+    ctx.beginPath();
+    ctx.roundRect(bx + 4 * s, by - th / 2, tw, th, 4 * s);
+    ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Glass Windows
+    ctx.fillStyle = '#38bdf8';
+    ctx.fillRect(bx + 8 * s, by - 8 * s, 16 * s, 16 * s);
+    ctx.fillRect(bx + 26 * s, by - 8 * s, 16 * s, 16 * s);
+
+    // Gold ISBT Signboard on Roof
     ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.roundRect(bx - 36 * s, by + 4 * s, 32 * s, 12 * s, 2); ctx.fill();
-    ctx.fillStyle = '#ffffff'; ctx.fillRect(bx - 30 * s, by + 6 * s, 20 * s, 4 * s);
+    ctx.font = `900 ${Math.max(5.5, Math.round(6 * s))}px Montserrat, Inter, sans-serif`; ctx.textAlign = 'center';
+    ctx.fillText("ISBT PATLI", bx + 27 * s, by + 12 * s);
+
+    // ── 3D ISOMETRIC LUXURY BUSES PARKED AT BAYS ──
+    // Bus 1 (Blue Volvo Coach)
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.roundRect(bx - 44 * s, by - 18 * s, 36 * s, 13 * s, 3 * s); ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.fillStyle = '#1e3a8a';
+    ctx.fillRect(bx - 42 * s, by - 16 * s, 24 * s, 5 * s);
+    ctx.fillStyle = '#fde047';
+    ctx.fillRect(bx - 10 * s, by - 16 * s, 2 * s, 4 * s);
+
+    // Bus 2 (Gold & Red Express Coach)
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.roundRect(bx - 44 * s, by + 5 * s, 36 * s, 13 * s, 3 * s); ctx.fill();
+    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.2; ctx.stroke();
+    ctx.fillStyle = '#dc2626';
+    ctx.fillRect(bx - 42 * s, by + 7 * s, 24 * s, 5 * s);
+    ctx.fillStyle = '#fde047';
+    ctx.fillRect(bx - 10 * s, by + 7 * s, 2 * s, 4 * s);
 
     // Sharp Card
     if (reveal > 0.35) {
-      drawCard(bx, by - Math.round(44 * s), "🚏 PATLI BUS STAND (ISBT)", "KANHAULI • LEFT OF RING ROAD GOLAMBAR", '#1e3a8a', isDark, s);
+      drawCard(bx, by - Math.round(44 * s), "🚏 3D PATLI BUS STAND (ISBT)", "KANHAULI • INTER-STATE BUS TERMINAL", '#1e3a8a', isDark, s);
     }
 
     ctx.restore();
   }
 
-  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR + EAST EXPRESSWAY OUT-OF-FRAME & 45° SHERPUR-DIGHWARA OUT-OF-FRAME)
+  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR + EAST EXPRESSWAY & SHERPUR-DIGHWARA SPUR)
   function drawPatnaRingRoadEast(rx, ry, reveal, prog, theme, s) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
     const gx = rx; // Golambar X on NH-30 (0.42 * w)
-    const gy = ry; // Golambar Y on NH-30 (680)
+    const gy = ry; // Golambar Y on NH-30 (760)
 
     const roadW = Math.round(24 * s);
 
-    // ── 1. 60° NORTH-WEST SHERPUR - DIGHWARA 6-LANE ROAD (EXTENDING OUTSIDE SCREEN BORDER) ──
-    const sherpurAngleRad = (60 * Math.PI) / 180; // 60-degree angle
-    const sherpurEndX = -w * 0.40 - 150;
+    // ── 1. SHERPUR - DIGHWARA 6-LANE ROAD (PASSING WELL BELOW SAGUNA MORE ON LEFT SIDE) ──
+    const sherpurEndX = -w * 0.35 - 120;
     const deltaSpan = gx - sherpurEndX;
-    const sherpurEndY = gy - deltaSpan * Math.tan(sherpurAngleRad); // Exact 60-degree trajectory
+    const sherpurEndY = gy - deltaSpan * 0.38; // Realistic corridor elevation
 
     // Sherpur - Dighwara Asphalt Base
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
@@ -3448,9 +3641,9 @@ function initRouteTimeline() {
     ctx.stroke();
     ctx.setLineDash([]);
 
-    // Overhead Signboard on Sherpur - Dighwara 60° Road
+    // Overhead Signboard on Sherpur - Dighwara Road
     const sherMidX = Math.max(w * 0.12, (gx + Math.max(0, sherpurEndX)) / 2 - 15);
-    const sherMidY = gy - (gx - sherMidX) * Math.tan(sherpurAngleRad) - 20 * s;
+    const sherMidY = gy - (gx - sherMidX) * 0.38 - 20 * s;
     const signBoxW = Math.round(175 * s);
     const signBoxH = Math.round(26 * s);
 
@@ -3463,7 +3656,7 @@ function initRouteTimeline() {
     ctx.fillText("🌉 SHERPUR - DIGHWARA ➔", sherMidX, sherMidY - 1);
     ctx.fillStyle = '#fde047';
     ctx.font = `700 ${Math.max(6, Math.round(6.5 * s))}px Montserrat, Inter, sans-serif`;
-    ctx.fillText("60° GANGA BRIDGE & RING ROAD", sherMidX, sherMidY + Math.round(8 * s));
+    ctx.fillText("6-LANE GANGA BRIDGE CORRIDOR", sherMidX, sherMidY + Math.round(8 * s));
 
     // ── 2. 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East OUTSIDE SCREEN BORDER) ──
     const turn1X = w * 0.68;
