@@ -467,27 +467,40 @@ footer,
   padding: 6rem 6vw 4rem 6vw;
 }
 
-/* Background Slider Images with Crossfade */
+/* Background Slider Images with Fast Crossfade & Smooth Left-to-Right Slow Pan */
 .hero-slider-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
+  will-change: transform;
 }
 
 .hero-slider-bg .slide-item {
   position: absolute;
-  inset: 0;
+  inset: -15px -30px; /* Slight bleed to avoid any border clipping during pan */
   background-size: cover;
-  background-position: center 20%;
+  background-position: center center;
   opacity: 0;
-  transform: scale(1.02);
-  transition: opacity 1.8s cubic-bezier(0.4, 0, 0.2, 1), transform 6s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: scale(1.06) translate3d(-3%, 0, 0);
+  transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
 .hero-slider-bg .slide-item.active {
   opacity: 1;
-  transform: scale(1.08);
+  animation: heroSlowPanLeftToRight 5.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes heroSlowPanLeftToRight {
+  0% {
+    transform: scale(1.06) translate3d(-3%, 0, 0);
+  }
+  100% {
+    transform: scale(1.06) translate3d(3%, 0, 0);
+  }
 }
 
 /* Subtle Dark Fade Overlay for optimal text readability and rich cinematic look */
@@ -3824,9 +3837,11 @@ canvas {
     min-height: 440px;
     padding: 4rem 2rem 2.5rem;
   }
-  .hero-slider-bg .slide-item,
+  .hero-slider-bg .slide-item {
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
   .hero-slider-bg .slide-item.active {
-    transform: none !important;
+    animation: heroSlowPanLeftToRight 5.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
   }
   .site-header {
     padding: 0.75rem 1.5rem;
@@ -4004,14 +4019,16 @@ canvas {
   .hero-slider-bg .slide-item,
   .hero-slider-bg .slide-item.active {
     position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
+    inset: -10px -20px !important;
+    width: calc(100% + 40px) !important;
+    height: calc(100% + 20px) !important;
     background-size: cover !important;
     background-position: center center !important;
     background-repeat: no-repeat !important;
-    transform: none !important;
-    transition: opacity 1.2s ease !important;
+    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+  .hero-slider-bg .slide-item.active {
+    animation: heroSlowPanLeftToRight 5.2s cubic-bezier(0.25, 1, 0.5, 1) forwards !important;
   }
   .hero-vignette-overlay {
     background: linear-gradient(180deg, rgba(3, 7, 18, 0.45) 0%, rgba(3, 7, 18, 0.15) 50%, rgba(3, 7, 18, 0.7) 100%) !important;
