@@ -3116,15 +3116,15 @@ function initRouteTimeline() {
     { id: "saguna", name: "Saguna More (Pickup Point)", sub: "Swarup VIP Cab Starting Hub", x: 0.15, y: 220, type: "saguna_hub", km: "0.0 KM", triggerProg: 0 },
     { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 220, type: "station", km: "3.5 KM", triggerProg: 0.08 },
     { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.18 },
-    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.30 },
-    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal", x: 0.28, y: 520, type: "patli_bus", km: "13.5 KM", triggerProg: 0.38 },
-    { id: "ringroad", name: "Patna 6-Lane Ring Road", sub: "Bihta-Sarmera Expressway", x: 0.72, y: 520, type: "ringroad_east", km: "14.0 KM", triggerProg: 0.42 },
-    { id: "painathi", name: "Painathi Road Entry", sub: "Royal Garden Route", x: 0.42, y: 660, type: "painathi_entry", km: "16.0 KM", triggerProg: 0.48 },
-    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • 500M from Ring Road", x: 0.18, y: 760, type: "township_royal", km: "17.5 KM", triggerProg: 0.58 },
-    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 970, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
-    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1120, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
-    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1120, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
-    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1120, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
+    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.28 },
+    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal", x: 0.26, y: 490, type: "patli_bus", km: "13.5 KM", triggerProg: 0.36 },
+    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 560, type: "ringroad_east", km: "14.5 KM", triggerProg: 0.42 },
+    { id: "painathi", name: "Painathi Road (90° Left)", sub: "Royal Garden Route", x: 0.42, y: 700, type: "painathi_entry", km: "16.0 KM", triggerProg: 0.50 },
+    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • 500M from Ring Road", x: 0.16, y: 700, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
+    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 950, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
+    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1100, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
+    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1100, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
+    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1100, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
     { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.92, y: 1320, type: "township_guru", km: "30.5 KM", triggerProg: 0.98 }
   ];
 
@@ -3137,15 +3137,16 @@ function initRouteTimeline() {
     { x: 0.42, y: 110, title: "Returning along AIIMS Link Road" },
     { x: 0.42, y: 220, title: "Connecting back to NH-30 Main Highway Corridor" },
     { x: 0.42, y: 360, title: "Shivala Chowk (NH-30 Main Junction)" },
-    { x: 0.42, y: 520, title: "Kanhauli • Patli Bus Stand & Patna Ring Road" },
-    { x: 0.42, y: 660, title: "Turning onto Painathi Road (Royal Garden Entry)" },
-    { x: 0.18, y: 760, title: "Arrived at ROYAL GARDEN TOWNSHIP (Kanhauli - 314 Plots)" },
-    { x: 0.42, y: 660, title: "Rejoining Patna - Bihta Highway Corridor" },
-    { x: 0.42, y: 970, title: "Bihta International Airport Corridor (22.5 KM)" },
-    { x: 0.42, y: 1120, title: "Bihta Chowk Central Market & Railway Station" },
-    { x: 0.64, y: 1120, title: "NSMCH Hospital & Medical College (2 KM)" },
-    { x: 0.82, y: 1120, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
-    { x: 0.92, y: 1120, title: "Turning onto Guru Niwas Colony Boulevard" },
+    { x: 0.42, y: 490, title: "Kanhauli • Patli Bus Stand (ISBT)" },
+    { x: 0.42, y: 560, title: "Patna 6-Lane Ring Road Golambar (Bihta-Sarmera Expressway Interchange)" },
+    { x: 0.42, y: 700, title: "Painathi Road Junction • Turning 90° Left to Royal Garden" },
+    { x: 0.16, y: 700, title: "Arrived at ROYAL GARDEN TOWNSHIP (Kanhauli - 314 Plots)" },
+    { x: 0.42, y: 700, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
+    { x: 0.42, y: 950, title: "Bihta International Airport Corridor (22.5 KM)" },
+    { x: 0.42, y: 1100, title: "Bihta Chowk Central Market & Railway Station" },
+    { x: 0.64, y: 1100, title: "NSMCH Hospital & Medical College (2 KM)" },
+    { x: 0.82, y: 1100, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
+    { x: 0.92, y: 1100, title: "Turning onto Guru Niwas Colony Boulevard" },
     { x: 0.92, y: 1320, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
   ];
 
@@ -3349,76 +3350,164 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 5. PATNA 6-LANE RING ROAD
+  // 5. PATNA 6-LANE RING ROAD (GOLAMBAR ON NH-30 + EAST -> NORTH -> EAST TRAJECTORY)
   function drawPatnaRingRoadEast(rx, ry, reveal, prog, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
-    const startX = (w * 0.42) + 6;
-    const endX = w * 0.95;
+    const gx = rx; // Golambar X on NH-30
+    const gy = ry; // Golambar Y on NH-30 (560)
 
-    // Clean Expressway Connection
-    ctx.fillStyle = isDark ? '#1e293b' : '#334155';
+    const turn1X = w * 0.68;
+    const turn1Y = gy;
+    const turn2X = w * 0.68;
+    const turn2Y = gy - 130;
+    const endX = w * 0.96;
+    const endY = gy - 130;
+
+    // ── 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East) ──
+    ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
+    ctx.lineWidth = 20;
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
     ctx.beginPath();
-    ctx.moveTo(w * 0.42, ry - 14);
-    ctx.quadraticCurveTo(startX + 12, ry - 10, startX + 20, ry - 8);
-    ctx.lineTo(endX, ry - 8);
-    ctx.lineTo(endX, ry + 8);
-    ctx.lineTo(startX + 20, ry + 8);
-    ctx.quadraticCurveTo(startX + 12, ry + 10, w * 0.42, ry + 14);
-    ctx.closePath();
-    ctx.fill();
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(turn1X, turn1Y);
+    ctx.lineTo(turn2X, turn2Y);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
 
-    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2;
+    // Road outer borders
+    ctx.strokeStyle = '#1e3a8a';
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.moveTo(startX + 15, ry); ctx.lineTo(endX, ry);
-    ctx.setLineDash([6, 6]); ctx.stroke(); ctx.setLineDash([]);
+    ctx.moveTo(gx, gy);
+    ctx.lineTo(turn1X, turn1Y);
+    ctx.lineTo(turn2X, turn2Y);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
 
-    // Sharp Signboard Card
-    const signX = startX + 80;
-    const signY = ry - 28;
-    ctx.fillStyle = '#1e3a8a';
-    ctx.beginPath(); ctx.roundRect(signX - 75, signY - 12, 150, 24, 6); ctx.fill();
-    ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 1.5; ctx.stroke();
+    // Double yellow center divider
+    ctx.strokeStyle = '#d4a017';
+    ctx.lineWidth = 1.6;
+    ctx.beginPath();
+    ctx.moveTo(gx + 20, gy);
+    ctx.lineTo(turn1X, turn1Y);
+    ctx.lineTo(turn2X, turn2Y);
+    ctx.lineTo(endX, endY);
+    ctx.stroke();
+
+    // White dashed lane markings
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(gx + 25, gy - 5);
+    ctx.lineTo(turn1X - 5, turn1Y - 5);
+    ctx.moveTo(gx + 25, gy + 5);
+    ctx.lineTo(turn1X - 5, turn1Y + 5);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // ── GOLAMBAR / ROUNDABOUT ON NH-30 ──
+    ctx.fillStyle = isDark ? '#1e293b' : '#ffffff';
+    ctx.beginPath(); ctx.arc(gx, gy, 28, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
+
+    // Central landscaped green island in Golambar
+    ctx.fillStyle = isDark ? '#065f46' : '#dcfce7';
+    ctx.beginPath(); ctx.arc(gx, gy, 18, 0, Math.PI * 2); ctx.fill();
+    ctx.strokeStyle = '#16a34a'; ctx.lineWidth = 1.5; ctx.stroke();
+
+    // Center Gold Fountain / Landmark Pillar
+    ctx.fillStyle = '#d4a017';
+    ctx.beginPath(); ctx.arc(gx, gy, 6, 0, Math.PI * 2); ctx.fill();
+
+    // Green Expressway Overhead Signboard
+    const signX = turn1X + 25;
+    const signY = turn2Y - 26;
+    ctx.fillStyle = '#15803d';
+    ctx.beginPath(); ctx.roundRect(signX - 85, signY - 12, 170, 26, 6); ctx.fill();
+    ctx.strokeStyle = '#ffffff'; ctx.lineWidth = 1.2; ctx.stroke();
 
     ctx.fillStyle = '#ffffff';
     ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("🛣️ PATNA 6-LANE RING ROAD", signX, signY - 1);
+    ctx.fillText("🛣️ PATNA 6-LANE RING ROAD ➔", signX, signY);
     ctx.fillStyle = '#fde047';
     ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-    ctx.fillText("BIHTA-SARMERA EXPRESSWAY", signX, signY + 8);
+    ctx.fillText("BIHTA-SARMERA EXPRESSWAY", signX, signY + 9);
 
-    ctx.restore();
-  }
-
-  // 6. PAINATHI ROAD ENTRY
-  function drawPainathiRoadEntry(px, py, reveal, theme) {
-    ctx.save();
-    ctx.globalAlpha = Math.max(0.3, reveal);
-    const isDark = (theme === 'dark');
-
-    // Milestone
-    ctx.fillStyle = '#ffffff';
-    ctx.beginPath(); ctx.roundRect(px - 16, py - 14, 12, 18, 2); ctx.fill();
-    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.stroke();
-    ctx.fillStyle = '#d4a017';
-    ctx.beginPath(); ctx.arc(px - 10, py - 14, 6, Math.PI, 0); ctx.fill();
-
-    // Sharp Card
+    // Sharp Golambar Card
     if (reveal > 0.35) {
       ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(px - 75, py - 36, 150, 20, 5); ctx.fill();
-      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+      ctx.beginPath(); ctx.roundRect(gx - 90, gy + 34, 180, 24, 6); ctx.fill();
+      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.5; ctx.stroke();
 
       ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
-      ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("📍 PAINATHI ROAD ENTRY", px, py - 23);
+      ctx.font = '800 9px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("⭕ PATNA RING ROAD GOLAMBAR", gx, gy + 47);
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = '700 6.8px Montserrat, Inter, sans-serif';
+      ctx.fillText("6-LANE EXPRESSWAY INTERCHANGE", gx, gy + 55);
     }
 
     ctx.restore();
   }
 
-  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI)
+  // 6. PAINATHI ROAD ENTRY (90° Horizontal Turn West)
+  function drawPainathiRoadEntry(px, py, reveal, theme) {
+    ctx.save();
+    ctx.globalAlpha = Math.max(0.3, reveal);
+    const isDark = (theme === 'dark');
+
+    // 90-degree Road Spur to Royal Garden (Branching from NH-30 left to Royal Garden)
+    ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
+    ctx.lineWidth = 18;
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(w * 0.16, py);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#1e3a8a';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(w * 0.16, py);
+    ctx.stroke();
+
+    ctx.strokeStyle = '#d4a017';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([5, 5]);
+    ctx.beginPath();
+    ctx.moveTo(px, py);
+    ctx.lineTo(w * 0.16, py);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Milestone on Road Corner
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.roundRect(px - 14, py - 20, 12, 18, 2); ctx.fill();
+    ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1; ctx.stroke();
+    ctx.fillStyle = '#d4a017';
+    ctx.beginPath(); ctx.arc(px - 8, py - 20, 6, Math.PI, 0); ctx.fill();
+
+    // Sharp Card
+    if (reveal > 0.35) {
+      ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
+      ctx.beginPath(); ctx.roundRect(px - 85, py - 46, 170, 22, 5); ctx.fill();
+      ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 1.2; ctx.stroke();
+
+      ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
+      ctx.font = '800 8.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
+      ctx.fillText("📍 PAINATHI ROAD (90° LEFT)", px, py - 34);
+      ctx.fillStyle = '#1e3a8a';
+      ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
+      ctx.fillText("DIRECT ENTRY TO ROYAL GARDEN", px, py - 26);
+    }
+
+    ctx.restore();
+  }
+
+  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - 90° West of NH-30)
   function drawRoyalGardenTownship(rx, ry, reveal, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
@@ -3439,14 +3528,14 @@ function initRouteTimeline() {
       }
     }
 
-    // 3D Grand Arch Gate
+    // 3D Grand Arch Gate (Facing East towards Painathi Road)
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(rx - 30, ry + 36, 60, 6);
-    ctx.fillRect(rx - 30, ry + 36, 7, 16);
-    ctx.fillRect(rx + 23, ry + 36, 7, 16);
+    ctx.fillRect(rx + 60, ry - 18, 6, 36);
+    ctx.fillRect(rx + 60, ry - 18, 16, 7);
+    ctx.fillRect(rx + 60, ry + 11, 16, 7);
     ctx.fillStyle = '#fde047';
     ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("ROYAL GARDEN GATE", rx, ry + 41);
+    ctx.fillText("ROYAL GARDEN GATE", rx, ry + 42);
 
     // Sharp Signature Township Card
     if (reveal > 0.35) {
@@ -3612,13 +3701,37 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 11. LUXURY VIP SUV (SHARP, CLEAN & VECTOR-CRISP)
+  // 11. LUXURY VIP SUV (SHARP, CLEAN & VECTOR-CRISP WITH HEADLIGHT BEAMS)
   function drawLuxuryCab(cx, cy, heading, theme) {
     ctx.save();
     ctx.translate(cx, cy);
     ctx.rotate(heading);
 
     const isDark = (theme === 'dark');
+
+    // 1. DUAL LED HEADLIGHT LIGHT BEAMS (Forward road illumination)
+    const beamLen = 110;
+    const beamGrad = ctx.createLinearGradient(14, 0, beamLen, 0);
+    beamGrad.addColorStop(0, 'rgba(254, 240, 138, 0.85)');
+    beamGrad.addColorStop(0.3, 'rgba(254, 240, 138, 0.45)');
+    beamGrad.addColorStop(1, 'rgba(254, 240, 138, 0)');
+
+    ctx.fillStyle = beamGrad;
+    // Left headlight beam
+    ctx.beginPath();
+    ctx.moveTo(14, -5);
+    ctx.lineTo(beamLen, -28);
+    ctx.lineTo(beamLen, -3);
+    ctx.closePath();
+    ctx.fill();
+
+    // Right headlight beam
+    ctx.beginPath();
+    ctx.moveTo(14, 5);
+    ctx.lineTo(beamLen, 3);
+    ctx.lineTo(beamLen, 28);
+    ctx.closePath();
+    ctx.fill();
 
     // Soft Chassis Drop Shadow
     ctx.fillStyle = 'rgba(15, 23, 42, 0.25)';
@@ -3655,11 +3768,12 @@ function initRouteTimeline() {
     ctx.fillStyle = '#d4a017';
     ctx.beginPath(); ctx.arc(12, 0, 1.8, 0, Math.PI * 2); ctx.fill();
 
-    // Sharp Headlights & Taillights
-    ctx.fillStyle = '#fde047';
-    ctx.fillRect(13, -6, 1.5, 3);
-    ctx.fillRect(13, 3, 1.5, 3);
+    // Bright Headlight Projector Bulbs
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath(); ctx.arc(13, -5, 2, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(13, 5, 2, 0, Math.PI * 2); ctx.fill();
 
+    // Rear Taillights
     ctx.fillStyle = '#ef4444';
     ctx.fillRect(-14.5, -6, 1.5, 12);
 
