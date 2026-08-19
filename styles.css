@@ -2088,10 +2088,10 @@ select:focus, .calc-input:focus {
   z-index: 1;
 }
 
-/* 🌟 TOP 3D WALL-MOUNTED LUXURY GRAND BRAND BOX IN 2ND HERO SECTION 🌟 */
+/* 🌟 TOP FLOATING 3D BRAND & TYPOGRAPHY IN 2ND HERO SECTION (NO BOX) 🌟 */
 .scroll-hero-top-badge-container {
   position: absolute;
-  top: 32px;
+  top: 28px;
   left: 6%;
   z-index: 20;
   pointer-events: none;
@@ -2101,45 +2101,51 @@ select:focus, .calc-input:focus {
   display: inline-flex;
   align-items: center;
   gap: 1.35rem;
-  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 40%, #edf4fc 80%, #fdfbf3 100%);
-  border: 2.5px solid #d4a017;
-  border-radius: 22px;
-  padding: 0.95rem 1.65rem;
-  box-shadow: 
-    0 18px 45px rgba(212, 160, 23, 0.28),
-    0 8px 24px rgba(11, 19, 51, 0.22),
-    0 0 0 1px rgba(212, 160, 23, 0.35),
-    inset 0 2px 4px #ffffff,
-    inset 0 -3px 6px rgba(0, 0, 0, 0.05);
+  background: none !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
   position: relative;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   pointer-events: auto;
 }
 
 .scroll-brand-mounted-badge-3d:hover {
-  transform: translateY(-3px) scale(1.02);
-  box-shadow: 
-    0 22px 55px rgba(212, 160, 23, 0.35),
-    0 10px 30px rgba(11, 19, 51, 0.28),
-    0 0 0 1.5px #d4a017;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 .scroll-brand-logo-unit {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.85rem;
   flex-shrink: 0;
+}
+
+.scroll-brand-mounted-badge-3d .footer-brand-main-3d {
+  color: #ffffff !important;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 15px rgba(0, 0, 0, 0.9) !important;
+}
+
+.scroll-brand-mounted-badge-3d .gold-peak-3d {
+  color: #fde047 !important;
+  text-shadow: 0 0 12px rgba(253, 224, 71, 0.7), 0 2px 4px rgba(0, 0, 0, 0.9) !important;
+}
+
+.scroll-brand-mounted-badge-3d .footer-brand-sub-3d {
+  color: #fde047 !important;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9) !important;
 }
 
 .scroll-brand-symbol-3d {
   height: 48px;
   width: auto;
   object-fit: contain;
-  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.9)) drop-shadow(0 0 10px rgba(212, 160, 23, 0.4));
   transition: transform 0.3s ease;
 }
 
-.scroll-brand-mounted-badge-3d:hover .scroll-brand-symbol-3d {
+.scroll-brand-logo-unit:hover .scroll-brand-symbol-3d {
   transform: scale(1.08) rotate(-2deg);
 }
 
@@ -2148,6 +2154,7 @@ select:focus, .calc-input:focus {
   height: 52px;
   background: linear-gradient(180deg, rgba(212, 160, 23, 0.1), #d4a017 50%, rgba(212, 160, 23, 0.1));
   border-radius: 2px;
+  box-shadow: 0 0 8px rgba(212, 160, 23, 0.5);
   flex-shrink: 0;
 }
 
@@ -2167,85 +2174,90 @@ select:focus, .calc-input:focus {
 }
 
 .pulse-dot-gold {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
-  background: #d4a017;
-  box-shadow: 0 0 8px #d4a017;
+  background: #fde047;
+  box-shadow: 0 0 10px #fde047, 0 0 20px #fde047;
   animation: pulseGold 1.8s infinite;
 }
 
 @keyframes pulseGold {
   0% { transform: scale(0.9); opacity: 1; }
-  50% { transform: scale(1.4); opacity: 0.4; }
+  50% { transform: scale(1.4); opacity: 0.5; }
   100% { transform: scale(0.9); opacity: 1; }
 }
 
 .tag-gold-text {
   font-family: var(--font-apple);
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  color: #1e3a8a;
+  letter-spacing: 0.12em;
+  color: #fef08a;
   text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.95);
 }
 
 .tag-gold-star {
   font-family: var(--font-apple);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   font-weight: 800;
-  color: #b45309;
-  background: rgba(212, 160, 23, 0.14);
-  border: 1px solid rgba(212, 160, 23, 0.35);
-  padding: 1px 6px;
+  color: #fde047;
+  background: rgba(212, 160, 23, 0.25);
+  border: 1px solid rgba(212, 160, 23, 0.6);
+  padding: 1px 7px;
   border-radius: 999px;
   letter-spacing: 0.04em;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
 }
 
 .scroll-brand-main-headline {
   font-family: var(--font-apple);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   font-weight: 900;
   letter-spacing: 0.06em;
-  color: #0b1333;
+  color: #ffffff;
   text-transform: uppercase;
-  margin: 2px 0 4px 0;
+  margin: 3px 0 5px 0;
   line-height: 1.15;
-  text-shadow: 0 1px 0 #ffffff;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.95), 0 0 20px rgba(0, 0, 0, 0.9);
 }
 
 .scroll-brand-pills-row {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .badge-mini-pill {
   font-family: var(--font-apple);
-  font-size: 0.58rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  padding: 2px 7px;
+  padding: 3px 9px;
   border-radius: 999px;
   white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .badge-mini-pill.gold {
-  background: rgba(212, 160, 23, 0.12);
-  color: #92400e;
-  border: 1px solid rgba(212, 160, 23, 0.3);
+  background: rgba(212, 160, 23, 0.25);
+  color: #fef08a;
+  border: 1px solid rgba(212, 160, 23, 0.55);
 }
 
 .badge-mini-pill.blue {
-  background: rgba(30, 58, 138, 0.08);
-  color: #1e3a8a;
-  border: 1px solid rgba(30, 58, 138, 0.2);
+  background: rgba(14, 165, 233, 0.25);
+  color: #bae6fd;
+  border: 1px solid rgba(56, 189, 248, 0.55);
 }
 
 .badge-mini-pill.green {
-  background: rgba(16, 185, 129, 0.1);
-  color: #065f46;
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(34, 197, 94, 0.25);
+  color: #bbf7d0;
+  border: 1px solid rgba(34, 197, 94, 0.55);
 }
 
 /* Floating Text Overlay with 1st Hero Section Smeulders Dynamic Live-Video Frame Clipped Text Effect */
@@ -4260,34 +4272,35 @@ canvas {
     z-index: 25 !important;
   }
   .scroll-brand-mounted-badge-3d {
-    padding: 0.6rem 0.95rem !important;
-    gap: 0.75rem !important;
-    border-radius: 16px !important;
-    border-width: 2px !important;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    gap: 0.65rem !important;
     width: 100% !important;
     justify-content: center !important;
   }
   .scroll-brand-symbol-3d {
-    height: 38px !important;
+    height: 36px !important;
   }
   .scroll-brand-badge-divider {
-    height: 42px !important;
+    height: 38px !important;
     width: 1.5px !important;
   }
   .tag-gold-text {
-    font-size: 0.52rem !important;
+    font-size: 0.54rem !important;
     letter-spacing: 0.06em !important;
   }
   .tag-gold-star {
-    font-size: 0.48rem !important;
+    font-size: 0.5rem !important;
   }
   .scroll-brand-main-headline {
-    font-size: 0.75rem !important;
-    margin: 1px 0 3px 0 !important;
+    font-size: 0.78rem !important;
+    margin: 2px 0 3px 0 !important;
   }
   .badge-mini-pill {
-    font-size: 0.5rem !important;
-    padding: 1.5px 5px !important;
+    font-size: 0.52rem !important;
+    padding: 2px 6px !important;
   }
   .scroll-video-sticky {
     height: 100vh !important;
