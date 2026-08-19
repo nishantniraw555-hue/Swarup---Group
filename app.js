@@ -3930,12 +3930,30 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  function render() {
-    const rawProg = scrollProgress();
-    // 100% Direct Manual Scroll Control: Zero automatic drifting or lagging!
-    // Car moves ONLY when the user scrolls and stops instantly the moment scroll stops.
-    const prog = rawProg;
+  let currentProg = 0;
+  let targetProg = 0;
+  let currentCameraY = 0;
+  let isInitialized = false;
 
+  function render() {
+    targetProg = scrollProgress();
+
+    if (!isInitialized) {
+      currentProg = targetProg;
+      currentCameraY = Math.max(0, Math.min(mapH - h, (getPointOnPath(currentProg).y) - h * 0.38));
+      cameraY = currentCameraY;
+      isInitialized = true;
+    } else {
+      // Lazy smooth easing (LERP) — car lazily glides along the route with realistic luxury momentum
+      const diff = targetProg - currentProg;
+      if (Math.abs(diff) < 0.0001) {
+        currentProg = targetProg;
+      } else {
+        currentProg += diff * 0.055;
+      }
+    }
+
+    const prog = currentProg;
     const currentPt = getPointOnPath(prog);
 
     // Update Bottom Status Banner text
@@ -3946,12 +3964,12 @@ function initRouteTimeline() {
       statusSub.textContent = `Swarup Group Site Tour • Progress: ${Math.round(prog * 100)}%`;
     }
     if (progressBar) {
-      progressBar.style.width = `${prog * 100}%`;
+      progressBar.style.width = `${(prog * 100).toFixed(1)}%`;
     }
 
     // Vehicle Heading Angle Calculation directly from path
-    const prevPt = getPointOnPath(Math.max(0, prog - 0.006));
-    const nextPt = getPointOnPath(Math.min(1, prog + 0.006));
+    const prevPt = getPointOnPath(Math.max(0, prog - 0.008));
+    const nextPt = getPointOnPath(Math.min(1, prog + 0.008));
     const vx = currentPt.x * w;
     const vy = currentPt.y;
     const dx = (nextPt.x - prevPt.x) * w;
@@ -3959,8 +3977,10 @@ function initRouteTimeline() {
 
     const heading = (Math.hypot(dx, dy) > 0.001) ? Math.atan2(dy, dx) : 0;
 
-    // Direct locked camera tracking (No auto drifting)
-    cameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
+    // Smooth lazy camera tracking
+    const targetCameraY = Math.max(0, Math.min(mapH - h, vy - h * 0.38));
+    currentCameraY += (targetCameraY - currentCameraY) * 0.075;
+    cameraY = currentCameraY;
 
     const isDark = (mapTheme === 'dark');
 

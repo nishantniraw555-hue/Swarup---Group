@@ -4253,11 +4253,11 @@ canvas {
     height: 280vh !important;
   }
   #route-timeline {
-    height: 450vh !important;
+    height: 550vh !important;
   }
   .construction-sticky {
     height: 100vh !important;
-    height: 100dvh !important;
+    height: 100svh !important;
   }
   #construction-canvas,
   #route-canvas {
