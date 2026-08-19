@@ -3109,23 +3109,23 @@ function initRouteTimeline() {
   updateThemeButtons();
 
   // Virtual Map Height for smooth expansive camera travel
-  const mapH = 1550;
+  const mapH = 1680;
 
   // Real-World Landmarks Matching Patna-Bihta Corridor
   const landmarks = [
     { id: "saguna", name: "Saguna More (Pickup Point)", sub: "Swarup VIP Cab Starting Hub", x: 0.15, y: 220, type: "saguna_hub", km: "0.0 KM", triggerProg: 0 },
-    { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 220, type: "station", km: "3.5 KM", triggerProg: 0.08 },
-    { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.18 },
-    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.28 },
-    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal", x: 0.26, y: 490, type: "patli_bus", km: "13.5 KM", triggerProg: 0.36 },
-    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 560, type: "ringroad_east", km: "14.5 KM", triggerProg: 0.42 },
-    { id: "painathi", name: "Painathi Road (90° Left)", sub: "Royal Garden Route", x: 0.42, y: 700, type: "painathi_entry", km: "16.0 KM", triggerProg: 0.50 },
-    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • 500M from Ring Road", x: 0.16, y: 700, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
-    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 950, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
-    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1100, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
-    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1100, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
-    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1100, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
-    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.92, y: 1320, type: "township_guru", km: "30.5 KM", triggerProg: 0.98 }
+    { id: "danapur", name: "Danapur Railway Station", sub: "Patna Major Rail Terminal", x: 0.465, y: 220, type: "station", km: "3.5 KM", triggerProg: 0.07 },
+    { id: "aiims", name: "AIIMS Patna Hospital", sub: "Super-Specialty Medical Hub", x: 0.74, y: 110, type: "hospital_aiims", km: "7.0 KM", triggerProg: 0.16 },
+    { id: "shivala", name: "Shivala Chowk", sub: "Bihta Corridor Junction", x: 0.42, y: 360, type: "chowk", km: "10.2 KM", triggerProg: 0.26 },
+    { id: "patli_bus", name: "Patli Bus Stand (Kanhauli)", sub: "Inter-State Bus Terminal", x: 0.26, y: 520, type: "patli_bus", km: "13.5 KM", triggerProg: 0.34 },
+    { id: "ringroad", name: "Patna Ring Road Golambar", sub: "6-Lane Bihta-Sarmera Expressway", x: 0.42, y: 680, type: "ringroad_east", km: "15.0 KM", triggerProg: 0.42 },
+    { id: "painathi", name: "Painathi Road (90° Left)", sub: "Access to Royal Garden", x: 0.42, y: 820, type: "painathi_entry", km: "16.5 KM", triggerProg: 0.50 },
+    { id: "royal_garden", name: "ROYAL GARDEN TOWNSHIP", sub: "Swarup 314-Plot Gated Colony • Left of Painathi Road", x: 0.20, y: 920, type: "township_royal", km: "17.5 KM", triggerProg: 0.60 },
+    { id: "bihta_airport", name: "Bihta Int'l Airport", sub: "Upcoming Civil Enclave", x: 0.24, y: 1060, type: "airport", km: "22.5 KM", triggerProg: 0.70 },
+    { id: "bihta_chowk", name: "Bihta Chowk & Station", sub: "Central Market Hub", x: 0.42, y: 1200, type: "chowk", km: "25.0 KM", triggerProg: 0.78 },
+    { id: "nsmch", name: "NSMCH Medical College", sub: "Super Specialty Hospital (2 KM)", x: 0.64, y: 1200, type: "hospital_nsmch", km: "27.0 KM", triggerProg: 0.84 },
+    { id: "iit", name: "IIT Patna Campus (Gate 1)", sub: "Premier Tech Institute (1.5 KM)", x: 0.82, y: 1200, type: "education_iit", km: "28.5 KM", triggerProg: 0.90 },
+    { id: "guru_niwas", name: "GURU NIWAS COLONY (BIHTA)", sub: "Swarup Gated Township • 159 Plots Ready for Registry", x: 0.92, y: 1420, type: "township_guru", km: "30.5 KM", triggerProg: 0.98 }
   ];
 
   // Driving Route Path:
@@ -3137,17 +3137,19 @@ function initRouteTimeline() {
     { x: 0.42, y: 110, title: "Returning along AIIMS Link Road" },
     { x: 0.42, y: 220, title: "Connecting back to NH-30 Main Highway Corridor" },
     { x: 0.42, y: 360, title: "Shivala Chowk (NH-30 Main Junction)" },
-    { x: 0.42, y: 490, title: "Kanhauli • Patli Bus Stand (ISBT)" },
-    { x: 0.42, y: 560, title: "Patna 6-Lane Ring Road Golambar (Bihta-Sarmera Expressway Interchange)" },
-    { x: 0.42, y: 700, title: "Painathi Road Junction • Turning 90° Left to Royal Garden" },
-    { x: 0.16, y: 700, title: "Arrived at ROYAL GARDEN TOWNSHIP (Kanhauli - 314 Plots)" },
-    { x: 0.42, y: 700, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
-    { x: 0.42, y: 950, title: "Bihta International Airport Corridor (22.5 KM)" },
-    { x: 0.42, y: 1100, title: "Bihta Chowk Central Market & Railway Station" },
-    { x: 0.64, y: 1100, title: "NSMCH Hospital & Medical College (2 KM)" },
-    { x: 0.82, y: 1100, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
-    { x: 0.92, y: 1100, title: "Turning onto Guru Niwas Colony Boulevard" },
-    { x: 0.92, y: 1320, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
+    { x: 0.42, y: 520, title: "Kanhauli • Patli Bus Stand (ISBT)" },
+    { x: 0.42, y: 680, title: "Patna 6-Lane Ring Road Golambar (Bihta-Sarmera Expressway Interchange)" },
+    { x: 0.42, y: 820, title: "NH-30 Junction • Turning 90° Left onto Painathi Road" },
+    { x: 0.20, y: 820, title: "Traveling along Painathi Road (Kanhauli Corridor)" },
+    { x: 0.20, y: 920, title: "Turning Left off Painathi Road ➔ ROYAL GARDEN TOWNSHIP (314 Plots)" },
+    { x: 0.20, y: 820, title: "Returning along Painathi Road towards NH-30" },
+    { x: 0.42, y: 820, title: "Rejoining Patna - Bihta NH-30 Highway Corridor" },
+    { x: 0.42, y: 1060, title: "Bihta International Airport Corridor (22.5 KM)" },
+    { x: 0.42, y: 1200, title: "Bihta Chowk Central Market & Railway Station" },
+    { x: 0.64, y: 1200, title: "NSMCH Hospital & Medical College (2 KM)" },
+    { x: 0.82, y: 1200, title: "IIT Patna Main Campus (Gate No. 1 - 1.5 KM)" },
+    { x: 0.92, y: 1200, title: "Turning onto Guru Niwas Colony Boulevard" },
+    { x: 0.92, y: 1420, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots)!" }
   ];
 
   function getPointOnPath(t) {
@@ -3355,15 +3357,15 @@ function initRouteTimeline() {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
-    const gx = rx; // Golambar X on NH-30
-    const gy = ry; // Golambar Y on NH-30 (560)
+    const gx = rx; // Golambar X on NH-30 (0.42 * w)
+    const gy = ry; // Golambar Y on NH-30 (680)
 
     const turn1X = w * 0.68;
     const turn1Y = gy;
     const turn2X = w * 0.68;
-    const turn2Y = gy - 130;
+    const turn2Y = gy - 140;
     const endX = w * 0.96;
-    const endY = gy - 130;
+    const endY = gy - 140;
 
     // ── 6-LANE RING ROAD EXPRESSWAY TRAJECTORY (East -> North -> East) ──
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
@@ -3453,33 +3455,44 @@ function initRouteTimeline() {
     ctx.restore();
   }
 
-  // 6. PAINATHI ROAD ENTRY (90° Horizontal Turn West)
+  // 6. PAINATHI ROAD (90° WEST OFF NH-30 & SOUTH SPUR TO ROYAL GARDEN)
   function drawPainathiRoadEntry(px, py, reveal, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // 90-degree Road Spur to Royal Garden (Branching from NH-30 left to Royal Garden)
+    // Horizontal Painathi Road (90° Left off NH-30 westward)
     ctx.strokeStyle = isDark ? '#1e293b' : '#334155';
     ctx.lineWidth = 18;
     ctx.beginPath();
     ctx.moveTo(px, py);
-    ctx.lineTo(w * 0.16, py);
+    ctx.lineTo(w * 0.12, py);
+    ctx.stroke();
+
+    // Road turning Left (South) off Painathi Road towards Royal Garden Entrance
+    ctx.beginPath();
+    ctx.moveTo(w * 0.20, py);
+    ctx.lineTo(w * 0.20, py + 70);
     ctx.stroke();
 
     ctx.strokeStyle = '#1e3a8a';
     ctx.lineWidth = 1.5;
     ctx.beginPath();
     ctx.moveTo(px, py);
-    ctx.lineTo(w * 0.16, py);
+    ctx.lineTo(w * 0.12, py);
+    ctx.moveTo(w * 0.20, py);
+    ctx.lineTo(w * 0.20, py + 70);
     ctx.stroke();
 
+    // Dashed center lane
     ctx.strokeStyle = '#d4a017';
     ctx.lineWidth = 1.5;
     ctx.setLineDash([5, 5]);
     ctx.beginPath();
     ctx.moveTo(px, py);
-    ctx.lineTo(w * 0.16, py);
+    ctx.lineTo(w * 0.12, py);
+    ctx.moveTo(w * 0.20, py);
+    ctx.lineTo(w * 0.20, py + 70);
     ctx.stroke();
     ctx.setLineDash([]);
 
@@ -3501,54 +3514,54 @@ function initRouteTimeline() {
       ctx.fillText("📍 PAINATHI ROAD (90° LEFT)", px, py - 34);
       ctx.fillStyle = '#1e3a8a';
       ctx.font = '700 6.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("DIRECT ENTRY TO ROYAL GARDEN", px, py - 26);
+      ctx.fillText("ACCESS ROUTE TO ROYAL GARDEN", px, py - 26);
     }
 
     ctx.restore();
   }
 
-  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - 90° West of NH-30)
+  // 7. ROYAL GARDEN TOWNSHIP (KANHAULI - LOCATED TO THE LEFT / SOUTH OF PAINATHI ROAD)
   function drawRoyalGardenTownship(rx, ry, reveal, theme) {
     ctx.save();
     ctx.globalAlpha = Math.max(0.3, reveal);
     const isDark = (theme === 'dark');
 
-    // Clean Gated Boundary
+    // Clean Gated Boundary on the Left/South of Painathi Road
     ctx.fillStyle = isDark ? '#064e3b' : '#f0fdf4';
-    ctx.beginPath(); ctx.roundRect(rx - 75, ry - 60, 150, 110, 10); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(rx - 75, ry - 40, 150, 100, 10); ctx.fill();
     ctx.strokeStyle = '#1e3a8a'; ctx.lineWidth = 2; ctx.stroke();
 
     // Plot Grid Inside Township
     ctx.strokeStyle = isDark ? '#10b981' : '#bbf7d0'; ctx.lineWidth = 1;
     for (let px = rx - 60; px <= rx + 40; px += 20) {
-      for (let py = ry - 45; py <= ry + 25; py += 18) {
+      for (let py = ry - 25; py <= ry + 40; py += 18) {
         ctx.fillStyle = (Math.sin(px + py) > 0) ? (isDark ? '#047857' : '#dcfce7') : (isDark ? '#1e3a8a' : '#ffffff');
         ctx.fillRect(px, py, 16, 14);
         ctx.strokeRect(px, py, 16, 14);
       }
     }
 
-    // 3D Grand Arch Gate (Facing East towards Painathi Road)
+    // 3D Grand Arch Gate (Facing North towards Painathi Road)
     ctx.fillStyle = '#1e3a8a';
-    ctx.fillRect(rx + 60, ry - 18, 6, 36);
-    ctx.fillRect(rx + 60, ry - 18, 16, 7);
-    ctx.fillRect(rx + 60, ry + 11, 16, 7);
+    ctx.fillRect(rx - 30, ry - 44, 60, 6);
+    ctx.fillRect(rx - 30, ry - 44, 7, 16);
+    ctx.fillRect(rx + 23, ry - 44, 7, 16);
     ctx.fillStyle = '#fde047';
     ctx.font = '800 6px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-    ctx.fillText("ROYAL GARDEN GATE", rx, ry + 42);
+    ctx.fillText("ROYAL GARDEN GATE", rx, ry - 30);
 
     // Sharp Signature Township Card
     if (reveal > 0.35) {
       ctx.fillStyle = isDark ? '#0f172a' : '#ffffff';
-      ctx.beginPath(); ctx.roundRect(rx - 110, ry - 88, 220, 28, 8); ctx.fill();
+      ctx.beginPath(); ctx.roundRect(rx - 110, ry + 68, 220, 28, 8); ctx.fill();
       ctx.strokeStyle = '#d4a017'; ctx.lineWidth = 2; ctx.stroke();
 
       ctx.fillStyle = isDark ? '#ffffff' : '#0f172a';
       ctx.font = '900 10.5px Montserrat, Inter, sans-serif'; ctx.textAlign = 'center';
-      ctx.fillText("🏰 ROYAL GARDEN (KANHAULI)", rx, ry - 73);
+      ctx.fillText("🏰 ROYAL GARDEN (KANHAULI)", rx, ry + 83);
       ctx.fillStyle = '#1e3a8a';
       ctx.font = '700 7.5px Montserrat, Inter, sans-serif';
-      ctx.fillText("314 Villa Plots • 500M from Ring Road", rx, ry - 63);
+      ctx.fillText("314 Villa Plots • Located Left of Painathi Road", rx, ry + 93);
     }
 
     ctx.restore();
