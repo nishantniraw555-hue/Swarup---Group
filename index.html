@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=254">
+  <link rel="stylesheet" href="styles.css?v=255">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -812,22 +812,22 @@
       <canvas id="route-canvas"></canvas>
       
       <!-- Floating Dual Map Mode Switcher (Day Mode & Night GPS Mode) -->
-      <div id="route-mode-switcher" style="position: absolute; top: 105px; right: 28px; z-index: 500; display: flex; align-items: center; background: rgba(15, 23, 42, 0.92); backdrop-filter: blur(16px); border: 2px solid #d4a017; border-radius: 30px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.45); user-select: none;">
-        <button id="btn-mode-day" type="button" style="display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 20px; border: none; background: transparent; color: #94a3b8; font-size: 0.75rem; font-weight: 800; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.25s ease;">
-          <span>☀️</span> <span>DAY MODE</span>
+      <div id="route-mode-switcher" style="position: absolute; top: 100px; right: 28px; z-index: 500; display: flex; align-items: center; background: #ffffff; border: 2px solid #1e3a8a; border-radius: 30px; padding: 4px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.12); user-select: none;">
+        <button id="btn-mode-day" type="button" style="display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: none; background: #1e3a8a; color: #ffffff; font-size: 0.75rem; font-weight: 800; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s ease;">
+          <span>☀️</span> <span>DAY MAP</span>
         </button>
-        <button id="btn-mode-night" type="button" style="display: flex; align-items: center; gap: 6px; padding: 7px 16px; border-radius: 20px; border: none; background: linear-gradient(135deg, #1e3a8a, #0284c7); color: #fde047; font-size: 0.75rem; font-weight: 800; font-family: 'Inter', sans-serif; cursor: pointer; box-shadow: 0 2px 12px rgba(2, 132, 199, 0.5); transition: all 0.25s ease;">
-          <span>🌙</span> <span>NIGHT GPS</span>
+        <button id="btn-mode-night" type="button" style="display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; border: none; background: transparent; color: #475569; font-size: 0.75rem; font-weight: 800; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s ease;">
+          <span>🌙</span> <span>NIGHT MAP</span>
         </button>
       </div>
 
-      <div class="construction-phase-label" id="route-phase-label" style="bottom: 75px; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); border: 2px solid #1e3a8a; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.15); display: flex; align-items: center; gap: 0.75rem;">
-        <div class="phase-icon-badge" style="background: #1e3a8a; color: #ffffff;">
-          <span class="material-symbols-outlined" style="font-size:18px;">directions_car</span>
+      <div class="construction-phase-label" id="route-phase-label" style="bottom: 60px; background: #ffffff; border: 2px solid #1e3a8a; border-radius: 20px; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.12); display: flex; align-items: center; gap: 0.85rem; padding: 12px 20px;">
+        <div class="phase-icon-badge" style="background: #1e3a8a; color: #ffffff; width: 38px; height: 38px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+          <span class="material-symbols-outlined" style="font-size:20px;">directions_car</span>
         </div>
         <div style="display:flex; flex-direction:column; align-items:flex-start; text-align:left;">
-          <span style="font-size:0.65rem; color:#1e3a8a; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;" id="route-status-sub">Swarup Group Free Site Visit Cab</span>
-          <span class="phase-text" id="route-status-main" style="font-size:0.85rem; font-weight:800; color:#0f172a;">Scroll to Travel: Saguna More → Royal Garden → Guru Niwas</span>
+          <span style="font-size:0.68rem; color:#1e3a8a; font-weight:800; text-transform:uppercase; letter-spacing:0.1em;" id="route-status-sub">Swarup Group Free Site Visit Cab</span>
+          <span class="phase-text" id="route-status-main" style="font-size:0.88rem; font-weight:800; color:#0f172a; margin-top: 2px;">Scroll to Travel: Saguna More → Royal Garden → Guru Niwas</span>
         </div>
       </div>
       <div class="construction-progress-bar">
@@ -2346,7 +2346,7 @@
   <script src="assets/pdf.min.js" defer></script>
   <!-- Custom Script Files -->
   <script src="royal-garden.js?v=220" defer></script>
-  <script src="app.js?v=12" defer></script>
+  <script src="app.js?v=13" defer></script>
 
 </body>
 </html>
