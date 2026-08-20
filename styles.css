@@ -503,13 +503,10 @@ footer,
   }
 }
 
-/* Soft Balanced Fade Overlay for Top Hero Section */
+/* Zero Fade Overlay for Top Hero Section (Crystal Clear Background Images) */
 .hero-vignette-overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.22) 0%, rgba(0, 0, 0, 0.12) 40%, rgba(0, 0, 0, 0.45) 100%) !important;
-  pointer-events: none;
+  display: none !important;
+  background: none !important;
 }
 
 /* Content Container */
