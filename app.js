@@ -4808,7 +4808,19 @@ function initGalleryReels() {
   const lightboxTitle = document.getElementById('lightbox-title');
   const lightboxDesc = document.getElementById('lightbox-desc');
   const lightboxBadge = document.getElementById('lightbox-badge');
+  const lightboxPriceTag = document.getElementById('lightbox-price-tag');
+  const lightboxLocText = document.getElementById('lightbox-location-text');
+  const specSizes = document.getElementById('spec-sizes');
+  const specRoad = document.getElementById('spec-road');
+  const specLegal = document.getElementById('spec-legal');
+  const specRegistry = document.getElementById('spec-registry');
+  const lightboxDistancesCard = document.getElementById('lightbox-distances-card');
+  const lightboxDistanceItems = document.getElementById('lightbox-distance-items');
+  const lightboxAmenitiesStrip = document.getElementById('lightbox-amenities-strip');
+  const lightboxQuoteBox = document.getElementById('lightbox-quote-box');
   const lightboxQuote = document.getElementById('lightbox-quote');
+  const lightboxWhatsappBtn = document.getElementById('lightbox-whatsapp-btn');
+  const lightboxPdfBtn = document.getElementById('lightbox-pdf-btn');
 
   // 1. Active Column Highlight
   lotteryCols.forEach(col => {
@@ -4839,38 +4851,255 @@ function initGalleryReels() {
     });
   });
 
-  // 3. Open Lightbox Modal on Card Click
+  // ── RICH SEO DATA REPOSITORY FOR ALL PROJECTS & SITE VISITS ──
+  const projectDatabase = {
+    "guru_niwas": {
+      title: "Guru Niwas Colony — Bihta (Near IIT Gate 1)",
+      category: "Residential Gated Township",
+      price: "₹22 Lakh+ (Starting)",
+      location: "Bihta, Patna (1.5 KM from IIT Patna Main Gate)",
+      img: "assets/guru_niwas_colony.webp",
+      desc: "Guru Niwas Colony is Swarup Group's signature 159-plot master-planned residential enclave strategically located in the high-growth institutional corridor of Bihta. Backed by 100% verified DLRS survey records, 30-ft concrete roads, underground utilities, and guaranteed instant registry.",
+      specs: {
+        sizes: "900, 1200 & 1600 Sq.Ft",
+        road: "30-Ft Wide Concrete Road",
+        legal: "100% Clear Title & Mutation",
+        registry: "Immediate on Spot Booking"
+      },
+      distances: [
+        { icon: "school", text: "IIT Patna Gate 1: 1.5 KM" },
+        { icon: "local_hospital", text: "NSMCH Hospital: 2.0 KM" },
+        { icon: "flight", text: "Bihta Airport: 3.0 KM" },
+        { icon: "medical_services", text: "ESIC Hospital: 4.0 KM" },
+        { icon: "train", text: "Danapur Station: 20 Mins" },
+        { icon: "alt_route", text: "NH-30 Main Highway: 5 Mins" }
+      ],
+      amenities: ["30-Ft Concrete Roads", "Underground Drainage", "Gated Arch Entry", "24/7 Security", "Solar LED Lights", "Central Temple & Park", "Water & Electric Supply"],
+      pdf: "Guru_Niwas_Colony_Masterplan_Brochure.pdf",
+      whatsapp: "Hello Swarup Group, I am interested in Guru Niwas Colony (Bihta). Please share plot layout map, rate chart, and site visit booking details."
+    },
+    "royal_garden": {
+      title: "Royal Garden — Mouza Painathi, Kanhauli",
+      category: "Luxury Villa Township (314 Plots)",
+      price: "₹23.60 Lakh+ (Starting)",
+      location: "Mouza Painathi, Thana No. 68, Kanhauli (Patna Ring Road)",
+      img: "assets/royal_garden_3d_gate.webp",
+      desc: "Royal Garden is Swarup Group's flagship 314-plot luxury gated villa township located on the 100-Ft Patna-Bihta Highway corridor. Just 500 meters from the Patli Inter-State Bus Stand and the 6-Lane Patna Ring Road Expressway. Features grand 3D entrance arches, central fountain park, and 30-40 ft wide boulevards.",
+      specs: {
+        sizes: "1050, 1350, 1800 & 2700 Sq.Ft",
+        road: "30-Ft & 40-Ft Boulevards",
+        legal: "DLRS Verified • Non-Disputed",
+        registry: "Instant Registry & Free Mutation"
+      },
+      distances: [
+        { icon: "directions_bus", text: "Patli Bus Stand: 500M" },
+        { icon: "alt_route", text: "Patna Ring Road: 500M" },
+        { icon: "school", text: "GOAL Institute: 1.0 KM" },
+        { icon: "train", text: "Danapur Station: 6.0 KM" },
+        { icon: "local_hospital", text: "AIIMS Patna: 7.0 KM" },
+        { icon: "flight", text: "Bihta Airport: 10 KM" }
+      ],
+      amenities: ["Grand 3D Gate", "Central Blue Fountain", "Kids Park", "30-40 Ft Concrete Roads", "Underground Sewerage", "Solar Street Lights", "24/7 CCTV Surveillance"],
+      pdf: "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
+      whatsapp: "Hello Swarup Group, I want complete plot details and available plot numbers for Royal Garden (Kanhauli). Please send brochure PDF and rate chart."
+    },
+    "site_visit": {
+      title: "Free VIP AC Cab Site Visit Tour",
+      category: "VIP Experience & Guidance",
+      price: "100% Free Doorstep Cab",
+      location: "Saguna More • Danapur • AIIMS • Patna Junction Pickup",
+      img: "assets/site_visit.webp",
+      desc: "Experience zero-hassle personalized site visits in our executive AC fleet. Our certified real estate advisors pick you up from your doorstep, guide you through on-ground boundary demarcation, official AutoCAD masterplans, and revenue khatiyan records with total transparency.",
+      specs: {
+        sizes: "Full Township Tour",
+        road: "Doorstep Pickup & Drop",
+        legal: "Live Khatiyan & Survey Proof",
+        registry: "Free Consultation Included"
+      },
+      distances: [
+        { icon: "directions_car", text: "Saguna More: Free Pickup" },
+        { icon: "train", text: "Danapur Station: Free Pickup" },
+        { icon: "local_hospital", text: "AIIMS Patna: Free Pickup" },
+        { icon: "apartment", text: "Patna City: Doorstep Pickup" }
+      ],
+      amenities: ["Chauffeur Driven AC Cab", "Senior Advisor Assistance", "On-Spot Demarcation", "Free Legal Document Kit", "Zero Hidden Charges"],
+      pdf: "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
+      whatsapp: "Hello Swarup Group, I would like to book a Free VIP AC Cab Site Visit for my family. Please confirm the pickup time."
+    },
+    "commercial_hub": {
+      title: "Swarup Business Park & Commercial Hub",
+      category: "Commercial Showroom & Retail",
+      price: "₹60 Lakh+ (Starting)",
+      location: "NH-30 Highway Frontage, Saguna More / RPS More Corridor",
+      img: "assets/swarup_group_apartments.webp",
+      desc: "High-visibility commercial plots, corporate banking floors, and retail showroom frontage along the buzzing NH-30 corridor near Saguna More. Designed for high footfall, premium brand presence, and exponential capital growth.",
+      specs: {
+        sizes: "1500–4000 Sq.Ft",
+        road: "60–100 Ft Highway Frontage",
+        legal: "Commercial Conversion Ready",
+        registry: "Direct Developer Registry"
+      },
+      distances: [
+        { icon: "storefront", text: "Saguna More: 2 Mins" },
+        { icon: "train", text: "Danapur Stn: 5 Mins" },
+        { icon: "local_hospital", text: "AIIMS Patna: 10 Mins" },
+        { icon: "flight", text: "Patna Airport: 15 Mins" }
+      ],
+      amenities: ["100-Ft Highway Frontage", "Multi-Level Parking", "24/7 Power Backup", "High Speed Elevators", "Commercial Zone"],
+      pdf: "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
+      whatsapp: "Hello Swarup Group, I am looking for Commercial showroom / plot space near Saguna More. Please send details."
+    },
+    "customer_feedback": {
+      title: "800+ Delighted Families & Instant Registry",
+      category: "Trust & Customer Legacy",
+      price: "8+ Years Unbroken Trust",
+      location: "Across Patna, Bihta, Kanhauli & Ring Road Corridors",
+      img: "assets/customer_feedback.webp",
+      desc: "Over 800+ families have successfully invested and secured instant registry with Swarup Group. We maintain a 100% legal purity record with complete mutation, clean land titles, and unmatched customer satisfaction across Bihar.",
+      specs: {
+        sizes: "All Plot Categories",
+        road: "Immediate Possession",
+        legal: "100% Mutation Record",
+        registry: "800+ Registries Delivered"
+      },
+      distances: [
+        { icon: "verified", text: "800+ Happy Families" },
+        { icon: "workspace_premium", text: "8+ Yrs Proven Record" },
+        { icon: "gavel", text: "100% DLRS Verification" },
+        { icon: "thumb_up", text: "5-Star Google Rating" }
+      ],
+      amenities: ["Legal Consultation", "Immediate Mutation Assistance", "Lifetime Boundary Care", "Dedicated Relationship Manager"],
+      pdf: "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
+      whatsapp: "Hello Swarup Group, I would like to speak to a Senior Property Advisor regarding property investments in Patna."
+    }
+  };
+
+  // ── FUNCTION TO POPULATE & OPEN RICH SEO FUNNEL MODAL ──
+  window.openProjectSeoModal = function(dataKey, customData = {}) {
+    const data = projectDatabase[dataKey] || {
+      title: customData.title || "Swarup Group Premium Property",
+      category: customData.category || "Residential Plots",
+      price: customData.price || "Contact for Pricing",
+      location: customData.location || "Patna Corridor, Bihar",
+      img: customData.img || "assets/guru_niwas_colony.webp",
+      desc: customData.desc || "Verified premium real estate offerings by Swarup Group with clear title deeds and immediate registry.",
+      specs: customData.specs || { sizes: "900–2400 Sq.Ft", road: "30-50 Ft Road", legal: "100% Mutation Done", registry: "Immediate Registry" },
+      distances: customData.distances || [
+        { icon: "near_me", text: "Near Patna Ring Road" },
+        { icon: "flight", text: "Bihta Airport: 10 Mins" },
+        { icon: "train", text: "Danapur Station: 15 Mins" },
+        { icon: "local_hospital", text: "AIIMS Patna: 15 Mins" }
+      ],
+      amenities: customData.amenities || ["30-Ft Wide Road", "Underground Drainage", "Gated Security", "Electricity & Water"],
+      pdf: customData.pdf || "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
+      whatsapp: customData.whatsapp || "Hello Swarup Group, I want more details on this project."
+    };
+
+    if (lightboxImg) lightboxImg.src = data.img;
+    if (lightboxTitle) lightboxTitle.textContent = data.title;
+    if (lightboxDesc) lightboxDesc.textContent = data.desc;
+    if (lightboxPriceTag) lightboxPriceTag.textContent = data.price;
+    if (lightboxLocText) lightboxLocText.textContent = data.location;
+
+    if (lightboxBadge) {
+      lightboxBadge.className = "reel-badge real-estate";
+      lightboxBadge.innerHTML = `<span class="material-symbols-outlined" style="font-size:14px;">verified</span> ${data.category}`;
+    }
+
+    if (specSizes) specSizes.textContent = data.specs.sizes;
+    if (specRoad) specRoad.textContent = data.specs.road;
+    if (specLegal) specLegal.textContent = data.specs.legal;
+    if (specRegistry) specRegistry.textContent = data.specs.registry;
+
+    // Distances
+    if (lightboxDistanceItems) {
+      lightboxDistanceItems.innerHTML = data.distances.map(d => `
+        <div class="distance-item">
+          <span class="material-symbols-outlined" style="font-size:14px; color:#d4a017;">${d.icon}</span>
+          <span>${d.text}</span>
+        </div>
+      `).join('');
+    }
+
+    // Amenities
+    if (lightboxAmenitiesStrip) {
+      lightboxAmenitiesStrip.innerHTML = data.amenities.map(a => `
+        <span class="amenity-chip">
+          <span class="material-symbols-outlined" style="font-size:13px;">check_circle</span>
+          ${a}
+        </span>
+      `).join('');
+    }
+
+    // PDF Brochure
+    if (lightboxPdfBtn) {
+      lightboxPdfBtn.href = data.pdf;
+      lightboxPdfBtn.download = data.pdf;
+    }
+
+    // WhatsApp Direct Link
+    if (lightboxWhatsappBtn) {
+      const encodedMsg = encodeURIComponent(data.whatsapp);
+      lightboxWhatsappBtn.href = `https://wa.me/919939989800?text=${encodedMsg}`;
+    }
+
+    // Quote
+    if (customData.quote && lightboxQuoteBox && lightboxQuote) {
+      lightboxQuote.textContent = customData.quote;
+      lightboxQuoteBox.style.display = 'block';
+    } else if (lightboxQuoteBox) {
+      lightboxQuoteBox.style.display = 'none';
+    }
+
+    if (lightboxModal) lightboxModal.classList.add('active');
+  };
+
+  // 3. Open Lightbox Modal on Gallery Card Click
   reelCards.forEach(card => {
+    card.style.cursor = 'pointer';
     card.addEventListener('click', (e) => {
       e.stopPropagation();
-      const img = card.dataset.img;
-      const title = card.dataset.title;
-      const desc = card.dataset.desc;
-      const cat = card.dataset.category;
-      const tag = card.dataset.tag || 'Swarup Group Project';
+      const title = card.dataset.title || '';
+      const desc = card.dataset.desc || '';
+      const img = card.dataset.img || '';
+      const cat = card.dataset.category || 'plots';
+      const tag = card.dataset.tag || 'Swarup Project';
       const quote = card.dataset.quote;
 
-      if (lightboxImg) lightboxImg.src = img;
-      if (lightboxTitle) lightboxTitle.textContent = title;
-      if (lightboxDesc) lightboxDesc.textContent = desc;
-
-      if (lightboxBadge) {
-        lightboxBadge.className = `reel-badge ${cat}`;
-        lightboxBadge.innerHTML = `<span class="material-symbols-outlined" style="font-size:14px;">verified</span> ${tag}`;
+      let key = 'guru_niwas';
+      if (title.toLowerCase().includes('royal garden') || desc.toLowerCase().includes('royal garden')) {
+        key = 'royal_garden';
+      } else if (title.toLowerCase().includes('visit') || title.toLowerCase().includes('tour')) {
+        key = 'site_visit';
+      } else if (title.toLowerCase().includes('commercial') || title.toLowerCase().includes('penthouse') || title.toLowerCase().includes('apartment')) {
+        key = 'commercial_hub';
+      } else if (cat === 'feedback') {
+        key = 'customer_feedback';
       }
 
-      if (quote && lightboxQuoteBox && lightboxQuote) {
-        lightboxQuote.textContent = quote;
-        lightboxQuoteBox.style.display = 'block';
-      } else if (lightboxQuoteBox) {
-        lightboxQuoteBox.style.display = 'none';
-      }
-
-      if (lightboxModal) lightboxModal.classList.add('active');
+      window.openProjectSeoModal(key, { title, desc, img, category: tag, quote });
     });
   });
 
-  // 4. Close Lightbox Modal
+  // 4. Also wire up Project Cards in #plots section to open the modal
+  document.querySelectorAll('#plots .project-card').forEach((pCard, idx) => {
+    pCard.style.cursor = 'pointer';
+    pCard.addEventListener('click', (e) => {
+      // Don't trigger if clicked on download button directly
+      if (e.target.closest('a[download]')) return;
+      
+      const cardTitle = pCard.querySelector('h3')?.textContent || '';
+      if (cardTitle.toLowerCase().includes('royal garden')) {
+        window.openProjectSeoModal('royal_garden');
+      } else if (cardTitle.toLowerCase().includes('guru niwas')) {
+        window.openProjectSeoModal('guru_niwas');
+      } else {
+        window.openProjectSeoModal('commercial_hub');
+      }
+    });
+  });
+
+  // 5. Close Lightbox Modal
   if (closeLightboxBtn && lightboxModal) {
     closeLightboxBtn.addEventListener('click', () => {
       lightboxModal.classList.remove('active');
