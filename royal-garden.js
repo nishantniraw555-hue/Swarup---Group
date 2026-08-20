@@ -41,8 +41,8 @@
     let currentFilter = 'all';
     let isDarkTheme = false; // Default: Clean White Architectural Theme
 
-    // Royal Garden Pricing Configuration
-    const BASE_RATE_PER_SQFT = 2600;
+    // Royal Garden Pricing Configuration (Official Rate: ₹2,700 / Sq.Ft)
+    const BASE_RATE_PER_SQFT = 2700;
 
     // Booked Plot numbers (Official Registry Allocation - Systematic IDs)
     const BOOKED_PLOT_IDS = new Set([

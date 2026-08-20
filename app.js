@@ -4855,13 +4855,13 @@ function initGalleryReels() {
   const projectDatabase = {
     "guru_niwas": {
       title: "Guru Niwas Colony — Bihta (Near IIT Gate 1)",
-      category: "Residential Gated Township",
-      price: "₹22 Lakh+ (Starting)",
+      category: "Residential Gated Township (159 Plots)",
+      price: "₹1,600 / Sq.Ft • From ₹14.40L",
       location: "Bihta, Patna (1.5 KM from IIT Patna Main Gate)",
       img: "assets/guru_niwas_colony.webp",
-      desc: "Guru Niwas Colony is Swarup Group's signature 159-plot master-planned residential enclave strategically located in the high-growth institutional corridor of Bihta. Backed by 100% verified DLRS survey records, 30-ft concrete roads, underground utilities, and guaranteed instant registry.",
+      desc: "Guru Niwas Colony is Swarup Group's signature 159-plot master-planned residential enclave in Bihta near IIT Patna Gate No. 1. Official Rate: ₹1,600 / Sq.Ft (900 Sq.Ft ~ ₹14.40 Lakh, 1200 Sq.Ft ~ ₹19.20 Lakh, 1600 Sq.Ft ~ ₹25.60 Lakh). 100% verified DLRS survey records with 30-ft concrete roads, underground utilities, and guaranteed instant registry.",
       specs: {
-        sizes: "900, 1200 & 1600 Sq.Ft",
+        sizes: "900, 1200 & 1600 Sq.Ft (₹1,600/Sq.Ft)",
         road: "30-Ft Wide Concrete Road",
         legal: "100% Clear Title & Mutation",
         registry: "Immediate on Spot Booking"
@@ -4874,19 +4874,19 @@ function initGalleryReels() {
         { icon: "train", text: "Danapur Station: 20 Mins" },
         { icon: "alt_route", text: "NH-30 Main Highway: 5 Mins" }
       ],
-      amenities: ["30-Ft Concrete Roads", "Underground Drainage", "Gated Arch Entry", "24/7 Security", "Solar LED Lights", "Central Temple & Park", "Water & Electric Supply"],
+      amenities: ["Rate: ₹1,600 / Sq.Ft", "30-Ft Concrete Roads", "Underground Drainage", "Gated Arch Entry", "24/7 Security", "Solar LED Lights", "Central Temple & Park"],
       pdf: "Guru_Niwas_Colony_Masterplan_Brochure.pdf",
-      whatsapp: "Hello Swarup Group, I am interested in Guru Niwas Colony (Bihta). Please share plot layout map, rate chart, and site visit booking details."
+      whatsapp: "Hello Swarup Group, I am interested in Guru Niwas Colony (Bihta - ₹1,600/Sq.Ft). Please share available plot layout map, rate chart, and site visit booking details."
     },
     "royal_garden": {
       title: "Royal Garden — Mouza Painathi, Kanhauli",
       category: "Luxury Villa Township (314 Plots)",
-      price: "₹23.60 Lakh+ (Starting)",
+      price: "₹2,700 / Sq.Ft • From ₹28.35L",
       location: "Mouza Painathi, Thana No. 68, Kanhauli (Patna Ring Road)",
       img: "assets/royal_garden_3d_gate.webp",
-      desc: "Royal Garden is Swarup Group's flagship 314-plot luxury gated villa township located on the 100-Ft Patna-Bihta Highway corridor. Just 500 meters from the Patli Inter-State Bus Stand and the 6-Lane Patna Ring Road Expressway. Features grand 3D entrance arches, central fountain park, and 30-40 ft wide boulevards.",
+      desc: "Royal Garden is Swarup Group's flagship 314-plot luxury gated villa township located on the 100-Ft Patna-Bihta Highway corridor. Official Rate: ₹2,700 / Sq.Ft (1050 Sq.Ft ~ ₹28.35 Lakh, 1200 Sq.Ft ~ ₹32.40 Lakh, 1350 Sq.Ft ~ ₹36.45 Lakh, 2700 Sq.Ft ~ ₹72.90 Lakh). Just 500 meters from Patli Bus Stand & Patna Ring Road. Features 3D arch gates, fountain park, and 30-40 ft boulevards.",
       specs: {
-        sizes: "1050, 1350, 1800 & 2700 Sq.Ft",
+        sizes: "1050, 1350, 1800 & 2700 Sq.Ft (₹2,700/Sq.Ft)",
         road: "30-Ft & 40-Ft Boulevards",
         legal: "DLRS Verified • Non-Disputed",
         registry: "Instant Registry & Free Mutation"
@@ -4899,9 +4899,9 @@ function initGalleryReels() {
         { icon: "local_hospital", text: "AIIMS Patna: 7.0 KM" },
         { icon: "flight", text: "Bihta Airport: 10 KM" }
       ],
-      amenities: ["Grand 3D Gate", "Central Blue Fountain", "Kids Park", "30-40 Ft Concrete Roads", "Underground Sewerage", "Solar Street Lights", "24/7 CCTV Surveillance"],
+      amenities: ["Rate: ₹2,700 / Sq.Ft", "Grand 3D Gate", "Central Blue Fountain", "Kids Park", "30-40 Ft Concrete Roads", "Underground Sewerage", "24/7 CCTV Security"],
       pdf: "Royal_Garden_Kanhauli_Masterplan_Brochure.pdf",
-      whatsapp: "Hello Swarup Group, I want complete plot details and available plot numbers for Royal Garden (Kanhauli). Please send brochure PDF and rate chart."
+      whatsapp: "Hello Swarup Group, I want complete plot details for Royal Garden Kanhauli (Rate: ₹2,700/Sq.Ft). Please send brochure PDF and available plot list."
     },
     "site_visit": {
       title: "Free VIP AC Cab Site Visit Tour",
