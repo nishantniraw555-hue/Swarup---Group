@@ -4710,7 +4710,7 @@ function initSmeuldersHeroSlider() {
   const subtitles = [
     'Redefining Luxury Living in Bihar',
     'Royal Garden Gate — Kanhauli',
-    'Guru Niwas Gate — Bihta',
+    'Guru Niwas Colony — Bihta',
     'Royal Garden Vibrant View — Kanhauli'
   ];
 
