@@ -1,81 +1,84 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <defs>
-    <!-- Background Outer Glow Gradient -->
-    <linearGradient id="botBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1e3a8a" />
-      <stop offset="50%" stop-color="#0284c7" />
+    <!-- Rich Deep Royal Sapphire Base Gradient -->
+    <linearGradient id="vibrantAvatarBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="40%" stop-color="#1e3a8a" />
+      <stop offset="100%" stop-color="#090d16" />
+    </linearGradient>
+
+    <!-- Ultra Vibrant Metallic Gold Gradient -->
+    <linearGradient id="vibrantAvatarGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF385" />
+      <stop offset="35%" stop-color="#FFB800" />
+      <stop offset="75%" stop-color="#FF8A00" />
+      <stop offset="100%" stop-color="#E65100" />
+    </linearGradient>
+
+    <!-- 3D Pearl Head Gradient -->
+    <linearGradient id="vibrantAvatarHead" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="60%" stop-color="#E0F2FE" />
+      <stop offset="100%" stop-color="#7DD3FC" />
+    </linearGradient>
+
+    <!-- Deep Visor Gradient -->
+    <linearGradient id="vibrantAvatarVisor" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020617" />
       <stop offset="100%" stop-color="#0f172a" />
     </linearGradient>
 
-    <!-- Head Gradient -->
-    <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ffffff" />
-      <stop offset="70%" stop-color="#e0f2fe" />
-      <stop offset="100%" stop-color="#bae6fd" />
+    <!-- Neon Cyber Cyan Eye Glow -->
+    <linearGradient id="neonAvatarEye" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#67E8F9" />
+      <stop offset="50%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#0284C7" />
     </linearGradient>
 
-    <!-- Visor Gradient -->
-    <linearGradient id="visorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0f172a" />
-      <stop offset="100%" stop-color="#1e293b" />
-    </linearGradient>
-
-    <!-- Eye Glow Gradient -->
-    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#38bdf8" />
-      <stop offset="100%" stop-color="#0284c7" />
-    </linearGradient>
-
-    <!-- Gold Accent Gradient -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fbbf24" />
-      <stop offset="100%" stop-color="#d97706" />
-    </linearGradient>
-
-    <!-- Filter for Eye Glow -->
-    <filter id="eyeGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="2" result="blur" />
+    <filter id="neonEyeGlowAvatar" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2.5" result="blur" />
       <feComposite in="SourceGraphic" in2="blur" operator="over" />
     </filter>
 
-    <!-- Drop Shadow for Head -->
-    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.25" />
+    <filter id="goldGlowAvatar" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#FF8A00" flood-opacity="0.7" />
     </filter>
   </defs>
 
-  <!-- Circular Base Badge -->
-  <circle cx="50" cy="50" r="48" fill="url(#botBgGrad)" stroke="url(#goldGrad)" stroke-width="2.5" />
+  <!-- Circular Outer Badge in Royal Blue & Gold Border -->
+  <circle cx="50" cy="50" r="48" fill="url(#vibrantAvatarBg)" stroke="url(#vibrantAvatarGold)" stroke-width="3.5" />
 
-  <!-- Antenna Sparkle / Ball -->
-  <circle cx="50" cy="18" r="4.5" fill="url(#goldGrad)" />
-  <line x1="50" y1="22" x2="50" y2="28" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+  <!-- Antenna -->
+  <circle cx="50" cy="16.5" r="5" fill="url(#vibrantAvatarGold)" filter="url(#goldGlowAvatar)" />
+  <line x1="50" y1="20" x2="50" y2="28" stroke="url(#vibrantAvatarGold)" stroke-width="3" stroke-linecap="round" />
 
-  <!-- Ear / Headphone Nodes -->
-  <rect x="18" y="42" width="6" height="16" rx="3" fill="url(#goldGrad)" />
-  <rect x="76" y="42" width="6" height="16" rx="3" fill="url(#goldGrad)" />
+  <!-- Side Ear Pods -->
+  <rect x="15" y="40" width="8" height="18" rx="4" fill="url(#vibrantAvatarGold)" filter="url(#goldGlowAvatar)" />
+  <rect x="77" y="40" width="8" height="18" rx="4" fill="url(#vibrantAvatarGold)" filter="url(#goldGlowAvatar)" />
 
-  <!-- Robot Head -->
-  <rect x="22" y="27" width="56" height="46" rx="16" fill="url(#headGrad)" filter="url(#dropShadow)" />
+  <!-- 3D Robot Head -->
+  <rect x="20" y="26" width="60" height="50" rx="18" fill="url(#vibrantAvatarHead)" stroke="#FFFFFF" stroke-width="2" filter="drop-shadow(0 8px 16px rgba(0,0,0,0.5))" />
 
-  <!-- Dark Glossy Screen / Visor -->
-  <rect x="28" y="34" width="44" height="26" rx="10" fill="url(#visorGrad)" stroke="#38bdf8" stroke-width="1.2" />
+  <!-- Visor Gold Bezel -->
+  <rect x="26" y="33" width="48" height="30" rx="12" fill="none" stroke="url(#vibrantAvatarGold)" stroke-width="2.2" />
 
-  <!-- Visor Top Glass Reflection Highlight -->
-  <path d="M 32 37 Q 50 35 68 37 A 8 8 0 0 0 62 43 Q 50 40 38 43 A 8 8 0 0 1 32 37 Z" fill="#ffffff" opacity="0.18" />
+  <!-- Obsidian Screen -->
+  <rect x="27" y="34" width="46" height="28" rx="11" fill="url(#vibrantAvatarVisor)" />
 
-  <!-- Expressive Friendly Cyan Glowing Eyes -->
-  <!-- Left Eye -->
-  <circle cx="41" cy="47" r="4.5" fill="url(#eyeGrad)" filter="url(#eyeGlow)" />
-  <circle cx="42.5" cy="45.5" r="1.5" fill="#ffffff" />
+  <!-- Visor Glass Reflection -->
+  <path d="M 30 36 Q 50 33 70 36 A 9 9 0 0 0 64 43 Q 50 39 36 43 A 9 9 0 0 1 30 36 Z" fill="#FFFFFF" opacity="0.3" />
 
-  <!-- Right Eye -->
-  <circle cx="59" cy="47" r="4.5" fill="url(#eyeGrad)" filter="url(#eyeGlow)" />
-  <circle cx="60.5" cy="45.5" r="1.5" fill="#ffffff" />
+  <!-- Left Glowing Neon Cyan Eye -->
+  <circle cx="40" cy="48" r="5.5" fill="url(#neonAvatarEye)" filter="url(#neonEyeGlowAvatar)" />
+  <circle cx="42" cy="46" r="2" fill="#FFFFFF" />
 
-  <!-- Friendly Smile / Voice Wave -->
-  <path d="M 44 55 Q 50 58 56 55" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none" />
+  <!-- Right Glowing Neon Cyan Eye -->
+  <circle cx="60" cy="48" r="5.5" fill="url(#neonAvatarEye)" filter="url(#neonEyeGlowAvatar)" />
+  <circle cx="62" cy="46" r="2" fill="#FFFFFF" />
 
-  <!-- Subtle AI Sparkle Star on Cheek -->
-  <path d="M 50 78 L 52 82 L 56 84 L 52 86 L 50 90 L 48 86 L 44 84 L 48 82 Z" fill="url(#goldGrad)" opacity="0.9" />
+  <!-- Friendly Voice Curve / Smile -->
+  <path d="M 44 57 Q 50 61 56 57" stroke="#00F0FF" stroke-width="2.6" stroke-linecap="round" fill="none" filter="url(#neonEyeGlowAvatar)" />
+
+  <!-- Sparkling Golden Star Emblem -->
+  <path d="M 50 80 L 52.5 84.5 L 57 86.5 L 52.5 88.5 L 50 93 L 47.5 88.5 L 43 86.5 L 47.5 84.5 Z" fill="url(#vibrantAvatarGold)" filter="url(#goldGlowAvatar)" />
 </svg>
