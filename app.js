@@ -145,7 +145,7 @@ window.openRoyalGardenPlotModal = function openRoyalGardenPlotModal(p) {
 /* ==========================================
    SWARUP GROUP — MASTER INIT
    ========================================== */
-window.BOOKED_PLOT_NUMBERS = window.BOOKED_PLOT_NUMBERS || [31, 32, 33, 34, 43, 44, 45, 46, 47, 49, 61, 62, 64, 65, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 113, 114, 134, 135];
+window.BOOKED_PLOT_NUMBERS = window.BOOKED_PLOT_NUMBERS || [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 29, 30, 31, 32, 33, 34, 43, 44, 45, 46, 47, 49, 61, 62, 64, 65, 66, 67, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 113, 114, 134, 135];
 
 function isPlotBooked(idOrNum) {
   if (!idOrNum) return false;
@@ -3142,7 +3142,7 @@ function initRouteTimeline() {
     { x: 0.84, y: 1460, title: "Turning South towards Swarup Gated Township Corridor" },
     { x: 0.92, y: 1460, title: "Turning East (Right) onto Approach Link Road" },
     { x: 0.92, y: 1640, title: "Turning South towards GURU NIWAS COLONY (On Left Side)" },
-    { x: 0.92, y: 1720, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 159 Plots - On Left Side)!" }
+    { x: 0.92, y: 1720, title: "Destination Arrived: GURU NIWAS COLONY (Bihta - 327 Plots - On Left Side)!" }
   ];
 
   function getPointOnPath(t) {
@@ -4317,7 +4317,7 @@ function initRouteTimeline() {
 
     // Sharp Dynamic Final Destination Card
     if (reveal > 0.35) {
-      drawCard(townX, townY - Math.round(54 * s), "🏆 GURU NIWAS COLONY", "159 Plots Ready for Registry • Left of Road", '#d4a017', isDark, s);
+      drawCard(townX, townY - Math.round(54 * s), "🏆 GURU NIWAS COLONY", "327 Plots Ready for Registry • Left of Road", '#d4a017', isDark, s);
     }
 
     ctx.restore();
@@ -4840,11 +4840,11 @@ function initGalleryReels() {
   const projectDatabase = {
     "guru_niwas": {
       title: "Guru Niwas Colony — Bihta (Near IIT Gate 1)",
-      category: "Residential Gated Township (159 Plots)",
+      category: "Residential Gated Township (327 Plots)",
       price: "₹1,600 / Sq.Ft • From ₹14.40L",
       location: "Bihta, Patna (1.5 KM from IIT Patna Main Gate)",
       img: "assets/guru_niwas_colony.webp",
-      desc: "Guru Niwas Colony is Swarup Group's signature 159-plot master-planned residential enclave in Bihta near IIT Patna Gate No. 1. Official Rate: ₹1,600 / Sq.Ft (900 Sq.Ft ~ ₹14.40 Lakh, 1200 Sq.Ft ~ ₹19.20 Lakh, 1600 Sq.Ft ~ ₹25.60 Lakh). 100% verified DLRS survey records with 30-ft concrete roads, underground utilities, and guaranteed instant registry.",
+      desc: "Guru Niwas Colony is Swarup Group's signature 327-plot master-planned residential enclave in Bihta near IIT Patna Gate No. 1. Official Rate: ₹1,600 / Sq.Ft (900 Sq.Ft ~ ₹14.40 Lakh, 1200 Sq.Ft ~ ₹19.20 Lakh, 1600 Sq.Ft ~ ₹25.60 Lakh). 100% verified DLRS survey records with 30-ft concrete roads, underground utilities, and guaranteed instant registry.",
       specs: {
         sizes: "900, 1200 & 1600 Sq.Ft (₹1,600/Sq.Ft)",
         road: "30-Ft Wide Concrete Road",
