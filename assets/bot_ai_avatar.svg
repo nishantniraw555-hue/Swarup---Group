@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <!-- Background Outer Glow Gradient -->
+    <linearGradient id="botBgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e3a8a" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+
+    <!-- Head Gradient -->
+    <linearGradient id="headGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="70%" stop-color="#e0f2fe" />
+      <stop offset="100%" stop-color="#bae6fd" />
+    </linearGradient>
+
+    <!-- Visor Gradient -->
+    <linearGradient id="visorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#1e293b" />
+    </linearGradient>
+
+    <!-- Eye Glow Gradient -->
+    <linearGradient id="eyeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#0284c7" />
+    </linearGradient>
+
+    <!-- Gold Accent Gradient -->
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+
+    <!-- Filter for Eye Glow -->
+    <filter id="eyeGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <!-- Drop Shadow for Head -->
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f172a" flood-opacity="0.25" />
+    </filter>
+  </defs>
+
+  <!-- Circular Base Badge -->
+  <circle cx="50" cy="50" r="48" fill="url(#botBgGrad)" stroke="url(#goldGrad)" stroke-width="2.5" />
+
+  <!-- Antenna Sparkle / Ball -->
+  <circle cx="50" cy="18" r="4.5" fill="url(#goldGrad)" />
+  <line x1="50" y1="22" x2="50" y2="28" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+
+  <!-- Ear / Headphone Nodes -->
+  <rect x="18" y="42" width="6" height="16" rx="3" fill="url(#goldGrad)" />
+  <rect x="76" y="42" width="6" height="16" rx="3" fill="url(#goldGrad)" />
+
+  <!-- Robot Head -->
+  <rect x="22" y="27" width="56" height="46" rx="16" fill="url(#headGrad)" filter="url(#dropShadow)" />
+
+  <!-- Dark Glossy Screen / Visor -->
+  <rect x="28" y="34" width="44" height="26" rx="10" fill="url(#visorGrad)" stroke="#38bdf8" stroke-width="1.2" />
+
+  <!-- Visor Top Glass Reflection Highlight -->
+  <path d="M 32 37 Q 50 35 68 37 A 8 8 0 0 0 62 43 Q 50 40 38 43 A 8 8 0 0 1 32 37 Z" fill="#ffffff" opacity="0.18" />
+
+  <!-- Expressive Friendly Cyan Glowing Eyes -->
+  <!-- Left Eye -->
+  <circle cx="41" cy="47" r="4.5" fill="url(#eyeGrad)" filter="url(#eyeGlow)" />
+  <circle cx="42.5" cy="45.5" r="1.5" fill="#ffffff" />
+
+  <!-- Right Eye -->
+  <circle cx="59" cy="47" r="4.5" fill="url(#eyeGrad)" filter="url(#eyeGlow)" />
+  <circle cx="60.5" cy="45.5" r="1.5" fill="#ffffff" />
+
+  <!-- Friendly Smile / Voice Wave -->
+  <path d="M 44 55 Q 50 58 56 55" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none" />
+
+  <!-- Subtle AI Sparkle Star on Cheek -->
+  <path d="M 50 78 L 52 82 L 56 84 L 52 86 L 50 90 L 48 86 L 44 84 L 48 82 Z" fill="url(#goldGrad)" opacity="0.9" />
+</svg>

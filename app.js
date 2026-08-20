@@ -5787,7 +5787,7 @@ function initSwarupAiBot() {
 
     row.innerHTML = `
       <div class="bot-msg-avatar">
-        <img src="assets/swarup_symbol.webp" alt="Bot">
+        <img src="assets/bot_ai_avatar.svg" alt="Bot">
       </div>
       <div class="bot-msg-bubble">
         ${htmlContent}
@@ -5823,7 +5823,7 @@ function initSwarupAiBot() {
     row.className = 'bot-msg-row bot-typing';
     row.id = 'bot-typing-indicator';
     row.innerHTML = `
-      <div class="bot-msg-avatar"><img src="assets/swarup_symbol.webp" alt="Bot"></div>
+      <div class="bot-msg-avatar"><img src="assets/bot_ai_avatar.svg" alt="Bot"></div>
       <div class="bot-msg-bubble typing-bubble">
         <span class="typing-dot"></span>
         <span class="typing-dot"></span>
