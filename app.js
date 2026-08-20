@@ -6220,19 +6220,9 @@ window.toggleProjectDetails = function(contentId, btnId) {
   const isHidden = content.style.display === 'none' || !content.style.display;
   if (isHidden) {
     content.style.display = 'block';
-    if (btn) {
-      const textSpan = btn.querySelector('.btn-text');
-      const iconSpan = btn.querySelector('.btn-icon');
-      if (textSpan) textSpan.textContent = 'Read Less Details';
-      if (iconSpan) iconSpan.textContent = 'expand_less';
-    }
+    if (btn) btn.textContent = 'Read Less Details';
   } else {
     content.style.display = 'none';
-    if (btn) {
-      const textSpan = btn.querySelector('.btn-text');
-      const iconSpan = btn.querySelector('.btn-icon');
-      if (textSpan) textSpan.textContent = 'Read More Details';
-      if (iconSpan) iconSpan.textContent = 'expand_more';
-    }
+    if (btn) btn.textContent = 'Read More Details';
   }
 };

@@ -617,36 +617,39 @@ footer,
 }
 
 
-/* 🌟 SHARP RECTANGLE BLUE OUTLINE BUTTON (MATCHING TOP HERO BUTTON STYLE WITH BLUE BORDER) 🌟 */
+/* 🌟 SHARP LARGE RECTANGLE BLUE OUTLINE BUTTON (ZERO COLOR/FILL INSIDE - PURE TEXT ONLY) 🌟 */
 .btn-outline-blue {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 0.65rem 1.6rem;
+  padding: 0.85rem 2.6rem !important;
   background: transparent !important;
   background-color: transparent !important;
-  border: 1.5px solid #1e3a8a !important;
+  border: 1.8px solid #1e3a8a !important;
   border-radius: 0px !important;
   color: #1e3a8a !important;
   font-family: var(--font-apple);
-  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  font-size: clamp(0.92rem, 1.25vw, 1.1rem) !important;
   font-weight: 500 !important;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: capitalize;
   text-decoration: none !important;
   cursor: pointer;
   box-shadow: none !important;
-  transition: all 0.25s ease;
+  outline: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  transition: all 0.22s ease;
   box-sizing: border-box;
 }
 
 .btn-outline-blue:hover {
-  background: rgba(30, 58, 138, 0.08) !important;
-  border-color: #1e3a8a !important;
-  color: #1e3a8a !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: #0f172a !important;
+  color: #0f172a !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15) !important;
+  box-shadow: none !important;
 }
 
 .btn-outline-blue:active {
