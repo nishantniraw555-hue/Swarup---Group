@@ -617,20 +617,21 @@ footer,
 }
 
 
-/* 🌟 SHARP LARGE RECTANGLE BLUE OUTLINE BUTTON (ZERO COLOR/FILL INSIDE - PURE TEXT ONLY) 🌟 */
+/* 🌟 EXACT MATCH OF TOP HERO RECTANGLE BUTTON WITH BLUE OUTLINE (ZERO FILL INSIDE) 🌟 */
+.hero-btn-outline.btn-blue,
 .btn-outline-blue {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 2.6rem !important;
+  padding: 0.9rem 3rem !important;
   background: transparent !important;
   background-color: transparent !important;
-  border: 1.8px solid #1e3a8a !important;
+  border: 1.2px solid #1e3a8a !important;
   border-radius: 0px !important;
   color: #1e3a8a !important;
   font-family: var(--font-apple);
-  font-size: clamp(0.92rem, 1.25vw, 1.1rem) !important;
-  font-weight: 500 !important;
+  font-size: clamp(0.95rem, 1.2vw, 1.08rem) !important;
+  font-weight: 400 !important;
   letter-spacing: 0.08em;
   text-transform: capitalize;
   text-decoration: none !important;
@@ -639,10 +640,12 @@ footer,
   outline: none !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
-  transition: all 0.22s ease;
+  text-shadow: none !important;
+  transition: all 0.25s ease;
   box-sizing: border-box;
 }
 
+.hero-btn-outline.btn-blue:hover,
 .btn-outline-blue:hover {
   background: transparent !important;
   background-color: transparent !important;
@@ -652,6 +655,7 @@ footer,
   box-shadow: none !important;
 }
 
+.hero-btn-outline.btn-blue:active,
 .btn-outline-blue:active {
   transform: translateY(0);
 }
