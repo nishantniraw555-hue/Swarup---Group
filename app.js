@@ -1648,7 +1648,15 @@ function initCalculator() {
     tabUnit.addEventListener('click', () => {
       currentMode = 'unit';
       tabUnit.classList.add('active');
+      tabUnit.style.background = '#1e3a8a';
+      tabUnit.style.color = '#ffffff';
+      tabUnit.style.borderColor = '#1e3a8a';
+
       tabDims.classList.remove('active');
+      tabDims.style.background = '#f8fafc';
+      tabDims.style.color = '#475569';
+      tabDims.style.borderColor = '#cbd5e1';
+
       panelUnit.style.display = 'block';
       panelDims.style.display = 'none';
       recalc();
@@ -1657,7 +1665,15 @@ function initCalculator() {
     tabDims.addEventListener('click', () => {
       currentMode = 'dims';
       tabDims.classList.add('active');
+      tabDims.style.background = '#1e3a8a';
+      tabDims.style.color = '#ffffff';
+      tabDims.style.borderColor = '#1e3a8a';
+
       tabUnit.classList.remove('active');
+      tabUnit.style.background = '#f8fafc';
+      tabUnit.style.color = '#475569';
+      tabUnit.style.borderColor = '#cbd5e1';
+
       panelDims.style.display = 'block';
       panelUnit.style.display = 'none';
       recalc();
@@ -1667,8 +1683,16 @@ function initCalculator() {
   // Laggi Pill Clicks
   laggiPills.forEach(pill => {
     pill.addEventListener('click', () => {
-      laggiPills.forEach(p => p.classList.remove('active'));
+      laggiPills.forEach(p => {
+        p.classList.remove('active');
+        p.style.background = '#ffffff';
+        p.style.color = '#334155';
+        p.style.borderColor = '#cbd5e1';
+      });
       pill.classList.add('active');
+      pill.style.background = '#1e3a8a';
+      pill.style.color = '#ffffff';
+      pill.style.borderColor = '#1e3a8a';
 
       currentHath = parseFloat(pill.getAttribute('data-hath')) || 5.5;
       activeStateMode = 'bihar';
@@ -1695,8 +1719,14 @@ function initCalculator() {
         laggiPills.forEach(p => {
           if (parseFloat(p.getAttribute('data-hath')) === val) {
             p.classList.add('active');
+            p.style.background = '#1e3a8a';
+            p.style.color = '#ffffff';
+            p.style.borderColor = '#1e3a8a';
           } else {
             p.classList.remove('active');
+            p.style.background = '#ffffff';
+            p.style.color = '#334155';
+            p.style.borderColor = '#cbd5e1';
           }
         });
         recalc();
@@ -1729,8 +1759,14 @@ function initCalculator() {
       laggiPills.forEach(p => {
         if (parseFloat(p.getAttribute('data-hath')) === currentHath) {
           p.classList.add('active');
+          p.style.background = '#1e3a8a';
+          p.style.color = '#ffffff';
+          p.style.borderColor = '#1e3a8a';
         } else {
           p.classList.remove('active');
+          p.style.background = '#ffffff';
+          p.style.color = '#334155';
+          p.style.borderColor = '#cbd5e1';
         }
       });
       recalc();
