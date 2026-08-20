@@ -6209,3 +6209,30 @@ if (document.readyState === 'loading') {
   initGA4EventTracking();
 }
 
+
+
+// 🌟 TOGGLE PROJECT READ MORE / COLLAPSE 🌟
+window.toggleProjectDetails = function(contentId, btnId) {
+  const content = document.getElementById(contentId);
+  const btn = document.getElementById(btnId);
+  if (!content) return;
+  
+  const isHidden = content.style.display === 'none' || !content.style.display;
+  if (isHidden) {
+    content.style.display = 'block';
+    if (btn) {
+      const textSpan = btn.querySelector('.btn-text');
+      const iconSpan = btn.querySelector('.btn-icon');
+      if (textSpan) textSpan.textContent = 'Read Less Details';
+      if (iconSpan) iconSpan.textContent = 'expand_less';
+    }
+  } else {
+    content.style.display = 'none';
+    if (btn) {
+      const textSpan = btn.querySelector('.btn-text');
+      const iconSpan = btn.querySelector('.btn-icon');
+      if (textSpan) textSpan.textContent = 'Read More Details';
+      if (iconSpan) iconSpan.textContent = 'expand_more';
+    }
+  }
+};

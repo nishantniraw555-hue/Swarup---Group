@@ -616,6 +616,47 @@ footer,
   box-shadow: none !important;
 }
 
+
+/* 🌟 SHARP RECTANGLE BLUE OUTLINE BUTTON (MATCHING TOP HERO BUTTON STYLE WITH BLUE BORDER) 🌟 */
+.btn-outline-blue {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0.65rem 1.6rem;
+  background: transparent !important;
+  background-color: transparent !important;
+  border: 1.5px solid #1e3a8a !important;
+  border-radius: 0px !important;
+  color: #1e3a8a !important;
+  font-family: var(--font-apple);
+  font-size: clamp(0.85rem, 1.15vw, 0.98rem);
+  font-weight: 500 !important;
+  letter-spacing: 0.06em;
+  text-transform: capitalize;
+  text-decoration: none !important;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: all 0.25s ease;
+  box-sizing: border-box;
+}
+
+.btn-outline-blue:hover {
+  background: rgba(30, 58, 138, 0.08) !important;
+  border-color: #1e3a8a !important;
+  color: #1e3a8a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15) !important;
+}
+
+.btn-outline-blue:active {
+  transform: translateY(0);
+}
+
+.project-details-collapse {
+  transition: all 0.35s ease;
+}
+
 .hero-btn-outline:active {
   transform: translateY(0);
 }
