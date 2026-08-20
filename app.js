@@ -1597,7 +1597,7 @@ function initRoyalGardenMasterplanCanvas() {
    ========================================== */
 function initCalculator() {
   const customHathInput = document.getElementById('custom-hath-input');
-  const laggiPills = document.querySelectorAll('.laggi-pill-btn');
+  const laggiPills = document.querySelectorAll('.laggi-pill-btn, .laggi-card-pill');
   const regionSelect = document.getElementById('calc-region-select');
   const formulaLaggiText = document.getElementById('formula-laggi-text');
   const formulaMetricsText = document.getElementById('formula-metrics-text');
@@ -1648,15 +1648,7 @@ function initCalculator() {
     tabUnit.addEventListener('click', () => {
       currentMode = 'unit';
       tabUnit.classList.add('active');
-      tabUnit.style.background = '#1e3a8a';
-      tabUnit.style.color = '#ffffff';
-      tabUnit.style.borderColor = '#1e3a8a';
-
       tabDims.classList.remove('active');
-      tabDims.style.background = '#f8fafc';
-      tabDims.style.color = '#475569';
-      tabDims.style.borderColor = '#cbd5e1';
-
       panelUnit.style.display = 'block';
       panelDims.style.display = 'none';
       recalc();
@@ -1665,15 +1657,7 @@ function initCalculator() {
     tabDims.addEventListener('click', () => {
       currentMode = 'dims';
       tabDims.classList.add('active');
-      tabDims.style.background = '#1e3a8a';
-      tabDims.style.color = '#ffffff';
-      tabDims.style.borderColor = '#1e3a8a';
-
       tabUnit.classList.remove('active');
-      tabUnit.style.background = '#f8fafc';
-      tabUnit.style.color = '#475569';
-      tabUnit.style.borderColor = '#cbd5e1';
-
       panelDims.style.display = 'block';
       panelUnit.style.display = 'none';
       recalc();
@@ -1683,20 +1667,20 @@ function initCalculator() {
   // Laggi Pill Clicks
   laggiPills.forEach(pill => {
     pill.addEventListener('click', () => {
-      laggiPills.forEach(p => {
-        p.classList.remove('active');
-        p.style.background = '#ffffff';
-        p.style.color = '#334155';
-        p.style.borderColor = '#cbd5e1';
-      });
+      laggiPills.forEach(p => p.classList.remove('active'));
       pill.classList.add('active');
-      pill.style.background = '#1e3a8a';
-      pill.style.color = '#ffffff';
-      pill.style.borderColor = '#1e3a8a';
 
       currentHath = parseFloat(pill.getAttribute('data-hath')) || 5.5;
       activeStateMode = 'bihar';
       if (customHathInput) customHathInput.value = currentHath;
+      if (regionSelect) {
+        for (let opt of regionSelect.options) {
+          if (parseFloat(opt.value) === currentHath) {
+            opt.selected = true;
+            break;
+          }
+        }
+      }
       recalc();
     });
   });
@@ -1711,14 +1695,8 @@ function initCalculator() {
         laggiPills.forEach(p => {
           if (parseFloat(p.getAttribute('data-hath')) === val) {
             p.classList.add('active');
-            p.style.background = '#1e3a8a';
-            p.style.color = '#ffffff';
-            p.style.borderColor = '#1e3a8a';
           } else {
             p.classList.remove('active');
-            p.style.background = '#ffffff';
-            p.style.color = '#334155';
-            p.style.borderColor = '#cbd5e1';
           }
         });
         recalc();
@@ -1746,20 +1724,15 @@ function initCalculator() {
         activeStateMode = 'bihar';
         currentHath = parseFloat(val) || 5.5;
         if (customHathInput) customHathInput.value = currentHath;
-        laggiPills.forEach(p => {
-          if (parseFloat(p.getAttribute('data-hath')) === currentHath) {
-            p.classList.add('active');
-            p.style.background = '#1e3a8a';
-            p.style.color = '#ffffff';
-            p.style.borderColor = '#1e3a8a';
-          } else {
-            p.classList.remove('active');
-            p.style.background = '#ffffff';
-            p.style.color = '#334155';
-            p.style.borderColor = '#cbd5e1';
-          }
-        });
       }
+
+      laggiPills.forEach(p => {
+        if (parseFloat(p.getAttribute('data-hath')) === currentHath) {
+          p.classList.add('active');
+        } else {
+          p.classList.remove('active');
+        }
+      });
       recalc();
     });
   }
@@ -1772,6 +1745,18 @@ function initCalculator() {
       const unit = btn.getAttribute('data-unit') || 'katha';
       if (inputVal) inputVal.value = val;
       if (inputUnit) inputUnit.value = unit;
+      recalc();
+    });
+  });
+
+  // Quick Dimension Presets
+  const dimPresetBtns = document.querySelectorAll('.calc-dim-preset-btn');
+  dimPresetBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const l = parseFloat(btn.getAttribute('data-l')) || 40;
+      const w = parseFloat(btn.getAttribute('data-w')) || 30;
+      if (dimLength) dimLength.value = l;
+      if (dimWidth) dimWidth.value = w;
       recalc();
     });
   });

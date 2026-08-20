@@ -68,7 +68,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=271">
+  <link rel="stylesheet" href="styles.css?v=272">
 
   <!-- Preload Critical Hero Assets for LCP (Largest Contentful Paint) -->
   <link rel="preload" href="assets/royal_garden_3d_gate.webp" as="image" type="image/webp">
@@ -1526,80 +1526,88 @@
     </div>
   </section>
 
-  <!-- ════════════════════════════════════════
-       BIHAR REVENUE & DLRS OFFICIAL LAND MEASUREMENT CALCULATOR
+    <!-- ════════════════════════════════════════
+       BIHAR REVENUE & DLRS OFFICIAL LAND MEASUREMENT CALCULATOR (SYSTEMATIC REDESIGN)
        ════════════════════════════════════════ -->
-  <section id="calculator" style="padding:5rem 1.5rem; max-width:1200px; margin:0 auto;">
-    <div class="calc-panel" style="background:#ffffff; border:2.5px solid #d4a017; border-radius:28px; padding:2.5rem; box-shadow:0 20px 55px rgba(212,160,23,0.14), 0 0 0 5px rgba(212,160,23,0.08), 0 4px 20px rgba(0,0,0,0.05); position:relative; overflow:hidden;">
-      <div style="position:absolute; top:0; left:0; width:100%; height:5px; background:linear-gradient(90deg, #1e3a8a 0%, #d4a017 50%, #1e3a8a 100%);"></div>
+  <section id="calculator" class="calc-section-container">
+    <div class="calc-master-card">
       
-      <!-- Header -->
-      <div style="text-align:center; margin-bottom:1.75rem;">
-        <div class="section-label" style="display:inline-flex; align-items:center; gap:6px; background:rgba(30,58,138,0.08); color:#1e3a8a; border:1px solid rgba(30,58,138,0.2);">
-          <span class="material-symbols-outlined" style="font-size:16px;">verified</span>
-          Bihar DLRS & Amin Land Survey Standard
+      <!-- Top Accent Bar -->
+      <div class="calc-accent-strip"></div>
+      
+      <!-- Section Header -->
+      <div class="calc-header-block">
+        <div class="calc-badge">
+          <span class="material-symbols-outlined">verified</span>
+          Bihar DLRS &amp; Amin Land Survey Standard
         </div>
-        <h2 class="section-heading" style="margin-top:0.35rem; font-size:clamp(1.7rem, 3.5vw, 2.3rem);">
-          जमीन मापी एवं क्षेत्रफल कैलकुलेटर (राजस्व एवं अमीन पैमाना)
+        <h2 class="calc-main-title">
+          जमीन मापी एवं क्षेत्रफल कैलकुलेटर
         </h2>
-        <p style="color:var(--text-muted); font-size:0.85rem; max-width:800px; margin:0.5rem auto 0; line-height:1.6;">
-          बिहार सरकार <strong>राजस्व एवं भूमि सुधार विभाग (DLRS)</strong>, अमीन सर्वे नियमों (लग्गी, कड़ी, जरीब, डिसमिल) एवं सभी राज्यों (बिहार, यूपी, दिल्ली, हरियाणा) के आधिकारिक सूत्रों के आधार पर 100% सटीक गणना करें।
+        <p class="calc-subtitle">
+          बिहार सरकार राजस्व एवं भूमि सुधार विभाग (DLRS), अमीन सर्वे पैमाना (लग्गी, धूर, कट्ठा, बीघा, डिसमिल व कड़ी) के आधार पर 100% सटीक गणना
         </p>
       </div>
 
-      <!-- OFFICIAL DLRS KHATIYAN RULE NOTICE -->
-      <div style="background:linear-gradient(135deg, rgba(212,160,23,0.1) 0%, rgba(30,58,138,0.05) 100%); border:1.5px solid #d4a017; border-radius:16px; padding:1.1rem 1.4rem; margin-bottom:1.75rem;">
-        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-          <span class="material-symbols-outlined" style="font-size:24px; color:#d4a017; flex-shrink:0; margin-top:2px;">gavel</span>
-          <div style="font-size:0.78rem; color:#0f172a; line-height:1.65;">
-            <strong style="color:#1e3a8a; font-weight:800; font-size:0.82rem;">📜 खतियान एवं राजस्व सर्वे नियम (Official Khatiyan Standard) :</strong><br>
-            बिहार में जमीन पैमाइश का मूल आधार <strong>'लग्गी' (Measuring Rod)</strong> है। <em>प्रत्येक मौजा (गांव) के खतियान के प्रथम पृष्ठ पर उस मौजा की लग्गी का नाप (हाथ में) अंकित होता है</em>। 
-            <strong>1 हाथ = 18 इंच = 1.5 फीट</strong>, और <strong>1 धूर = (लग्गी की लंबाई)²</strong>। अपनी मौजा/खतियान के अनुसार नीचे से सही लग्गी (हाथ) चुनें या सीधे जिला चुनें।
-          </div>
-        </div>
-      </div>
-
-      <!-- INTERACTIVE LAGGI HATH SELECTOR BAR -->
-      <div style="background:#f8fafc; border:1.5px solid #cbd5e1; border-radius:20px; padding:1.4rem 1.6rem; margin-bottom:2rem;">
-        
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+      <!-- ══════════════════════════════════════
+           STEP 1: SELECT DISTRICT / LAGGI SCALE (SYSTEMATIC)
+           ══════════════════════════════════════ -->
+      <div class="calc-step-box">
+        <div class="calc-step-header">
+          <div class="calc-step-num">STEP 1</div>
           <div>
-            <label style="display:flex; align-items:center; gap:6px; font-size:0.82rem; font-weight:800; color:#1e293b;">
-              <span class="material-symbols-outlined" style="font-size:18px; color:#1e3a8a;">straighten</span>
-              1. अपने मौजा / अंचल की 'लग्गी' (हाथ में) चुनें (Select Laggi Size) :
+            <h3 class="calc-step-title">अपने मौजा / जिले का लग्गी पैमाना चुनें (Select Scale)</h3>
+            <p class="calc-step-desc">खतियान के अनुसार लग्गी हाथ चुनें (1 हाथ = 1.5 फीट • 1 धूर = लग्गी²)</p>
+          </div>
+        </div>
+
+        <!-- 4 Primary Region Quick Cards -->
+        <div class="laggi-quick-grid" id="laggi-pills-container">
+          <button type="button" class="laggi-card-pill active" data-hath="5.5">
+            <div class="laggi-card-top">
+              <span class="laggi-card-badge">🌟 मानक (Standard)</span>
+              <span class="laggi-hath-val">5.5 हाथ</span>
+            </div>
+            <div class="laggi-card-dist">पटना, गया, नालंदा, मुजफ्फरपुर, वैशाली</div>
+            <div class="laggi-card-katha">1 कट्ठा = <strong>1,361.25 Sq.Ft</strong> (3.125 डिसमिल)</div>
+          </button>
+
+          <button type="button" class="laggi-card-pill" data-hath="6.0">
+            <div class="laggi-card-top">
+              <span class="laggi-card-badge">शाहाबाद / सारण</span>
+              <span class="laggi-hath-val">6.0 हाथ</span>
+            </div>
+            <div class="laggi-card-dist">भोजपुर (आरा), बक्सर, रोहतास, छपरा, पूर्णिया</div>
+            <div class="laggi-card-katha">1 कट्ठा = <strong>1,620.00 Sq.Ft</strong> (3.719 डिसमिल)</div>
+          </button>
+
+          <button type="button" class="laggi-card-pill" data-hath="6.5">
+            <div class="laggi-card-top">
+              <span class="laggi-card-badge">मिथिला / अंग</span>
+              <span class="laggi-hath-val">6.5 हाथ</span>
+            </div>
+            <div class="laggi-card-dist">दरभंगा, मधुबनी, समस्तीपुर, भागलपुर, बांका</div>
+            <div class="laggi-card-katha">1 कट्ठा = <strong>1,901.25 Sq.Ft</strong> (4.364 डिसमिल)</div>
+          </button>
+
+          <button type="button" class="laggi-card-pill" data-hath="7.0">
+            <div class="laggi-card-top">
+              <span class="laggi-card-badge">चंपारण प्रमंडल</span>
+              <span class="laggi-hath-val">7.0 हाथ</span>
+            </div>
+            <div class="laggi-card-dist">मोतिहारी, बेतिया (पूर्वी व पश्चिमी चंपारण)</div>
+            <div class="laggi-card-katha">1 कट्ठा = <strong>2,205.00 Sq.Ft</strong> (5.062 डिसमिल)</div>
+          </button>
+        </div>
+
+        <!-- Secondary District Dropdown & Custom Hath Row -->
+        <div class="calc-district-custom-row">
+          <div class="calc-field-group" style="flex:1;">
+            <label for="calc-region-select" class="calc-input-label">
+              <span class="material-symbols-outlined" style="font-size:16px;">map</span>
+              या बिहार के सभी 38 जिले / अन्य राज्य चुनें:
             </label>
-            <span style="font-size:0.7rem; color:#64748b;">(खतियान पर दर्ज हाथ चुनें या नीचे दिए गए क्विक बटन पर क्लिक करें)</span>
-          </div>
-          
-          <!-- Custom Decimal Hath Input -->
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span style="font-size:0.75rem; font-weight:700; color:#1e3a8a;">कस्टम हाथ:</span>
-            <input id="custom-hath-input" type="number" step="0.25" min="3.5" max="12" value="5.5" class="calc-input" style="width:90px; font-size:1rem; font-weight:800; color:#1e3a8a; padding:0.4rem 0.6rem; text-align:center;">
-            <span style="font-size:0.75rem; font-weight:700; color:#475569;">हाथ</span>
-          </div>
-        </div>
-
-        <!-- Quick Hath Pills -->
-        <div id="laggi-pills-container" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.1rem;">
-          <button class="laggi-pill-btn" data-hath="4.5" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">4.5 हाथ (911 sqft)</button>
-          <button class="laggi-pill-btn" data-hath="5.0" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">5.0 हाथ (कोशी: सहरसा/सुपौल)</button>
-          <button class="laggi-pill-btn" data-hath="5.25" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">5.25 हाथ (1240 sqft)</button>
-          <button class="laggi-pill-btn active" data-hath="5.5" style="padding:0.4rem 0.85rem; font-size:0.73rem; border-radius:999px; border:1.5px solid #1e3a8a; background:#1e3a8a; color:#ffffff; font-weight:800; cursor:pointer; transition:all 0.15s;">🌟 5.5 हाथ (पटना/गया/मुजफ्फरपुर)</button>
-          <button class="laggi-pill-btn" data-hath="5.75" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">5.75 हाथ (1488 sqft)</button>
-          <button class="laggi-pill-btn" data-hath="6.0" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">6.0 हाथ (सारण/शाहाबाद/पूर्णिया)</button>
-          <button class="laggi-pill-btn" data-hath="6.25" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">6.25 हाथ (1758 sqft)</button>
-          <button class="laggi-pill-btn" data-hath="6.5" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">6.5 हाथ (दरभंगा/मधुबनी/भागलपुर)</button>
-          <button class="laggi-pill-btn" data-hath="6.75" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">6.75 हाथ (2050 sqft)</button>
-          <button class="laggi-pill-btn" data-hath="7.0" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">7.0 हाथ (चंपारण: मोतिहारी/बेतिया)</button>
-          <button class="laggi-pill-btn" data-hath="7.5" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">7.5 हाथ (2531 sqft)</button>
-          <button class="laggi-pill-btn" data-hath="8.0" style="padding:0.4rem 0.8rem; font-size:0.73rem; border-radius:999px; border:1px solid #cbd5e1; background:#ffffff; color:#334155; font-weight:700; cursor:pointer; transition:all 0.15s;">8.0 हाथ (2880 sqft)</button>
-        </div>
-
-        <!-- OR SELECT REGION/STATE PRESET -->
-        <div style="display:grid; grid-template-columns:1fr; gap:0.5rem; padding-top:0.75rem; border-top:1px dashed #cbd5e1;">
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span style="font-size:0.75rem; font-weight:700; color:#475569;">या अपना जिला / राज्य चुनें (38 Districts):</span>
-            <select id="calc-region-select" class="calc-input" style="flex:1; min-width:0; width:100%; font-size:0.85rem; font-weight:700; color:#0f172a; padding:0.65rem 0.85rem; border-color:#1e3a8a; background:#ffffff;">
+            <select id="calc-region-select" class="calc-select-input">
               <optgroup label="📍 पटना प्रमंडल (Patna Division)">
                 <option value="5.5" selected>🌟 पटना (Patna) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft (3.125 डिसमिल)</option>
                 <option value="5.5">📍 नालंदा / बिहारशरीफ (Nalanda) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
@@ -1620,8 +1628,8 @@
                 <option value="5.5">📍 वैशाली / हाजीपुर (Vaishali) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
                 <option value="6.5">📍 सीतामढ़ी (Sitamarhi) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft (4.364 डिसमिल)</option>
                 <option value="6.5">📍 शिवहर (Sheohar) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft</option>
-                <option value="7.0">📍 पूर्वी चंपारण / मोतिहारी (East Champaran) — 7.0 हाथ ➔ 1 कट्ठा = 2,205.00 Sq.Ft (5.062 डिसमिल)</option>
-                <option value="7.0">📍 पश्चिमी चंपारण / बेतिया (West Champaran) — 7.0 हाथ ➔ 1 कट्ठा = 2,205.00 Sq.Ft (5.062 डिसमिल)</option>
+                <option value="7.0">📍 पूर्वी चंपारण / मोतिहारी (East Champaran) — 7.0 हाथ ➔ 1 कट्ठा = 2,205.00 Sq.Ft</option>
+                <option value="7.0">📍 पश्चिमी चंपारण / बेतिया (West Champaran) — 7.0 हाथ ➔ 1 कट्ठा = 2,205.00 Sq.Ft</option>
               </optgroup>
               <optgroup label="📍 सारण प्रमंडल (Saran Division)">
                 <option value="6.0">📍 सारण / छपरा (Saran) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft (3.719 डिसमिल)</option>
@@ -1629,12 +1637,12 @@
                 <option value="6.0">📍 गोपालगंज (Gopalganj) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
               </optgroup>
               <optgroup label="📍 दरभंगा प्रमंडल (Darbhanga Division - मिथिला)">
-                <option value="6.5">📍 दरभंगा (Darbhanga) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft (211.25 गज / 4.364 डिसमिल)</option>
+                <option value="6.5">📍 दरभंगा (Darbhanga) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft (4.364 डिसमिल)</option>
                 <option value="6.5">📍 मधुबनी (Madhubani) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft</option>
                 <option value="6.5">📍 समस्तीपुर (Samastipur) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft</option>
               </optgroup>
               <optgroup label="📍 कोशी प्रमंडल (Kosi Division)">
-                <option value="5.0">📍 सहरसा (Saharsa) — 5.0 हाथ ➔ 1 कट्ठा = 1,125.00 Sq.Ft (125.00 गज / 2.583 डिसमिल)</option>
+                <option value="5.0">📍 सहरसा (Saharsa) — 5.0 हाथ ➔ 1 कट्ठा = 1,125.00 Sq.Ft (2.583 डिसमिल)</option>
                 <option value="5.0">📍 सुपौल (Supaul) — 5.0 हाथ ➔ 1 कट्ठा = 1,125.00 Sq.Ft</option>
                 <option value="5.0">📍 मधेपुरा (Madhepura) — 5.0 हाथ ➔ 1 कट्ठा = 1,125.00 Sq.Ft</option>
               </optgroup>
@@ -1644,412 +1652,470 @@
                 <option value="6.0">📍 अररिया (Araria) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
                 <option value="6.0">📍 किशनगंज (Kishanganj) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
               </optgroup>
-              <optgroup label="📍 भागलपुर प्रमंडल (Bhagalpur Division - अंग प्रदेश)">
-                <option value="6.5">📍 भागलपुर (Bhagalpur) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft (4.364 डिसमिल)</option>
+              <optgroup label="📍 भागलपुर व मुंगेर प्रमंडल">
+                <option value="6.5">📍 भागलपुर (Bhagalpur) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft</option>
                 <option value="6.5">📍 बांका (Banka) — 6.5 हाथ ➔ 1 कट्ठा = 1,901.25 Sq.Ft</option>
-              </optgroup>
-              <optgroup label="📍 मुंगेर प्रमंडल (Munger Division)">
-                <option value="6.0">📍 मुंगेर (Munger) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft (3.719 डिसमिल)</option>
+                <option value="6.0">📍 मुंगेर (Munger) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
                 <option value="6.0">📍 बेगूसराय (Begusarai) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
                 <option value="6.0">📍 खगड़िया (Khagaria) — 6.0 हाथ ➔ 1 कट्ठा = 1,620.00 Sq.Ft</option>
-                <option value="5.5">📍 जमुई (Jamui) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
-                <option value="5.5">📍 लखीसराय (Lakhisarai) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
-                <option value="5.5">📍 शेखपुरा (Sheikhpura) — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
+                <option value="5.5">📍 जमुई / लखीसराय / शेखपुरा — 5.5 हाथ ➔ 1 कट्ठा = 1,361.25 Sq.Ft</option>
               </optgroup>
-              <optgroup label="📍 अन्य राज्य एवं एनसीआर (Other States &amp; NCR)">
-                <option value="delhi_ncr">दिल्ली / Delhi NCR (1 बीघा = 20 बिस्वा = 9,075 Sq.Ft / 1 बिस्वा = 453.75 Sq.Ft = 50.41 गज)</option>
-                <option value="haryana_gurgaon">गुड़गांव / हरियाणा (1 किला = 8 कनाल = 160 मरला = 43,560 Sq.Ft / 1 कनाल = 5,445 Sq.Ft)</option>
-                <option value="up_pucca">उत्तर प्रदेश / नोएडा / लखनऊ (UP पक्का बीघा) — 1 बीघा = 20 बिस्वा = 27,225 Sq.Ft (1 बिस्वा = 1,361.25 Sq.Ft)</option>
-                <option value="up_kachha">पश्चिमी उत्तर प्रदेश (UP कच्चा बीघा) — 1 बीघा = 9,075 Sq.Ft (1 बिस्वा = 453.75 Sq.Ft)</option>
-                <option value="jharkhand_ranchi">झारखंड (रांची, जमशेदपुर, धनबाद, बोकारो) — 1 कट्ठा = 1,361.25 Sq.Ft / डेसिमल प्रणाली</option>
+              <optgroup label="📍 अन्य राज्य एवं एनसीआर">
+                <option value="delhi_ncr">दिल्ली / Delhi NCR (1 बीघा = 20 बिस्वा = 9,075 Sq.Ft)</option>
+                <option value="haryana_gurgaon">गुड़गांव / हरियाणा (1 किला = 8 कनाल = 43,560 Sq.Ft)</option>
+                <option value="up_pucca">उत्तर प्रदेश / नोएडा / लखनऊ (UP पक्का बीघा = 27,225 Sq.Ft)</option>
+                <option value="up_kachha">पश्चिमी उत्तर प्रदेश (UP कच्चा बीघा = 9,075 Sq.Ft)</option>
+                <option value="jharkhand_ranchi">झारखंड (रांची, जमशेदपुर, धनबाद, बोकारो)</option>
               </optgroup>
             </select>
           </div>
+
+          <div class="calc-field-group calc-custom-hath-group">
+            <label for="custom-hath-input" class="calc-input-label">
+              <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
+              कस्टम हाथ (Custom):
+            </label>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <input id="custom-hath-input" type="number" step="0.25" min="3.5" max="12" value="5.5" class="calc-input" style="text-align:center; font-weight:800; color:#1e3a8a;">
+              <span style="font-size:0.8rem; font-weight:700; color:#475569;">हाथ</span>
+            </div>
+          </div>
         </div>
 
-        <!-- MATHEMATICAL PROOF RIBBON -->
-        <div style="margin-top:1rem; padding:0.75rem 1rem; background:#ffffff; border:1px solid #e2e8f0; border-radius:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; font-size:0.75rem; color:#1e293b;">
-          <div>
-            <strong style="color:#1e3a8a;">📐 सक्रिय गणना सूत्र (Active Formula):</strong>
-            <span id="formula-laggi-text">लग्गी = 5.5 हाथ (8.25 ft)</span>
+        <!-- Live Active Formula Strip -->
+        <div class="calc-formula-strip">
+          <div class="formula-pill">
+            <span class="material-symbols-outlined">calculate</span>
+            <span id="formula-laggi-text">लग्गी = 5.5 हाथ (8.25 ft) • 1 हाथ = 1.5 ft</span>
           </div>
-          <div id="formula-metrics-text" style="font-weight:700; color:#0f172a;">
+          <div class="formula-details" id="formula-metrics-text">
             1 धूर = 68.06 Sq.Ft • 1 कट्ठा = 1,361.25 Sq.Ft (151.25 गज) • 1 बीघा = 27,225 Sq.Ft
           </div>
         </div>
-
       </div>
 
-      <!-- Mode Switcher Tabs -->
-      <div style="display:flex; justify-content:center; gap:0.75rem; margin-bottom:2rem; flex-wrap:wrap;">
-        <button id="calc-tab-unit" class="calc-mode-tab active" style="padding:0.65rem 1.4rem; border-radius:999px; border:1.5px solid #1e3a8a; background:#1e3a8a; color:#ffffff; font-weight:700; font-size:0.8rem; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all 0.2s ease;">
-          <span class="material-symbols-outlined" style="font-size:16px;">sync_alt</span>
-          यूनिट कन्वर्टर (Universal Unit Converter)
-        </button>
-        <button id="calc-tab-dims" class="calc-mode-tab" style="padding:0.65rem 1.4rem; border-radius:999px; border:1.5px solid #cbd5e1; background:#f8fafc; color:#475569; font-weight:700; font-size:0.8rem; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all 0.2s ease;">
-          <span class="material-symbols-outlined" style="font-size:16px;">straighten</span>
-          प्लॉट लंबाई × चौड़ाई (Plot Dimensions)
-        </button>
-      </div>
+      <!-- ══════════════════════════════════════
+           STEP 2: CHOOSE CALCULATION MODE (SEGMENTED SWITCHER)
+           ══════════════════════════════════════ -->
+      <div class="calc-step-box">
+        <div class="calc-step-header">
+          <div class="calc-step-num">STEP 2</div>
+          <div>
+            <h3 class="calc-step-title">गणना का प्रकार चुनें (Calculation Mode)</h3>
+            <p class="calc-step-desc">इकाई परिवर्तन करें या प्लॉट की लंबाई-चौड़ाई डालकर कुल क्षेत्रफल निकालें</p>
+          </div>
+        </div>
 
-      <!-- TAB 1: UNIT CONVERTER INPUT -->
-      <div id="calc-mode-unit-panel" style="display:block;">
-        <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:18px; padding:1.5rem; margin-bottom:2rem;">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; align-items:center;">
-            <div>
-              <label style="display:block; font-size:0.78rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
-                मान दर्ज करें (Enter Land Value) :
-              </label>
-              <div style="position:relative;">
-                <input id="land-input-val" type="number" step="any" min="0" value="1" placeholder="उदा. 1, 1200, 20" class="calc-input" style="font-size:1.15rem; font-weight:800; color:#1e3a8a; padding:0.85rem 1rem;">
-              </div>
+        <!-- Segmented Mode Switcher Tabs -->
+        <div class="calc-mode-switcher">
+          <button id="calc-tab-unit" type="button" class="calc-mode-btn active">
+            <span class="material-symbols-outlined">sync_alt</span>
+            1. यूनिट कन्वर्टर (Land Unit Converter)
+          </button>
+          <button id="calc-tab-dims" type="button" class="calc-mode-btn">
+            <span class="material-symbols-outlined">straighten</span>
+            2. प्लॉट लंबाई × चौड़ाई एवं रेट (Dimensions &amp; Price)
+          </button>
+        </div>
+
+        <!-- MODE 1: UNIT CONVERTER -->
+        <div id="calc-mode-unit-panel" class="calc-input-panel">
+          <div class="calc-input-grid">
+            <div class="calc-field-group">
+              <label for="land-input-val" class="calc-input-label">जमीन का मान दर्ज करें (Enter Quantity):</label>
+              <input id="land-input-val" type="number" step="any" min="0" value="1" placeholder="उदा. 1, 1200, 20" class="calc-input calc-input-large">
             </div>
-            <div>
-              <label style="display:block; font-size:0.78rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
-                इकाई चुनें (Select Input Unit) :
-              </label>
-              <select id="land-input-unit" class="calc-input" style="font-size:0.95rem; font-weight:700; color:#0f172a; padding:0.85rem 1rem;">
-                <optgroup label="बिहार / पारंपरिक इकाइयां">
-                  <option value="katha" selected>कट्ठा (Katha / कट्ठा)</option>
-                  <option value="dhur">धूर (Dhur / धूर)</option>
+            <div class="calc-field-group">
+              <label for="land-input-unit" class="calc-input-label">वर्तमान इकाई चुनें (Select Unit):</label>
+              <select id="land-input-unit" class="calc-select-input calc-input-large">
+                <optgroup label="बिहार / स्थानीय इकाइयां">
+                  <option value="katha" selected>कट्ठा (Katha)</option>
+                  <option value="dhur">धूर (Dhur)</option>
                   <option value="dhurki">धुरकी (Dhurki = 1/20 धूर)</option>
-                  <option value="bigha">बीघा (Bigha / बीघा)</option>
+                  <option value="bigha">बीघा (Bigha = 20 कट्ठा)</option>
                 </optgroup>
-                <optgroup label="अमीन सर्वे इकाइयां (Jariib & Kadi)">
-                  <option value="sqkadi">वर्ग कड़ी (Sq. Kadi / 1000 कड़ी = 1 डिसमिल)</option>
-                  <option value="decimal">डिसमिल (Decimal / Dismil)</option>
+                <optgroup label="राजस्व एवं अमीन सर्वे इकाइयां">
+                  <option value="decimal">डिसमिल (Decimal / 435.6 Sq.Ft)</option>
+                  <option value="sqkadi">वर्ग कड़ी (1000 कड़ी = 1 डिसमिल)</option>
                   <option value="acre">एकड़ (Acre / 100 डिसमिल)</option>
                   <option value="hectare">हेक्टेयर (Hectare / 2.471 एकड़)</option>
                 </optgroup>
-                <optgroup label="मानक एवं क्षेत्रीय इकाइयां">
-                  <option value="sqft">वर्ग फुट (Sq. Ft / Square Feet)</option>
+                <optgroup label="मानक एवं अन्य इकाइयां">
+                  <option value="sqft">वर्ग फुट (Square Feet)</option>
                   <option value="gaj">वर्ग गज (Gaj / Sq. Yards)</option>
-                  <option value="biswa">बिस्वा (Biswa / यूपी-दिल्ली)</option>
-                  <option value="kanal">कनाल (Kanal / हरियाणा)</option>
-                  <option value="marla">मरला (Marla / हरियाणा)</option>
+                  <option value="biswa">बिस्वा (Biswa / UP-Delhi)</option>
+                  <option value="kanal">कनाल (Kanal / Haryana)</option>
+                  <option value="marla">मरला (Marla / Haryana)</option>
                   <option value="sqmeter">वर्ग मीटर (Sq. Meter)</option>
                 </optgroup>
               </select>
             </div>
           </div>
 
-          <!-- Quick Presets -->
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-top:1rem; flex-wrap:wrap;">
-            <span style="font-size:0.72rem; font-weight:700; color:#64748b;">त्वरित चयन (Presets):</span>
-            <button class="calc-preset-btn" data-val="1" data-unit="katha" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1 कट्ठा</button>
-            <button class="calc-preset-btn" data-val="20" data-unit="dhur" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">20 धूर</button>
-            <button class="calc-preset-btn" data-val="1200" data-unit="sqft" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1200 Sq.Ft</button>
-            <button class="calc-preset-btn" data-val="1500" data-unit="sqft" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1500 Sq.Ft</button>
-            <button class="calc-preset-btn" data-val="1" data-unit="decimal" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1 डिसमिल (1000 कड़ी)</button>
-            <button class="calc-preset-btn" data-val="1" data-unit="bigha" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1 बीघा</button>
-            <button class="calc-preset-btn" data-val="1" data-unit="acre" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1 एकड़</button>
+          <!-- Quick Value Presets -->
+          <div class="calc-presets-row">
+            <span class="calc-presets-tag">त्वरित चयन:</span>
+            <button type="button" class="calc-preset-btn" data-val="1" data-unit="katha">1 कट्ठा</button>
+            <button type="button" class="calc-preset-btn" data-val="20" data-unit="dhur">20 धूर</button>
+            <button type="button" class="calc-preset-btn" data-val="1200" data-unit="sqft">1200 Sq.Ft</button>
+            <button type="button" class="calc-preset-btn" data-val="1500" data-unit="sqft">1500 Sq.Ft</button>
+            <button type="button" class="calc-preset-btn" data-val="1" data-unit="decimal">1 डिसमिल</button>
+            <button type="button" class="calc-preset-btn" data-val="1" data-unit="bigha">1 बीघा</button>
+            <button type="button" class="calc-preset-btn" data-val="1" data-unit="acre">1 एकड़</button>
+          </div>
+        </div>
+
+        <!-- MODE 2: PLOT DIMENSIONS -->
+        <div id="calc-mode-dims-panel" class="calc-input-panel" style="display:none;">
+          <div class="calc-input-grid dims-3-col">
+            <div class="calc-field-group">
+              <label for="plot-dim-length" class="calc-input-label">प्लॉट लंबाई (Length in Feet):</label>
+              <input id="plot-dim-length" type="number" step="any" min="0" value="45" placeholder="45" class="calc-input">
+            </div>
+            <div class="calc-field-group">
+              <label for="plot-dim-width" class="calc-input-label">प्लॉट चौड़ाई (Width in Feet):</label>
+              <input id="plot-dim-width" type="number" step="any" min="0" value="30.25" placeholder="30" class="calc-input">
+            </div>
+            <div class="calc-field-group">
+              <label for="plot-dim-rate" class="calc-input-label">रेट (वैकल्पिक / ₹ per Sq.Ft):</label>
+              <input id="plot-dim-rate" type="number" step="any" min="0" value="2700" placeholder="₹ 2,700" class="calc-input" style="color:#d4a017; font-weight:800;">
+            </div>
+          </div>
+
+          <!-- Quick Standard Dimensions -->
+          <div class="calc-presets-row">
+            <span class="calc-presets-tag">स्टैंडर्ड प्लॉट साइज:</span>
+            <button type="button" class="calc-dim-preset-btn" data-l="40" data-w="30">30 × 40 (1200 sqft)</button>
+            <button type="button" class="calc-dim-preset-btn" data-l="50" data-w="30">30 × 50 (1500 sqft)</button>
+            <button type="button" class="calc-dim-preset-btn" data-l="60" data-w="30">30 × 60 (1800 sqft)</button>
+            <button type="button" class="calc-dim-preset-btn" data-l="45" data-w="30.25">1 कट्ठा मानक (1361.25 sqft)</button>
           </div>
         </div>
       </div>
 
-      <!-- TAB 2: PLOT DIMENSIONS INPUT -->
-      <div id="calc-mode-dims-panel" style="display:none;">
-        <div style="background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:18px; padding:1.5rem; margin-bottom:2rem;">
-          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem; align-items:center;">
-            <div>
-              <label style="display:block; font-size:0.78rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
-                प्लॉट लंबाई (Length in Feet) :
-              </label>
-              <input id="plot-dim-length" type="number" step="any" min="0" value="45" placeholder="उदा. 45" class="calc-input" style="font-size:1.1rem; font-weight:800; color:#1e3a8a;">
+      <!-- ══════════════════════════════════════
+           STEP 3: LIVE CALCULATION RESULT (SYSTEMATIC BENTO SHOWCASE)
+           ══════════════════════════════════════ -->
+      <div class="calc-step-box" style="margin-bottom:1.5rem;">
+        <div class="calc-step-header">
+          <div class="calc-step-num">STEP 3</div>
+          <div>
+            <h3 class="calc-step-title">गणना परिणाम एवं क्षेत्रफल विवरण (Live Results)</h3>
+            <p class="calc-step-desc">सभी इकाइयों में तत्काल और 100% सटीक रूपांतरण</p>
+          </div>
+        </div>
+
+        <!-- Master Hero Result Card -->
+        <div class="calc-master-hero-result">
+          <div class="hero-res-left">
+            <div class="hero-res-badge">
+              <span class="material-symbols-outlined" style="font-size:15px; color:#fde047;">verified</span>
+              कुल परिकलित क्षेत्रफल (Total Area)
             </div>
-            <div>
-              <label style="display:block; font-size:0.78rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
-                प्लॉट चौड़ाई (Width in Feet) :
-              </label>
-              <input id="plot-dim-width" type="number" step="any" min="0" value="30.25" placeholder="उदा. 30" class="calc-input" style="font-size:1.1rem; font-weight:800; color:#1e3a8a;">
+            <div id="calc-highlight-main" class="hero-res-primary">
+              1 कट्ठा (20 धूर)
             </div>
-            <div>
-              <label style="display:block; font-size:0.78rem; font-weight:700; color:#1e293b; margin-bottom:0.4rem;">
-                रेट (वैकल्पिक / ₹ per Sq.Ft) :
-              </label>
-              <input id="plot-dim-rate" type="number" step="any" min="0" value="2600" placeholder="₹ 2,600" class="calc-input" style="font-size:1.1rem; font-weight:800; color:#d4a017;">
+            <div id="calc-highlight-sub" class="hero-res-secondary">
+              1,361.25 वर्ग फुट • 151.25 वर्ग गज • 3.125 डिसमिल • 3,125 वर्ग कड़ी
             </div>
           </div>
-          <!-- Quick Dimension Presets -->
-          <div style="display:flex; align-items:center; gap:0.5rem; margin-top:1rem; flex-wrap:wrap;">
-            <span style="font-size:0.72rem; font-weight:700; color:#64748b;">स्टैंडर्ड साइज:</span>
-            <button class="calc-dim-preset-btn" data-l="40" data-w="30" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">30 × 40 (1200 sqft)</button>
-            <button class="calc-dim-preset-btn" data-l="50" data-w="30" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">30 × 50 (1500 sqft)</button>
-            <button class="calc-dim-preset-btn" data-l="60" data-w="30" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">30 × 60 (1800 sqft)</button>
-            <button class="calc-dim-preset-btn" data-l="45" data-w="30.25" style="padding:0.3rem 0.75rem; font-size:0.72rem; border-radius:999px; background:#ffffff; border:1px solid #cbd5e1; color:#1e293b; cursor:pointer; font-weight:600;">1 कट्ठा मानक (1361.25 sqft)</button>
+          
+          <div class="hero-res-right" id="calc-price-badge-container">
+            <div class="hero-price-label">अनुमानित कुल मूल्य (Est. Value)</div>
+            <div id="calc-highlight-price" class="hero-price-value">₹ 36.75 Lakhs</div>
+            <div id="calc-highlight-rate-text" class="hero-price-sub">@ ₹2,700 / sq.ft</div>
           </div>
+        </div>
+
+        <!-- Systematic 3-Category Bento Conversion Grid -->
+        <div class="calc-bento-section-grid">
+          
+          <!-- Category 1: बिहार / स्थानीय पारंपरिक इकाइयां -->
+          <div class="calc-bento-column">
+            <div class="bento-col-header">
+              <span class="material-symbols-outlined" style="color:#d4a017;">villa</span>
+              स्थानीय / पारंपरिक इकाइयां
+            </div>
+            <div class="bento-cards-stack">
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">कट्ठा (Katha)</span>
+                  <span class="material-symbols-outlined unit-icon">grain</span>
+                </div>
+                <div id="res-katha" class="unit-val">1.00</div>
+                <div id="sub-katha" class="unit-sub">1 कट्ठा = 1361.25 Sq.Ft</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">धूर एवं धुरकी (Dhur)</span>
+                  <span class="material-symbols-outlined unit-icon">pin_drop</span>
+                </div>
+                <div id="res-dhur" class="unit-val">20.00</div>
+                <div id="sub-dhur" class="unit-sub">1 धूर = 68.06 Sq.Ft (20 धुरकी)</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">बीघा (Bigha)</span>
+                  <span class="material-symbols-outlined unit-icon">forest</span>
+                </div>
+                <div id="res-bigha" class="unit-val">0.05</div>
+                <div id="sub-bigha" class="unit-sub">1 बीघा = 20 कट्ठा (400 धूर)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2: राजस्व एवं अमीन सर्वे इकाइयां -->
+          <div class="calc-bento-column">
+            <div class="bento-col-header">
+              <span class="material-symbols-outlined" style="color:#1e3a8a;">gavel</span>
+              राजस्व एवं अमीन सर्वे (DLRS)
+            </div>
+            <div class="bento-cards-stack">
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">डिसमिल (Decimal / Dismil)</span>
+                  <span class="material-symbols-outlined unit-icon">explore</span>
+                </div>
+                <div id="res-decimal" class="unit-val">3.125</div>
+                <div class="unit-sub">1 डिसमिल = 435.6 Sq.Ft (स्थिर)</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">वर्ग कड़ी (Sq. Kadi)</span>
+                  <span class="material-symbols-outlined unit-icon">link</span>
+                </div>
+                <div id="res-sqkadi" class="unit-val">3,125.00</div>
+                <div class="unit-sub">1 डिसमिल = 1,000 वर्ग कड़ी</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">एकड़ (Acre)</span>
+                  <span class="material-symbols-outlined unit-icon">agriculture</span>
+                </div>
+                <div id="res-acre" class="unit-val">0.0312</div>
+                <div id="sub-acre" class="unit-sub">1 एकड़ = 100 डिसमिल (43,560 sqft)</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3: आधुनिक मानक इकाइयां -->
+          <div class="calc-bento-column">
+            <div class="bento-col-header">
+              <span class="material-symbols-outlined" style="color:#15803d;">square_foot</span>
+              आधुनिक मानक इकाइयां
+            </div>
+            <div class="bento-cards-stack">
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">वर्ग फुट (Square Feet)</span>
+                  <span class="material-symbols-outlined unit-icon">square_foot</span>
+                </div>
+                <div id="res-sqft" class="unit-val">1,361.25</div>
+                <div class="unit-sub">Square Feet Standard</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span class="unit-name">वर्ग गज (Gaj / Sq.Yards)</span>
+                  <span class="material-symbols-outlined unit-icon">home</span>
+                </div>
+                <div id="res-gaj" class="unit-val">151.25</div>
+                <div class="unit-sub">1 गज = 9 वर्ग फुट</div>
+              </div>
+
+              <div class="calc-unit-card">
+                <div class="unit-card-header">
+                  <span id="title-biswa-kanal" class="unit-name">बिस्वा / कनाल / वर्ग मीटर</span>
+                  <span class="material-symbols-outlined unit-icon">grid_view</span>
+                </div>
+                <div id="res-biswa" class="unit-val">1.00</div>
+                <div id="sub-biswa" class="unit-sub">UP/Delhi Scale • <span id="res-sqmeter">126.46 m²</span></div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      <!-- MAIN HIGHLIGHT RESULT BANNER -->
-      <div style="background:linear-gradient(135deg, #0b1329 0%, #1e3a8a 100%); border-radius:20px; padding:1.5rem 2rem; color:#ffffff; margin-bottom:2rem; box-shadow:0 10px 30px rgba(30,58,138,0.25); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.25rem;">
-        <div>
-          <div style="font-size:0.75rem; font-weight:700; color:#d4a017; text-transform:uppercase; letter-spacing:0.12em; margin-bottom:0.25rem;">
-            कुल क्षेत्रफल (Total Calculated Land Area)
+      <!-- ══════════════════════════════════════
+           STEP 4: SLEEK ACCORDION FOR OFFICIAL DLRS RULES & DISTRICT TABLE (NO MESS!)
+           ══════════════════════════════════════ -->
+      <details class="calc-dlrs-accordion">
+        <summary class="calc-accordion-summary">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span class="material-symbols-outlined" style="font-size:22px; color:#d4a017;">menu_book</span>
+            <span style="font-weight:800; font-size:0.9rem; color:#0f172a;">
+              📖 बिहार राजस्व नियमावली, खतियान गाइडलाइन एवं 38 जिलों की लग्गी संदर्भ तालिका (Click to View Reference)
+            </span>
           </div>
-          <div id="calc-highlight-main" style="font-family:var(--font-display); font-size:clamp(1.6rem, 3.8vw, 2.2rem); font-weight:800; color:#ffffff; line-height:1.2;">
-            1 कट्ठा (20 धूर)
-          </div>
-          <div id="calc-highlight-sub" style="font-size:0.85rem; color:rgba(255,255,255,0.8); margin-top:0.25rem;">
-            1,361.25 वर्ग फुट • 151.25 वर्ग गज • 3.125 डिसमिल • 3,125 वर्ग कड़ी
-          </div>
-        </div>
-        <div id="calc-price-badge-container" style="background:rgba(255,255,255,0.1); backdrop-filter:blur(8px); border:1px solid rgba(212,160,23,0.4); border-radius:14px; padding:0.75rem 1.25rem; text-align:right;">
-          <div style="font-size:0.7rem; color:#d4a017; font-weight:700; text-transform:uppercase;">अनुमानित मूल्य (Est. Value)</div>
-          <div id="calc-highlight-price" style="font-size:1.35rem; font-weight:800; color:#ffffff;">₹ 30.63 Lakhs</div>
-          <div id="calc-highlight-rate-text" style="font-size:0.68rem; color:rgba(255,255,255,0.7); margin-top:2px;">@ ₹2,250 / sq.ft</div>
-        </div>
-      </div>
-
-      <!-- MULTI-UNIT LIVE CONVERSION GRID (10 CARDS) -->
-      <div class="calc-unit-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:1rem; margin-bottom:2.5rem;">
+          <span class="calc-accordion-arrow material-symbols-outlined">expand_more</span>
+        </summary>
         
-        <!-- Katha Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">कट्ठा (Katha)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">grain</span>
-          </div>
-          <div id="res-katha" style="font-size:1.3rem; font-weight:800; color:#1e3a8a;">1.00</div>
-          <div id="sub-katha" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 कट्ठा = 1361.25 Sq.Ft</div>
-        </div>
-
-        <!-- Dhur Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">धूर (Dhur & धुरकी)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">pin_drop</span>
-          </div>
-          <div id="res-dhur" style="font-size:1.3rem; font-weight:800; color:#1e3a8a;">20.00</div>
-          <div id="sub-dhur" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 धूर = 68.06 Sq.Ft (20 धुरकी)</div>
-        </div>
-
-        <!-- Square Kadi Card (Amin Survey Link) -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">वर्ग कड़ी (Sq. Kadi / अमीन)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">link</span>
-          </div>
-          <div id="res-sqkadi" style="font-size:1.3rem; font-weight:800; color:#0f172a;">3,125.00</div>
-          <div style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 डिसमिल = 1,000 वर्ग कड़ी</div>
-        </div>
-
-        <!-- Decimal / Dismil Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">डिसमिल (Decimal / Dismil)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">explore</span>
-          </div>
-          <div id="res-decimal" style="font-size:1.3rem; font-weight:800; color:#0f172a;">3.125</div>
-          <div style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 डिसमिल = 435.6 Sq.Ft (स्थिर)</div>
-        </div>
-
-        <!-- Sq. Ft Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">वर्ग फुट (Sq. Ft)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">square_foot</span>
-          </div>
-          <div id="res-sqft" style="font-size:1.3rem; font-weight:800; color:#0f172a;">1,361.25</div>
-          <div style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">Square Feet Standard</div>
-        </div>
-
-        <!-- Gaj Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">वर्ग गज (Gaj / Sq.Yd)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">home</span>
-          </div>
-          <div id="res-gaj" style="font-size:1.3rem; font-weight:800; color:#0f172a;">151.25</div>
-          <div style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 गज = 9 वर्ग फुट</div>
-        </div>
-
-        <!-- Bigha Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">बीघा (Bigha)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">forest</span>
-          </div>
-          <div id="res-bigha" style="font-size:1.3rem; font-weight:800; color:#0f172a;">0.05</div>
-          <div id="sub-bigha" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 बीघा = 20 कट्ठा (400 धूर)</div>
-        </div>
-
-        <!-- Acre Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">एकड़ (Acre)</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">agriculture</span>
-          </div>
-          <div id="res-acre" style="font-size:1.3rem; font-weight:800; color:#0f172a;">0.0312</div>
-          <div id="sub-acre" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">1 एकड़ = 100 डिसमिल (43,560 sqft)</div>
-        </div>
-
-        <!-- Biswa / Kanal Context Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span id="title-biswa-kanal" style="font-size:0.75rem; font-weight:700; color:#64748b;">बिस्वा / कनाल</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">share_location</span>
-          </div>
-          <div id="res-biswa" style="font-size:1.3rem; font-weight:800; color:#0f172a;">1.00</div>
-          <div id="sub-biswa" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">UP / Delhi / Haryana Scale</div>
-        </div>
-
-        <!-- Hectare / Sq. Meter Card -->
-        <div class="calc-unit-card" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:16px; padding:1.1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02); transition:all 0.2s ease;">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
-            <span style="font-size:0.75rem; font-weight:700; color:#64748b;">हेक्टेयर एवं वर्ग मीटर</span>
-            <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">grid_view</span>
-          </div>
-          <div id="res-sqmeter" style="font-size:1.3rem; font-weight:800; color:#0f172a;">126.46 m²</div>
-          <div id="sub-hectare" style="font-size:0.68rem; color:#94a3b8; margin-top:2px;">0.0126 Hectare</div>
-        </div>
-
-      </div>
-
-      <!-- BIHAR LAND SURVEY GUIDE BOX -->
-      <div style="background:rgba(30,58,138,0.04); border:1.5px solid #1e3a8a; border-radius:18px; padding:1.25rem 1.5rem; margin-bottom:2rem;">
-        <div style="display:flex; align-items:flex-start; gap:0.75rem;">
-          <span class="material-symbols-outlined" style="font-size:24px; color:#1e3a8a; flex-shrink:0; margin-top:2px;">account_balance</span>
-          <div style="font-size:0.78rem; color:#1e293b; line-height:1.7;">
-            <strong style="color:#1e3a8a; font-weight:800; font-size:0.84rem;">📍 बिहार राजस्व एवं भूमि सुधार विभाग (DLRS) - अमीन सर्वे एवं खतियान गाइडलाइन :</strong><br>
-            बिहार में कट्ठा या बीघा का <strong>कोई एक राज्यव्यापी फिक्स क्षेत्रफल नहीं होता</strong>। जमीन का असली क्षेत्रफल <strong>'मौजा' (गांव) के खतियान में दर्ज 'लग्गी' (हाथ की माप)</strong> पर आधारित होता है (सूत्र: <strong>1 धूर = (लग्गी × 1.5 फीट)²</strong>):
-            <ul style="margin:0.4rem 0 0.4rem 1.2rem; padding:0; list-style-type:disc;">
-              <li><strong>5.5 हाथ (8.25 फीट) ➔ 1 कट्ठा = 1,361.25 Sq.Ft (3.125 डिसमिल):</strong> पटना, नालंदा (बिहारशरीफ), गया, जहानाबाद, अरवल, नवादा, औरंगाबाद, मुजफ्फरपुर, वैशाली (हाजीपुर), जमुई, लखीसराय, शेखपुरा।</li>
-              <li><strong>6.0 हाथ (9.00 फीट) ➔ 1 कट्ठा = 1,620.00 Sq.Ft (3.719 डिसमिल):</strong> सारण (छपरा), सीवान, गोपालगंज, रोहतास (सासाराम), कैमूर (भभुआ), भोजपुर (आरा), बक्सर, पूर्णिया, कटिहार, अररिया, किशनगंज, मुंगेर, बेगूसराय, खगड़िया।</li>
+        <div class="calc-accordion-content">
+          <!-- DLRS Khatiyan Rules Box -->
+          <div class="dlrs-rule-box">
+            <h4 style="color:#1e3a8a; font-weight:800; font-size:0.85rem; margin-bottom:0.4rem; display:flex; align-items:center; gap:6px;">
+              <span class="material-symbols-outlined" style="font-size:18px;">gavel</span>
+              बिहार राजस्व एवं भूमि सुधार विभाग (DLRS) - अमीन सर्वे एवं खतियान गाइडलाइन
+            </h4>
+            <p style="font-size:0.78rem; color:#334155; line-height:1.65; margin:0 0 0.5rem 0;">
+              बिहार में जमीन पैमाइश का मूल आधार <strong>'लग्गी' (Measuring Rod)</strong> है। <em>प्रत्येक मौजा (गांव) के खतियान के प्रथम पृष्ठ पर उस मौजा की लग्गी का नाप (हाथ में) अंकित होता है</em> (सूत्र: <strong>1 हाथ = 18 इंच = 1.5 फीट</strong>, और <strong>1 धूर = (लग्गी की लंबाई)²</strong>):
+            </p>
+            <ul style="font-size:0.76rem; color:#475569; line-height:1.6; margin:0 0 0.5rem 1.2rem; padding:0;">
+              <li><strong>5.5 हाथ (8.25 फीट) ➔ 1 कट्ठा = 1,361.25 Sq.Ft (3.125 डिसमिल):</strong> पटना, नालंदा, गया, जहानाबाद, अरवल, नवादा, औरंगाबाद, मुजफ्फरपुर, वैशाली (हाजीपुर), जमुई, लखीसराय, शेखपुरा।</li>
+              <li><strong>6.0 हाथ (9.00 फीट) ➔ 1 कट्ठा = 1,620.00 Sq.Ft (3.719 डिसमिल):</strong> भोजपुर (आरा), बक्सर, रोहतास (सासाराम), कैमूर, सारण (छपरा), सीवान, गोपालगंज, पूर्णिया, कटिहार, अररिया, किशनगंज, मुंगेर, बेगूसराय, खगड़िया।</li>
               <li><strong>6.5 हाथ (9.75 फीट) ➔ 1 कट्ठा = 1,901.25 Sq.Ft (4.364 डिसमिल):</strong> दरभंगा, मधुबनी, समस्तीपुर (मिथिलांचल), भागलपुर, बांका (अंग प्रदेश), सीतामढ़ी, शिवहर।</li>
               <li><strong>5.0 हाथ (7.50 फीट) ➔ 1 कट्ठा = 1,125.00 Sq.Ft (2.583 डिसमिल):</strong> सहरसा, सुपौल, मधेपुरा (कोशी प्रमंडल)।</li>
               <li><strong>7.0 हाथ (10.50 फीट) ➔ 1 कट्ठा = 2,205.00 Sq.Ft (5.062 डिसमिल):</strong> पूर्वी चंपारण (मोतिहारी), पश्चिमी चंपारण (बेतिया)।</li>
             </ul>
-            <em>💡 सरकारी नियम: बिहार सरकार के राजस्व पोर्टल (Biharbhumi / e-Mapi) पर <strong>1 डिसमिल = 435.6 वर्ग फीट (1000 वर्ग कड़ी)</strong> और <strong>1 एकड़ = 100 डिसमिल (43,560 वर्ग फीट)</strong> हमेशा स्थिर एवं मानक रहता है।</em>
+            <div style="font-size:0.75rem; color:#1e3a8a; font-weight:700; background:rgba(30,58,138,0.06); padding:8px 12px; border-radius:8px;">
+              💡 सरकारी मानक: बिहार सरकार के राजस्व पोर्टल पर <strong>1 डिसमिल = 435.6 वर्ग फीट (1000 वर्ग कड़ी)</strong> और <strong>1 एकड़ = 100 डिसमिल (43,560 वर्ग फीट)</strong> हमेशा स्थिर एवं मानक रहता है।
+            </div>
+          </div>
+
+          <!-- Full Table -->
+          <div class="calc-table-hint">
+            <span class="material-symbols-outlined" style="font-size:16px;">swipe</span>
+            तालिका को दायें-बायें स्क्रॉल करें (Swipe to view all columns)
+          </div>
+          <div class="calc-table-wrapper">
+            <table class="calc-reference-table">
+              <thead>
+                <tr>
+                  <th>लग्गी माप (हाथ)</th>
+                  <th>लंबाई (फीट)</th>
+                  <th>1 धूर (Sq.Ft)</th>
+                  <th>1 कट्ठा (Sq.Ft व गज)</th>
+                  <th>1 बीघा (Sq.Ft)</th>
+                  <th>1 एकड़ में कट्ठा</th>
+                  <th>प्रचलित जिले व क्षेत्र</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>4.50 हाथ</td>
+                  <td>6.75 ft</td>
+                  <td>45.56 Sq.Ft</td>
+                  <td>911.25 Sq.Ft (101.25 गज)</td>
+                  <td>18,225 Sq.Ft</td>
+                  <td>47.80 कट्ठा</td>
+                  <td>विशेष सीमावर्ती मौजा</td>
+                </tr>
+                <tr>
+                  <td>5.00 हाथ</td>
+                  <td>7.50 ft</td>
+                  <td>56.25 Sq.Ft</td>
+                  <td>1,125.00 Sq.Ft (125.00 गज)</td>
+                  <td>22,500 Sq.Ft</td>
+                  <td>38.72 कट्ठा</td>
+                  <td>सहरसा, सुपौल, मधेपुरा (कोशी प्रमंडल)</td>
+                </tr>
+                <tr>
+                  <td>5.25 हाथ</td>
+                  <td>7.875 ft</td>
+                  <td>62.02 Sq.Ft</td>
+                  <td>1,240.31 Sq.Ft (137.81 गज)</td>
+                  <td>24,806 Sq.Ft</td>
+                  <td>35.12 कट्ठा</td>
+                  <td>मध्य बिहार के कुछ ग्रामीण अंचल</td>
+                </tr>
+                <tr class="highlight-row">
+                  <td><strong>🌟 5.50 हाथ (मानक)</strong></td>
+                  <td>8.25 ft</td>
+                  <td>68.06 Sq.Ft</td>
+                  <td><strong>1,361.25 Sq.Ft (151.25 गज)</strong></td>
+                  <td>27,225 Sq.Ft</td>
+                  <td><strong>32.00 कट्ठा</strong></td>
+                  <td><strong>पटना, नालंदा, गया, जहानाबाद, अरवल, नवादा, औरंगाबाद, मुजफ्फरपुर, वैशाली, जमुई, लखीसराय</strong></td>
+                </tr>
+                <tr>
+                  <td>5.75 हाथ</td>
+                  <td>8.625 ft</td>
+                  <td>74.39 Sq.Ft</td>
+                  <td>1,487.81 Sq.Ft (165.31 गज)</td>
+                  <td>29,756 Sq.Ft</td>
+                  <td>29.28 कट्ठा</td>
+                  <td>भोजपुर व बक्सर के कुछ मौजा</td>
+                </tr>
+                <tr class="highlight-row-alt">
+                  <td><strong>6.00 हाथ (छह हाथ)</strong></td>
+                  <td>9.00 ft</td>
+                  <td>81.00 Sq.Ft</td>
+                  <td><strong>1,620.00 Sq.Ft (180.00 गज)</strong></td>
+                  <td>32,400 Sq.Ft</td>
+                  <td><strong>26.89 कट्ठा</strong></td>
+                  <td><strong>भोजपुर (आरा), बक्सर, रोहतास, कैमूर, सारण, सीवान, गोपालगंज, पूर्णिया, कटिहार, मुंगेर, बेगूसराय</strong></td>
+                </tr>
+                <tr>
+                  <td>6.25 हाथ</td>
+                  <td>9.375 ft</td>
+                  <td>87.89 Sq.Ft</td>
+                  <td>1,757.81 Sq.Ft (195.31 गज)</td>
+                  <td>35,156 Sq.Ft</td>
+                  <td>24.78 कट्ठा</td>
+                  <td>सीमांचल व मिथिला संगम क्षेत्र</td>
+                </tr>
+                <tr class="highlight-row-alt">
+                  <td><strong>6.50 हाथ (साढ़े छह)</strong></td>
+                  <td>9.75 ft</td>
+                  <td>95.06 Sq.Ft</td>
+                  <td><strong>1,901.25 Sq.Ft (211.25 गज)</strong></td>
+                  <td>38,025 Sq.Ft</td>
+                  <td><strong>22.91 कट्ठा</strong></td>
+                  <td><strong>दरभंगा, मधुबनी, समस्तीपुर (मिथिला), भागलपुर, बांका (अंग), सीतामढ़ी, शिवहर</strong></td>
+                </tr>
+                <tr>
+                  <td>6.75 हाथ</td>
+                  <td>10.125 ft</td>
+                  <td>102.52 Sq.Ft</td>
+                  <td>2,050.31 Sq.Ft (227.81 गज)</td>
+                  <td>41,006 Sq.Ft</td>
+                  <td>21.25 कट्ठा</td>
+                  <td>उत्तर बिहार तराई क्षेत्र</td>
+                </tr>
+                <tr class="highlight-row-alt">
+                  <td><strong>7.00 हाथ (सात हाथ)</strong></td>
+                  <td>10.50 ft</td>
+                  <td>110.25 Sq.Ft</td>
+                  <td><strong>2,205.00 Sq.Ft (245.00 गज)</strong></td>
+                  <td>44,100 Sq.Ft</td>
+                  <td><strong>19.75 कट्ठा</strong></td>
+                  <td><strong>पूर्वी चंपारण (मोतिहारी), पश्चिमी चंपारण (बेतिया)</strong></td>
+                </tr>
+                <tr>
+                  <td>7.50 हाथ</td>
+                  <td>11.25 ft</td>
+                  <td>126.56 Sq.Ft</td>
+                  <td>2,531.25 Sq.Ft (281.25 गज)</td>
+                  <td>50,625 Sq.Ft</td>
+                  <td>17.21 कट्ठा</td>
+                  <td>तराई एवं वाल्मीकिनगर सीमा क्षेत्र</td>
+                </tr>
+                <tr>
+                  <td>8.00 हाथ</td>
+                  <td>12.00 ft</td>
+                  <td>144.00 Sq.Ft</td>
+                  <td>2,880.00 Sq.Ft (320.00 गज)</td>
+                  <td>57,600 Sq.Ft</td>
+                  <td>15.12 कट्ठा</td>
+                  <td>नेपाल सीमावर्ती प्राचीन वन मौजा</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="margin-top:1.25rem; text-align:center;">
+            <button class="open-vip-modal btn-gold" style="font-size:0.75rem; padding:0.7rem 1.75rem;">
+              <span class="material-symbols-outlined" style="font-size:16px;">call</span>
+              Consult Our Land Revenue &amp; Architectural Expert
+            </button>
           </div>
         </div>
-      </div>
-
-      <!-- COMPARISON MATRIX & BIHAR DLRS REFERENCE TABLE -->
-      <div style="background:#f1f5f9; border-radius:18px; padding:1.5rem; border:1px solid #e2e8f0;">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1rem; flex-wrap:wrap; gap:0.5rem;">
-          <div style="display:flex; align-items:center; gap:8px; font-weight:800; font-size:0.88rem; color:#1e293b;">
-            <span class="material-symbols-outlined" style="font-size:18px; color:#1e3a8a;">menu_book</span>
-            बिहार राजस्व एवं सर्वे नियमावली — जिलेवार लग्गी एवं मापी संदर्भ तालिका (Official Scale)
-          </div>
-          <span style="font-size:0.7rem; font-weight:700; color:#1e3a8a; background:rgba(30,58,138,0.1); padding:2px 8px; border-radius:999px;">DLRS Standard</span>
-        </div>
-
-        <div style="overflow-x:auto;">
-          <table style="width:100%; border-collapse:collapse; font-size:0.75rem; color:#334155; text-align:left; background:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e2e8f0;">
-            <thead>
-              <tr style="background:#1e3a8a; color:#ffffff; font-weight:700;">
-                <th style="padding:0.75rem 1rem;">लग्गी माप (हाथ में)</th>
-                <th style="padding:0.75rem 1rem;">लग्गी लंबाई (फीट)</th>
-                <th style="padding:0.75rem 1rem;">1 धूर (वर्ग फीट)</th>
-                <th style="padding:0.75rem 1rem;">1 कट्ठा (वर्ग फीट एवं गज)</th>
-                <th style="padding:0.75rem 1rem;">1 बीघा (वर्ग फीट)</th>
-                <th style="padding:0.75rem 1rem;">1 एकड़ में कट्ठा</th>
-                <th style="padding:0.75rem 1rem;">प्रचलित जिले व क्षेत्र</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid #e2e8f0;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">4.50 हाथ</td>
-                <td style="padding:0.65rem 1rem;">6.75 ft</td>
-                <td style="padding:0.65rem 1rem;">45.56 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">911.25 Sq.Ft (101.25 गज)</td>
-                <td style="padding:0.65rem 1rem;">18,225 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">47.80 कट्ठा</td>
-                <td style="padding:0.65rem 1rem;">विशेष सीमावर्ती मौजा</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0; background:#f8fafc;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">5.00 हाथ</td>
-                <td style="padding:0.65rem 1rem;">7.50 ft</td>
-                <td style="padding:0.65rem 1rem;">56.25 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,125.00 Sq.Ft (125.00 गज)</td>
-                <td style="padding:0.65rem 1rem;">22,500 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">38.72 कट्ठा</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">सहरसा, सुपौल, मधेपुरा (कोशी प्रमंडल)</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">5.25 हाथ (सवा पाँच)</td>
-                <td style="padding:0.65rem 1rem;">7.875 ft</td>
-                <td style="padding:0.65rem 1rem;">62.02 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,240.31 Sq.Ft (137.81 गज)</td>
-                <td style="padding:0.65rem 1rem;">24,806 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">35.12 कट्ठा</td>
-                <td style="padding:0.65rem 1rem;">मध्य बिहार के कुछ ग्रामीण अंचल</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0; background:rgba(212,160,23,0.08);">
-                <td style="padding:0.65rem 1rem; font-weight:800; color:#1e3a8a;">🌟 5.50 हाथ (मानक)</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">8.25 ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">68.06 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:800; color:#1e3a8a;">1,361.25 Sq.Ft (151.25 गज)</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">27,225 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:800; color:#166534;">32.00 कट्ठा</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">पटना, नालंदा, गया, जहानाबाद, अरवल, नवादा, औरंगाबाद, मुजफ्फरपुर, वैशाली (हाजीपुर), जमुई, लखीसराय, शेखपुरा</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">5.75 हाथ (पौने छह)</td>
-                <td style="padding:0.65rem 1rem;">8.625 ft</td>
-                <td style="padding:0.65rem 1rem;">74.39 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,487.81 Sq.Ft (165.31 गज)</td>
-                <td style="padding:0.65rem 1rem;">29,756 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">29.28 कट्ठा</td>
-                <td style="padding:0.65rem 1rem;">भोजपुर व बक्सर के कुछ विशेष मौजा</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0; background:#f8fafc;">
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#166534;">6.00 हाथ (छह हाथ)</td>
-                <td style="padding:0.65rem 1rem;">9.00 ft</td>
-                <td style="padding:0.65rem 1rem;">81.00 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,620.00 Sq.Ft (180.00 गज)</td>
-                <td style="padding:0.65rem 1rem;">32,400 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">26.89 कट्ठा</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">सारण (छपरा), सीवान, गोपालगंज, रोहतास (सासाराम), कैमूर (भभुआ), भोजपुर (आरा), बक्सर, पूर्णिया, कटिहार, अररिया, किशनगंज, मुंगेर, बेगूसराय, खगड़िया</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">6.25 हाथ (सवा छह)</td>
-                <td style="padding:0.65rem 1rem;">9.375 ft</td>
-                <td style="padding:0.65rem 1rem;">87.89 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,757.81 Sq.Ft (195.31 गज)</td>
-                <td style="padding:0.65rem 1rem;">35,156 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">24.78 कट्ठा</td>
-                <td style="padding:0.65rem 1rem;">अंग व तिरहुत सीमावर्ती अंचल</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">6.50 हाथ (साढ़े छह)</td>
-                <td style="padding:0.65rem 1rem;">9.75 ft</td>
-                <td style="padding:0.65rem 1rem;">95.06 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">1,901.25 Sq.Ft (211.25 गज)</td>
-                <td style="padding:0.65rem 1rem;">38,025 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">22.91 कट्ठा</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">दरभंगा, मधुबनी, समस्तीपुर (मिथिलांचल), भागलपुर, बांका (अंग प्रदेश), सीतामढ़ी, शिवहर</td>
-              </tr>
-              <tr style="border-bottom:1px solid #e2e8f0; background:#f8fafc;">
-                <td style="padding:0.65rem 1rem; font-weight:700;">7.00 हाथ (सात हाथ)</td>
-                <td style="padding:0.65rem 1rem;">10.50 ft</td>
-                <td style="padding:0.65rem 1rem;">110.25 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">2,205.00 Sq.Ft (245.00 गज)</td>
-                <td style="padding:0.65rem 1rem;">44,100 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">19.76 कट्ठा</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">पूर्वी चंपारण (मोतिहारी), पश्चिमी चंपारण (बेतिया)</td>
-              </tr>
-              <tr>
-                <td style="padding:0.65rem 1rem; font-weight:700;">7.50 से 8.00 हाथ</td>
-                <td style="padding:0.65rem 1rem;">11.25 - 12.0 ft</td>
-                <td style="padding:0.65rem 1rem;">126.56 - 144 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700;">2,531 - 2,880 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem;">50,625 - 57,600 Sq.Ft</td>
-                <td style="padding:0.65rem 1rem; font-weight:700; color:#1e3a8a;">15.13 - 17.21 कट्ठा</td>
-                <td style="padding:0.65rem 1rem;">तराई व विशेष वन क्षेत्र</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div style="margin-top:1.25rem; text-align:center;">
-          <button class="open-vip-modal btn-gold" style="font-size:0.75rem; padding:0.7rem 1.75rem;">
-            <span class="material-symbols-outlined" style="font-size:16px;">call</span>
-            Consult Our Land Revenue & Architectural Expert
-          </button>
-        </div>
-      </div>
+      </details>
 
     </div>
   </section>
@@ -2519,7 +2585,7 @@
   <script src="assets/pdf.min.js" defer></script>
   <!-- Custom Script Files -->
   <script src="royal-garden.js?v=221" defer></script>
-  <script src="app.js?v=31" defer></script>
+  <script src="app.js?v=32" defer></script>
 
 </body>
 </html>
