@@ -36,6 +36,10 @@
   <meta name="theme-color" content="#0f172a">
   <meta name="msapplication-TileColor" content="#0f172a">
 
+  <!-- AI & Generative Search Optimization (GEO for ChatGPT, Perplexity, Gemini, Claude, Google AI Overviews) -->
+  <meta name="ai-content-declaration" content="Official corporate information about Swarup Group, real estate projects, Guru Niwas Colony Bihta, Royal Garden Kanhauli, Patna plots, and Bihar land measurement calculator.">
+  <link rel="help" href="https://www.swarupgroup.in/llms.txt" type="text/plain" title="LLM Knowledge Graph">
+
   <!-- Open Graph / Facebook / WhatsApp Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.swarupgroup.in/">
@@ -235,7 +239,31 @@
   }
   </script>
 
-  <!-- Structured Data 1C: BreadcrumbList Schema -->
+  <!-- Structured Data 1C: AboutPage & Knowledge Graph Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://www.swarupgroup.in/#about",
+    "url": "https://www.swarupgroup.in/#about",
+    "name": "About Swarup Group — Bihar's Premier Real Estate Developers",
+    "description": "Comprehensive corporate overview, founding history, verified land standards, and flagship township developments of Swarup Group in Patna, Bihta, and Kanhauli, Bihar.",
+    "mainEntity": {
+      "@id": "https://www.swarupgroup.in/#organization"
+    },
+    "knowsAbout": [
+      "Residential Plotted Developments in Patna",
+      "Guru Niwas Colony Bihta near IIT Patna",
+      "Royal Garden Kanhauli near Patliputra Bus Terminal",
+      "Bihar Bhumi Mapan Land Measurement Rules",
+      "Clear Title Raiti Land Verification in Bihar",
+      "DLRS Land Survey and Mutation Procedures",
+      "Patna Outer Ring Road Real Estate Growth Corridors"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data 1D: BreadcrumbList Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -250,12 +278,18 @@
       {
         "@type": "ListItem",
         "position": 2,
+        "name": "Why Swarup Group",
+        "item": "https://www.swarupgroup.in/#about"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
         "name": "Townships & Plots",
         "item": "https://www.swarupgroup.in/#plots"
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 4,
         "name": "Bihar Bhumi Mapan Calculator",
         "item": "https://www.swarupgroup.in/#calculator"
       }
@@ -1594,140 +1628,303 @@
   </section>
 
   <!-- ════════════════════════════════════════
-       WHY CHOOSE US / ABOUT SWARUP GROUP
+       WHY CHOOSE US / ABOUT SWARUP GROUP (COMPREHENSIVE SEO & AI KNOWLEDGE HUB)
        ════════════════════════════════════════ -->
   <section id="about" style="padding:5.5rem 1.5rem; background:var(--bg-secondary); border-top:1.5px solid #e2e8f0; border-bottom:1.5px solid #e2e8f0;">
-    <div class="about-grid-wrapper" style="max-width:1320px; margin:0 auto;">
+    <div style="max-width:1320px; margin:0 auto;">
+      
+      <!-- Top 2-Column Grid -->
+      <div class="about-grid-wrapper" style="margin-bottom:3.5rem;">
 
-      <!-- Left Column: Story & 4 Strategic Pillars -->
-      <div>
-        <!-- Elegant Trust Badge -->
-        <div class="section-label" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, rgba(30,58,138,0.08) 0%, rgba(212,160,23,0.12) 100%); padding:6px 18px; border-radius:999px; border:1.5px solid rgba(212,160,23,0.35); box-shadow:0 2px 10px rgba(0,0,0,0.03);">
-          <span class="material-symbols-outlined" style="font-size:18px; color:#d97706;">workspace_premium</span>
-          <span style="font-weight:800; font-size:0.78rem; letter-spacing:0.06em; color:#1e3a8a; text-transform:none;">बिहार का सर्वाधिक विश्वसनीय एवं प्रतिष्ठित रियल एस्टेट समूह • Swarup Group</span>
+        <!-- Left Column: Story, Vision & 6 Strategic Pillars -->
+        <div>
+          <!-- Elegant Trust Badge -->
+          <div class="section-label" style="display:inline-flex; align-items:center; gap:8px; background:linear-gradient(135deg, rgba(30,58,138,0.08) 0%, rgba(212,160,23,0.12) 100%); padding:6px 18px; border-radius:999px; border:1.5px solid rgba(212,160,23,0.35); box-shadow:0 2px 10px rgba(0,0,0,0.03);">
+            <span class="material-symbols-outlined" style="font-size:18px; color:#d97706;">workspace_premium</span>
+            <span style="font-weight:800; font-size:0.78rem; letter-spacing:0.06em; color:#1e3a8a; text-transform:none;">बिहार का सर्वाधिक विश्वसनीय एवं प्रतिष्ठित रियल एस्टेट समूह • Swarup Group</span>
+          </div>
+
+          <h2 class="section-heading" style="margin-top:0.8rem; margin-bottom:0.4rem; font-size:clamp(1.85rem, 3.8vw, 2.7rem); line-height:1.25;">
+            विश्वास, कानूनी सुरक्षा और आधुनिक जीवन का <span class="text-gold">सर्वोच्च मानक</span>
+          </h2>
+
+          <div style="font-size:clamp(0.95rem, 1.8vw, 1.18rem); font-weight:700; color:#1e3a8a; margin-bottom:1.25rem; letter-spacing:0.02em;">
+            A Legacy of Trust, Vision &amp; Transformative Living Across Patna &amp; Bihar
+          </div>
+
+          <p style="color:#334155; font-size:0.92rem; line-height:1.85; margin-bottom:1.25rem;">
+            <strong>स्वरूप ग्रुप (Swarup Group / SWARUP Infra Developers)</strong> बिहार में रियल एस्टेट, आधुनिक टाउनशिप और ज़मीन विकास के क्षेत्र में <strong>अटूट विश्वास और प्रामाणिकता का सबसे बड़ा नाम</strong> है। पिछले <strong>8+ वर्षों</strong> के अटूट अनुभव और <strong>800+ खुशहाल परिवारों</strong> के भरोसे के साथ, हम पटना, बिहटा, कन्हौली, दानापुर, गोला रोड और पटना रिंग रोड जैसे प्रमुख कॉरिडोर में 100% सरकारी नियमों (DLRS) से प्रमाणित, पूर्णतः वैध और दाखिल-खारिज (Mutation) युक्त आवासीय व व्यावसायिक भूखंड उपलब्ध कराते हैं।
+          </p>
+
+          <p style="color:#475569; font-size:0.88rem; line-height:1.75; margin-bottom:1.75rem;">
+            हमारा कॉर्पोरेट मुख्यालय <strong>रूपा टावर, आरपीएस मोड़, दानापुर, पटना</strong> में स्थित है, जहाँ हमारी कानूनी व तकनीकी टीम हर भूखंड के सीएस/आरएस खतियान, जमाबंदी, और लगान रसीद की 100% पारदर्शी जांच सुनिश्चित करती है। स्वरूप ग्रुप का उद्देश्य केवल जमीन बेचना नहीं, बल्कि आने वाली पीढ़ियों के लिए सुरक्षित और बहुगुणा मूल्यवान संपत्ति का निर्माण करना है।
+          </p>
+
+          <!-- 6 Core Pillars & Standout Features (स्वरूप ग्रुप की 6 प्रमुख खूबियां) -->
+          <div class="why-cards-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-bottom:2rem;">
+            
+            <!-- Pillar 1: 100% Raiti Land & Zero Dispute -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">verified_user</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">01 • 100% Raiti Land</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">100% Verified Raiti Land</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">100% निजी रैयती जमीन • 0% विवाद</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                सभी प्लॉट्स 100% निजी रैयती भूमि पर स्थित हैं। किसी भी प्रकार की गैरमजरूआ या विवादित जमीन नहीं। सीएस/आरएस खतियान व अप-टू-डेट ऑनलाइन जमाबंदी गारंटीड।
+              </p>
+            </div>
+
+            <!-- Pillar 2: Instant Registry & Mutation -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">edit_document</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">02 • Instant Registry</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Immediate Registry &amp; Mutation</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">त्वरित निबंधन व दाखिल-खारिज</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                सब-रजिस्ट्रार कार्यालय में तत्काल रजिस्ट्री एवं बिहार भूमि पोर्टल पर ऑनलाइन दाखिल-खारिज (Dakhil Kharij) व रसीद कटने की 100% कानूनी व तकनीकी सहायता।
+              </p>
+            </div>
+
+            <!-- Pillar 3: Prime Growth Corridors -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">near_me</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">03 • Prime Corridors</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Prime Growth Corridors</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">बिहटा IIT, कन्हौली रिंग रोड व दानापुर</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                आईआईटी पटना गेट 1 (1.5 KM), बिहटा इंटरनेशनल एयरपोर्ट (3 KM), पाटलिपुत्र बस टर्मिनल (500 M) और 6-लेन पटना आउटर रिंग रोड से सीधे जुड़े रणनीतिक प्रोजेक्ट्स।
+              </p>
+            </div>
+
+            <!-- Pillar 4: Interactive 3D Masterplans -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">view_in_ar</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">04 • 3D Transparency</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Interactive 3D Masterplans</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">बिहार का पहला डिजिटल प्लॉट लेआउट</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                बिहार में पहली बार ऑनलाइन 3D इंटरैक्टिव मास्टरप्लान जहाँ आप घर बैठे प्लॉट का सटीक आकार, फेसिंग (दिशा), रोड चौड़ाई और रियल-टाइम बुकिंग स्टेटस देख सकते हैं।
+              </p>
+            </div>
+
+            <!-- Pillar 5: In-House Bihar Bhumi Mapan Tool -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">calculate</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">05 • Land Calculator</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Bihar Bhumi Mapan Calculator</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">38 जिलों हेतु प्रामाणिक भूमि मापन</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                बिहार सरकार राजस्व (DLRS) नियमों के अनुसार 4 से 12 हाथ की लग्गी, धूर, कट्ठा, बीघा, डिसमिल और वर्ग फीट का 100% सटीक ऑनलाइन कैलकुलेटर टूल।
+              </p>
+            </div>
+
+            <!-- Pillar 6: World-Class Infra & Free VIP Cab -->
+            <div class="why-card">
+              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
+                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
+                  <span class="material-symbols-outlined" style="font-size:22px;">local_taxi</span>
+                </div>
+                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">06 • VIP Service</span>
+              </div>
+              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">World-Class Infra &amp; Free Cab</h4>
+              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">30-50 Ft. सड़कें एवं निःशुल्क कैब विजिट</div>
+              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
+                30-50 फीट चौड़ी कंक्रीट सड़कें, ड्रेनेज, ट्रांसफार्मर, 24/7 CCTV सुरक्षा, पार्क, और पटना में कहीं से भी साइट विजिट के लिए फ्री AC कैब पिकअप व ड्रॉप सुविधा।
+              </p>
+            </div>
+
+          </div>
+
+          <div style="display:flex; flex-wrap:wrap; gap:0.85rem; align-items:center;">
+            <button class="open-vip-modal btn-gold" style="font-size:0.75rem;">
+              <span class="material-symbols-outlined" style="font-size:16px;">directions_car</span>
+              Book Free VIP Site Visit
+            </button>
+            <button class="open-vip-modal btn-outline" style="font-size:0.75rem;">
+              <span class="material-symbols-outlined" style="font-size:16px;">download</span>
+              Download Swarup Brochure
+            </button>
+            <a href="tel:+917061556404" class="btn-outline" style="font-size:0.75rem; text-decoration:none; display:inline-flex; align-items:center; gap:6px; color:#1e3a8a; border-color:#1e3a8a;">
+              <span class="material-symbols-outlined" style="font-size:16px;">call</span>
+              +91-7061556404
+            </a>
+          </div>
         </div>
 
-        <h2 class="section-heading" style="margin-top:0.8rem; margin-bottom:0.4rem; font-size:clamp(1.85rem, 3.8vw, 2.7rem); line-height:1.25;">
-          विश्वास, सुरक्षा और आधुनिक जीवन का <span class="text-gold">सर्वोच्च मानक</span>
-        </h2>
-
-        <div style="font-size:clamp(0.95rem, 1.8vw, 1.18rem); font-weight:700; color:#1e3a8a; margin-bottom:1.25rem; letter-spacing:0.02em;">
-          A Legacy of Trust, Vision &amp; Transformative Living Across Bihar
-        </div>
-
-        <p style="color:#334155; font-size:0.92rem; line-height:1.85; margin-bottom:1.75rem;">
-          <strong>स्वरूप ग्रुप (Swarup Group)</strong> बिहार में रियल एस्टेट, आधुनिक टाउनशिप और ज़मीन विकास के क्षेत्र में <strong>अटूट विश्वास और प्रामाणिकता का सबसे बड़ा नाम</strong> है। पिछले <strong>8+ वर्षों</strong> के अटूट अनुभव और <strong>800+ खुशहाल परिवारों</strong> के भरोसे के साथ, हम पटना, बिहटा, कन्हौली, दानापुर और पटना रिंग रोड जैसे प्रमुख कॉरिडोर में 100% सरकारी नियमों (DLRS) से प्रमाणित, पूर्णतः वैध और दाखिल-खारिज (Mutation) युक्त आवासीय व व्यावसायिक भूखंड उपलब्ध कराते हैं। हमारा संकल्प आपके हर निवेश को आजीवन सुरक्षित और बहुगुणा समृद्ध बनाना है।
-        </p>
-
-        <!-- 4 Core Pillars: Vision, Mission, Legal Purity, High ROI -->
-        <div class="why-cards-grid">
+        <!-- Right Column: Visual Showcase & AI Factsheet -->
+        <div class="about-visual-cluster">
           
-          <!-- Pillar 1: Our Vision -->
-          <div class="why-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-              <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px;">
-                <span class="material-symbols-outlined" style="font-size:22px;">visibility</span>
-              </div>
-              <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">01 • Vision</span>
+          <div class="apple-overlapping-stage">
+            <!-- Ambient Glow in Background -->
+            <div class="apple-stage-ambient-glow"></div>
+
+            <!-- 1st Image: Main Top-Left (Corporate Office Reception Lounge with 3D Logo) -->
+            <div class="apple-overlap-card card-primary" title="Swarup Group Corporate Headquarters Reception">
+              <img src="assets/swarup_office_reception.webp?v=106" alt="Swarup Group Corporate Headquarters Reception Rupa Tower Danapur Patna" loading="lazy">
             </div>
-            <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Our Vision: Modern Bihar</h4>
-            <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">दूरदर्शी एवं आधुनिक टाउनशिप</div>
-            <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-              बिहार के प्रमुख विकास गलियारों में पर्यावरण-अनुकूल, मास्टर-प्लांड टाउनशिप का निर्माण करना, जहाँ चौड़ी सड़कें, हरियाली और आधुनिक सुविधाएं हर परिवार के जीवन स्तर को नई ऊंचाई दें।
-            </p>
+
+            <!-- 2nd Image: Overlapping Bottom-Right (Executive Advisory & Consultation Lounge with 3D Logo) -->
+            <div class="apple-overlap-card card-secondary" title="Swarup Group Executive Client Advisory & Boardroom">
+              <img src="assets/swarup_office_consultation.webp?v=106" alt="Swarup Group Executive Advisory Consultation Lounge" loading="lazy">
+            </div>
           </div>
 
-          <!-- Pillar 2: Our Mission -->
-          <div class="why-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-              <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px;">
-                <span class="material-symbols-outlined" style="font-size:22px;">rocket_launch</span>
-              </div>
-              <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">02 • Mission</span>
+          <!-- Trust Summary Banner -->
+          <div class="about-trust-strip" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:18px; padding:1.25rem; box-shadow:0 4px 18px rgba(0,0,0,0.03);">
+            <div style="display:flex; align-items:center; gap:8px; color:#1e3a8a; font-weight:800; font-size:0.84rem; margin-bottom:0.75rem;">
+              <span class="material-symbols-outlined" style="font-size:20px; color:#d97706;">military_tech</span>
+              The Swarup Group Commitment (स्वरूप ग्रुप का संकल्प)
             </div>
-            <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Our Mission: 100% Trust</h4>
-            <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">पारदर्शिता एवं त्वरित रजिस्ट्री</div>
-            <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-              हर ग्राहक को बिना किसी बिचौलिए के पारदर्शी डीलिंग, तत्काल रजिस्ट्री (Instant Registry), दाखिल-खारिज (Mutation) सहायता एवं समयबद्ध पजेशन के साथ सुरक्षित निवेश का अनुभव कराना।
-            </p>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.6rem; font-size:0.73rem; color:#334155; font-weight:600;">
+              <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:15px; color:#15803d;">check_circle</span> 100% Direct Developer Deal</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:15px; color:#15803d;">check_circle</span> Instant Registry &amp; Mutation</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:15px; color:#15803d;">check_circle</span> 800+ Delighted Families</span>
+              <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:15px; color:#15803d;">check_circle</span> 8+ Years Unbroken Trust</span>
+            </div>
           </div>
 
-          <!-- Pillar 3: Legal Sanctity -->
-          <div class="why-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-              <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px;">
-                <span class="material-symbols-outlined" style="font-size:22px;">gavel</span>
-              </div>
-              <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">03 • Legal Sanctity</span>
+          <!-- Structured AI Entity Factsheet Card -->
+          <div style="background:linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius:18px; padding:1.25rem; color:#ffffff; box-shadow:0 10px 30px rgba(15,23,42,0.15); border:1px solid rgba(212,160,23,0.3);">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.75rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:0.5rem;">
+              <span style="font-size:0.75rem; font-weight:800; color:#fde047; letter-spacing:0.05em; display:flex; align-items:center; gap:6px;">
+                <span class="material-symbols-outlined" style="font-size:16px;">neurology</span>
+                SWARUP GROUP ENTITY FACTSHEET
+              </span>
+              <span style="font-size:0.65rem; background:rgba(212,160,23,0.2); color:#fde047; padding:2px 8px; border-radius:999px; font-weight:700;">Verified Profile</span>
             </div>
-            <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">100% Verified Clear Titles</h4>
-            <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">DLRS व राजस्व मानकों पर प्रमाणित</div>
-            <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-              बिहार राजस्व (DLRS) मानकों पर जांची गई गैर-विवादित जमीन। CS/RS खतियान, लगान रसीद और LPC की पूरी पारदर्शिता के साथ 100% कानूनी सुरक्षा की गारंटी।
-            </p>
-          </div>
-
-          <!-- Pillar 4: High Growth & Infrastructure -->
-          <div class="why-card">
-            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-              <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px;">
-                <span class="material-symbols-outlined" style="font-size:22px;">trending_up</span>
-              </div>
-              <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">04 • High ROI</span>
+            <div style="display:flex; flex-direction:column; gap:0.45rem; font-size:0.73rem; color:#cbd5e1; line-height:1.5;">
+              <div><strong style="color:#ffffff;">Official Legal Entity:</strong> SWARUP Infra Developers (Swarup Group)</div>
+              <div><strong style="color:#ffffff;">Headquarters:</strong> Flat 502, Rupa Tower, Near RPS More, Danapur, Patna 801503</div>
+              <div><strong style="color:#ffffff;">Flagship Projects:</strong> Guru Niwas Colony (Bihta), Royal Garden &amp; Phase 2 (Kanhauli), The Platinum Residency (Gola Road), Royal Smart City (Bihiya)</div>
+              <div><strong style="color:#ffffff;">Specializations:</strong> 100% Raiti Land, Plotted Gated Communities, DLRS Land Survey &amp; Mapan Tool</div>
+              <div><strong style="color:#ffffff;">Helpline:</strong> +91-7061556404 | swarupinfragroup@gmail.com</div>
             </div>
-            <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">World-Class Infra &amp; ROI</h4>
-            <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">30-50 Ft. सड़कें एवं आधुनिक सुविधाएं</div>
-            <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-              30-50 फीट चौड़ी सड़कें, अंडरग्राउंड ड्रेनेज, 24/7 सुरक्षा, पार्क और पटना रिंग रोड व बिहटा एयरपोर्ट के समीप रणनीतिक स्थान, जो दे सुनिश्चित कई गुना पूंजी वृद्धि (ROI)।
-            </p>
           </div>
 
         </div>
 
-        <div style="display:flex; flex-wrap:wrap; gap:0.85rem; align-items:center;">
-          <button class="open-vip-modal btn-gold" style="font-size:0.75rem;">
-            <span class="material-symbols-outlined" style="font-size:16px;">directions_car</span>
-            Book Free VIP Site Visit
-          </button>
-          <button class="open-vip-modal btn-outline" style="font-size:0.75rem;">
-            <span class="material-symbols-outlined" style="font-size:16px;">download</span>
-            Download Swarup Brochure
-          </button>
-        </div>
       </div>
 
-      <!-- Right Column: Visual Showcase (Apple-Style Overlapping Pure Image Composition) -->
-      <div class="about-visual-cluster">
-        
-        <div class="apple-overlapping-stage">
-          <!-- Ambient Glow in Background -->
-          <div class="apple-stage-ambient-glow"></div>
-
-          <!-- 1st Image: Main Top-Left (Corporate Office Reception Lounge with 3D Logo) -->
-          <div class="apple-overlap-card card-primary" title="Swarup Group Corporate Headquarters Reception">
-            <img src="assets/swarup_office_reception.webp?v=106" alt="Swarup Group Corporate Headquarters Reception" loading="lazy">
-          </div>
-
-          <!-- 2nd Image: Overlapping Bottom-Right (Executive Advisory & Consultation Lounge with 3D Logo) -->
-          <div class="apple-overlap-card card-secondary" title="Swarup Group Executive Client Advisory & Boardroom">
-            <img src="assets/swarup_office_consultation.webp?v=106" alt="Swarup Group Executive Advisory Consultation" loading="lazy">
-          </div>
+      <!-- Transparent Comparison Matrix: Swarup Group vs Local Property Brokers -->
+      <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:24px; padding:2rem; box-shadow:0 8px 30px rgba(0,0,0,0.03);">
+        <div style="text-align:center; margin-bottom:1.5rem;">
+          <span style="font-size:0.72rem; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.08em; background:#fef3c7; padding:4px 14px; border-radius:999px;">पारदर्शिता चार्ट • Transparency Matrix</span>
+          <h3 style="font-size:clamp(1.25rem, 2.5vw, 1.75rem); font-weight:800; color:#0f172a; margin-top:0.6rem; margin-bottom:0.35rem;">
+            स्वरूप ग्रुप (Swarup Group) बनाम आम प्रॉपर्टी ब्रोकर्स
+          </h3>
+          <p style="font-size:0.82rem; color:#64748b; max-width:700px; margin:0 auto;">
+            जानिए क्यों पटना और बिहार के 800+ समझदार परिवारों ने अपने जीवन की सबसे बड़ी बचत के लिए सिर्फ स्वरूप ग्रुप को चुना:
+          </p>
         </div>
 
-        <!-- Trust Summary Banner -->
-        <div class="about-trust-strip">
-          <div style="display:flex; align-items:center; gap:8px; color:#1e3a8a; font-weight:800; font-size:0.84rem;">
-            <span class="material-symbols-outlined" style="font-size:20px;">military_tech</span>
-            The Swarup Group Commitment (स्वरूप ग्रुप का संकल्प)
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; font-size:0.73rem; color:#334155; font-weight:600;">
-            <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:14px; color:#15803d;">check_circle</span> 100% Direct Developer Deal</span>
-            <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:14px; color:#15803d;">check_circle</span> Instant Registry &amp; Mutation</span>
-            <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:14px; color:#15803d;">check_circle</span> 800+ Delighted Families</span>
-            <span style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:14px; color:#15803d;">check_circle</span> 8+ Years Unbroken Trust</span>
-          </div>
+        <div style="overflow-x:auto;">
+          <table style="width:100%; border-collapse:separate; border-spacing:0; font-size:0.82rem; border:1px solid #e2e8f0; border-radius:14px; overflow:hidden;">
+            <thead>
+              <tr style="background:#0f172a; color:#ffffff;">
+                <th style="padding:1rem; text-align:left; font-weight:800; width:28%;">मानक व सुविधाएं (Parameters)</th>
+                <th style="padding:1rem; text-align:left; font-weight:800; width:36%; background:linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); color:#fde047; border-left:1.5px solid #d4a017;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:18px;">verified</span>
+                    स्वरूप ग्रुप (Swarup Group)
+                  </div>
+                </th>
+                <th style="padding:1rem; text-align:left; font-weight:700; width:36%; color:#94a3b8;">आम स्थानीय ब्रोकर्स / डीलर्स</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                <td style="padding:0.9rem 1rem; font-weight:700; color:#0f172a; border-bottom:1px solid #e2e8f0;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">gavel</span>
+                    जमीन का मालिकाना हक (Land Title)
+                  </div>
+                </td>
+                <td style="padding:0.9rem 1rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017; border-bottom:1px solid #e2e8f0;">
+                  ✔ 100% प्रमाणित रैयती जमीन, 0% गैरमजरूआ, कानूनी टीम द्वारा पूर्णतः सत्यापित खतियान व जमाबंदी।
+                </td>
+                <td style="padding:0.9rem 1rem; color:#dc2626; background:#fef2f2; border-bottom:1px solid #e2e8f0;">
+                  ✖ मौखिक दावे, कई बार गैरमजरूआ या विवादित जमीन मिलने का भारी कानूनी जोखिम।
+                </td>
+              </tr>
+              <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                <td style="padding:0.9rem 1rem; font-weight:700; color:#0f172a; border-bottom:1px solid #e2e8f0;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">assignment_turned_in</span>
+                    रजिस्ट्री व दाखिल-खारिज (Mutation)
+                  </div>
+                </td>
+                <td style="padding:0.9rem 1rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017; border-bottom:1px solid #e2e8f0;">
+                  ✔ तत्काल निबंधन (Registry) व ऑनलाइन दाखिल-खारिज और सरकारी रसीद कटने तक पूरी सहायता।
+                </td>
+                <td style="padding:0.9rem 1rem; color:#dc2626; background:#fef2f2; border-bottom:1px solid #e2e8f0;">
+                  ✖ रजिस्ट्री के बाद ब्रोकर गायब, दाखिल खारिज के लिए सरकारी दफ्तरों के चक्कर काटने पड़ते हैं।
+                </td>
+              </tr>
+              <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                <td style="padding:0.9rem 1rem; font-weight:700; color:#0f172a; border-bottom:1px solid #e2e8f0;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">add_road</span>
+                    टाउनशिप सड़कें व इंफ्रास्ट्रक्चर
+                  </div>
+                </td>
+                <td style="padding:0.9rem 1rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017; border-bottom:1px solid #e2e8f0;">
+                  ✔ 30 से 50 फीट चौड़ी पक्की सड़कें, अंडरग्राउंड ड्रेनेज, स्ट्रीट लाइट्स, ट्रांसफार्मर व ग्रीन पार्क।
+                </td>
+                <td style="padding:0.9rem 1rem; color:#dc2626; background:#fef2f2; border-bottom:1px solid #e2e8f0;">
+                  ✖ 10-15 फीट संकरी कच्ची सड़कें, बारिश में जलजमाव और बिजली-ड्रेनेज का कोई प्रावधान नहीं।
+                </td>
+              </tr>
+              <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                <td style="padding:0.9rem 1rem; font-weight:700; color:#0f172a; border-bottom:1px solid #e2e8f0;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">layers</span>
+                    मास्टरप्लान व लेआउट पारदर्शिता
+                  </div>
+                </td>
+                <td style="padding:0.9rem 1rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017; border-bottom:1px solid #e2e8f0;">
+                  ✔ डिजिटल 3D मास्टरप्लान, पिलर बाउंड्री युक्त प्लॉट, हर प्लॉट का सटीक डायमेंशन व फेसिंग।
+                </td>
+                <td style="padding:0.9rem 1rem; color:#dc2626; background:#fef2f2; border-bottom:1px solid #e2e8f0;">
+                  ✖ केवल कागज पर नक्शा, जमीन पर कोई स्थायी पिलर या सेक्टर बाउंड्री नहीं होती।
+                </td>
+              </tr>
+              <tr style="background:#ffffff;">
+                <td style="padding:0.9rem 1rem; font-weight:700; color:#0f172a;">
+                  <div style="display:flex; align-items:center; gap:6px;">
+                    <span class="material-symbols-outlined" style="font-size:16px; color:#1e3a8a;">corporate_fare</span>
+                    संस्थागत विश्वसनीयता (Corporate Trust)
+                  </div>
+                </td>
+                <td style="padding:0.9rem 1rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017;">
+                  ✔ 8+ वर्षों की अटूट विरासत, 800+ खुशहाल परिवार, दानापुर (रूपा टावर) में विशाल कॉर्पोरेट ऑफिस।
+                </td>
+                <td style="padding:0.9rem 1rem; color:#dc2626; background:#fef2f2;">
+                  ✖ कोई स्थायी कार्यालय नहीं, कोई पंजीकृत कंपनी नहीं, केवल कमीशन आधारित बिचौलिए।
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
       </div>
 
     </div>

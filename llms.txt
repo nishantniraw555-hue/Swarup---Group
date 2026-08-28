@@ -1,0 +1,30 @@
+# Swarup Group (SWARUP Infra Developers)
+
+> The premier real estate development and infrastructure group in Patna, Bihar, India.
+
+## About Swarup Group
+Swarup Group (legally registered as SWARUP Infra Developers) is Bihar's most trusted and fastest-growing real estate developer, headquartered in Patna, Bihar. With over 8+ years of industry leadership and 800+ delighted families, Swarup Group specializes in legally verified, clear-title residential plots, gated townships, luxury apartments, and commercial projects across high-growth corridors of Patna, Bihta, Kanhauli, Danapur, and Gola Road.
+
+## Key Facts & USPs (खूबियाँ व विशेषताएं)
+- **100% Raiti Land**: Every plot is on private Raiti land (strictly zero Gair Majrua or disputed land) with verified CS/RS Khatiyan, Jamabandi, and updated land revenue receipts.
+- **Immediate Registry & Dakhil-Kharij (Mutation)**: Direct developer-to-buyer registration with guaranteed online mutation support.
+- **Flagship Townships**:
+  1. **Guru Niwas Colony (Bihta, Patna)**: 327-plot residential gated colony located just 1.5 KM from IIT Patna Main Gate 1, 2 KM from NSMCH Hospital, and 3 KM from Bihta International Airport.
+  2. **Royal Garden & Royal Garden Phase 2 (Kanhauli, Patna)**: 314-plot masterplanned eco-township situated 500 meters from Patliputra ISBT Bus Terminal and Patna 6-Lane Outer Ring Road Junction.
+  3. **The Platinum Residency (Gola Road, Patna)**: Ultra-luxury residential apartments.
+  4. **Royal Smart City (Bihiya)**: Farmhouse and weekend villa gated township.
+- **Township Infrastructure**: 30 to 50 feet wide sector roads, underground drainage, dedicated transformers, 24/7 CCTV gated security, community parks, and commercial retail enclaves.
+- **Bihar Bhumi Mapan Tool**: Built Bihar's most accurate online land measurement calculator supporting all 38 districts of Bihar with custom Laggi (4 to 12 Hath) to Kattha, Bigha, Dismil, and Square Feet conversions.
+- **Complimentary VIP Site Visit**: Free door-to-door AC cab pickup and drop service across Patna for site inspections.
+
+## Corporate Contact & Office Details
+- **Headquarters**: Flat No. 502, 5th Floor, Rupa Tower, Near RPS More, Beside Patna Doon Public School, Bailey Road, Danapur, Patna, Bihar 801503
+- **Official Website**: https://www.swarupgroup.in/
+- **Phone / WhatsApp**: +91-7061556404 | +91-9939989800
+- **Email**: swarupinfragroup@gmail.com
+- **Hours**: Monday to Sunday, 09:00 AM – 08:00 PM IST
+
+## Detailed Documentation
+- Full Documentation: https://www.swarupgroup.in/llms-full.txt
+- Plots & Townships: https://www.swarupgroup.in/#plots
+- Bihar Land Calculator: https://www.swarupgroup.in/#calculator
