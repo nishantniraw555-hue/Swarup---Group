@@ -1660,97 +1660,255 @@
             हमारा कॉर्पोरेट मुख्यालय <strong>रूपा टावर, आरपीएस मोड़, दानापुर, पटना</strong> में स्थित है, जहाँ हमारी कानूनी व तकनीकी टीम हर भूखंड के सीएस/आरएस खतियान, जमाबंदी, और लगान रसीद की 100% पारदर्शी जांच सुनिश्चित करती है। स्वरूप ग्रुप का उद्देश्य केवल जमीन बेचना नहीं, बल्कि आने वाली पीढ़ियों के लिए सुरक्षित और बहुगुणा मूल्यवान संपत्ति का निर्माण करना है।
           </p>
 
-          <!-- 6 Core Pillars & Standout Features (स्वरूप ग्रुप की 6 प्रमुख खूबियां) -->
-          <div class="why-cards-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1rem; margin-bottom:2rem;">
+          <!-- 4 Main Prominent Pillars (Our Vision, Our Mission, Legal Sanctity, High ROI) -->
+          <div class="why-cards-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:1.15rem; margin-bottom:1.75rem;">
             
-            <!-- Pillar 1: 100% Raiti Land & Zero Dispute -->
-            <div class="why-card">
+            <!-- Pillar 1: Our Vision -->
+            <div class="why-card active-funnel" id="why-card-vision" style="cursor:pointer;" onclick="openWhyFunnel('vision')">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">verified_user</span>
+                <div class="feature-icon gold" style="width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
+                  <span class="material-symbols-outlined" style="font-size:24px;">visibility</span>
                 </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">01 • 100% Raiti Land</span>
+                <span style="font-size:0.64rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:4px 10px; border-radius:999px;">01 • Vision</span>
               </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">100% Verified Raiti Land</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">100% निजी रैयती जमीन • 0% विवाद</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                सभी प्लॉट्स 100% निजी रैयती भूमि पर स्थित हैं। किसी भी प्रकार की गैरमजरूआ या विवादित जमीन नहीं। सीएस/आरएस खतियान व अप-टू-डेट ऑनलाइन जमाबंदी गारंटीड।
+              <h4 style="font-size:0.98rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Our Vision: Modern Bihar</h4>
+              <div style="font-size:0.72rem; font-weight:700; color:#d97706; margin-bottom:0.45rem;">दूरदर्शी एवं आधुनिक टाउनशिप</div>
+              <p style="font-size:0.77rem; color:#475569; line-height:1.65; margin-bottom:0.6rem;">
+                बिहार के प्रमुख विकास गलियारों (बिहटा, कन्हौली, दानापुर) में विश्वस्तरीय, पर्यावरण-अनुकूल व मास्टर-प्लांड टाउनशिप का निर्माण।
               </p>
+              <button type="button" class="why-funnel-btn" onclick="event.stopPropagation(); openWhyFunnel('vision');" aria-label="Explore Vision Details">
+                <span>विज़न विस्तार व खूबियां</span>
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
             </div>
 
-            <!-- Pillar 2: Instant Registry & Mutation -->
-            <div class="why-card">
+            <!-- Pillar 2: Our Mission -->
+            <div class="why-card" id="why-card-mission" style="cursor:pointer;" onclick="openWhyFunnel('mission')">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">edit_document</span>
+                <div class="feature-icon blue" style="width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
+                  <span class="material-symbols-outlined" style="font-size:24px;">rocket_launch</span>
                 </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">02 • Instant Registry</span>
+                <span style="font-size:0.64rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:4px 10px; border-radius:999px;">02 • Mission</span>
               </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Immediate Registry &amp; Mutation</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">त्वरित निबंधन व दाखिल-खारिज</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                सब-रजिस्ट्रार कार्यालय में तत्काल रजिस्ट्री एवं बिहार भूमि पोर्टल पर ऑनलाइन दाखिल-खारिज (Dakhil Kharij) व रसीद कटने की 100% कानूनी व तकनीकी सहायता।
+              <h4 style="font-size:0.98rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Our Mission: 100% Trust</h4>
+              <div style="font-size:0.72rem; font-weight:700; color:#1e3a8a; margin-bottom:0.45rem;">पारदर्शिता एवं त्वरित रजिस्ट्री</div>
+              <p style="font-size:0.77rem; color:#475569; line-height:1.65; margin-bottom:0.6rem;">
+                बिना किसी बिचौलिए के सीधी डेवलपर डीलिंग, ऑन-स्पॉट निबंधन, दाखिल-खारिज और समयबद्ध कानूनी पजेशन की पूर्ण गारंटी।
               </p>
+              <button type="button" class="why-funnel-btn" onclick="event.stopPropagation(); openWhyFunnel('mission');" aria-label="Explore Mission Details">
+                <span>मिशन व कार्यप्रणाली</span>
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
             </div>
 
-            <!-- Pillar 3: Prime Growth Corridors -->
-            <div class="why-card">
+            <!-- Pillar 3: Legal Sanctity -->
+            <div class="why-card" id="why-card-legal" style="cursor:pointer;" onclick="openWhyFunnel('legal')">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">near_me</span>
+                <div class="feature-icon gold" style="width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
+                  <span class="material-symbols-outlined" style="font-size:24px;">gavel</span>
                 </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">03 • Prime Corridors</span>
+                <span style="font-size:0.64rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:4px 10px; border-radius:999px;">03 • Legal Sanctity</span>
               </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Prime Growth Corridors</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">बिहटा IIT, कन्हौली रिंग रोड व दानापुर</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                आईआईटी पटना गेट 1 (1.5 KM), बिहटा इंटरनेशनल एयरपोर्ट (3 KM), पाटलिपुत्र बस टर्मिनल (500 M) और 6-लेन पटना आउटर रिंग रोड से सीधे जुड़े रणनीतिक प्रोजेक्ट्स।
+              <h4 style="font-size:0.98rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">100% Clear Titles</h4>
+              <div style="font-size:0.72rem; font-weight:700; color:#d97706; margin-bottom:0.45rem;">100% निजी रैयती जमीन • 0% विवाद</div>
+              <p style="font-size:0.77rem; color:#475569; line-height:1.65; margin-bottom:0.6rem;">
+                बिहार राजस्व (DLRS) मानकों पर जांची गई 100% गैर-विवादित जमीन। CS/RS खतियान, लगान रसीद और LPC की पूरी पारदर्शिता।
               </p>
+              <button type="button" class="why-funnel-btn" onclick="event.stopPropagation(); openWhyFunnel('legal');" aria-label="Explore Legal Details">
+                <span>100% रैयती व लीगल प्रूफ</span>
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
             </div>
 
-            <!-- Pillar 4: Interactive 3D Masterplans -->
-            <div class="why-card">
+            <!-- Pillar 4: World-Class Infra & High ROI -->
+            <div class="why-card" id="why-card-infra" style="cursor:pointer;" onclick="openWhyFunnel('infra')">
               <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">view_in_ar</span>
+                <div class="feature-icon blue" style="width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
+                  <span class="material-symbols-outlined" style="font-size:24px;">trending_up</span>
                 </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">04 • 3D Transparency</span>
+                <span style="font-size:0.64rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:4px 10px; border-radius:999px;">04 • High ROI</span>
               </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Interactive 3D Masterplans</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">बिहार का पहला डिजिटल प्लॉट लेआउट</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                बिहार में पहली बार ऑनलाइन 3D इंटरैक्टिव मास्टरप्लान जहाँ आप घर बैठे प्लॉट का सटीक आकार, फेसिंग (दिशा), रोड चौड़ाई और रियल-टाइम बुकिंग स्टेटस देख सकते हैं।
+              <h4 style="font-size:0.98rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">World-Class Infra &amp; ROI</h4>
+              <div style="font-size:0.72rem; font-weight:700; color:#1e3a8a; margin-bottom:0.45rem;">30-50 Ft. सड़कें एवं आधुनिक सुविधाएं</div>
+              <p style="font-size:0.77rem; color:#475569; line-height:1.65; margin-bottom:0.6rem;">
+                30-50 फीट सड़कें, अंडरग्राउंड ड्रेनेज, ट्रांसफार्मर, पार्क, और पटना रिंग रोड व बिहटा एयरपोर्ट के समीप सुनिश्चित बहुगुणा पूंजी वृद्धि।
               </p>
+              <button type="button" class="why-funnel-btn" onclick="event.stopPropagation(); openWhyFunnel('infra');" aria-label="Explore Infra Details">
+                <span>टाउनशिप इंफ्रा व सुविधाएं</span>
+                <span class="material-symbols-outlined">expand_more</span>
+              </button>
             </div>
 
-            <!-- Pillar 5: In-House Bihar Bhumi Mapan Tool -->
-            <div class="why-card">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon gold" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fef3c7; color:#d97706;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">calculate</span>
-                </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">05 • Land Calculator</span>
-              </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">Bihar Bhumi Mapan Calculator</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#d97706; margin-bottom:0.35rem;">38 जिलों हेतु प्रामाणिक भूमि मापन</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                बिहार सरकार राजस्व (DLRS) नियमों के अनुसार 4 से 12 हाथ की लग्गी, धूर, कट्ठा, बीघा, डिसमिल और वर्ग फीट का 100% सटीक ऑनलाइन कैलकुलेटर टूल।
-              </p>
+          </div>
+
+          <!-- 🌟 INTERACTIVE FUNNEL DETAIL SHOWCASE (खूबियां व विस्तार फनल) 🌟 -->
+          <div id="why-funnel-box" style="background:#ffffff; border:1.5px solid #d4a017; border-radius:20px; padding:1.75rem; box-shadow:0 12px 35px rgba(212,160,23,0.1), 0 4px 16px rgba(0,0,0,0.04); margin-bottom:2rem; position:relative;">
+            <div style="position:absolute; top:0; left:0; width:100%; height:4px; background:linear-gradient(90deg, #1e3a8a, #d4a017, #1e3a8a); border-radius:20px 20px 0 0;"></div>
+            
+            <!-- Funnel Category Pills Bar -->
+            <div class="why-funnel-pills">
+              <button type="button" class="why-funnel-pill active" id="why-pill-vision" onclick="openWhyFunnel('vision')">
+                <span class="material-symbols-outlined" style="font-size:16px;">visibility</span>
+                <span>01 • विज़न विस्तार (Vision)</span>
+              </button>
+              <button type="button" class="why-funnel-pill" id="why-pill-mission" onclick="openWhyFunnel('mission')">
+                <span class="material-symbols-outlined" style="font-size:16px;">rocket_launch</span>
+                <span>02 • मिशन व डीलिंग (Mission)</span>
+              </button>
+              <button type="button" class="why-funnel-pill" id="why-pill-legal" onclick="openWhyFunnel('legal')">
+                <span class="material-symbols-outlined" style="font-size:16px;">gavel</span>
+                <span>03 • 100% रैयती जमीन (Legal Sanctity)</span>
+              </button>
+              <button type="button" class="why-funnel-pill" id="why-pill-infra" onclick="openWhyFunnel('infra')">
+                <span class="material-symbols-outlined" style="font-size:16px;">add_road</span>
+                <span>04 • इंफ्रा व सुविधाएं (Infra &amp; ROI)</span>
+              </button>
+              <button type="button" class="why-funnel-pill" id="why-pill-matrix" onclick="openWhyFunnel('matrix')">
+                <span class="material-symbols-outlined" style="font-size:16px;">compare_arrows</span>
+                <span>05 • ब्रोकर तुलना (Transparency Matrix)</span>
+              </button>
             </div>
 
-            <!-- Pillar 6: World-Class Infra & Free VIP Cab -->
-            <div class="why-card">
-              <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.65rem;">
-                <div class="feature-icon blue" style="width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#dbeafe; color:#1d4ed8;">
-                  <span class="material-symbols-outlined" style="font-size:22px;">local_taxi</span>
+            <!-- Pane 1: Vision Funnel -->
+            <div class="why-funnel-content-pane active" id="why-pane-vision">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; align-items:center;">
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.35rem;">हमारा दूरदर्शी विज़न • Transforming Bihar's Living</div>
+                  <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:0.6rem; line-height:1.4;">
+                    आधुनिक, सुव्यवस्थित और पर्यावरण-अनुकूल आवासीय टाउनशिप का निर्माण
+                  </h3>
+                  <p style="font-size:0.8rem; color:#475569; line-height:1.7; margin-bottom:0.85rem;">
+                    स्वरूप ग्रुप का विज़न बिहार के आम व खास परिवारों को महानगरों जैसी उच्चस्तरीय जीवनशैली प्रदान करना है। जहाँ हर कॉलोनी में चौड़ी सड़कें, हरे-भरे पार्क, भूमिगत ड्रेनेज, और चौबीसों घंटे सुरक्षा का मजबूत घेरा हो।
+                  </p>
+                  <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.76rem; color:#1e293b; font-weight:700;">
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>गुरु निवास कॉलोनी (बिहटा):</strong> 327 आवासीय प्लॉट्स • IIT पटना मेन गेट 1 से मात्र 1.5 KM</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>रॉयल गार्डन (कन्हौली):</strong> 314 प्लॉट्स • 6-लेन पटना रिंग रोड व पाटलिपुत्र बस टर्मिनल से 500 मीटर</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>800+ खुशहाल परिवार:</strong> बिहार का सर्वाधिक भरोसेमंद रियल एस्टेट परिवार</div>
+                  </div>
                 </div>
-                <span style="font-size:0.62rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:#1e3a8a; background:rgba(30,58,138,0.08); padding:3px 8px; border-radius:999px;">06 • VIP Service</span>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:1.2rem; text-align:center;">
+                  <div style="font-size:1.8rem; font-weight:900; color:#1e3a8a; line-height:1;">8+ Years</div>
+                  <div style="font-size:0.75rem; font-weight:700; color:#64748b; margin-top:0.25rem; margin-bottom:0.75rem;">अटूट विश्वास व प्रामाणिक इतिहास</div>
+                  <div style="display:flex; justify-content:center; gap:0.5rem;">
+                    <a href="#masterplan-section" class="btn-gold" style="font-size:0.72rem; text-decoration:none; padding:6px 14px;">3D मास्टरप्लान देखें</a>
+                    <button type="button" class="open-vip-modal btn-outline" style="font-size:0.72rem; padding:6px 14px;">फ्री कैब बुक करें</button>
+                  </div>
+                </div>
               </div>
-              <h4 style="font-size:0.92rem; font-weight:800; color:#0f172a; margin-bottom:0.25rem;">World-Class Infra &amp; Free Cab</h4>
-              <div style="font-size:0.7rem; font-weight:700; color:#1e3a8a; margin-bottom:0.35rem;">30-50 Ft. सड़कें एवं निःशुल्क कैब विजिट</div>
-              <p style="font-size:0.75rem; color:#475569; line-height:1.6;">
-                30-50 फीट चौड़ी कंक्रीट सड़कें, ड्रेनेज, ट्रांसफार्मर, 24/7 CCTV सुरक्षा, पार्क, और पटना में कहीं से भी साइट विजिट के लिए फ्री AC कैब पिकअप व ड्रॉप सुविधा।
-              </p>
+            </div>
+
+            <!-- Pane 2: Mission Funnel -->
+            <div class="why-funnel-content-pane" id="why-pane-mission">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; align-items:center;">
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800; color:#1d4ed8; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.35rem;">हमारा मिशन • 100% Direct Developer Deal</div>
+                  <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:0.6rem; line-height:1.4;">
+                    बिचौलियों से मुक्ति, 0% ब्रोकरेज और ऑन-स्पॉट त्वरित रजिस्ट्री
+                  </h3>
+                  <p style="font-size:0.8rem; color:#475569; line-height:1.7; margin-bottom:0.85rem;">
+                    हमारा मिशन हर नागरिक के घर के सपने को बिना किसी धोखे, छिपाए गए शुल्क या कानूनी अड़चनों के साकार करना है। हमारे साथ हर डील सीधे डेवलपर से होती है।
+                  </p>
+                  <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.76rem; color:#1e293b; font-weight:700;">
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>सीधी डेवलपर डीलिंग:</strong> कोई कमीशन नहीं, कोई छिपा हुआ चार्ज नहीं</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>रूपा टावर कॉर्पोरेट ऑफिस:</strong> दानापुर में इन-हाउस लीगल टीम द्वारा दस्तावेज़ सत्यापन</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>समयबद्ध पजेशन:</strong> तुरंत बाउंड्री वॉल, पिलर व कब्जा देने की गारंटी</div>
+                  </div>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:1.2rem; text-align:center;">
+                  <div style="font-size:1.8rem; font-weight:900; color:#15803d; line-height:1;">100%</div>
+                  <div style="font-size:0.75rem; font-weight:700; color:#64748b; margin-top:0.25rem; margin-bottom:0.75rem;">पारदर्शी व कानूनी कागजात</div>
+                  <a href="tel:+917061556404" class="btn-gold" style="font-size:0.72rem; text-decoration:none; display:inline-flex; align-items:center; gap:4px; padding:6px 14px;">
+                    <span class="material-symbols-outlined" style="font-size:14px;">call</span> लीगल टीम से बात करें
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 3: Legal Sanctity Funnel -->
+            <div class="why-funnel-content-pane" id="why-pane-legal">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; align-items:center;">
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.35rem;">कानूनी प्रामाणिकता • Legal Purity &amp; Compliance</div>
+                  <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:0.6rem; line-height:1.4;">
+                    100% रैयती जमीन, नो गैरमजरूआ, दाखिल-खारिज व रसीद की लिखित गारंटी
+                  </h3>
+                  <p style="font-size:0.8rem; color:#475569; line-height:1.7; margin-bottom:0.85rem;">
+                    बिहार राजस्व (DLRS) और अमीन मानकों पर जांची गई निजी रैयती भूमि। हर भूखंड का खतियान, वंशावली, जमाबंदी, और लैंड पजेशन सर्टिफिकेट (LPC) पूरी तरह से क्लियर है।
+                  </p>
+                  <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.76rem; color:#1e293b; font-weight:700;">
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>0% लिटिगेशन:</strong> कोई कोर्ट केस नहीं, कोई विवाद नहीं</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>दाखिल खारिज गारंटी:</strong> ऑनलाइन बिहार भूमि पोर्टल पर नाम म्यूटेशन व रसीद</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>बैंक लोन सहायता:</strong> प्रमुख बैंकों से आसान होम/प्लॉट लोन अप्रूवल</div>
+                  </div>
+                </div>
+                <div style="background:#f0fdf4; border:1px solid #86efac; border-radius:14px; padding:1.2rem; text-align:center;">
+                  <div style="font-size:1.8rem; font-weight:900; color:#15803d; line-height:1;">Zero Risk</div>
+                  <div style="font-size:0.75rem; font-weight:700; color:#166534; margin-top:0.25rem; margin-bottom:0.75rem;">100% सुरक्षा व जीवनभर का सुकून</div>
+                  <button type="button" class="open-vip-modal btn-gold" style="font-size:0.72rem; padding:6px 14px;">कागजात चेक करें</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 4: Infra & ROI Funnel -->
+            <div class="why-funnel-content-pane" id="why-pane-infra">
+              <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:1.25rem; align-items:center;">
+                <div>
+                  <div style="font-size:0.75rem; font-weight:800; color:#1e3a8a; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.35rem;">विश्वस्तरीय इंफ्रास्ट्रक्चर • High Capital Appreciation</div>
+                  <h3 style="font-size:1.15rem; font-weight:800; color:#0f172a; margin-bottom:0.6rem; line-height:1.4;">
+                    30 से 50 फीट चौड़ी सड़कें, ट्रांसफार्मर बिजली, ड्रेनेज व पार्क
+                  </h3>
+                  <p style="font-size:0.8rem; color:#475569; line-height:1.7; margin-bottom:0.85rem;">
+                    स्वरूप ग्रुप की हर टाउनशिप में चौड़ी पक्की सड़कें, अंडरग्राउंड सीवरेज, 24/7 CCTV सुरक्षा और खूबसूरत पार्क दिए जाते हैं। साथ ही हमारे पास इन-हाउस बिहार भूमि मापन टूल भी है।
+                  </p>
+                  <div style="display:flex; flex-direction:column; gap:0.4rem; font-size:0.76rem; color:#1e293b; font-weight:700;">
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>30-50 Ft. चौड़ी सड़कें:</strong> बड़े वाहनों के लिए आसान आवागमन</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>फ्री VIP कैब सर्विस:</strong> पटना में आपके घर से साइट तक एसी कैब पिकअप व ड्रॉप</div>
+                    <div style="display:flex; align-items:center; gap:6px;"><span class="material-symbols-outlined" style="font-size:16px; color:#15803d;">check_circle</span> <strong>बिहार भूमि मापन कैलकुलेटर:</strong> 38 जिलों हेतु 4 से 12 हाथ लग्गी का सटीक हिसाब</div>
+                  </div>
+                </div>
+                <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:14px; padding:1.2rem; text-align:center;">
+                  <div style="font-size:1.8rem; font-weight:900; color:#1e3a8a; line-height:1;">3X-5X</div>
+                  <div style="font-size:0.75rem; font-weight:700; color:#64748b; margin-top:0.25rem; margin-bottom:0.75rem;">अनुमानित पूंजी वृद्धि (ROI)</div>
+                  <a href="#calculator" class="btn-gold" style="font-size:0.72rem; text-decoration:none; padding:6px 14px;">लैंड कैलकुलेटर खोलें</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 5: Transparency Matrix Funnel -->
+            <div class="why-funnel-content-pane" id="why-pane-matrix">
+              <div style="overflow-x:auto;">
+                <table style="width:100%; border-collapse:separate; border-spacing:0; font-size:0.78rem; border:1px solid #e2e8f0; border-radius:12px; overflow:hidden;">
+                  <thead>
+                    <tr style="background:#0f172a; color:#ffffff;">
+                      <th style="padding:0.75rem; text-align:left; font-weight:800; width:28%;">मानक (Parameters)</th>
+                      <th style="padding:0.75rem; text-align:left; font-weight:800; width:36%; background:#1e3a8a; color:#fde047; border-left:1.5px solid #d4a017;">स्वरूप ग्रुप (Swarup Group)</th>
+                      <th style="padding:0.75rem; text-align:left; font-weight:700; width:36%; color:#94a3b8;">आम स्थानीय ब्रोकर्स</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                      <td style="padding:0.65rem 0.75rem; font-weight:700; color:#0f172a;">जमीन मालिकाना हक</td>
+                      <td style="padding:0.65rem 0.75rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017;">✔ 100% सत्यापित रैयती जमीन, 0% गैरमजरूआ</td>
+                      <td style="padding:0.65rem 0.75rem; color:#dc2626; background:#fef2f2;">✖ मौखिक दावे, गैरमजरूआ का भारी जोखिम</td>
+                    </tr>
+                    <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                      <td style="padding:0.65rem 0.75rem; font-weight:700; color:#0f172a;">रजिस्ट्री व दाखिल-खारिज</td>
+                      <td style="padding:0.65rem 0.75rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017;">✔ तत्काल निबंधन व ऑनलाइन रसीद कटने तक मदद</td>
+                      <td style="padding:0.65rem 0.75rem; color:#dc2626; background:#fef2f2;">✖ रजिस्ट्री बाद कोई सपोर्ट नहीं</td>
+                    </tr>
+                    <tr style="background:#ffffff; border-bottom:1px solid #f1f5f9;">
+                      <td style="padding:0.65rem 0.75rem; font-weight:700; color:#0f172a;">सड़कें व इंफ्रास्ट्रक्चर</td>
+                      <td style="padding:0.65rem 0.75rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017;">✔ 30-50 फीट पक्की सड़कें, ड्रेनेज, ट्रांसफार्मर</td>
+                      <td style="padding:0.65rem 0.75rem; color:#dc2626; background:#fef2f2;">✖ 10-15 फीट कच्ची संकरी सड़कें</td>
+                    </tr>
+                    <tr style="background:#ffffff;">
+                      <td style="padding:0.65rem 0.75rem; font-weight:700; color:#0f172a;">संस्थागत विश्वसनीयता</td>
+                      <td style="padding:0.65rem 0.75rem; color:#15803d; font-weight:700; background:#f0fdf4; border-left:1.5px solid #d4a017;">✔ 8+ वर्ष, 800+ परिवार, रूपा टावर में कॉर्पोरेट ऑफिस</td>
+                      <td style="padding:0.65rem 0.75rem; color:#dc2626; background:#fef2f2;">✖ कोई स्थायी ऑफिस नहीं, बिचौलिए</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
 
           </div>
@@ -1826,7 +1984,7 @@
       </div>
 
       <!-- Transparent Comparison Matrix: Swarup Group vs Local Property Brokers -->
-      <div style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:24px; padding:2rem; box-shadow:0 8px 30px rgba(0,0,0,0.03);">
+      <div id="transparency-matrix" style="background:#ffffff; border:1.5px solid #e2e8f0; border-radius:24px; padding:2rem; box-shadow:0 8px 30px rgba(0,0,0,0.03);">
         <div style="text-align:center; margin-bottom:1.5rem;">
           <span style="font-size:0.72rem; font-weight:800; color:#d97706; text-transform:uppercase; letter-spacing:0.08em; background:#fef3c7; padding:4px 14px; border-radius:999px;">पारदर्शिता चार्ट • Transparency Matrix</span>
           <h3 style="font-size:clamp(1.25rem, 2.5vw, 1.75rem); font-weight:800; color:#0f172a; margin-top:0.6rem; margin-bottom:0.35rem;">
