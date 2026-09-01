@@ -1126,9 +1126,15 @@
       drawMasterplan();
     });
 
+    let lastTouchTimestamp = 0;
+
     canvas.addEventListener('click', (e) => {
       if (didDrag) {
         didDrag = false;
+        return;
+      }
+      // Prevent accidental plot opens from direct touch / tap-scroll on mobile/touch screens
+      if (e.pointerType === 'touch' || (Date.now() - lastTouchTimestamp < 650)) {
         return;
       }
       const pos = getCanvasCoords(e);
@@ -1181,6 +1187,7 @@
     let touchMidPoint = { x: 0, y: 0 };
 
     canvas.addEventListener('touchstart', (e) => {
+      lastTouchTimestamp = Date.now();
       if (e.touches.length === 2) {
         touchStartDist = Math.hypot(
           e.touches[0].clientX - e.touches[1].clientX,
@@ -1202,6 +1209,7 @@
     }, { passive: true });
 
     canvas.addEventListener('touchmove', (e) => {
+      lastTouchTimestamp = Date.now();
       if (e.touches.length === 2) {
         if (e.cancelable) e.preventDefault();
         const currentDist = Math.hypot(
@@ -1227,15 +1235,10 @@
     }, { passive: false });
 
     canvas.addEventListener('touchend', (e) => {
+      lastTouchTimestamp = Date.now();
       if (e.touches.length < 2) touchStartDist = 0;
       isDragging = false;
-      if (!didDrag && e.changedTouches && e.changedTouches.length === 1) {
-        const rect = canvas.getBoundingClientRect();
-        const touchX = e.changedTouches[0].clientX - rect.left;
-        const touchY = e.changedTouches[0].clientY - rect.top;
-        const clicked = findPlotAtCoords(touchX, touchY);
-        if (clicked) openPlotModal(clicked);
-      }
+      // Note: Direct touch tap plot opening is disabled on mobile/touch screens to ensure smooth, accident-free page scrolling.
     });
 
     // Mouse Wheel Zoom centered at Cursor Focal Point with Ctrl key
@@ -1249,6 +1252,187 @@
         zoomAtPoint(mouseX, mouseY, zoomFactor);
       }
     }, { passive: false });
+
+    // ─────────────────────────────────────────────────────────────
+    // ROYAL GARDEN VIRTUAL TOUCH CURSOR & TRACKPAD SLIDER CONTROLLER
+    // ─────────────────────────────────────────────────────────────
+    const rgCursorToggleBtn = document.getElementById('rg-cursor-toggle-btn');
+    const rgCursorToggleText = document.getElementById('rg-cursor-toggle-text');
+    const rgTouchCursor = document.getElementById('rg-touch-cursor');
+    const rgCursorLabel = document.getElementById('rg-cursor-label');
+    const rgTouchController = document.getElementById('rg-touch-controller');
+    const rgControllerClose = document.getElementById('rg-controller-close');
+    const rgTrackpad = document.getElementById('rg-trackpad');
+    const rgTrackpadPuck = document.getElementById('rg-trackpad-puck');
+    const rgCursorActionBtn = document.getElementById('rg-cursor-action-btn');
+    const rgActionBtnText = document.getElementById('rg-action-btn-text');
+
+    let isRgCursorActive = false;
+    let rgCursorX = 0;
+    let rgCursorY = 0;
+    let rgCursorHoveredPlot = null;
+
+    function updateRgCursor(newX, newY) {
+      if (!canvas) return;
+      const rect = canvas.getBoundingClientRect();
+      const cWidth = rect.width || width;
+      const cHeight = rect.height || height;
+
+      rgCursorX = Math.max(12, Math.min(cWidth - 12, newX));
+      rgCursorY = Math.max(12, Math.min(cHeight - 12, newY));
+
+      if (rgTouchCursor) {
+        rgTouchCursor.style.transform = `translate3d(${rgCursorX}px, ${rgCursorY}px, 0)`;
+      }
+
+      // Hit-testing against transformed plots
+      const found = findPlotAtCoords(rgCursorX, rgCursorY);
+      if (found !== hoveredPlot) {
+        hoveredPlot = found;
+        drawMasterplan();
+      }
+      rgCursorHoveredPlot = found;
+
+      if (found) {
+        const isBooked = BOOKED_PLOT_IDS.has(found.id);
+        const statusText = isBooked ? 'BOOKED' : (found.isCorner ? 'CORNER VIP' : 'AVAILABLE');
+        if (rgCursorLabel) rgCursorLabel.innerHTML = `<strong>${found.id}</strong> • ${found.sqft} Sq.Ft (${statusText})`;
+        if (rgCursorActionBtn) rgCursorActionBtn.classList.add('has-plot');
+        if (rgActionBtnText) rgActionBtnText.innerHTML = `👉 Open Plot ${found.id} (${found.sqft} Sq.Ft) Details ➔`;
+      } else {
+        if (rgCursorLabel) rgCursorLabel.innerHTML = `🎯 Pointing: Move over any plot`;
+        if (rgCursorActionBtn) rgCursorActionBtn.classList.remove('has-plot');
+        if (rgActionBtnText) rgActionBtnText.innerHTML = `Move cursor over any plot`;
+      }
+    }
+
+    function setRgCursorMode(enabled) {
+      isRgCursorActive = enabled;
+      if (rgCursorToggleBtn) {
+        rgCursorToggleBtn.classList.toggle('active', enabled);
+      }
+      if (rgCursorToggleText) {
+        rgCursorToggleText.textContent = enabled ? 'Touch Cursor: ON' : 'Touch Cursor: OFF';
+      }
+      if (rgTouchCursor) {
+        rgTouchCursor.classList.toggle('active', enabled);
+      }
+      if (rgTouchController) {
+        rgTouchController.classList.toggle('active', enabled);
+      }
+
+      if (enabled) {
+        const rect = canvas.getBoundingClientRect();
+        rgCursorX = (rect.width || width) / 2;
+        rgCursorY = (rect.height || height) / 2;
+        updateRgCursor(rgCursorX, rgCursorY);
+      } else {
+        hoveredPlot = null;
+        rgCursorHoveredPlot = null;
+        drawMasterplan();
+      }
+    }
+
+    if (rgCursorToggleBtn) {
+      rgCursorToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        setRgCursorMode(!isRgCursorActive);
+      });
+    }
+
+    if (rgControllerClose) {
+      rgControllerClose.addEventListener('click', (e) => {
+        e.preventDefault();
+        setRgCursorMode(false);
+      });
+    }
+
+    if (rgCursorActionBtn) {
+      rgCursorActionBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (rgCursorHoveredPlot) {
+          openPlotModal(rgCursorHoveredPlot);
+        }
+      });
+    }
+
+    // Trackpad Slider Touch & Drag Events
+    if (rgTrackpad) {
+      let tpTouchStart = null;
+      let tpCursorStart = { x: 0, y: 0 };
+
+      function handleTrackpadStart(clientX, clientY) {
+        rgTrackpad.classList.add('touching');
+        tpTouchStart = { x: clientX, y: clientY };
+        tpCursorStart = { x: rgCursorX, y: rgCursorY };
+        if (rgTrackpadPuck) {
+          rgTrackpadPuck.style.transform = 'translate(0px, 0px)';
+        }
+      }
+
+      function handleTrackpadMove(clientX, clientY) {
+        if (!tpTouchStart) return;
+        const dx = clientX - tpTouchStart.x;
+        const dy = clientY - tpTouchStart.y;
+        const sensitivity = 1.35;
+        updateRgCursor(tpCursorStart.x + dx * sensitivity, tpCursorStart.y + dy * sensitivity);
+
+        if (rgTrackpadPuck) {
+          const clampPuckX = Math.max(-45, Math.min(45, dx * 0.45));
+          const clampPuckY = Math.max(-30, Math.min(30, dy * 0.45));
+          rgTrackpadPuck.style.transform = `translate(${clampPuckX}px, ${clampPuckY}px)`;
+        }
+      }
+
+      function handleTrackpadEnd() {
+        rgTrackpad.classList.remove('touching');
+        tpTouchStart = null;
+        if (rgTrackpadPuck) {
+          rgTrackpadPuck.style.transform = 'translate(0px, 0px)';
+        }
+      }
+
+      rgTrackpad.addEventListener('touchstart', (e) => {
+        if (e.touches.length >= 1) {
+          e.preventDefault();
+          e.stopPropagation();
+          handleTrackpadStart(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: false });
+
+      rgTrackpad.addEventListener('touchmove', (e) => {
+        if (e.touches.length >= 1) {
+          e.preventDefault();
+          e.stopPropagation();
+          handleTrackpadMove(e.touches[0].clientX, e.touches[0].clientY);
+        }
+      }, { passive: false });
+
+      rgTrackpad.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        handleTrackpadEnd();
+      });
+
+      rgTrackpad.addEventListener('touchcancel', handleTrackpadEnd);
+
+      // Mouse drag support on trackpad
+      let isMouseDownOnTp = false;
+      rgTrackpad.addEventListener('mousedown', (e) => {
+        isMouseDownOnTp = true;
+        handleTrackpadStart(e.clientX, e.clientY);
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (isMouseDownOnTp) {
+          handleTrackpadMove(e.clientX, e.clientY);
+        }
+      });
+      window.addEventListener('mouseup', () => {
+        if (isMouseDownOnTp) {
+          isMouseDownOnTp = false;
+          handleTrackpadEnd();
+        }
+      });
+    }
 
     // ─────────────────────────────────────────────────────────────
     // HEADER TOOLBAR & UI CONTROLS

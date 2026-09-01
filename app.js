@@ -559,19 +559,13 @@ function initPatnaMasterplanCanvas() {
     canvas.style.cursor = 'default';
   });
 
-  canvas.addEventListener('click', (e) => {
-    if (didDrag) {
-      didDrag = false;
-      return;
-    }
-    handlePointerClick(e);
-  });
-
   // Touch Handling: 1-finger touch scrolls webpage naturally; 2-finger pinch zooms map
   let touchStartDist = 0;
   let startPinchZoom = 1.0;
+  let lastTouchTimestamp = 0;
 
   canvas.addEventListener('touchstart', (e) => {
+    lastTouchTimestamp = Date.now();
     if (e.touches.length === 2) {
       touchStartDist = Math.hypot(
         e.touches[0].clientX - e.touches[1].clientX,
@@ -587,6 +581,7 @@ function initPatnaMasterplanCanvas() {
   }, { passive: true });
 
   canvas.addEventListener('touchmove', (e) => {
+    lastTouchTimestamp = Date.now();
     if (e.touches.length === 2) {
       if (e.cancelable) e.preventDefault();
       const currentDist = Math.hypot(
@@ -616,11 +611,223 @@ function initPatnaMasterplanCanvas() {
   }, { passive: false });
 
   canvas.addEventListener('touchend', (e) => {
+    lastTouchTimestamp = Date.now();
     if (e.touches.length < 2) {
       touchStartDist = 0;
     }
     isDragging = false;
   }, { passive: true });
+
+  canvas.addEventListener('click', (e) => {
+    if (didDrag) {
+      didDrag = false;
+      return;
+    }
+    // Prevent accidental plot opens from direct touch / tap-scroll on mobile/touch screens
+    if (e.pointerType === 'touch' || (Date.now() - lastTouchTimestamp < 650)) {
+      return;
+    }
+    handlePointerClick(e);
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // GURU NIWAS VIRTUAL TOUCH CURSOR & TRACKPAD SLIDER CONTROLLER
+  // ─────────────────────────────────────────────────────────────
+  const guruCursorToggleBtn = document.getElementById('guru-cursor-toggle-btn');
+  const guruCursorToggleText = document.getElementById('guru-cursor-toggle-text');
+  const guruTouchCursor = document.getElementById('guru-touch-cursor');
+  const guruCursorLabel = document.getElementById('guru-cursor-label');
+  const guruTouchController = document.getElementById('guru-touch-controller');
+  const guruControllerClose = document.getElementById('guru-controller-close');
+  const guruTrackpad = document.getElementById('guru-trackpad');
+  const guruTrackpadPuck = document.getElementById('guru-trackpad-puck');
+  const guruCursorActionBtn = document.getElementById('guru-cursor-action-btn');
+  const guruActionBtnText = document.getElementById('guru-action-btn-text');
+
+  let isGuruCursorActive = false;
+  let guruCursorX = 0;
+  let guruCursorY = 0;
+  let cursorHoveredPlot = null;
+  let cursorHoveredPark = null;
+
+  function updateGuruCursor(newX, newY) {
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const cWidth = rect.width || width;
+    const cHeight = rect.height || height;
+
+    guruCursorX = Math.max(12, Math.min(cWidth - 12, newX));
+    guruCursorY = Math.max(12, Math.min(cHeight - 12, newY));
+
+    if (guruTouchCursor) {
+      guruTouchCursor.style.transform = `translate3d(${guruCursorX}px, ${guruCursorY}px, 0)`;
+    }
+
+    // Hit-testing against plots and parks
+    let foundPlot = null;
+    let foundPark = null;
+    plots.forEach(p => {
+      if (guruCursorX >= p.x && guruCursorX <= p.x + p.w && guruCursorY >= p.y && guruCursorY <= p.y + p.h) {
+        foundPlot = p;
+      }
+    });
+    scaledParks.forEach(p => {
+      if (guruCursorX >= p.x && guruCursorX <= p.x + p.w && guruCursorY >= p.y && guruCursorY <= p.y + p.h) {
+        foundPark = p;
+      }
+    });
+
+    hoveredPlot = foundPlot;
+    cursorHoveredPlot = foundPlot;
+    cursorHoveredPark = foundPark;
+    buildLayout();
+
+    if (foundPlot) {
+      if (guruCursorLabel) guruCursorLabel.innerHTML = `<strong>${foundPlot.id}</strong> • ${foundPlot.sqft} Sq.Ft (${foundPlot.status.toUpperCase()})`;
+      if (guruCursorActionBtn) guruCursorActionBtn.classList.add('has-plot');
+      if (guruActionBtnText) guruActionBtnText.innerHTML = `👉 Open ${foundPlot.id} (${foundPlot.sqft} Sq.Ft) Details ➔`;
+    } else if (foundPark) {
+      if (guruCursorLabel) guruCursorLabel.innerHTML = `🌿 ${foundPark.id}`;
+      if (guruCursorActionBtn) guruCursorActionBtn.classList.add('has-plot');
+      if (guruActionBtnText) guruActionBtnText.innerHTML = `👉 Open ${foundPark.id} Info ➔`;
+    } else {
+      if (guruCursorLabel) guruCursorLabel.innerHTML = `🎯 Pointing: Move over any plot`;
+      if (guruCursorActionBtn) guruCursorActionBtn.classList.remove('has-plot');
+      if (guruActionBtnText) guruActionBtnText.innerHTML = `Move cursor over any plot`;
+    }
+  }
+
+  function setGuruCursorMode(enabled) {
+    isGuruCursorActive = enabled;
+    if (guruCursorToggleBtn) {
+      guruCursorToggleBtn.classList.toggle('active', enabled);
+    }
+    if (guruCursorToggleText) {
+      guruCursorToggleText.textContent = enabled ? 'Touch Cursor: ON' : 'Touch Cursor: OFF';
+    }
+    if (guruTouchCursor) {
+      guruTouchCursor.classList.toggle('active', enabled);
+    }
+    if (guruTouchController) {
+      guruTouchController.classList.toggle('active', enabled);
+    }
+
+    if (enabled) {
+      const rect = canvas.getBoundingClientRect();
+      guruCursorX = (rect.width || width) / 2;
+      guruCursorY = (rect.height || height) / 2;
+      updateGuruCursor(guruCursorX, guruCursorY);
+    } else {
+      hoveredPlot = null;
+      cursorHoveredPlot = null;
+      cursorHoveredPark = null;
+      buildLayout();
+    }
+  }
+
+  if (guruCursorToggleBtn) {
+    guruCursorToggleBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      setGuruCursorMode(!isGuruCursorActive);
+    });
+  }
+
+  if (guruControllerClose) {
+    guruControllerClose.addEventListener('click', (e) => {
+      e.preventDefault();
+      setGuruCursorMode(false);
+    });
+  }
+
+  if (guruCursorActionBtn) {
+    guruCursorActionBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      if (cursorHoveredPlot) {
+        selectedPlot = cursorHoveredPlot;
+        openPlotModal(cursorHoveredPlot);
+      } else if (cursorHoveredPark) {
+        openParkModal(cursorHoveredPark);
+      }
+    });
+  }
+
+  // Trackpad Slider Touch Events
+  if (guruTrackpad) {
+    let tpTouchStart = null;
+    let tpCursorStart = { x: 0, y: 0 };
+
+    function handleTrackpadStart(clientX, clientY) {
+      guruTrackpad.classList.add('touching');
+      tpTouchStart = { x: clientX, y: clientY };
+      tpCursorStart = { x: guruCursorX, y: guruCursorY };
+      if (guruTrackpadPuck) {
+        guruTrackpadPuck.style.transform = 'translate(0px, 0px)';
+      }
+    }
+
+    function handleTrackpadMove(clientX, clientY) {
+      if (!tpTouchStart) return;
+      const dx = clientX - tpTouchStart.x;
+      const dy = clientY - tpTouchStart.y;
+      const sensitivity = 1.35;
+      updateGuruCursor(tpCursorStart.x + dx * sensitivity, tpCursorStart.y + dy * sensitivity);
+
+      if (guruTrackpadPuck) {
+        const clampPuckX = Math.max(-45, Math.min(45, dx * 0.45));
+        const clampPuckY = Math.max(-30, Math.min(30, dy * 0.45));
+        guruTrackpadPuck.style.transform = `translate(${clampPuckX}px, ${clampPuckY}px)`;
+      }
+    }
+
+    function handleTrackpadEnd() {
+      guruTrackpad.classList.remove('touching');
+      tpTouchStart = null;
+      if (guruTrackpadPuck) {
+        guruTrackpadPuck.style.transform = 'translate(0px, 0px)';
+      }
+    }
+
+    guruTrackpad.addEventListener('touchstart', (e) => {
+      if (e.touches.length >= 1) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleTrackpadStart(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    guruTrackpad.addEventListener('touchmove', (e) => {
+      if (e.touches.length >= 1) {
+        e.preventDefault();
+        e.stopPropagation();
+        handleTrackpadMove(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    }, { passive: false });
+
+    guruTrackpad.addEventListener('touchend', (e) => {
+      e.preventDefault();
+      handleTrackpadEnd();
+    });
+
+    guruTrackpad.addEventListener('touchcancel', handleTrackpadEnd);
+
+    // Mouse drag support on trackpad
+    let isMouseDownOnTp = false;
+    guruTrackpad.addEventListener('mousedown', (e) => {
+      isMouseDownOnTp = true;
+      handleTrackpadStart(e.clientX, e.clientY);
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (isMouseDownOnTp) {
+        handleTrackpadMove(e.clientX, e.clientY);
+      }
+    });
+    window.addEventListener('mouseup', () => {
+      if (isMouseDownOnTp) {
+        isMouseDownOnTp = false;
+        handleTrackpadEnd();
+      }
+    });
+  }
 
   const filterBtns = document.querySelectorAll('.plot-filter-btn');
   filterBtns.forEach(btn => {

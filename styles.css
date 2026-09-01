@@ -5431,3 +5431,260 @@ canvas {
     height: 140px !important;
   }
 }
+
+/* ==========================================================================
+   TOUCH CURSOR & SLIDER TRACKPAD CONTROLLER (FOR PHONE / TOUCHSCREENS)
+   ========================================================================== */
+
+/* Toggle Button in Bottom Helper Bar */
+.btn-touch-cursor {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  font-family: var(--font-apple);
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+  border: 1.5px solid #d4a017;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #fde047;
+  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+.btn-touch-cursor:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.35);
+  filter: brightness(1.1);
+}
+.btn-touch-cursor.active {
+  background: linear-gradient(135deg, #b45309, #d97706);
+  color: #ffffff;
+  border-color: #fde047;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+  animation: pulse-border 2s infinite ease-in-out;
+}
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.8); }
+}
+
+/* Virtual Cursor on Map Canvas */
+.touch-virtual-cursor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 40;
+  display: none;
+  transform: translate3d(-50%, -50%, 0);
+  transition: transform 0.04s linear;
+  will-change: transform;
+}
+.touch-virtual-cursor.active {
+  display: block;
+}
+.touch-cursor-reticle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.18);
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.7), inset 0 0 8px rgba(245, 158, 11, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.touch-cursor-reticle::before {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 6px #f59e0b;
+}
+.touch-cursor-reticle::after {
+  content: '';
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.6);
+  animation: spin-reticle 6s linear infinite;
+}
+@keyframes spin-reticle {
+  100% { transform: rotate(360deg); }
+}
+.touch-cursor-label {
+  position: absolute;
+  left: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  color: #f8fafc;
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+/* Touch Cursor Controller Box (Floating / Docked Trackpad) */
+.touch-cursor-controller-box {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+  z-index: 45;
+  width: 280px;
+  max-width: calc(100% - 32px);
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: blur(18px);
+  border: 1.5px solid rgba(245, 158, 11, 0.45);
+  border-radius: 20px;
+  padding: 14px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  user-select: none;
+  touch-action: none;
+  animation: slide-up-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes slide-up-fade {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.touch-cursor-controller-box.active {
+  display: flex;
+}
+.touch-controller-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+.touch-controller-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #fde047;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.touch-controller-close {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.touch-controller-close:hover {
+  background: rgba(239, 68, 68, 0.8);
+}
+
+/* Interactive Trackpad Area */
+.touch-trackpad-area {
+  position: relative;
+  width: 100%;
+  height: 110px;
+  background: radial-gradient(circle at center, rgba(30, 58, 138, 0.3) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border: 1.5px dashed rgba(245, 158, 11, 0.4);
+  border-radius: 14px;
+  cursor: grab;
+  touch-action: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.touch-trackpad-hint {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-align: center;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.touch-trackpad-puck {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 32px;
+  height: 32px;
+  margin-top: -16px;
+  margin-left: -16px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 12px #f59e0b, inset 0 0 4px #ffffff;
+  border: 2px solid #ffffff;
+  pointer-events: none;
+  transition: transform 0.08s ease-out;
+  display: none;
+}
+.touch-trackpad-area.touching .touch-trackpad-puck {
+  display: block;
+}
+
+/* Action Button to Click/Open Selected Plot */
+.touch-cursor-action-btn {
+  width: 100%;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+  border: 1.5px solid #d4a017;
+  background: linear-gradient(135deg, #1e3a8a, #0f172a);
+  color: #94a3b8;
+  opacity: 0.7;
+}
+.touch-cursor-action-btn.has-plot {
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  color: #0f172a;
+  border-color: #fef08a;
+  opacity: 1;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.4);
+  animation: bounce-subtle 1.8s infinite ease-in-out;
+}
+@keyframes bounce-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@media (max-width: 768px) {
+  .touch-cursor-controller-box {
+    bottom: 10px;
+    right: 10px;
+    left: 10px;
+    width: auto;
+    max-width: none;
+    padding: 12px;
+  }
+  .touch-trackpad-area {
+    height: 100px;
+  }
+}

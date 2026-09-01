@@ -796,6 +796,36 @@
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #9333ea; background:#f3e8ff; box-shadow:0 2px 4px rgba(147,51,234,0.2); display:inline-block;"></span> 900 Sq.Ft</span>
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #991b1b; background:#ef4444; box-shadow:0 2px 4px rgba(239,68,68,0.3); display:inline-block;"></span> 🔴 Booked (Red)</span>
         </div>
+
+        <!-- Virtual Touch Cursor Overlay -->
+        <div id="guru-touch-cursor" class="touch-virtual-cursor">
+          <div class="touch-cursor-reticle"></div>
+          <div class="touch-cursor-label" id="guru-cursor-label">🎯 Pointing: Tap or Slide Trackpad</div>
+        </div>
+
+        <!-- Touch Cursor Slider Trackpad Controller Box -->
+        <div id="guru-touch-controller" class="touch-cursor-controller-box">
+          <div class="touch-controller-header">
+            <div class="touch-controller-title">
+              <span class="material-symbols-outlined" style="font-size:16px;">ads_click</span>
+              <span>Touch Cursor Trackpad</span>
+            </div>
+            <button id="guru-controller-close" class="touch-controller-close" title="Close Cursor Mode">
+              <span class="material-symbols-outlined" style="font-size:16px;">close</span>
+            </button>
+          </div>
+          <div id="guru-trackpad" class="touch-trackpad-area">
+            <div class="touch-trackpad-hint">
+              <span class="material-symbols-outlined" style="font-size:20px; color:#f59e0b;">touch_app</span>
+              <span>Slide finger inside box to move cursor</span>
+            </div>
+            <div id="guru-trackpad-puck" class="touch-trackpad-puck"></div>
+          </div>
+          <button id="guru-cursor-action-btn" class="touch-cursor-action-btn">
+            <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
+            <span id="guru-action-btn-text">Move cursor over any plot</span>
+          </button>
+        </div>
       </div>
 
       <div class="masterplan-helper-bar" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-top:1.5rem;">
@@ -803,6 +833,10 @@
           📌 <strong style="color:var(--text-main);">Click any plot block</strong> on the canvas above to view complete specifications and instant booking options.
         </div>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button id="guru-cursor-toggle-btn" class="btn-touch-cursor" title="Toggle Touch Cursor for Mobile / Touchscreens">
+            <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
+            <span id="guru-cursor-toggle-text">Touch Cursor: OFF</span>
+          </button>
           <button onclick="window.openProjectSeoModal('guru_niwas');" class="btn-gold" style="font-size:0.75rem; background:#1e3a8a; color:#ffffff; border:1.5px solid #d4a017; font-weight:800; cursor:pointer;">
             <span class="material-symbols-outlined" style="font-size:16px; color:#fde047;">info</span>
             View Complete Guru Niwas Details
@@ -991,6 +1025,36 @@
         <!-- Canvas Wrapper (Extra Large Viewport) -->
         <div class="canvas-wrapper" id="rg-canvas-wrapper" style="position:relative; width:100%; min-height:850px; height:88vh; max-height:1050px; border-radius:24px; overflow:hidden; border:2px solid rgba(226,232,240,0.9); box-shadow:0 25px 50px -12px rgba(15,23,42,0.12); background:#ffffff;">
           <canvas id="royal-garden-canvas" style="touch-action:none; width:100%; height:100%;"></canvas>
+
+          <!-- Virtual Touch Cursor Overlay -->
+          <div id="rg-touch-cursor" class="touch-virtual-cursor">
+            <div class="touch-cursor-reticle"></div>
+            <div class="touch-cursor-label" id="rg-cursor-label">🎯 Pointing: Tap or Slide Trackpad</div>
+          </div>
+
+          <!-- Touch Cursor Slider Trackpad Controller Box -->
+          <div id="rg-touch-controller" class="touch-cursor-controller-box">
+            <div class="touch-controller-header">
+              <div class="touch-controller-title">
+                <span class="material-symbols-outlined" style="font-size:16px;">ads_click</span>
+                <span>Touch Cursor Trackpad</span>
+              </div>
+              <button id="rg-controller-close" class="touch-controller-close" title="Close Cursor Mode">
+                <span class="material-symbols-outlined" style="font-size:16px;">close</span>
+              </button>
+            </div>
+            <div id="rg-trackpad" class="touch-trackpad-area">
+              <div class="touch-trackpad-hint">
+                <span class="material-symbols-outlined" style="font-size:20px; color:#f59e0b;">touch_app</span>
+                <span>Slide finger inside box to move cursor</span>
+              </div>
+              <div id="rg-trackpad-puck" class="touch-trackpad-puck"></div>
+            </div>
+            <button id="rg-cursor-action-btn" class="touch-cursor-action-btn">
+              <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
+              <span id="rg-action-btn-text">Move cursor over any plot</span>
+            </button>
+          </div>
         </div>
 
       </div>
@@ -1001,6 +1065,10 @@
           📌 <strong style="color:#0f172a;">Click any plot block</strong> on the official AutoCAD map to view full dimensions, specifications and instant booking options.
         </div>
         <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          <button id="rg-cursor-toggle-btn" class="btn-touch-cursor" title="Toggle Touch Cursor for Mobile / Touchscreens">
+            <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
+            <span id="rg-cursor-toggle-text">Touch Cursor: OFF</span>
+          </button>
           <button onclick="window.openProjectSeoModal('royal_garden');" class="btn-gold" style="font-size:0.75rem; background:#1e3a8a; color:#ffffff; border:1.5px solid #d4a017; font-weight:800; cursor:pointer;">
             <span class="material-symbols-outlined" style="font-size:16px; color:#fde047;">info</span>
             View Complete Royal Garden Details
