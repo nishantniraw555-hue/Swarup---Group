@@ -1335,6 +1335,7 @@
       }
 
       if (enabled) {
+        canvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
         const rect = canvas.getBoundingClientRect();
         rgCursorX = (rect.width || width) / 2;
         rgCursorY = (rect.height || height) / 2;

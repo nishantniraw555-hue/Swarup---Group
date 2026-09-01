@@ -5433,268 +5433,290 @@ canvas {
 }
 
 /* ==========================================================================
-   ULTRA-FAST LAPTOP-STYLE TOUCH CURSOR & SQUARE TRACKPAD DOCK (MOBILE & TOUCH)
+   ULTRA-FAST LAPTOP-STYLE TOUCH CURSOR & FLOATING SQUARE TRACKPAD (MOBILE & TOUCH)
    ========================================================================== */
 
 /* Toggle Button in Bottom Helper Bar */
 .btn-touch-cursor {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0.65rem 1.25rem;
-  border-radius: 12px;
-  font-family: var(--font-apple);
-  font-size: 0.8rem;
-  font-weight: 800;
-  cursor: pointer;
-  border: 1.5px solid #d4a017;
-  background: linear-gradient(135deg, #0f172a, #1e3a8a);
-  color: #fde047;
-  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.2);
-  transition: all 0.2s ease;
-  user-select: none;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  padding: 0.75rem 1.4rem !important;
+  border-radius: 14px !important;
+  font-family: var(--font-apple) !important;
+  font-size: 0.85rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  border: 2px solid #d4a017 !important;
+  background: linear-gradient(135deg, #0f172a, #1e3a8a) !important;
+  color: #fde047 !important;
+  box-shadow: 0 4px 15px rgba(212, 160, 23, 0.25) !important;
+  transition: all 0.2s ease !important;
+  user-select: none !important;
+  z-index: 15 !important;
 }
 .btn-touch-cursor:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.35);
+  box-shadow: 0 6px 20px rgba(212, 160, 23, 0.45) !important;
 }
 .btn-touch-cursor.active {
-  background: linear-gradient(135deg, #b45309, #d97706);
-  color: #ffffff;
-  border-color: #fde047;
-  box-shadow: 0 0 18px rgba(245, 158, 11, 0.6);
+  background: linear-gradient(135deg, #b45309, #d97706) !important;
+  color: #ffffff !important;
+  border-color: #fde047 !important;
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.8) !important;
 }
 
-/* Simple Laptop Cursor (Clean OS-Style Pointer Arrow) */
+/* High-Visibility Laptop Pointer Cursor with Pulsing Beacon */
 .touch-laptop-cursor {
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 50;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  pointer-events: none !important;
+  z-index: 999 !important;
   display: none;
   will-change: transform;
   transform: translate3d(-9999px, -9999px, 0);
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.45));
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.6));
 }
 .touch-laptop-cursor.active {
-  display: block;
+  display: block !important;
 }
 .laptop-cursor-svg {
   display: block;
-  width: 26px;
-  height: 26px;
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 4px #f59e0b);
+}
+.laptop-cursor-beacon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: -9px;
+  margin-left: -9px;
+  border-radius: 50%;
+  border: 2px solid #f59e0b;
+  background: rgba(245, 158, 11, 0.4);
+  animation: cursor-beacon-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+@keyframes cursor-beacon-ping {
+  0% { transform: scale(0.6); opacity: 1; }
+  75%, 100% { transform: scale(2.4); opacity: 0; }
 }
 .laptop-cursor-badge {
   position: absolute;
-  left: 20px;
+  left: 28px;
   top: 14px;
-  background: rgba(15, 23, 42, 0.95);
-  backdrop-filter: blur(8px);
-  border: 1.5px solid #f59e0b;
-  color: #f8fafc;
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  white-space: nowrap;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  pointer-events: none;
+  background: #0f172a !important;
+  border: 2px solid #f59e0b !important;
+  color: #fde047 !important;
+  padding: 4px 10px !important;
+  border-radius: 8px !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  white-space: nowrap !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
+  pointer-events: none !important;
 }
 
-/* Docked Trackpad Controller (Positioned BELOW the Canvas to avoid blocking plots) */
+/* Floating / Docked Square Trackpad Controller (Fixed at bottom of screen when active) */
 .touch-cursor-dock {
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
-  animation: dock-fade-in 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  z-index: 99999 !important;
+  max-width: calc(100vw - 30px) !important;
+  width: 340px !important;
+  animation: dock-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-@keyframes dock-fade-in {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes dock-pop {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
 }
 .touch-dock-card {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-  border: 2px solid #d4a017;
-  border-radius: 20px;
-  padding: 1rem;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  background: rgba(15, 23, 42, 0.96) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 2.5px solid #d4a017 !important;
+  border-radius: 22px !important;
+  padding: 12px 14px !important;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
 }
 .touch-dock-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.5rem;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
+  padding-bottom: 6px !important;
 }
 .touch-dock-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: #fde047;
-  font-size: 0.8rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #fde047 !important;
+  font-size: 0.75rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.04em !important;
+  text-transform: uppercase !important;
 }
 .touch-dock-close {
-  background: rgba(255, 255, 255, 0.1);
-  border: none;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: none !important;
+  width: 26px !important;
+  height: 26px !important;
+  border-radius: 50% !important;
+  color: #ffffff !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s !important;
 }
 .touch-dock-close:hover {
-  background: #ef4444;
+  background: #ef4444 !important;
 }
 
 /* Dock Body with Square Trackpad and Actions */
 .touch-dock-body {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
 }
 
-/* 100% Square Trackpad */
+/* Perfect Square Trackpad (125px x 125px) */
 .touch-square-trackpad {
-  width: 140px;
-  height: 140px;
-  min-width: 140px;
-  aspect-ratio: 1 / 1;
-  background: radial-gradient(circle at center, #1e293b 0%, #090d16 100%);
-  border: 2px solid #f59e0b;
-  border-radius: 18px;
-  position: relative;
-  overflow: hidden;
-  touch-action: none;
-  cursor: grab;
-  user-select: none;
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(245, 158, 11, 0.15);
+  width: 125px !important;
+  height: 125px !important;
+  min-width: 125px !important;
+  aspect-ratio: 1 / 1 !important;
+  background: radial-gradient(circle at center, #1e293b 0%, #050811 100%) !important;
+  border: 2px solid #f59e0b !important;
+  border-radius: 16px !important;
+  position: relative !important;
+  overflow: hidden !important;
+  touch-action: none !important;
+  cursor: grab !important;
+  user-select: none !important;
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.25) !important;
 }
 .trackpad-surface {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 .trackpad-crosshair {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 20px 20px;
-  background-position: center center;
-  pointer-events: none;
+    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
+  background-size: 18px 18px !important;
+  background-position: center center !important;
+  pointer-events: none !important;
 }
 .trackpad-hint {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.68rem;
-  font-weight: 700;
-  text-align: center;
-  pointer-events: none;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  gap: 3px !important;
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-align: center !important;
+  pointer-events: none !important;
 }
 .trackpad-puck {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 30px;
-  height: 30px;
-  margin-top: -15px;
-  margin-left: -15px;
-  border-radius: 50%;
-  background: #f59e0b;
-  border: 2px solid #ffffff;
-  box-shadow: 0 0 12px #f59e0b;
-  pointer-events: none;
-  display: none;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 26px !important;
+  height: 26px !important;
+  margin-top: -13px !important;
+  margin-left: -13px !important;
+  border-radius: 50% !important;
+  background: #f59e0b !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: 0 0 12px #f59e0b !important;
+  pointer-events: none !important;
+  display: none !important;
 }
 .touch-square-trackpad.touching .trackpad-puck {
-  display: block;
+  display: block !important;
 }
 
 /* Action Area beside Square Trackpad */
 .touch-dock-actions {
-  flex: 1;
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
+  flex: 1 !important;
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
 }
 .touch-selected-plot-info {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: 10px !important;
+  padding: 6px 10px !important;
 }
 .touch-selected-plot-info .info-tag {
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: #94a3b8;
-  display: block;
+  font-size: 0.62rem !important;
+  text-transform: uppercase !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  color: #94a3b8 !important;
+  display: block !important;
 }
 .touch-selected-plot-info .info-val {
-  font-size: 0.88rem;
-  font-weight: 800;
-  color: #ffffff;
-  margin-top: 2px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  font-size: 0.8rem !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin-top: 2px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 .touch-cursor-action-btn {
-  width: 100%;
-  padding: 12px 16px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 800;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.08);
-  color: #94a3b8;
-  transition: all 0.2s ease;
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border-radius: 10px !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #94a3b8 !important;
+  transition: all 0.2s ease !important;
 }
 .touch-cursor-action-btn:not(:disabled) {
-  background: linear-gradient(135deg, #d97706, #f59e0b);
-  color: #0f172a;
-  border-color: #fef08a;
-  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.45);
+  background: linear-gradient(135deg, #d97706, #f59e0b) !important;
+  color: #0f172a !important;
+  border-color: #fef08a !important;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.5) !important;
 }
 .touch-cursor-action-btn:not(:disabled):active {
-  transform: scale(0.98);
+  transform: scale(0.97) !important;
 }
 
 @media (max-width: 480px) {
-  .touch-dock-body {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .touch-square-trackpad {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto;
+  .touch-cursor-dock {
+    bottom: 12px !important;
+    right: 12px !important;
+    left: 12px !important;
+    width: auto !important;
+    max-width: none !important;
   }
 }
+

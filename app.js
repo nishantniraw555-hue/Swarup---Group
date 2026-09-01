@@ -738,6 +738,7 @@ function initPatnaMasterplanCanvas() {
     }
 
     if (enabled) {
+      canvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
       const rect = canvas.getBoundingClientRect();
       guruCursorX = (rect.width || width) / 2;
       guruCursorY = (rect.height || height) / 2;
