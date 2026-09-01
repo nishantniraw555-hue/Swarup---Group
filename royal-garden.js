@@ -587,9 +587,9 @@
       dpr = window.devicePixelRatio || 1;
       const parent = canvas.parentElement;
       width = (parent && parent.clientWidth) ? parent.clientWidth : window.innerWidth;
-      if (!width || width < 300) width = window.innerWidth;
-      height = (parent && parent.clientHeight) ? parent.clientHeight : 900;
-      if (!height || height < 400) height = 900;
+      if (!width || width < 280) width = window.innerWidth;
+      height = (parent && parent.clientHeight) ? parent.clientHeight : 750;
+      if (!height || height < 300) height = 500;
 
       canvas.width = width * dpr;
       canvas.height = height * dpr;
@@ -1321,6 +1321,9 @@
 
     function setRgCursorMode(enabled) {
       isRgCursorActive = enabled;
+      if (enabled && window.closeGuruCursor) {
+        window.closeGuruCursor();
+      }
       if (rgCursorToggleBtn) {
         rgCursorToggleBtn.classList.toggle('active', enabled);
       }
@@ -1348,6 +1351,8 @@
       }
     }
 
+    window.closeRgCursor = () => setRgCursorMode(false);
+
     if (rgCursorToggleBtn) {
       rgCursorToggleBtn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1371,14 +1376,18 @@
       });
     }
 
-    // Ultra-Fast Relative Delta Trackpad Engine
+    // Ultra-Fast Relative Delta Trackpad Engine with Tap-to-Click
     if (rgTrackpad) {
       let lastRgTrackpadX = 0;
       let lastRgTrackpadY = 0;
+      let touchStartTime = 0;
+      let totalDistMoved = 0;
       let isRgTracking = false;
 
       function startRgTracking(clientX, clientY) {
         isRgTracking = true;
+        touchStartTime = Date.now();
+        totalDistMoved = 0;
         rgTrackpad.classList.add('touching');
         lastRgTrackpadX = clientX;
         lastRgTrackpadY = clientY;
@@ -1393,22 +1402,31 @@
         const dy = clientY - lastRgTrackpadY;
         lastRgTrackpadX = clientX;
         lastRgTrackpadY = clientY;
+        totalDistMoved += Math.hypot(dx, dy);
 
-        const sensitivity = 2.2; // High-speed responsiveness
+        const sensitivity = 2.0; // High-speed responsiveness
         updateRgCursor(rgCursorX + dx * sensitivity, rgCursorY + dy * sensitivity);
 
         if (rgTrackpadPuck) {
-          const clampPuckX = Math.max(-40, Math.min(40, dx * 3));
-          const clampPuckY = Math.max(-40, Math.min(40, dy * 3));
+          const clampPuckX = Math.max(-35, Math.min(35, dx * 3));
+          const clampPuckY = Math.max(-35, Math.min(35, dy * 3));
           rgTrackpadPuck.style.transform = `translate(${clampPuckX}px, ${clampPuckY}px)`;
         }
       }
 
       function stopRgTracking() {
+        if (!isRgTracking) return;
         isRgTracking = false;
         rgTrackpad.classList.remove('touching');
         if (rgTrackpadPuck) {
           rgTrackpadPuck.style.transform = 'translate(0px, 0px)';
+        }
+        // Tap-to-click: If quick tap with minimal movement, open plot modal
+        const duration = Date.now() - touchStartTime;
+        if (duration < 280 && totalDistMoved < 10) {
+          if (rgCursorHoveredPlot) {
+            openPlotModal(rgCursorHoveredPlot);
+          }
         }
       }
 
