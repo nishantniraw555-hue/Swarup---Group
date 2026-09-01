@@ -5521,45 +5521,46 @@ canvas {
   pointer-events: none !important;
 }
 
-/* Floating / Docked Square Trackpad Controller (Fixed at bottom of screen when active) */
+/* INLINE Square Trackpad Controller Dock (Positioned DIRECTLY BELOW the Canvas) */
 .touch-cursor-dock {
-  position: fixed !important;
-  bottom: 20px !important;
-  right: 20px !important;
-  z-index: 99999 !important;
-  max-width: calc(100vw - 30px) !important;
-  width: 340px !important;
-  animation: dock-pop 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin-top: 1.25rem !important;
+  margin-bottom: 1.25rem !important;
+  z-index: 10 !important;
+  animation: dock-fade 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-@keyframes dock-pop {
-  from { opacity: 0; transform: scale(0.9) translateY(20px); }
-  to { opacity: 1; transform: scale(1) translateY(0); }
+@keyframes dock-fade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 .touch-dock-card {
-  background: rgba(15, 23, 42, 0.96) !important;
-  backdrop-filter: blur(20px) !important;
-  -webkit-backdrop-filter: blur(20px) !important;
-  border: 2.5px solid #d4a017 !important;
-  border-radius: 22px !important;
-  padding: 12px 14px !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5) !important;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+  border: 2px solid #d4a017 !important;
+  border-radius: 20px !important;
+  padding: 1.2rem 1.5rem !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 10px !important;
+  gap: 12px !important;
+  width: 100% !important;
+  max-width: 720px !important;
+  margin: 0 auto !important;
 }
 .touch-dock-header {
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.12) !important;
-  padding-bottom: 6px !important;
+  padding-bottom: 8px !important;
 }
 .touch-dock-title {
   display: flex !important;
   align-items: center !important;
-  gap: 6px !important;
+  gap: 8px !important;
   color: #fde047 !important;
-  font-size: 0.75rem !important;
+  font-size: 0.82rem !important;
   font-weight: 800 !important;
   letter-spacing: 0.04em !important;
   text-transform: uppercase !important;
@@ -5567,8 +5568,8 @@ canvas {
 .touch-dock-close {
   background: rgba(255, 255, 255, 0.15) !important;
   border: none !important;
-  width: 26px !important;
-  height: 26px !important;
+  width: 28px !important;
+  height: 28px !important;
   border-radius: 50% !important;
   color: #ffffff !important;
   display: flex !important;
@@ -5585,18 +5586,20 @@ canvas {
 .touch-dock-body {
   display: flex !important;
   align-items: center !important;
-  gap: 12px !important;
+  justify-content: center !important;
+  gap: 1.5rem !important;
+  flex-wrap: wrap !important;
 }
 
-/* Perfect Square Trackpad (125px x 125px) */
+/* Perfect Square Trackpad */
 .touch-square-trackpad {
-  width: 125px !important;
-  height: 125px !important;
-  min-width: 125px !important;
+  width: 140px !important;
+  height: 140px !important;
+  min-width: 140px !important;
   aspect-ratio: 1 / 1 !important;
   background: radial-gradient(circle at center, #1e293b 0%, #050811 100%) !important;
   border: 2px solid #f59e0b !important;
-  border-radius: 16px !important;
+  border-radius: 18px !important;
   position: relative !important;
   overflow: hidden !important;
   touch-action: none !important;
@@ -5627,9 +5630,9 @@ canvas {
   display: flex !important;
   flex-direction: column !important;
   align-items: center !important;
-  gap: 3px !important;
-  color: rgba(255, 255, 255, 0.65) !important;
-  font-size: 0.65rem !important;
+  gap: 4px !important;
+  color: rgba(255, 255, 255, 0.7) !important;
+  font-size: 0.68rem !important;
   font-weight: 700 !important;
   text-align: center !important;
   pointer-events: none !important;
@@ -5638,10 +5641,10 @@ canvas {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
-  width: 26px !important;
-  height: 26px !important;
-  margin-top: -13px !important;
-  margin-left: -13px !important;
+  width: 28px !important;
+  height: 28px !important;
+  margin-top: -14px !important;
+  margin-left: -14px !important;
   border-radius: 50% !important;
   background: #f59e0b !important;
   border: 2px solid #ffffff !important;
@@ -5656,19 +5659,19 @@ canvas {
 /* Action Area beside Square Trackpad */
 .touch-dock-actions {
   flex: 1 !important;
-  min-width: 0 !important;
+  min-width: 220px !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 8px !important;
+  gap: 10px !important;
 }
 .touch-selected-plot-info {
   background: rgba(255, 255, 255, 0.08) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  border-radius: 10px !important;
-  padding: 6px 10px !important;
+  border-radius: 12px !important;
+  padding: 8px 12px !important;
 }
 .touch-selected-plot-info .info-tag {
-  font-size: 0.62rem !important;
+  font-size: 0.65rem !important;
   text-transform: uppercase !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
@@ -5676,25 +5679,25 @@ canvas {
   display: block !important;
 }
 .touch-selected-plot-info .info-val {
-  font-size: 0.8rem !important;
+  font-size: 0.88rem !important;
   font-weight: 800 !important;
   color: #ffffff !important;
-  margin-top: 2px !important;
+  margin-top: 3px !important;
   white-space: nowrap !important;
   overflow: hidden !important;
   text-overflow: ellipsis !important;
 }
 .touch-cursor-action-btn {
   width: 100% !important;
-  padding: 10px 12px !important;
-  border-radius: 10px !important;
-  font-size: 0.78rem !important;
+  padding: 12px 16px !important;
+  border-radius: 12px !important;
+  font-size: 0.82rem !important;
   font-weight: 800 !important;
   cursor: pointer !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
-  gap: 6px !important;
+  gap: 8px !important;
   border: 1.5px solid rgba(255, 255, 255, 0.2) !important;
   background: rgba(255, 255, 255, 0.08) !important;
   color: #94a3b8 !important;
@@ -5710,13 +5713,18 @@ canvas {
   transform: scale(0.97) !important;
 }
 
-@media (max-width: 480px) {
-  .touch-cursor-dock {
-    bottom: 12px !important;
-    right: 12px !important;
-    left: 12px !important;
-    width: auto !important;
-    max-width: none !important;
+@media (max-width: 540px) {
+  .touch-dock-body {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .touch-square-trackpad {
+    width: 140px !important;
+    height: 140px !important;
+    margin: 0 auto !important;
+  }
+  .touch-dock-actions {
+    min-width: 100% !important;
   }
 }
 
