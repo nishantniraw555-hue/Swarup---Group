@@ -1338,7 +1338,9 @@
       }
 
       if (enabled) {
-        canvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (rgTouchController) {
+          rgTouchController.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
         const rect = canvas.getBoundingClientRect();
         rgCursorX = (rect.width || width) / 2;
         rgCursorY = (rect.height || height) / 2;

@@ -4775,9 +4775,11 @@ canvas {
     font-size: 0.72rem !important;
     padding: 6px 12px !important;
   }
-  .canvas-wrapper {
-    height: clamp(380px, 60vh, 560px) !important;
-    min-height: 380px !important;
+  .canvas-wrapper,
+  #rg-canvas-wrapper {
+    height: clamp(360px, 55vh, 520px) !important;
+    min-height: 360px !important;
+    max-height: 520px !important;
     border-radius: 16px !important;
     aspect-ratio: auto !important;
     width: 100% !important;
@@ -4786,10 +4788,12 @@ canvas {
     overflow: hidden !important;
     touch-action: pan-y !important;
   }
-  #hero-canvas {
+  #hero-canvas,
+  #royal-garden-canvas {
     width: 100% !important;
     height: 100% !important;
     display: block !important;
+    touch-action: pan-y !important;
   }
   .guru-niwas-legend {
     position: static !important;

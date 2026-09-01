@@ -742,7 +742,9 @@ function initPatnaMasterplanCanvas() {
     }
 
     if (enabled) {
-      canvas.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (guruTouchController) {
+        guruTouchController.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
       const rect = canvas.getBoundingClientRect();
       guruCursorX = (rect.width || width) / 2;
       guruCursorY = (rect.height || height) / 2;
