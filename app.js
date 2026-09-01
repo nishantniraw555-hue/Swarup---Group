@@ -631,7 +631,7 @@ function initPatnaMasterplanCanvas() {
   });
 
   // ─────────────────────────────────────────────────────────────
-  // GURU NIWAS VIRTUAL TOUCH CURSOR & TRACKPAD SLIDER CONTROLLER
+  // GURU NIWAS VIRTUAL TOUCH CURSOR & SQUARE TRACKPAD DOCK
   // ─────────────────────────────────────────────────────────────
   const guruCursorToggleBtn = document.getElementById('guru-cursor-toggle-btn');
   const guruCursorToggleText = document.getElementById('guru-cursor-toggle-text');
@@ -643,12 +643,14 @@ function initPatnaMasterplanCanvas() {
   const guruTrackpadPuck = document.getElementById('guru-trackpad-puck');
   const guruCursorActionBtn = document.getElementById('guru-cursor-action-btn');
   const guruActionBtnText = document.getElementById('guru-action-btn-text');
+  const guruCursorVal = document.getElementById('guru-cursor-val');
 
   let isGuruCursorActive = false;
   let guruCursorX = 0;
   let guruCursorY = 0;
   let cursorHoveredPlot = null;
   let cursorHoveredPark = null;
+  let prevHoveredPlotId = null;
 
   function updateGuruCursor(newX, newY) {
     if (!canvas) return;
@@ -656,8 +658,8 @@ function initPatnaMasterplanCanvas() {
     const cWidth = rect.width || width;
     const cHeight = rect.height || height;
 
-    guruCursorX = Math.max(12, Math.min(cWidth - 12, newX));
-    guruCursorY = Math.max(12, Math.min(cHeight - 12, newY));
+    guruCursorX = Math.max(2, Math.min(cWidth - 2, newX));
+    guruCursorY = Math.max(2, Math.min(cHeight - 2, newY));
 
     if (guruTouchCursor) {
       guruTouchCursor.style.transform = `translate3d(${guruCursorX}px, ${guruCursorY}px, 0)`;
@@ -666,34 +668,57 @@ function initPatnaMasterplanCanvas() {
     // Hit-testing against plots and parks
     let foundPlot = null;
     let foundPark = null;
-    plots.forEach(p => {
+    for (let i = 0; i < plots.length; i++) {
+      const p = plots[i];
       if (guruCursorX >= p.x && guruCursorX <= p.x + p.w && guruCursorY >= p.y && guruCursorY <= p.y + p.h) {
         foundPlot = p;
+        break;
       }
-    });
-    scaledParks.forEach(p => {
-      if (guruCursorX >= p.x && guruCursorX <= p.x + p.w && guruCursorY >= p.y && guruCursorY <= p.y + p.h) {
-        foundPark = p;
+    }
+    if (!foundPlot) {
+      for (let i = 0; i < scaledParks.length; i++) {
+        const p = scaledParks[i];
+        if (guruCursorX >= p.x && guruCursorX <= p.x + p.w && guruCursorY >= p.y && guruCursorY <= p.y + p.h) {
+          foundPark = p;
+          break;
+        }
       }
-    });
+    }
 
-    hoveredPlot = foundPlot;
     cursorHoveredPlot = foundPlot;
     cursorHoveredPark = foundPark;
-    buildLayout();
+
+    const currentId = foundPlot ? foundPlot.id : (foundPark ? foundPark.id : null);
+    if (currentId !== prevHoveredPlotId) {
+      prevHoveredPlotId = currentId;
+      hoveredPlot = foundPlot;
+      buildLayout(); // ONLY redraw when plot boundary actually changes!
+    }
 
     if (foundPlot) {
-      if (guruCursorLabel) guruCursorLabel.innerHTML = `<strong>${foundPlot.id}</strong> • ${foundPlot.sqft} Sq.Ft (${foundPlot.status.toUpperCase()})`;
-      if (guruCursorActionBtn) guruCursorActionBtn.classList.add('has-plot');
-      if (guruActionBtnText) guruActionBtnText.innerHTML = `👉 Open ${foundPlot.id} (${foundPlot.sqft} Sq.Ft) Details ➔`;
+      if (guruCursorLabel) guruCursorLabel.textContent = foundPlot.id;
+      if (guruCursorVal) guruCursorVal.innerHTML = `<span style="color:#fde047; font-weight:800;">${foundPlot.id}</span> • ${foundPlot.sqft} Sq.Ft (${foundPlot.status.toUpperCase()}) • ${foundPlot.price}`;
+      if (guruCursorActionBtn) {
+        guruCursorActionBtn.disabled = false;
+        guruCursorActionBtn.classList.add('has-plot');
+      }
+      if (guruActionBtnText) guruActionBtnText.innerHTML = `👉 Click to Open ${foundPlot.id} Details ➔`;
     } else if (foundPark) {
-      if (guruCursorLabel) guruCursorLabel.innerHTML = `🌿 ${foundPark.id}`;
-      if (guruCursorActionBtn) guruCursorActionBtn.classList.add('has-plot');
+      if (guruCursorLabel) guruCursorLabel.textContent = foundPark.id;
+      if (guruCursorVal) guruCursorVal.innerHTML = `🌿 <span style="color:#86efac; font-weight:800;">${foundPark.id}</span>`;
+      if (guruCursorActionBtn) {
+        guruCursorActionBtn.disabled = false;
+        guruCursorActionBtn.classList.add('has-plot');
+      }
       if (guruActionBtnText) guruActionBtnText.innerHTML = `👉 Open ${foundPark.id} Info ➔`;
     } else {
-      if (guruCursorLabel) guruCursorLabel.innerHTML = `🎯 Pointing: Move over any plot`;
-      if (guruCursorActionBtn) guruCursorActionBtn.classList.remove('has-plot');
-      if (guruActionBtnText) guruActionBtnText.innerHTML = `Move cursor over any plot`;
+      if (guruCursorLabel) guruCursorLabel.textContent = 'Move to Plot';
+      if (guruCursorVal) guruCursorVal.textContent = 'Move cursor over any plot';
+      if (guruCursorActionBtn) {
+        guruCursorActionBtn.disabled = true;
+        guruCursorActionBtn.classList.remove('has-plot');
+      }
+      if (guruActionBtnText) guruActionBtnText.innerHTML = `Move cursor over plot`;
     }
   }
 
@@ -709,7 +734,7 @@ function initPatnaMasterplanCanvas() {
       guruTouchCursor.classList.toggle('active', enabled);
     }
     if (guruTouchController) {
-      guruTouchController.classList.toggle('active', enabled);
+      guruTouchController.style.display = enabled ? 'block' : 'none';
     }
 
     if (enabled) {
@@ -721,6 +746,7 @@ function initPatnaMasterplanCanvas() {
       hoveredPlot = null;
       cursorHoveredPlot = null;
       cursorHoveredPark = null;
+      prevHoveredPlotId = null;
       buildLayout();
     }
   }
@@ -751,37 +777,42 @@ function initPatnaMasterplanCanvas() {
     });
   }
 
-  // Trackpad Slider Touch Events
+  // Ultra-Fast Relative Delta Trackpad Engine
   if (guruTrackpad) {
-    let tpTouchStart = null;
-    let tpCursorStart = { x: 0, y: 0 };
+    let lastTrackpadX = 0;
+    let lastTrackpadY = 0;
+    let isTracking = false;
 
-    function handleTrackpadStart(clientX, clientY) {
+    function startTracking(clientX, clientY) {
+      isTracking = true;
       guruTrackpad.classList.add('touching');
-      tpTouchStart = { x: clientX, y: clientY };
-      tpCursorStart = { x: guruCursorX, y: guruCursorY };
+      lastTrackpadX = clientX;
+      lastTrackpadY = clientY;
       if (guruTrackpadPuck) {
         guruTrackpadPuck.style.transform = 'translate(0px, 0px)';
       }
     }
 
-    function handleTrackpadMove(clientX, clientY) {
-      if (!tpTouchStart) return;
-      const dx = clientX - tpTouchStart.x;
-      const dy = clientY - tpTouchStart.y;
-      const sensitivity = 1.35;
-      updateGuruCursor(tpCursorStart.x + dx * sensitivity, tpCursorStart.y + dy * sensitivity);
+    function moveTracking(clientX, clientY) {
+      if (!isTracking) return;
+      const dx = clientX - lastTrackpadX;
+      const dy = clientY - lastTrackpadY;
+      lastTrackpadX = clientX;
+      lastTrackpadY = clientY;
+
+      const sensitivity = 2.2; // High-speed responsiveness
+      updateGuruCursor(guruCursorX + dx * sensitivity, guruCursorY + dy * sensitivity);
 
       if (guruTrackpadPuck) {
-        const clampPuckX = Math.max(-45, Math.min(45, dx * 0.45));
-        const clampPuckY = Math.max(-30, Math.min(30, dy * 0.45));
+        const clampPuckX = Math.max(-40, Math.min(40, dx * 3));
+        const clampPuckY = Math.max(-40, Math.min(40, dy * 3));
         guruTrackpadPuck.style.transform = `translate(${clampPuckX}px, ${clampPuckY}px)`;
       }
     }
 
-    function handleTrackpadEnd() {
+    function stopTracking() {
+      isTracking = false;
       guruTrackpad.classList.remove('touching');
-      tpTouchStart = null;
       if (guruTrackpadPuck) {
         guruTrackpadPuck.style.transform = 'translate(0px, 0px)';
       }
@@ -791,7 +822,7 @@ function initPatnaMasterplanCanvas() {
       if (e.touches.length >= 1) {
         e.preventDefault();
         e.stopPropagation();
-        handleTrackpadStart(e.touches[0].clientX, e.touches[0].clientY);
+        startTracking(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: false });
 
@@ -799,32 +830,29 @@ function initPatnaMasterplanCanvas() {
       if (e.touches.length >= 1) {
         e.preventDefault();
         e.stopPropagation();
-        handleTrackpadMove(e.touches[0].clientX, e.touches[0].clientY);
+        moveTracking(e.touches[0].clientX, e.touches[0].clientY);
       }
     }, { passive: false });
 
     guruTrackpad.addEventListener('touchend', (e) => {
       e.preventDefault();
-      handleTrackpadEnd();
+      stopTracking();
     });
 
-    guruTrackpad.addEventListener('touchcancel', handleTrackpadEnd);
+    guruTrackpad.addEventListener('touchcancel', stopTracking);
 
-    // Mouse drag support on trackpad
-    let isMouseDownOnTp = false;
+    // Mouse support on trackpad
     guruTrackpad.addEventListener('mousedown', (e) => {
-      isMouseDownOnTp = true;
-      handleTrackpadStart(e.clientX, e.clientY);
+      startTracking(e.clientX, e.clientY);
     });
     window.addEventListener('mousemove', (e) => {
-      if (isMouseDownOnTp) {
-        handleTrackpadMove(e.clientX, e.clientY);
+      if (isTracking) {
+        moveTracking(e.clientX, e.clientY);
       }
     });
     window.addEventListener('mouseup', () => {
-      if (isMouseDownOnTp) {
-        isMouseDownOnTp = false;
-        handleTrackpadEnd();
+      if (isTracking) {
+        stopTracking();
       }
     });
   }

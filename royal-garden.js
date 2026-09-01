@@ -1254,7 +1254,7 @@
     }, { passive: false });
 
     // ─────────────────────────────────────────────────────────────
-    // ROYAL GARDEN VIRTUAL TOUCH CURSOR & TRACKPAD SLIDER CONTROLLER
+    // ROYAL GARDEN VIRTUAL TOUCH CURSOR & SQUARE TRACKPAD DOCK
     // ─────────────────────────────────────────────────────────────
     const rgCursorToggleBtn = document.getElementById('rg-cursor-toggle-btn');
     const rgCursorToggleText = document.getElementById('rg-cursor-toggle-text');
@@ -1266,11 +1266,13 @@
     const rgTrackpadPuck = document.getElementById('rg-trackpad-puck');
     const rgCursorActionBtn = document.getElementById('rg-cursor-action-btn');
     const rgActionBtnText = document.getElementById('rg-action-btn-text');
+    const rgCursorVal = document.getElementById('rg-cursor-val');
 
     let isRgCursorActive = false;
     let rgCursorX = 0;
     let rgCursorY = 0;
     let rgCursorHoveredPlot = null;
+    let prevRgHoveredId = null;
 
     function updateRgCursor(newX, newY) {
       if (!canvas) return;
@@ -1278,8 +1280,8 @@
       const cWidth = rect.width || width;
       const cHeight = rect.height || height;
 
-      rgCursorX = Math.max(12, Math.min(cWidth - 12, newX));
-      rgCursorY = Math.max(12, Math.min(cHeight - 12, newY));
+      rgCursorX = Math.max(2, Math.min(cWidth - 2, newX));
+      rgCursorY = Math.max(2, Math.min(cHeight - 2, newY));
 
       if (rgTouchCursor) {
         rgTouchCursor.style.transform = `translate3d(${rgCursorX}px, ${rgCursorY}px, 0)`;
@@ -1287,22 +1289,33 @@
 
       // Hit-testing against transformed plots
       const found = findPlotAtCoords(rgCursorX, rgCursorY);
-      if (found !== hoveredPlot) {
+      const currentId = found ? found.id : null;
+      if (currentId !== prevRgHoveredId) {
+        prevRgHoveredId = currentId;
         hoveredPlot = found;
-        drawMasterplan();
+        drawMasterplan(); // ONLY redraw when plot boundary actually changes!
       }
       rgCursorHoveredPlot = found;
 
       if (found) {
         const isBooked = BOOKED_PLOT_IDS.has(found.id);
         const statusText = isBooked ? 'BOOKED' : (found.isCorner ? 'CORNER VIP' : 'AVAILABLE');
-        if (rgCursorLabel) rgCursorLabel.innerHTML = `<strong>${found.id}</strong> • ${found.sqft} Sq.Ft (${statusText})`;
-        if (rgCursorActionBtn) rgCursorActionBtn.classList.add('has-plot');
-        if (rgActionBtnText) rgActionBtnText.innerHTML = `👉 Open Plot ${found.id} (${found.sqft} Sq.Ft) Details ➔`;
+        const priceStr = "₹" + ((found.sqft * BASE_RATE_PER_SQFT) / 100000).toFixed(2) + " Lakh";
+        if (rgCursorLabel) rgCursorLabel.textContent = found.id;
+        if (rgCursorVal) rgCursorVal.innerHTML = `<span style="color:#fde047; font-weight:800;">Plot ${found.id}</span> • ${found.sqft} Sq.Ft (${statusText}) • ${priceStr}`;
+        if (rgCursorActionBtn) {
+          rgCursorActionBtn.disabled = false;
+          rgCursorActionBtn.classList.add('has-plot');
+        }
+        if (rgActionBtnText) rgActionBtnText.innerHTML = `👉 Click to Open Plot ${found.id} Details ➔`;
       } else {
-        if (rgCursorLabel) rgCursorLabel.innerHTML = `🎯 Pointing: Move over any plot`;
-        if (rgCursorActionBtn) rgCursorActionBtn.classList.remove('has-plot');
-        if (rgActionBtnText) rgActionBtnText.innerHTML = `Move cursor over any plot`;
+        if (rgCursorLabel) rgCursorLabel.textContent = 'Move to Plot';
+        if (rgCursorVal) rgCursorVal.textContent = 'Move cursor over any plot';
+        if (rgCursorActionBtn) {
+          rgCursorActionBtn.disabled = true;
+          rgCursorActionBtn.classList.remove('has-plot');
+        }
+        if (rgActionBtnText) rgActionBtnText.innerHTML = `Move cursor over plot`;
       }
     }
 
@@ -1318,7 +1331,7 @@
         rgTouchCursor.classList.toggle('active', enabled);
       }
       if (rgTouchController) {
-        rgTouchController.classList.toggle('active', enabled);
+        rgTouchController.style.display = enabled ? 'block' : 'none';
       }
 
       if (enabled) {
@@ -1329,6 +1342,7 @@
       } else {
         hoveredPlot = null;
         rgCursorHoveredPlot = null;
+        prevRgHoveredId = null;
         drawMasterplan();
       }
     }
@@ -1356,37 +1370,42 @@
       });
     }
 
-    // Trackpad Slider Touch & Drag Events
+    // Ultra-Fast Relative Delta Trackpad Engine
     if (rgTrackpad) {
-      let tpTouchStart = null;
-      let tpCursorStart = { x: 0, y: 0 };
+      let lastRgTrackpadX = 0;
+      let lastRgTrackpadY = 0;
+      let isRgTracking = false;
 
-      function handleTrackpadStart(clientX, clientY) {
+      function startRgTracking(clientX, clientY) {
+        isRgTracking = true;
         rgTrackpad.classList.add('touching');
-        tpTouchStart = { x: clientX, y: clientY };
-        tpCursorStart = { x: rgCursorX, y: rgCursorY };
+        lastRgTrackpadX = clientX;
+        lastRgTrackpadY = clientY;
         if (rgTrackpadPuck) {
           rgTrackpadPuck.style.transform = 'translate(0px, 0px)';
         }
       }
 
-      function handleTrackpadMove(clientX, clientY) {
-        if (!tpTouchStart) return;
-        const dx = clientX - tpTouchStart.x;
-        const dy = clientY - tpTouchStart.y;
-        const sensitivity = 1.35;
-        updateRgCursor(tpCursorStart.x + dx * sensitivity, tpCursorStart.y + dy * sensitivity);
+      function moveRgTracking(clientX, clientY) {
+        if (!isRgTracking) return;
+        const dx = clientX - lastRgTrackpadX;
+        const dy = clientY - lastRgTrackpadY;
+        lastRgTrackpadX = clientX;
+        lastRgTrackpadY = clientY;
+
+        const sensitivity = 2.2; // High-speed responsiveness
+        updateRgCursor(rgCursorX + dx * sensitivity, rgCursorY + dy * sensitivity);
 
         if (rgTrackpadPuck) {
-          const clampPuckX = Math.max(-45, Math.min(45, dx * 0.45));
-          const clampPuckY = Math.max(-30, Math.min(30, dy * 0.45));
+          const clampPuckX = Math.max(-40, Math.min(40, dx * 3));
+          const clampPuckY = Math.max(-40, Math.min(40, dy * 3));
           rgTrackpadPuck.style.transform = `translate(${clampPuckX}px, ${clampPuckY}px)`;
         }
       }
 
-      function handleTrackpadEnd() {
+      function stopRgTracking() {
+        isRgTracking = false;
         rgTrackpad.classList.remove('touching');
-        tpTouchStart = null;
         if (rgTrackpadPuck) {
           rgTrackpadPuck.style.transform = 'translate(0px, 0px)';
         }
@@ -1396,7 +1415,7 @@
         if (e.touches.length >= 1) {
           e.preventDefault();
           e.stopPropagation();
-          handleTrackpadStart(e.touches[0].clientX, e.touches[0].clientY);
+          startRgTracking(e.touches[0].clientX, e.touches[0].clientY);
         }
       }, { passive: false });
 
@@ -1404,32 +1423,29 @@
         if (e.touches.length >= 1) {
           e.preventDefault();
           e.stopPropagation();
-          handleTrackpadMove(e.touches[0].clientX, e.touches[0].clientY);
+          moveRgTracking(e.touches[0].clientX, e.touches[0].clientY);
         }
       }, { passive: false });
 
       rgTrackpad.addEventListener('touchend', (e) => {
         e.preventDefault();
-        handleTrackpadEnd();
+        stopRgTracking();
       });
 
-      rgTrackpad.addEventListener('touchcancel', handleTrackpadEnd);
+      rgTrackpad.addEventListener('touchcancel', stopRgTracking);
 
-      // Mouse drag support on trackpad
-      let isMouseDownOnTp = false;
+      // Mouse support on trackpad
       rgTrackpad.addEventListener('mousedown', (e) => {
-        isMouseDownOnTp = true;
-        handleTrackpadStart(e.clientX, e.clientY);
+        startRgTracking(e.clientX, e.clientY);
       });
       window.addEventListener('mousemove', (e) => {
-        if (isMouseDownOnTp) {
-          handleTrackpadMove(e.clientX, e.clientY);
+        if (isRgTracking) {
+          moveRgTracking(e.clientX, e.clientY);
         }
       });
       window.addEventListener('mouseup', () => {
-        if (isMouseDownOnTp) {
-          isMouseDownOnTp = false;
-          handleTrackpadEnd();
+        if (isRgTracking) {
+          stopRgTracking();
         }
       });
     }

@@ -797,34 +797,53 @@
           <span style="display:flex; align-items:center; gap:8px;"><span style="width:16px; height:16px; border-radius:4px; border:1.5px solid #991b1b; background:#ef4444; box-shadow:0 2px 4px rgba(239,68,68,0.3); display:inline-block;"></span> 🔴 Booked (Red)</span>
         </div>
 
-        <!-- Virtual Touch Cursor Overlay -->
-        <div id="guru-touch-cursor" class="touch-virtual-cursor">
-          <div class="touch-cursor-reticle"></div>
-          <div class="touch-cursor-label" id="guru-cursor-label">🎯 Pointing: Tap or Slide Trackpad</div>
+        <!-- Simple Laptop Pointer Arrow Cursor Overlay -->
+        <div id="guru-touch-cursor" class="touch-laptop-cursor">
+          <svg class="laptop-cursor-svg" viewBox="0 0 24 24" fill="none">
+            <path d="M4 2L20 10.5L12 12.5L10 20.5L4 2Z" fill="#1e3a8a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+          <div class="laptop-cursor-badge" id="guru-cursor-label">Plot --</div>
         </div>
+      </div>
 
-        <!-- Touch Cursor Slider Trackpad Controller Box -->
-        <div id="guru-touch-controller" class="touch-cursor-controller-box">
-          <div class="touch-controller-header">
-            <div class="touch-controller-title">
-              <span class="material-symbols-outlined" style="font-size:16px;">ads_click</span>
-              <span>Touch Cursor Trackpad</span>
+      <!-- Touch Cursor Square Trackpad Dock (Placed BELOW canvas so it NEVER covers map/plots) -->
+      <div id="guru-touch-controller" class="touch-cursor-dock" style="display:none;">
+        <div class="touch-dock-card">
+          <div class="touch-dock-header">
+            <div class="touch-dock-title">
+              <span class="material-symbols-outlined" style="font-size:18px; color:#fde047;">laptop_chromebook</span>
+              <span>Virtual Touch Trackpad (Guru Niwas)</span>
             </div>
-            <button id="guru-controller-close" class="touch-controller-close" title="Close Cursor Mode">
-              <span class="material-symbols-outlined" style="font-size:16px;">close</span>
+            <button id="guru-controller-close" class="touch-dock-close" title="Close Cursor Mode">
+              <span class="material-symbols-outlined" style="font-size:18px;">close</span>
             </button>
           </div>
-          <div id="guru-trackpad" class="touch-trackpad-area">
-            <div class="touch-trackpad-hint">
-              <span class="material-symbols-outlined" style="font-size:20px; color:#f59e0b;">touch_app</span>
-              <span>Slide finger inside box to move cursor</span>
+
+          <div class="touch-dock-body">
+            <!-- 100% Square Trackpad -->
+            <div id="guru-trackpad" class="touch-square-trackpad">
+              <div class="trackpad-surface">
+                <div class="trackpad-crosshair"></div>
+                <div class="trackpad-hint">
+                  <span class="material-symbols-outlined" style="font-size:24px; color:#f59e0b;">drag_pan</span>
+                  <span>Swipe to Move Cursor</span>
+                </div>
+                <div id="guru-trackpad-puck" class="trackpad-puck"></div>
+              </div>
             </div>
-            <div id="guru-trackpad-puck" class="touch-trackpad-puck"></div>
+
+            <!-- Controller Info & Action Panel -->
+            <div class="touch-dock-actions">
+              <div class="touch-selected-plot-info">
+                <span class="info-tag">Selected Plot / Target</span>
+                <div class="info-val" id="guru-cursor-val">Move cursor over any plot</div>
+              </div>
+              <button id="guru-cursor-action-btn" class="touch-cursor-action-btn" disabled>
+                <span class="material-symbols-outlined" style="font-size:20px;">ads_click</span>
+                <span id="guru-action-btn-text">Move cursor over plot</span>
+              </button>
+            </div>
           </div>
-          <button id="guru-cursor-action-btn" class="touch-cursor-action-btn">
-            <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
-            <span id="guru-action-btn-text">Move cursor over any plot</span>
-          </button>
         </div>
       </div>
 
@@ -1026,34 +1045,53 @@
         <div class="canvas-wrapper" id="rg-canvas-wrapper" style="position:relative; width:100%; min-height:850px; height:88vh; max-height:1050px; border-radius:24px; overflow:hidden; border:2px solid rgba(226,232,240,0.9); box-shadow:0 25px 50px -12px rgba(15,23,42,0.12); background:#ffffff;">
           <canvas id="royal-garden-canvas" style="touch-action:none; width:100%; height:100%;"></canvas>
 
-          <!-- Virtual Touch Cursor Overlay -->
-          <div id="rg-touch-cursor" class="touch-virtual-cursor">
-            <div class="touch-cursor-reticle"></div>
-            <div class="touch-cursor-label" id="rg-cursor-label">🎯 Pointing: Tap or Slide Trackpad</div>
+          <!-- Simple Laptop Pointer Arrow Cursor Overlay -->
+          <div id="rg-touch-cursor" class="touch-laptop-cursor">
+            <svg class="laptop-cursor-svg" viewBox="0 0 24 24" fill="none">
+              <path d="M4 2L20 10.5L12 12.5L10 20.5L4 2Z" fill="#1e3a8a" stroke="#ffffff" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+            <div class="laptop-cursor-badge" id="rg-cursor-label">Plot --</div>
           </div>
+        </div>
 
-          <!-- Touch Cursor Slider Trackpad Controller Box -->
-          <div id="rg-touch-controller" class="touch-cursor-controller-box">
-            <div class="touch-controller-header">
-              <div class="touch-controller-title">
-                <span class="material-symbols-outlined" style="font-size:16px;">ads_click</span>
-                <span>Touch Cursor Trackpad</span>
+        <!-- Touch Cursor Square Trackpad Dock (Placed BELOW canvas so it NEVER covers map/plots) -->
+        <div id="rg-touch-controller" class="touch-cursor-dock" style="display:none;">
+          <div class="touch-dock-card">
+            <div class="touch-dock-header">
+              <div class="touch-dock-title">
+                <span class="material-symbols-outlined" style="font-size:18px; color:#fde047;">laptop_chromebook</span>
+                <span>Virtual Touch Trackpad (Royal Garden)</span>
               </div>
-              <button id="rg-controller-close" class="touch-controller-close" title="Close Cursor Mode">
-                <span class="material-symbols-outlined" style="font-size:16px;">close</span>
+              <button id="rg-controller-close" class="touch-dock-close" title="Close Cursor Mode">
+                <span class="material-symbols-outlined" style="font-size:18px;">close</span>
               </button>
             </div>
-            <div id="rg-trackpad" class="touch-trackpad-area">
-              <div class="touch-trackpad-hint">
-                <span class="material-symbols-outlined" style="font-size:20px; color:#f59e0b;">touch_app</span>
-                <span>Slide finger inside box to move cursor</span>
+
+            <div class="touch-dock-body">
+              <!-- 100% Square Trackpad -->
+              <div id="rg-trackpad" class="touch-square-trackpad">
+                <div class="trackpad-surface">
+                  <div class="trackpad-crosshair"></div>
+                  <div class="trackpad-hint">
+                    <span class="material-symbols-outlined" style="font-size:24px; color:#f59e0b;">drag_pan</span>
+                    <span>Swipe to Move Cursor</span>
+                  </div>
+                  <div id="rg-trackpad-puck" class="trackpad-puck"></div>
+                </div>
               </div>
-              <div id="rg-trackpad-puck" class="touch-trackpad-puck"></div>
+
+              <!-- Controller Info & Action Panel -->
+              <div class="touch-dock-actions">
+                <div class="touch-selected-plot-info">
+                  <span class="info-tag">Selected Plot / Target</span>
+                  <div class="info-val" id="rg-cursor-val">Move cursor over any plot</div>
+                </div>
+                <button id="rg-cursor-action-btn" class="touch-cursor-action-btn" disabled>
+                  <span class="material-symbols-outlined" style="font-size:20px;">ads_click</span>
+                  <span id="rg-action-btn-text">Move cursor over plot</span>
+                </button>
+              </div>
             </div>
-            <button id="rg-cursor-action-btn" class="touch-cursor-action-btn">
-              <span class="material-symbols-outlined" style="font-size:18px;">ads_click</span>
-              <span id="rg-action-btn-text">Move cursor over any plot</span>
-            </button>
           </div>
         </div>
 
